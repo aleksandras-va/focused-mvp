@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import type { CosmeticCondition, FunctionalCondition, ListingInclusion } from '@/db/tables';
+import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
 import { requireUser } from '@/services/auth-service';
 import { searchCatalog } from '@/services/catalog-service';
 import { createListing, ListingError } from '@/services/listing-service';
@@ -17,7 +17,7 @@ export async function createListingAction(formData: FormData) {
 
   const inclusions = Array.from(formData.keys())
     .filter((key) => key.startsWith(INCLUSION_PREFIX))
-    .map((key) => key.slice(INCLUSION_PREFIX.length) as ListingInclusion);
+    .map((key) => key.slice(INCLUSION_PREFIX.length) as Inclusion);
 
   let listingId: string;
 

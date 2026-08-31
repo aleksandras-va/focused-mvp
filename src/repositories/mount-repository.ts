@@ -3,9 +3,9 @@ import { db } from '@/db';
 
 export function listMounts() {
   return db
-    .selectFrom('mounts')
-    .leftJoin('brands', 'brands.id', 'mounts.brand_id')
-    .select(['mounts.id', 'mounts.slug', 'mounts.name', 'brands.name as brand_name'])
-    .orderBy('mounts.name')
+    .selectFrom('mount')
+    .leftJoin('brand', 'brand.id', 'mount.brand_id')
+    .select(['mount.id', 'mount.slug', 'mount.name', 'brand.name as brand_name'])
+    .orderBy('mount.name')
     .execute();
 }

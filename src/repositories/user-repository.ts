@@ -14,16 +14,16 @@ const userColumns = [
 export type UserRow = Awaited<ReturnType<typeof findUserById>>;
 
 export function findUserById(id: string) {
-  return db.selectFrom('users').select(userColumns).where('id', '=', id).executeTakeFirst();
+  return db.selectFrom('user').select(userColumns).where('id', '=', id).executeTakeFirst();
 }
 
 export function findUserByEmail(email: string) {
-  return db.selectFrom('users').select(userColumns).where('email', '=', email).executeTakeFirst();
+  return db.selectFrom('user').select(userColumns).where('email', '=', email).executeTakeFirst();
 }
 
 export async function storeSlugExists(slug: string) {
   const match = await db
-    .selectFrom('users')
+    .selectFrom('user')
     .select('id')
     .where('store_slug', '=', slug)
     .executeTakeFirst();
@@ -32,5 +32,5 @@ export async function storeSlugExists(slug: string) {
 }
 
 export function insertUser(values: NewUser) {
-  return db.insertInto('users').values(values).returning(userColumns).executeTakeFirstOrThrow();
+  return db.insertInto('user').values(values).returning(userColumns).executeTakeFirstOrThrow();
 }

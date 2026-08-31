@@ -7,48 +7,48 @@
  */
 import type { Insertable, Selectable, Updateable } from 'kysely';
 import type {
-  Brands,
-  CameraSpecs,
-  LensSpecs,
-  ListingInclusions,
-  Listings,
-  Models,
-  Mounts,
-  Sessions,
-  Users,
+  Brand as BrandTable,
+  CameraSpec as CameraSpecTable,
+  LensSpec as LensSpecTable,
+  ListingInclusion as ListingInclusionTable,
+  Listing as ListingTable,
+  Model as ModelTable,
+  Mount as MountTable,
+  Session as SessionTable,
+  User as UserTable,
 } from './types';
 
 export type {
   CameraBodyType,
   CosmeticCondition,
   FunctionalCondition,
-  ListingInclusion,
+  Inclusion,
   ListingStatus,
   ModelCategory,
   SellerType,
   SensorFormat,
 } from './types';
 
-export type Brand = Selectable<Brands>;
-export type Mount = Selectable<Mounts>;
+export type Brand = Selectable<BrandTable>;
+export type Mount = Selectable<MountTable>;
 
-/** A canonical catalog entry: "Fujifilm X-T3", not whatever the seller typed. */
-export type GearModel = Selectable<Models>;
-export type NewGearModel = Insertable<Models>;
-export type GearModelUpdate = Updateable<Models>;
+/** A curated catalog entry: "Fujifilm X-T3", not whatever the seller typed. */
+export type GearModel = Selectable<ModelTable>;
+export type NewGearModel = Insertable<ModelTable>;
+export type GearModelUpdate = Updateable<ModelTable>;
 
-export type CameraSpec = Selectable<CameraSpecs>;
-export type LensSpec = Selectable<LensSpecs>;
+export type CameraSpec = Selectable<CameraSpecTable>;
+export type LensSpec = Selectable<LensSpecTable>;
 
-export type User = Selectable<Users>;
-export type NewUser = Insertable<Users>;
-export type UserUpdate = Updateable<Users>;
+export type User = Selectable<UserTable>;
+export type NewUser = Insertable<UserTable>;
+export type UserUpdate = Updateable<UserTable>;
 
-export type Session = Selectable<Sessions>;
-export type NewSession = Insertable<Sessions>;
+export type Session = Selectable<SessionTable>;
+export type NewSession = Insertable<SessionTable>;
 
-export type Listing = Selectable<Listings>;
-export type NewListing = Insertable<Listings>;
-export type ListingUpdate = Updateable<Listings>;
+export type Listing = Selectable<ListingTable>;
+export type NewListing = Insertable<ListingTable>;
+export type ListingUpdate = Updateable<ListingTable>;
 
-export type ListingInclusionRow = Selectable<ListingInclusions>;
+export type ListingInclusionRow = Selectable<ListingInclusionTable>;

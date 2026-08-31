@@ -74,25 +74,25 @@ never a repository, never `db`.
 
 ## Schema
 
-- `brands`, `mounts` — lookups. A mount's `brand_id` is null when no single brand owns
+- `brand`, `mount` — lookups. A mount's `brand_id` is null when no single brand owns
   it (Micro Four Thirds, L-Mount).
-- `models` — one row per real product ("X-T3"). `mount_id` is null for fixed-lens
+- `model` — one row per real product ("X-T3"). `mount_id` is null for fixed-lens
   cameras. Unique on `(brand_id, name, mount_id) NULLS NOT DISTINCT`.
-- `camera_specs`, `lens_specs` — one-to-one detail per category, so an ad needs only a
+- `camera_spec`, `lens_spec` — one-to-one detail per category, so an ad needs only a
   single `model_id` foreign key.
-- `models.display_name` — "Fujifilm X-T3", the one name shown anywhere. `normalized` is
+- `model.display_name` — "Fujifilm X-T3", the one name shown anywhere. `normalized` is
   generated from it: lowercased, punctuation stripped, **spaces kept**, which is what
   makes `word_similarity` match "xt3" inside "fujifilm xt3".
 
 ### Listings
 
-- `listings` — `model_id` and `seller_id`, price in cents, cosmetic and functional
+- `listing` — `model_id` and `seller_id`, price in cents, cosmetic and functional
   condition, optional shutter count, `location`, status, `published_at`.
-- `listing_inclusions` — one row per included item, keyed on `(listing_id, inclusion)`.
+- `listing_inclusion` — one row per included item, keyed on `(listing_id, inclusion)`.
 
 ### Accounts
 
-- `users` — email, display name, and `seller_type` (`private` or `store`). Store fields
+- `user` — email, display name, and `seller_type` (`private` or `store`). Store fields
   are all-or-nothing, enforced by a check constraint.
-- `sessions` — database-backed, referenced by an httpOnly cookie. Placeholder auth: no
+- `session` — database-backed, referenced by an httpOnly cookie. Placeholder auth: no
   passwords, so an unknown email creates an account. Replace before any real traffic.

@@ -27,7 +27,7 @@ Stores exist from the start. A store's ads are presented as store ads; the uploa
 is identical to a private seller's.
 
 **Decision — stores get their own table.** Today `seller_type`, `store_name` and
-`store_slug` live on `users` behind a check constraint. Move them to `stores` with a
+`store_slug` live on `user` behind a check constraint. Move them to `stores` with a
 unique `user_id`. Reasons: store attributes will keep growing (logo, description,
 location, badge), nullable columns guarded by a constraint get worse with every one
 added, and it leaves room for a store with several staff accounts later. Drop
@@ -42,7 +42,7 @@ a `jsonb` bag would trade constraints and generated types for a problem we do no
 Cameras, lenses, film cameras and accessories.
 
 **Film cameras are cameras with a flag**, not a separate category. Add `is_film` to
-`camera_specs`, and extend `camera_body_type` with `slr` and `rangefinder`. The flag
+`camera_spec`, and extend `camera_body_type` with `slr` and `rangefinder`. The flag
 drives the form: no shutter count, no memory card, no megapixels for film bodies.
 
 **Accessories get catalog entries too** — extend `model_category` with `accessory`. No
@@ -64,7 +64,7 @@ has no memory card. The catalog knows the category, so the form should never ask
 user to declare it.
 
 **Contact.** Prefilled from the user's profile, editable per listing: email, phone,
-socials. Add these columns to `users`. Reveal contact details on click rather than in
+socials. Add these columns to `user`. Reveal contact details on click rather than in
 the page source, or the ads get scraped.
 
 ### Bundles
@@ -85,9 +85,9 @@ catalog knows from a null mount.
 **Structural consequence, flag this before building.** Per-item prices mean a listing
 becomes a container with line items. `listing_items` should hold `model_id`,
 `price_cents`, cosmetic and functional condition, shutter count, `sold_separately` and
-position. `listings` keeps the bundle price, description, photos, location, seller and
+position. `listing` keeps the bundle price, description, photos, location, seller and
 status. A single-item listing is simply one row. This moves condition and shutter count
-off `listings`, where they are today.
+off `listing`, where they are today.
 
 On finish, show the user their ad and its status.
 

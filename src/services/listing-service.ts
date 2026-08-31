@@ -1,10 +1,5 @@
 import 'server-only';
-import type {
-  CosmeticCondition,
-  FunctionalCondition,
-  ListingInclusion,
-  ListingStatus,
-} from '@/db/tables';
+import type { CosmeticCondition, FunctionalCondition, Inclusion, ListingStatus } from '@/db/tables';
 import { LISTING_LABELS } from '@/lib/listing-options';
 import {
   findListingById,
@@ -45,7 +40,7 @@ export type CreateListingInput = {
   shutterCount: string | null;
   location: string;
   description: string | null;
-  inclusions: ListingInclusion[];
+  inclusions: Inclusion[];
   publish: boolean;
 };
 
