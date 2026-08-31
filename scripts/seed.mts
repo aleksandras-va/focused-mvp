@@ -1,5 +1,5 @@
 /**
- * Seeds the gear catalog. Idempotent — safe to re-run after adding models.
+ * Seeds the gear catalog. Idempotent — safe to re-run after adding model.
  *
  *   pnpm db:seed
  *
@@ -493,7 +493,7 @@ await db.transaction().execute(async (trx) => {
   const brandIds = new Map<string, string>();
   for (const brand of BRANDS) {
     const row = await trx
-      .insertInto('brands')
+      .insertInto('brand')
       .values(brand)
       .onConflict((oc) => oc.column('slug').doUpdateSet({ name: brand.name }))
       .returning(['id', 'slug'])
@@ -504,7 +504,7 @@ await db.transaction().execute(async (trx) => {
   const mountIds = new Map<string, string>();
   for (const mount of MOUNTS) {
     const row = await trx
-      .insertInto('mounts')
+      .insertInto('mount')
       .values({
         slug: mount.slug,
         name: mount.name,
@@ -532,7 +532,7 @@ await db.transaction().execute(async (trx) => {
     const displayName = `${brandNames.get(entry.brand)} ${entry.name}`;
 
     const model = await trx
-      .insertInto('models')
+      .insertInto('model')
       .values({
         category,
         brand_id: brandId,
@@ -558,7 +558,7 @@ await db.transaction().execute(async (trx) => {
   for (const camera of CAMERAS) {
     const modelId = await upsertModel(camera, 'camera');
     await trx
-      .insertInto('camera_specs')
+      .insertInto('camera_spec')
       .values({
         model_id: modelId,
         body_type: camera.bodyType,
@@ -579,7 +579,7 @@ await db.transaction().execute(async (trx) => {
   for (const lens of LENSES) {
     const modelId = await upsertModel(lens, 'lens');
     await trx
-      .insertInto('lens_specs')
+      .insertInto('lens_spec')
       .values({
         model_id: modelId,
         focal_min_mm: lens.focal[0],
@@ -599,11 +599,11 @@ await db.transaction().execute(async (trx) => {
   }
 });
 
-const [{ models }] = await db
-  .selectFrom('models')
-  .select((eb) => eb.fn.countAll<number>().as('models'))
+const [{ total }] = await db
+  .selectFrom('model')
+  .select((eb) => eb.fn.countAll<number>().as('total'))
   .execute();
 
-console.log(`Seeded ${models} models.`);
+console.log(`Seeded ${total} models.`);
 
 await db.destroy();

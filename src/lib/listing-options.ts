@@ -1,4 +1,4 @@
-import type { CosmeticCondition, FunctionalCondition, ListingInclusion } from '@/db/tables';
+import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
 
 export const COSMETIC_CONDITIONS: { value: CosmeticCondition; label: string }[] = [
   { value: 'mint', label: 'Mint' },
@@ -14,7 +14,7 @@ export const FUNCTIONAL_CONDITIONS: { value: FunctionalCondition; label: string 
   { value: 'faulty', label: 'Faulty' },
 ];
 
-export const INCLUSIONS: { value: ListingInclusion; label: string }[] = [
+export const INCLUSIONS: { value: Inclusion; label: string }[] = [
   { value: 'original_box', label: 'Original box' },
   { value: 'charger', label: 'Charger' },
   { value: 'oem_battery', label: 'OEM battery' },

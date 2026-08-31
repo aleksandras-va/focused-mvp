@@ -15,7 +15,7 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
   : ColumnType<T, T | undefined, T>;
 
-export type ListingInclusion = "body_cap" | "case" | "charger" | "lens_hood" | "manual" | "memory_card" | "oem_battery" | "original_box" | "rear_cap" | "receipt" | "strap" | "third_party_battery";
+export type Inclusion = "body_cap" | "case" | "charger" | "lens_hood" | "manual" | "memory_card" | "oem_battery" | "original_box" | "rear_cap" | "receipt" | "strap" | "third_party_battery";
 
 export type ListingStatus = "active" | "draft" | "removed" | "sold";
 
@@ -27,14 +27,14 @@ export type SensorFormat = "aps_c" | "full_frame" | "medium_format" | "micro_fou
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-export interface Brands {
+export interface Brand {
   created_at: Generated<Timestamp>;
   id: Generated<string>;
   name: string;
   slug: string;
 }
 
-export interface CameraSpecs {
+export interface CameraSpec {
   battery_model: string | null;
   body_type: CameraBodyType;
   depth_mm: number | null;
@@ -50,7 +50,7 @@ export interface CameraSpecs {
   width_mm: number | null;
 }
 
-export interface LensSpecs {
+export interface LensSpec {
   diameter_mm: number | null;
   filter_thread_mm: number | null;
   focal_max_mm: number;
@@ -62,12 +62,7 @@ export interface LensSpecs {
   weight_grams: number | null;
 }
 
-export interface ListingInclusions {
-  inclusion: ListingInclusion;
-  listing_id: string;
-}
-
-export interface Listings {
+export interface Listing {
   cosmetic_condition: CosmeticCondition;
   created_at: Generated<Timestamp>;
   description: string | null;
@@ -83,7 +78,12 @@ export interface Listings {
   updated_at: Generated<Timestamp>;
 }
 
-export interface Models {
+export interface ListingInclusion {
+  inclusion: Inclusion;
+  listing_id: string;
+}
+
+export interface Model {
   brand_id: string;
   category: ModelCategory;
   created_at: Generated<Timestamp>;
@@ -97,7 +97,7 @@ export interface Models {
   updated_at: Generated<Timestamp>;
 }
 
-export interface Mounts {
+export interface Mount {
   brand_id: string | null;
   created_at: Generated<Timestamp>;
   id: Generated<string>;
@@ -105,14 +105,14 @@ export interface Mounts {
   slug: string;
 }
 
-export interface Sessions {
+export interface Session {
   created_at: Generated<Timestamp>;
   expires_at: Timestamp;
   id: Generated<string>;
   user_id: string;
 }
 
-export interface Users {
+export interface User {
   created_at: Generated<Timestamp>;
   display_name: string;
   email: string;
@@ -124,13 +124,13 @@ export interface Users {
 }
 
 export interface DB {
-  brands: Brands;
-  camera_specs: CameraSpecs;
-  lens_specs: LensSpecs;
-  listing_inclusions: ListingInclusions;
-  listings: Listings;
-  models: Models;
-  mounts: Mounts;
-  sessions: Sessions;
-  users: Users;
+  brand: Brand;
+  camera_spec: CameraSpec;
+  lens_spec: LensSpec;
+  listing: Listing;
+  listing_inclusion: ListingInclusion;
+  model: Model;
+  mount: Mount;
+  session: Session;
+  user: User;
 }

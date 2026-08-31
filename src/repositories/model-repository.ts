@@ -9,20 +9,20 @@ function normalize(term: string) {
 
 function modelQuery() {
   return db
-    .selectFrom('models')
-    .innerJoin('brands', 'brands.id', 'models.brand_id')
-    .leftJoin('mounts', 'mounts.id', 'models.mount_id')
+    .selectFrom('model')
+    .innerJoin('brand', 'brand.id', 'model.brand_id')
+    .leftJoin('mount', 'mount.id', 'model.mount_id')
     .select([
-      'models.id',
-      'models.slug',
-      'models.category',
-      'models.name',
-      'models.display_name',
-      'models.release_year',
-      'brands.name as brand_name',
-      'brands.slug as brand_slug',
-      'mounts.name as mount_name',
-      'mounts.slug as mount_slug',
+      'model.id',
+      'model.slug',
+      'model.category',
+      'model.name',
+      'model.display_name',
+      'model.release_year',
+      'brand.name as brand_name',
+      'brand.slug as brand_slug',
+      'mount.name as mount_name',
+      'mount.slug as mount_slug',
     ]);
 }
 
@@ -39,18 +39,18 @@ export function searchModels(
   const needle = normalize(term);
 
   let query = modelQuery()
-    .select(sql<number>`word_similarity(${needle}, models.normalized)`.as('score'))
+    .select(sql<number>`word_similarity(${needle}, model.normalized)`.as('score'))
     .where(
-      sql<SqlBool>`word_similarity(${needle}, models.normalized) >= 0.3
-        or models.normalized like ${needle} || '%'`,
+      sql<SqlBool>`word_similarity(${needle}, model.normalized) >= 0.3
+        or model.normalized like ${needle} || '%'`,
     )
     .orderBy('score', 'desc')
-    .orderBy(sql`length(models.display_name)`)
-    .orderBy('models.release_year', 'desc')
+    .orderBy(sql`length(model.display_name)`)
+    .orderBy('model.release_year', 'desc')
     .limit(options.limit ?? 20);
 
   if (options.category) {
-    query = query.where('models.category', '=', options.category);
+    query = query.where('model.category', '=', options.category);
   }
 
   return query.execute();
@@ -58,19 +58,19 @@ export function searchModels(
 
 export function findModelBySlug(slug: string) {
   return modelQuery()
-    .leftJoin('camera_specs', 'camera_specs.model_id', 'models.id')
-    .leftJoin('lens_specs', 'lens_specs.model_id', 'models.id')
+    .leftJoin('camera_spec', 'camera_spec.model_id', 'model.id')
+    .leftJoin('lens_spec', 'lens_spec.model_id', 'model.id')
     .select([
-      'camera_specs.body_type',
-      'camera_specs.sensor_format',
-      'camera_specs.megapixels',
-      'camera_specs.has_mechanical_shutter',
-      'lens_specs.focal_min_mm',
-      'lens_specs.focal_max_mm',
-      'lens_specs.max_aperture',
-      'lens_specs.has_stabilization',
-      'lens_specs.filter_thread_mm',
+      'camera_spec.body_type',
+      'camera_spec.sensor_format',
+      'camera_spec.megapixels',
+      'camera_spec.has_mechanical_shutter',
+      'lens_spec.focal_min_mm',
+      'lens_spec.focal_max_mm',
+      'lens_spec.max_aperture',
+      'lens_spec.has_stabilization',
+      'lens_spec.filter_thread_mm',
     ])
-    .where('models.slug', '=', slug)
+    .where('model.slug', '=', slug)
     .executeTakeFirst();
 }

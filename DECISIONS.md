@@ -13,12 +13,17 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - No comments in code.
 - Everything in English. Lithuanian later, as i18n.
 - Money is integer EUR cents.
+- Table names are singular: `model`, `brand`, `user`, `listing`. Constraints and indexes
+  follow (`model_pkey`, `listing_seller_id_idx`). Kysely quotes identifiers, so the
+  reserved word `user` is safe in code; raw psql needs `"user"`.
+- The inclusion enum is `inclusion`, not `listing_inclusion` — a table and a type cannot
+  share a name in Postgres.
 
 ## Catalog and search
 
 - Sellers pick a curated model, they never type one.
-- One name per model: `models.display_name`. No alias table.
-- Search uses `word_similarity` against `models.normalized` (punctuation stripped,
+- One name per model: `model.display_name`. No alias table.
+- Search uses `word_similarity` against `model.normalized` (punctuation stripped,
   spaces kept) with a 0.3 floor, plus a prefix match. Use `word_similarity`, not
   `similarity` — the latter compares whole strings and fails on short forms like "xt3".
 - Ties break on shorter name first, then newer model, so "r6" ranks the R6 above the
