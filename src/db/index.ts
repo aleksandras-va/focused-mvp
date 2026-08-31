@@ -1,12 +1,12 @@
-import "server-only";
-import { Kysely, PostgresDialect } from "kysely";
-import { Pool } from "pg";
-import type { DB } from "./types";
+import 'server-only';
+import { Kysely, PostgresDialect } from 'kysely';
+import { Pool } from 'pg';
+import type { DB } from './types';
 
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
-  throw new Error("DATABASE_URL is not set — see .env.example");
+  throw new Error('DATABASE_URL is not set — see .env.example');
 }
 
 // `next dev` re-evaluates modules on every change, so the pool is cached on
@@ -23,8 +23,8 @@ export const db =
     }),
   });
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   globalForDb.__focusedDb = db;
 }
 
-export type { DB } from "./types";
+export type { DB } from './types';

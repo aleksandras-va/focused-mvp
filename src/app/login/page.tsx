@@ -1,10 +1,10 @@
-import { getCurrentUser } from "@/services/auth-service";
-import { signInAction, signOutAction } from "./actions";
+import { getCurrentUser } from '@/services/auth-service';
+import { signInAction, signOutAction } from './actions';
 
 const fieldClass =
-  "w-full rounded border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent";
+  'w-full rounded border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent';
 
-export default async function LoginPage({ searchParams }: PageProps<"/login">) {
+export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
   const user = await getCurrentUser();
   const { error } = await searchParams;
 
@@ -16,13 +16,10 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
           Signed in as <strong>{user.displayName}</strong> ({user.email})
         </p>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          {user.store ? `Store: ${user.store.name}` : "Private seller"}
+          {user.store ? `Store: ${user.store.name}` : 'Private seller'}
         </p>
         <form action={signOutAction} className="mt-8">
-          <button
-            type="submit"
-            className="rounded bg-foreground px-4 py-2 text-background"
-          >
+          <button type="submit" className="rounded bg-foreground px-4 py-2 text-background">
             Sign out
           </button>
         </form>
@@ -34,8 +31,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
     <main className="mx-auto w-full max-w-md px-6 py-16">
       <h1 className="text-2xl font-semibold">Sign in</h1>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Placeholder sign-in without a password. An unknown email creates a new
-        account.
+        Placeholder sign-in without a password. An unknown email creates a new account.
       </p>
 
       {error ? (
@@ -47,34 +43,18 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
       <form action={signInAction} className="mt-8 flex flex-col gap-4">
         <label className="flex flex-col gap-1">
           <span className="text-sm">Email</span>
-          <input
-            type="email"
-            name="email"
-            required
-            autoComplete="email"
-            className={fieldClass}
-          />
+          <input type="email" name="email" required autoComplete="email" className={fieldClass} />
         </label>
 
         <label className="flex flex-col gap-1">
           <span className="text-sm">Name</span>
-          <input
-            type="text"
-            name="displayName"
-            required
-            className={fieldClass}
-          />
+          <input type="text" name="displayName" required className={fieldClass} />
         </label>
 
         <fieldset className="flex flex-col gap-2">
           <legend className="text-sm">Selling as</legend>
           <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="sellerType"
-              value="private"
-              defaultChecked
-            />
+            <input type="radio" name="sellerType" value="private" defaultChecked />
             <span>Private person</span>
           </label>
           <label className="flex items-center gap-2">
@@ -91,10 +71,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
           <input type="text" name="storeName" className={fieldClass} />
         </label>
 
-        <button
-          type="submit"
-          className="mt-2 rounded bg-foreground px-4 py-2 text-background"
-        >
+        <button type="submit" className="mt-2 rounded bg-foreground px-4 py-2 text-background">
           Sign in
         </button>
       </form>

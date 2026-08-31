@@ -1,4 +1,4 @@
-import { type ListingCardItem, ListingCard } from '@/components/features/catalog/listing-card';
+import { ListingCard, type ListingCardItem } from '@/components/features/catalog/listing-card';
 import { Badge } from '@/components/ui/badge';
 
 const placeholderListings: ListingCardItem[] = [

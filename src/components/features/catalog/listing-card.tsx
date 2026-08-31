@@ -1,7 +1,7 @@
-import { ImageIcon } from "lucide-react";
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { ImageIcon } from 'lucide-react';
+import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 export type ListingCardItem = {
   slug: string;
@@ -12,9 +12,9 @@ export type ListingCardItem = {
   detail: string;
 };
 
-const priceFormatter = new Intl.NumberFormat("en-IE", {
-  style: "currency",
-  currency: "EUR",
+const priceFormatter = new Intl.NumberFormat('en-IE', {
+  style: 'currency',
+  currency: 'EUR',
   maximumFractionDigits: 0,
 });
 

@@ -7,9 +7,17 @@ import type { ColumnType } from "kysely";
 
 export type CameraBodyType = "compact" | "dslr" | "mirrorless";
 
+export type CosmeticCondition = "damaged" | "excellent" | "good" | "mint" | "well_used";
+
+export type FunctionalCondition = "faulty" | "fully_working" | "minor_issues";
+
 export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
   : ColumnType<T, T | undefined, T>;
+
+export type ListingInclusion = "body_cap" | "case" | "charger" | "lens_hood" | "manual" | "memory_card" | "oem_battery" | "original_box" | "rear_cap" | "receipt" | "strap" | "third_party_battery";
+
+export type ListingStatus = "active" | "draft" | "removed" | "sold";
 
 export type ModelCategory = "camera" | "lens";
 
@@ -27,38 +35,63 @@ export interface Brands {
 }
 
 export interface CameraSpecs {
+  battery_model: string | null;
   body_type: CameraBodyType;
+  depth_mm: number | null;
+  has_ibis: boolean | null;
   has_mechanical_shutter: Generated<boolean>;
+  height_mm: number | null;
   megapixels: number | null;
   model_id: string;
+  records_4k: boolean | null;
   sensor_format: SensorFormat;
+  weather_sealed: boolean | null;
+  weight_grams: number | null;
+  width_mm: number | null;
 }
 
 export interface LensSpecs {
+  diameter_mm: number | null;
   filter_thread_mm: number | null;
   focal_max_mm: number;
   focal_min_mm: number;
   has_stabilization: Generated<boolean>;
+  length_mm: number | null;
   max_aperture: number;
   model_id: string;
+  weight_grams: number | null;
 }
 
-export interface ModelAliases {
-  alias: string;
+export interface ListingInclusions {
+  inclusion: ListingInclusion;
+  listing_id: string;
+}
+
+export interface Listings {
+  cosmetic_condition: CosmeticCondition;
   created_at: Generated<Timestamp>;
+  description: string | null;
+  functional_condition: FunctionalCondition;
   id: Generated<string>;
-  is_canonical: Generated<boolean>;
+  location: string;
   model_id: string;
-  normalized: Generated<string>;
+  price_cents: number;
+  published_at: Timestamp | null;
+  seller_id: string;
+  shutter_count: number | null;
+  status: Generated<ListingStatus>;
+  updated_at: Generated<Timestamp>;
 }
 
 export interface Models {
   brand_id: string;
   category: ModelCategory;
   created_at: Generated<Timestamp>;
+  display_name: string;
   id: Generated<string>;
   mount_id: string | null;
   name: string;
+  normalized: Generated<string | null>;
   release_year: number | null;
   slug: string;
   updated_at: Generated<Timestamp>;
@@ -94,7 +127,8 @@ export interface DB {
   brands: Brands;
   camera_specs: CameraSpecs;
   lens_specs: LensSpecs;
-  model_aliases: ModelAliases;
+  listing_inclusions: ListingInclusions;
+  listings: Listings;
   models: Models;
   mounts: Mounts;
   sessions: Sessions;
