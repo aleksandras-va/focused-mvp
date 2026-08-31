@@ -1,13 +1,13 @@
-import "server-only";
-import type { CameraBodyType, ModelCategory, SensorFormat } from "@/db/types";
-import { listBrandsInUse } from "@/repositories/brand-repository";
+import 'server-only';
+import type { CameraBodyType, ModelCategory, SensorFormat } from '@/db/types';
+import { listBrandsInUse } from '@/repositories/brand-repository';
 import {
   findModelBySlug,
   type ModelDetailRow,
   type ModelRow,
   searchModels,
-} from "@/repositories/model-repository";
-import { listMounts } from "@/repositories/mount-repository";
+} from '@/repositories/model-repository';
+import { listMounts } from '@/repositories/mount-repository';
 
 /**
  * Catalog use cases. Repositories speak the database's snake_case; everything
@@ -57,10 +57,7 @@ function toCatalogModel(row: ModelRow): CatalogModel {
     name: row.name,
     displayName: row.display_name,
     brand: { slug: row.brand_slug, name: row.brand_name },
-    mount:
-      row.mount_slug && row.mount_name
-        ? { slug: row.mount_slug, name: row.mount_name }
-        : null,
+    mount: row.mount_slug && row.mount_name ? { slug: row.mount_slug, name: row.mount_name } : null,
     releaseYear: row.release_year,
   };
 }
@@ -78,9 +75,7 @@ function toCatalogModelDetail(row: ModelDetailRow): CatalogModelDetail {
           }
         : null,
     lens:
-      row.focal_min_mm !== null &&
-      row.focal_max_mm !== null &&
-      row.max_aperture !== null
+      row.focal_min_mm !== null && row.focal_max_mm !== null && row.max_aperture !== null
         ? {
             focalMinMm: row.focal_min_mm,
             focalMaxMm: row.focal_max_mm,
@@ -105,18 +100,13 @@ export async function searchCatalog(
   return rows.map(toCatalogModel);
 }
 
-export async function getCatalogModel(
-  slug: string,
-): Promise<CatalogModelDetail | null> {
+export async function getCatalogModel(slug: string): Promise<CatalogModelDetail | null> {
   const row = await findModelBySlug(slug);
   return row ? toCatalogModelDetail(row) : null;
 }
 
 export async function getCatalogFilters(category?: ModelCategory) {
-  const [brands, mounts] = await Promise.all([
-    listBrandsInUse(category),
-    listMounts(),
-  ]);
+  const [brands, mounts] = await Promise.all([listBrandsInUse(category), listMounts()]);
 
   return {
     brands: brands.map((b) => ({ slug: b.slug, name: b.name })),
