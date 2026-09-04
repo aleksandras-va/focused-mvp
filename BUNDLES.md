@@ -1,6 +1,8 @@
 # Bundles
 
-Open problem. Not settled — do not implement from this document yet.
+Settled — see the Bundles sections of HANDOFF.md and DECISIONS.md: a listing is a
+container with `listing_item` rows, per-item prices, and a discount label. This
+document is the background reasoning, kept for context.
 
 People sell gear together: a body with a lens, a body with three lenses, a body with a
 cage. The catalog assumes one listing is one model, and that breaks in ways that hurt

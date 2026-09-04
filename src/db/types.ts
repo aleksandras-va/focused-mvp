@@ -5,7 +5,7 @@
 
 import type { ColumnType } from "kysely";
 
-export type CameraBodyType = "compact" | "dslr" | "mirrorless";
+export type CameraBodyType = "compact" | "dslr" | "mirrorless" | "rangefinder" | "slr";
 
 export type CosmeticCondition = "damaged" | "excellent" | "good" | "mint" | "well_used";
 
@@ -19,9 +19,7 @@ export type Inclusion = "body_cap" | "case" | "charger" | "lens_hood" | "manual"
 
 export type ListingStatus = "active" | "draft" | "removed" | "sold";
 
-export type ModelCategory = "camera" | "lens";
-
-export type SellerType = "private" | "store";
+export type ModelCategory = "accessory" | "camera" | "lens";
 
 export type SensorFormat = "aps_c" | "full_frame" | "medium_format" | "micro_four_thirds" | "one_inch";
 
@@ -41,6 +39,7 @@ export interface CameraSpec {
   has_ibis: boolean | null;
   has_mechanical_shutter: Generated<boolean>;
   height_mm: number | null;
+  is_film: Generated<boolean>;
   megapixels: number | null;
   model_id: string;
   records_4k: boolean | null;
@@ -63,24 +62,44 @@ export interface LensSpec {
 }
 
 export interface Listing {
-  cosmetic_condition: CosmeticCondition;
+  contact_email: string | null;
+  contact_phone: string | null;
   created_at: Generated<Timestamp>;
   description: string | null;
-  functional_condition: FunctionalCondition;
   id: Generated<string>;
   location: string;
-  model_id: string;
   price_cents: number;
   published_at: Timestamp | null;
   seller_id: string;
-  shutter_count: number | null;
   status: Generated<ListingStatus>;
   updated_at: Generated<Timestamp>;
 }
 
 export interface ListingInclusion {
   inclusion: Inclusion;
+  listing_item_id: string;
+}
+
+export interface ListingItem {
+  cosmetic_condition: CosmeticCondition;
+  created_at: Generated<Timestamp>;
+  functional_condition: FunctionalCondition;
+  id: Generated<string>;
   listing_id: string;
+  model_id: string;
+  position: number;
+  price_cents: number;
+  shutter_count: number | null;
+  sold_separately: Generated<boolean>;
+  updated_at: Generated<Timestamp>;
+}
+
+export interface ListingPhoto {
+  created_at: Generated<Timestamp>;
+  id: Generated<string>;
+  listing_id: string;
+  position: number;
+  storage_key: string;
 }
 
 export interface Model {
@@ -112,14 +131,22 @@ export interface Session {
   user_id: string;
 }
 
+export interface Store {
+  created_at: Generated<Timestamp>;
+  id: Generated<string>;
+  name: string;
+  slug: string;
+  updated_at: Generated<Timestamp>;
+  user_id: string;
+}
+
 export interface User {
   created_at: Generated<Timestamp>;
   display_name: string;
   email: string;
   id: Generated<string>;
-  seller_type: Generated<SellerType>;
-  store_name: string | null;
-  store_slug: string | null;
+  password_hash: string;
+  phone: string | null;
   updated_at: Generated<Timestamp>;
 }
 
@@ -129,8 +156,11 @@ export interface DB {
   lens_spec: LensSpec;
   listing: Listing;
   listing_inclusion: ListingInclusion;
+  listing_item: ListingItem;
+  listing_photo: ListingPhoto;
   model: Model;
   mount: Mount;
   session: Session;
+  store: Store;
   user: User;
 }

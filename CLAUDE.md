@@ -66,12 +66,9 @@ Out of scope: lens/body compatibility recommendations, Leica.
 
 ## Roadmap
 
-1. Catalog — done.
-2. Auth — placeholder done (`/login`, no passwords, DB-backed sessions). Swap for a
-   real provider before traffic.
-3. Listings schema and ad creation flow — done.
-4. Photo uploads — next, blocked on R2 credentials.
-5. UI: browse, search, listing page, storefront.
+`PLAN.md` is the current implementation plan, derived from `HANDOFF.md`. Work through
+it in order. Done so far: catalog, placeholder auth, first listings schema and ad
+creation flow — the plan reworks the latter two.
 
 Open: spec columns are all null until seeded; the home grid still shows placeholder
 data instead of real listings.

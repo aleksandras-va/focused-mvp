@@ -1,80 +1,124 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
 import { getCurrentUser } from '@/services/auth-service';
-import { signInAction, signOutAction } from './actions';
-
-const fieldClass =
-  'w-full rounded border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent';
+import { signInAction, signOutAction, signUpAction } from './actions';
 
 export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
   const user = await getCurrentUser();
-  const { error } = await searchParams;
+  const { error, form } = await searchParams;
 
   if (user) {
     return (
-      <main className="mx-auto w-full max-w-md px-6 py-16">
-        <h1 className="text-2xl font-semibold">Account</h1>
+      <div className="mx-auto w-full max-w-md py-8">
+        <h1 className="font-heading text-2xl font-semibold">Account</h1>
         <p className="mt-4">
           Signed in as <strong>{user.displayName}</strong> ({user.email})
         </p>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="mt-1 text-sm text-muted-foreground">
           {user.store ? `Store: ${user.store.name}` : 'Private seller'}
         </p>
         <form action={signOutAction} className="mt-8">
-          <button type="submit" className="rounded bg-foreground px-4 py-2 text-background">
-            Sign out
-          </button>
+          <Button type="submit">Sign out</Button>
         </form>
-      </main>
+      </div>
     );
   }
 
+  const errorMessage = typeof error === 'string' ? error : null;
+  const errorForm = form === 'signup' ? 'signup' : 'signin';
+
   return (
-    <main className="mx-auto w-full max-w-md px-6 py-16">
-      <h1 className="text-2xl font-semibold">Sign in</h1>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Placeholder sign-in without a password. An unknown email creates a new account.
-      </p>
+    <div className="mx-auto grid w-full max-w-4xl gap-8 py-8 md:grid-cols-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Sign in</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {errorMessage && errorForm === 'signin' ? <ErrorNote message={errorMessage} /> : null}
+          <form action={signInAction} className="flex flex-col gap-4">
+            <Field>
+              <FieldLabel htmlFor="signin-email">Email</FieldLabel>
+              <Input id="signin-email" name="email" type="email" required autoComplete="email" />
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="signin-password">Password</FieldLabel>
+              <Input
+                id="signin-password"
+                name="password"
+                type="password"
+                required
+                autoComplete="current-password"
+              />
+            </Field>
+            <Button type="submit" className="mt-2">
+              Sign in
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
 
-      {error ? (
-        <p className="mt-4 rounded border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-700 dark:text-red-300">
-          {error}
-        </p>
-      ) : null}
+      <Card>
+        <CardHeader>
+          <CardTitle>Create an account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {errorMessage && errorForm === 'signup' ? <ErrorNote message={errorMessage} /> : null}
+          <form action={signUpAction} className="flex flex-col gap-4">
+            <Field>
+              <FieldLabel htmlFor="signup-email">Email</FieldLabel>
+              <Input id="signup-email" name="email" type="email" required autoComplete="email" />
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="signup-password">Password</FieldLabel>
+              <Input
+                id="signup-password"
+                name="password"
+                type="password"
+                required
+                minLength={8}
+                autoComplete="new-password"
+              />
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="signup-name">Name</FieldLabel>
+              <Input id="signup-name" name="displayName" required />
+            </Field>
 
-      <form action={signInAction} className="mt-8 flex flex-col gap-4">
-        <label className="flex flex-col gap-1">
-          <span className="text-sm">Email</span>
-          <input type="email" name="email" required autoComplete="email" className={fieldClass} />
-        </label>
+            <fieldset className="flex flex-col gap-2">
+              <legend className="text-sm font-medium">Selling as</legend>
+              <label className="flex items-center gap-2 text-sm">
+                <input type="radio" name="sellerType" value="private" defaultChecked />
+                Private person
+              </label>
+              <label className="flex items-center gap-2 text-sm">
+                <input type="radio" name="sellerType" value="store" />
+                Store
+              </label>
+            </fieldset>
 
-        <label className="flex flex-col gap-1">
-          <span className="text-sm">Name</span>
-          <input type="text" name="displayName" required className={fieldClass} />
-        </label>
+            <Field>
+              <FieldLabel htmlFor="signup-store-name">
+                Store name <span className="text-muted-foreground">(stores only)</span>
+              </FieldLabel>
+              <Input id="signup-store-name" name="storeName" />
+            </Field>
 
-        <fieldset className="flex flex-col gap-2">
-          <legend className="text-sm">Selling as</legend>
-          <label className="flex items-center gap-2">
-            <input type="radio" name="sellerType" value="private" defaultChecked />
-            <span>Private person</span>
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="radio" name="sellerType" value="store" />
-            <span>Store</span>
-          </label>
-        </fieldset>
+            <Button type="submit" className="mt-2">
+              Create account
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
 
-        <label className="flex flex-col gap-1">
-          <span className="text-sm">
-            Store name
-            <span className="text-zinc-500"> (stores only)</span>
-          </span>
-          <input type="text" name="storeName" className={fieldClass} />
-        </label>
-
-        <button type="submit" className="mt-2 rounded bg-foreground px-4 py-2 text-background">
-          Sign in
-        </button>
-      </form>
-    </main>
+function ErrorNote({ message }: { message: string }) {
+  return (
+    <p className="mb-4 rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+      {message}
+    </p>
   );
 }

@@ -1,43 +1,39 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
-import { requireUser } from '@/services/auth-service';
+import { AuthError, requireUser } from '@/services/auth-service';
 import { searchCatalog } from '@/services/catalog-service';
-import { createListing, ListingError } from '@/services/listing-service';
+import { type CreateListingInput, createListing, ListingError } from '@/services/listing-service';
+import { createPhotoUpload, PhotoStorageError, type PhotoUpload } from '@/services/photo-service';
 
-const INCLUSION_PREFIX = 'inclusion:';
+export type CreateListingPayload = Omit<CreateListingInput, 'sellerId'>;
 
 export async function searchModelsAction(term: string) {
   return searchCatalog(term, { limit: 8 });
 }
 
-export async function createListingAction(formData: FormData) {
-  const user = await requireUser();
+export async function createPhotoUploadAction(): Promise<PhotoUpload | { error: string }> {
+  try {
+    await requireUser();
+    return await createPhotoUpload();
+  } catch (error) {
+    if (error instanceof AuthError) return { error: 'Sign in to upload photos.' };
+    if (error instanceof PhotoStorageError) return { error: error.message };
+    throw error;
+  }
+}
 
-  const inclusions = Array.from(formData.keys())
-    .filter((key) => key.startsWith(INCLUSION_PREFIX))
-    .map((key) => key.slice(INCLUSION_PREFIX.length) as Inclusion);
-
+export async function createListingAction(
+  payload: CreateListingPayload,
+): Promise<{ error: string }> {
   let listingId: string;
 
   try {
-    listingId = await createListing({
-      sellerId: user.id,
-      modelId: String(formData.get('modelId') ?? ''),
-      price: String(formData.get('price') ?? ''),
-      cosmeticCondition: String(formData.get('cosmeticCondition') ?? '') as CosmeticCondition,
-      functionalCondition: String(formData.get('functionalCondition') ?? '') as FunctionalCondition,
-      shutterCount: String(formData.get('shutterCount') ?? '') || null,
-      location: String(formData.get('location') ?? ''),
-      description: String(formData.get('description') ?? '') || null,
-      inclusions,
-      publish: formData.get('publish') === 'true',
-    });
+    const user = await requireUser();
+    listingId = await createListing({ ...payload, sellerId: user.id });
   } catch (error) {
-    if (error instanceof ListingError) {
-      redirect(`/sell?error=${encodeURIComponent(error.message)}`);
-    }
+    if (error instanceof AuthError) return { error: 'Sign in to publish a listing.' };
+    if (error instanceof ListingError) return { error: error.message };
     throw error;
   }
 

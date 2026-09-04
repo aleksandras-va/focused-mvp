@@ -1,4 +1,10 @@
-import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
+import type { CosmeticCondition, FunctionalCondition, Inclusion, ModelCategory } from '@/db/tables';
+
+export const CATEGORY_LABELS: Record<ModelCategory, string> = {
+  camera: 'Camera',
+  lens: 'Lens',
+  accessory: 'Accessory',
+};
 
 export const COSMETIC_CONDITIONS: { value: CosmeticCondition; label: string }[] = [
   { value: 'mint', label: 'Mint' },

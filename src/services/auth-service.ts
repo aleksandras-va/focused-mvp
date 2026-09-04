@@ -1,51 +1,38 @@
 import 'server-only';
+import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
-import type { SellerType } from '@/db/tables';
 import { deleteSession, findActiveSession, insertSession } from '@/repositories/session-repository';
-import {
-  findUserByEmail,
-  findUserById,
-  insertUser,
-  storeSlugExists,
-} from '@/repositories/user-repository';
+import { findStoreByUserId, insertStore, storeSlugExists } from '@/repositories/store-repository';
+import { findUserByEmail, findUserById, insertUser } from '@/repositories/user-repository';
 
 const SESSION_COOKIE = 'focused_session';
 const SESSION_DAYS = 30;
+const BCRYPT_ROUNDS = 12;
+const MIN_PASSWORD_LENGTH = 8;
 
 export type AuthUser = {
   id: string;
   email: string;
   displayName: string;
-  sellerType: SellerType;
+  phone: string | null;
   store: { name: string; slug: string } | null;
+};
+
+export type SignUpInput = {
+  email: string;
+  password: string;
+  displayName: string;
+  sellerType: 'private' | 'store';
+  storeName?: string;
 };
 
 export type SignInInput = {
   email: string;
-  displayName: string;
-  sellerType: SellerType;
-  storeName?: string;
+  password: string;
 };
 
-export class SignInError extends Error {}
-
-function toAuthUser(row: {
-  id: string;
-  email: string;
-  display_name: string;
-  seller_type: SellerType;
-  store_name: string | null;
-  store_slug: string | null;
-}): AuthUser {
-  return {
-    id: row.id,
-    email: row.email,
-    displayName: row.display_name,
-    sellerType: row.seller_type,
-    store: row.store_name && row.store_slug ? { name: row.store_name, slug: row.store_slug } : null,
-  };
-}
+export class AuthError extends Error {}
 
 function slugify(value: string) {
   return value
@@ -56,7 +43,7 @@ function slugify(value: string) {
 
 async function reserveStoreSlug(storeName: string) {
   const base = slugify(storeName);
-  if (!base) throw new SignInError('Invalid store name.');
+  if (!base) throw new AuthError('Invalid store name.');
 
   let candidate = base;
   let suffix = 2;
@@ -66,6 +53,36 @@ async function reserveStoreSlug(storeName: string) {
   }
 
   return candidate;
+}
+
+async function toAuthUser(row: {
+  id: string;
+  email: string;
+  display_name: string;
+  phone: string | null;
+}): Promise<AuthUser> {
+  const store = await findStoreByUserId(row.id);
+
+  return {
+    id: row.id,
+    email: row.email,
+    displayName: row.display_name,
+    phone: row.phone,
+    store: store ? { name: store.name, slug: store.slug } : null,
+  };
+}
+
+async function startSession(userId: string) {
+  const expiresAt = new Date(Date.now() + SESSION_DAYS * 86_400_000);
+  const session = await insertSession(userId, expiresAt);
+
+  (await cookies()).set(SESSION_COOKIE, session.id, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    path: '/',
+    expires: expiresAt,
+  });
 }
 
 export const getCurrentUser = cache(async (): Promise<AuthUser | null> => {
@@ -81,47 +98,54 @@ export const getCurrentUser = cache(async (): Promise<AuthUser | null> => {
 
 export async function requireUser(): Promise<AuthUser> {
   const user = await getCurrentUser();
-  if (!user) throw new SignInError('Authentication required.');
+  if (!user) throw new AuthError('Authentication required.');
   return user;
+}
+
+export async function signUp(input: SignUpInput): Promise<AuthUser> {
+  const email = input.email.trim().toLowerCase();
+  const displayName = input.displayName.trim();
+
+  if (!email.includes('@')) throw new AuthError('Invalid email address.');
+  if (!displayName) throw new AuthError('Enter your name.');
+  if (input.password.length < MIN_PASSWORD_LENGTH) {
+    throw new AuthError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
+  }
+
+  const storeName = input.sellerType === 'store' ? input.storeName?.trim() : null;
+  if (input.sellerType === 'store' && !storeName) throw new AuthError('Enter a store name.');
+
+  if (await findUserByEmail(email)) {
+    throw new AuthError('This email is already registered — sign in instead.');
+  }
+
+  const user = await insertUser({
+    email,
+    display_name: displayName,
+    password_hash: await bcrypt.hash(input.password, BCRYPT_ROUNDS),
+  });
+
+  if (storeName) {
+    await insertStore({
+      user_id: user.id,
+      name: storeName,
+      slug: await reserveStoreSlug(storeName),
+    });
+  }
+
+  await startSession(user.id);
+  return toAuthUser(user);
 }
 
 export async function signIn(input: SignInInput): Promise<AuthUser> {
   const email = input.email.trim().toLowerCase();
-  const displayName = input.displayName.trim();
+  const user = await findUserByEmail(email);
+  const valid = user !== undefined && (await bcrypt.compare(input.password, user.password_hash));
 
-  if (!email.includes('@')) throw new SignInError('Invalid email address.');
-  if (!displayName) throw new SignInError('Enter your name.');
+  if (!valid || user === undefined) throw new AuthError('Invalid email or password.');
 
-  const existing = await findUserByEmail(email);
-
-  const user =
-    existing ??
-    (await insertUser({
-      email,
-      display_name: displayName,
-      seller_type: input.sellerType,
-      store_name: input.sellerType === 'store' ? storeName(input) : null,
-      store_slug: input.sellerType === 'store' ? await reserveStoreSlug(storeName(input)) : null,
-    }));
-
-  const expiresAt = new Date(Date.now() + SESSION_DAYS * 86_400_000);
-  const session = await insertSession(user.id, expiresAt);
-
-  (await cookies()).set(SESSION_COOKIE, session.id, {
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
-    expires: expiresAt,
-  });
-
+  await startSession(user.id);
   return toAuthUser(user);
-}
-
-function storeName(input: SignInInput) {
-  const name = input.storeName?.trim();
-  if (!name) throw new SignInError('Enter a store name.');
-  return name;
 }
 
 export async function signOut(): Promise<void> {

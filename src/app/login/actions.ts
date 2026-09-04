@@ -1,19 +1,36 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { SignInError, signIn, signOut } from '@/services/auth-service';
+import { AuthError, signIn, signOut, signUp } from '@/services/auth-service';
 
 export async function signInAction(formData: FormData) {
   try {
     await signIn({
       email: String(formData.get('email') ?? ''),
+      password: String(formData.get('password') ?? ''),
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      redirect(`/login?form=signin&error=${encodeURIComponent(error.message)}`);
+    }
+    throw error;
+  }
+
+  redirect('/');
+}
+
+export async function signUpAction(formData: FormData) {
+  try {
+    await signUp({
+      email: String(formData.get('email') ?? ''),
+      password: String(formData.get('password') ?? ''),
       displayName: String(formData.get('displayName') ?? ''),
       sellerType: formData.get('sellerType') === 'store' ? 'store' : 'private',
       storeName: String(formData.get('storeName') ?? ''),
     });
   } catch (error) {
-    if (error instanceof SignInError) {
-      redirect(`/login?error=${encodeURIComponent(error.message)}`);
+    if (error instanceof AuthError) {
+      redirect(`/login?form=signup&error=${encodeURIComponent(error.message)}`);
     }
     throw error;
   }

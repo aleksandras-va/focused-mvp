@@ -1,7 +1,8 @@
-import { Camera, Search } from 'lucide-react';
+import { Camera } from 'lucide-react';
 import Link from 'next/link';
+import { getSearchSuggestionsAction, searchSiteAction } from '@/app/actions';
+import { SearchOverlay } from '@/components/features/search';
 import { buttonVariants } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -11,8 +12,8 @@ import {
 } from '@/components/ui/navigation-menu';
 
 const navigation = [
-  { href: '/cameras', label: 'Cameras' },
-  { href: '/lenses', label: 'Lenses' },
+  { href: '/?category=camera', label: 'Cameras' },
+  { href: '/?category=lens', label: 'Lenses' },
   { href: '/stores', label: 'Stores' },
 ];
 
@@ -43,10 +44,10 @@ export function SiteHeader() {
         </NavigationMenu>
 
         <div className="ml-auto flex items-center gap-2">
-          <div className="relative hidden sm:block">
-            <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
-            <Input placeholder="Search gear" className="w-56 pl-8" />
-          </div>
+          <SearchOverlay
+            searchAction={searchSiteAction}
+            suggestionsAction={getSearchSuggestionsAction}
+          />
           <Link href="/login" className={buttonVariants({ variant: 'ghost' })}>
             Sign in
           </Link>

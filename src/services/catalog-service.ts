@@ -1,8 +1,9 @@
 import 'server-only';
 import type { CameraBodyType, ModelCategory, SensorFormat } from '@/db/types';
-import { listBrandsInUse } from '@/repositories/brand-repository';
+import { listBrandsInUse, searchBrands } from '@/repositories/brand-repository';
 import {
   findModelBySlug,
+  listSuggestedModels,
   type ModelDetailRow,
   type ModelRow,
   searchModels,
@@ -25,6 +26,8 @@ export type CatalogModel = {
   brand: { slug: string; name: string };
   mount: { slug: string; name: string } | null;
   releaseYear: number | null;
+  /** True only for film cameras; drives which questions the ad form asks. */
+  isFilm: boolean;
 };
 
 export type CameraDetails = {
@@ -59,6 +62,7 @@ function toCatalogModel(row: ModelRow): CatalogModel {
     brand: { slug: row.brand_slug, name: row.brand_name },
     mount: row.mount_slug && row.mount_name ? { slug: row.mount_slug, name: row.mount_name } : null,
     releaseYear: row.release_year,
+    isFilm: row.is_film ?? false,
   };
 }
 
@@ -86,6 +90,34 @@ function toCatalogModelDetail(row: ModelDetailRow): CatalogModelDetail {
           }
         : null,
   };
+}
+
+export type CatalogBrand = { slug: string; name: string };
+
+export type SiteSearchResults = {
+  brands: CatalogBrand[];
+  models: CatalogModel[];
+};
+
+/** Header search: brands by prefix, models by prefix with similarity fallback. */
+export async function searchSite(term: string): Promise<SiteSearchResults> {
+  const trimmed = term.trim();
+  if (trimmed.length < 2) return { brands: [], models: [] };
+
+  const [brands, models] = await Promise.all([
+    searchBrands(trimmed),
+    searchModels(trimmed, { limit: 8 }),
+  ]);
+
+  return {
+    brands: brands.map((brand) => ({ slug: brand.slug, name: brand.name })),
+    models: models.map(toCatalogModel),
+  };
+}
+
+export async function getSuggestedModels(): Promise<CatalogModel[]> {
+  const rows = await listSuggestedModels();
+  return rows.map(toCatalogModel);
 }
 
 /** Resolves whatever a seller typed onto real catalog entries. */

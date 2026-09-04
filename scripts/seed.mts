@@ -24,8 +24,9 @@ type CameraSeed = {
   releaseYear: number;
   bodyType: CameraBodyType;
   sensorFormat: SensorFormat;
-  megapixels: number;
+  megapixels?: number;
   hasMechanicalShutter?: boolean;
+  isFilm?: boolean;
 };
 
 type LensSeed = {
@@ -39,23 +40,34 @@ type LensSeed = {
   filterThreadMm?: number;
 };
 
+type AccessorySeed = {
+  brand: string;
+  name: string;
+  releaseYear?: number;
+};
+
 const BRANDS: BrandSeed[] = [
   { slug: 'canon', name: 'Canon' },
   { slug: 'fujifilm', name: 'Fujifilm' },
+  { slug: 'helios', name: 'Helios' },
   { slug: 'nikon', name: 'Nikon' },
   { slug: 'olympus', name: 'Olympus' },
   { slug: 'panasonic', name: 'Panasonic' },
+  { slug: 'peak-design', name: 'Peak Design' },
   { slug: 'ricoh', name: 'Ricoh' },
   { slug: 'samyang', name: 'Samyang' },
   { slug: 'sigma', name: 'Sigma' },
+  { slug: 'smallrig', name: 'SmallRig' },
   { slug: 'sony', name: 'Sony' },
   { slug: 'tamron', name: 'Tamron' },
+  { slug: 'zenit', name: 'Zenit' },
 ];
 
 const MOUNTS: MountSeed[] = [
   { slug: 'canon-ef', name: 'Canon EF', brand: 'canon' },
   { slug: 'canon-ef-m', name: 'Canon EF-M', brand: 'canon' },
   { slug: 'canon-ef-s', name: 'Canon EF-S', brand: 'canon' },
+  { slug: 'canon-fd', name: 'Canon FD', brand: 'canon' },
   { slug: 'canon-rf', name: 'Canon RF', brand: 'canon' },
   { slug: 'fujifilm-x', name: 'Fujifilm X', brand: 'fujifilm' },
   { slug: 'nikon-f', name: 'Nikon F', brand: 'nikon' },
@@ -63,6 +75,7 @@ const MOUNTS: MountSeed[] = [
   { slug: 'sony-e', name: 'Sony E', brand: 'sony' },
   // No single brand owns these.
   { slug: 'l-mount', name: 'L-Mount' },
+  { slug: 'm42', name: 'M42' },
   { slug: 'micro-four-thirds', name: 'Micro Four Thirds' },
 ];
 
@@ -316,6 +329,41 @@ const CAMERAS: CameraSeed[] = [
     sensorFormat: 'aps_c',
     megapixels: 24.2,
   },
+  // Film bodies. 35mm film shares the full-frame capture area.
+  {
+    brand: 'zenit',
+    name: 'TTL',
+    mount: 'm42',
+    releaseYear: 1977,
+    bodyType: 'slr',
+    sensorFormat: 'full_frame',
+    isFilm: true,
+  },
+  {
+    brand: 'canon',
+    name: 'AE-1',
+    mount: 'canon-fd',
+    releaseYear: 1976,
+    bodyType: 'slr',
+    sensorFormat: 'full_frame',
+    isFilm: true,
+  },
+  {
+    brand: 'canon',
+    name: 'Canonet QL17 GIII',
+    releaseYear: 1972,
+    bodyType: 'rangefinder',
+    sensorFormat: 'full_frame',
+    isFilm: true,
+  },
+  {
+    brand: 'olympus',
+    name: 'mju-II',
+    releaseYear: 1997,
+    bodyType: 'compact',
+    sensorFormat: 'full_frame',
+    isFilm: true,
+  },
 ];
 
 const LENSES: LensSeed[] = [
@@ -466,6 +514,21 @@ const LENSES: LensSeed[] = [
     maxAperture: 2,
     filterThreadMm: 67,
   },
+  {
+    brand: 'helios',
+    name: '44-2 58mm f/2',
+    mount: 'm42',
+    releaseYear: 1975,
+    focal: [58, 58],
+    maxAperture: 2,
+    filterThreadMm: 49,
+  },
+];
+
+const ACCESSORIES: AccessorySeed[] = [
+  { brand: 'smallrig', name: 'Cage for Sony A6500' },
+  { brand: 'peak-design', name: 'Slide Camera Strap' },
+  { brand: 'fujifilm', name: 'VG-XT4 Battery Grip', releaseYear: 2020 },
 ];
 
 function slugify(value: string): string {
@@ -519,8 +582,8 @@ await db.transaction().execute(async (trx) => {
   const brandNames = new Map(BRANDS.map((b) => [b.slug, b.name]));
 
   async function upsertModel(
-    entry: { brand: string; name: string; mount?: string; releaseYear: number },
-    category: 'camera' | 'lens',
+    entry: { brand: string; name: string; mount?: string; releaseYear?: number },
+    category: 'camera' | 'lens' | 'accessory',
   ): Promise<string> {
     const brandId = brandIds.get(entry.brand);
     if (!brandId) throw new Error(`Unknown brand: ${entry.brand}`);
@@ -540,12 +603,12 @@ await db.transaction().execute(async (trx) => {
         name: entry.name,
         display_name: displayName,
         slug,
-        release_year: entry.releaseYear,
+        release_year: entry.releaseYear ?? null,
       })
       .onConflict((oc) =>
         oc.column('slug').doUpdateSet({
           display_name: displayName,
-          release_year: entry.releaseYear,
+          release_year: entry.releaseYear ?? null,
           updated_at: new Date(),
         }),
       )
@@ -563,14 +626,16 @@ await db.transaction().execute(async (trx) => {
         model_id: modelId,
         body_type: camera.bodyType,
         sensor_format: camera.sensorFormat,
-        megapixels: camera.megapixels,
+        megapixels: camera.megapixels ?? null,
         has_mechanical_shutter: camera.hasMechanicalShutter ?? true,
+        is_film: camera.isFilm ?? false,
       })
       .onConflict((oc) =>
         oc.column('model_id').doUpdateSet({
           body_type: camera.bodyType,
           sensor_format: camera.sensorFormat,
-          megapixels: camera.megapixels,
+          megapixels: camera.megapixels ?? null,
+          is_film: camera.isFilm ?? false,
         }),
       )
       .execute();
@@ -596,6 +661,10 @@ await db.transaction().execute(async (trx) => {
         }),
       )
       .execute();
+  }
+
+  for (const accessory of ACCESSORIES) {
+    await upsertModel(accessory, 'accessory');
   }
 });
 

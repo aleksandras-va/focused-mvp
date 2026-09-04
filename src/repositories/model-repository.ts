@@ -12,6 +12,7 @@ function modelQuery() {
     .selectFrom('model')
     .innerJoin('brand', 'brand.id', 'model.brand_id')
     .leftJoin('mount', 'mount.id', 'model.mount_id')
+    .leftJoin('camera_spec', 'camera_spec.model_id', 'model.id')
     .select([
       'model.id',
       'model.slug',
@@ -23,6 +24,7 @@ function modelQuery() {
       'brand.slug as brand_slug',
       'mount.name as mount_name',
       'mount.slug as mount_slug',
+      'camera_spec.is_film',
     ]);
 }
 
@@ -58,7 +60,6 @@ export function searchModels(
 
 export function findModelBySlug(slug: string) {
   return modelQuery()
-    .leftJoin('camera_spec', 'camera_spec.model_id', 'model.id')
     .leftJoin('lens_spec', 'lens_spec.model_id', 'model.id')
     .select([
       'camera_spec.body_type',
@@ -73,4 +74,27 @@ export function findModelBySlug(slug: string) {
     ])
     .where('model.slug', '=', slug)
     .executeTakeFirst();
+}
+
+/** Models to offer before the buyer has typed anything, busiest listings first. */
+export function listSuggestedModels(limit = 6) {
+  return modelQuery()
+    .orderBy(
+      sql`(select count(*) from listing_item
+        join listing on listing.id = listing_item.listing_id and listing.status = 'active'
+        where listing_item.model_id = model.id)`,
+      'desc',
+    )
+    .orderBy('model.release_year', 'desc')
+    .limit(limit)
+    .execute();
+}
+
+export function findModelsForListing(ids: string[]) {
+  return db
+    .selectFrom('model')
+    .leftJoin('camera_spec', 'camera_spec.model_id', 'model.id')
+    .select(['model.id', 'model.category', 'model.mount_id', 'camera_spec.is_film'])
+    .where('model.id', 'in', ids)
+    .execute();
 }

@@ -46,7 +46,7 @@ export function ModelPicker({ searchAction, selected, onSelect }: ModelPickerPro
         render={
           <Button variant="outline" className="h-9 w-full justify-between font-normal">
             <span className={selected ? '' : 'text-muted-foreground'}>
-              {selected ? selected.displayName : 'Search for a camera or lens'}
+              {selected ? selected.displayName : 'Search for a camera, lens or accessory'}
             </span>
             <ChevronsUpDownIcon className="opacity-50" />
           </Button>
@@ -85,7 +85,6 @@ export function ModelPicker({ searchAction, selected, onSelect }: ModelPickerPro
           </CommandList>
         </Command>
       </PopoverContent>
-      <input type="hidden" name="modelId" value={selected?.id ?? ''} />
     </Popover>
   );
 }

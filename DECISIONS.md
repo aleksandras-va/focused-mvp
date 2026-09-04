@@ -44,17 +44,43 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 
 ## Accounts
 
-- Placeholder auth: no passwords, unknown email creates the account. Sessions are real —
-  database-backed, httpOnly cookie, 30 days. Replace before real traffic.
-- Seller type is chosen at signup. Store fields are all-or-nothing.
+- Auth is email + password (bcrypt). SSO later. Sessions stay database-backed,
+  httpOnly cookie, 30 days. An unknown email no longer creates an account.
+- Stores are their own table: `store` with a unique `user_id`. `seller_type` is gone —
+  the presence of a store row is the answer.
+- Contact: `user.phone` plus per-listing overrides, prefilled and editable. Shown
+  plainly on the page for MVP — no click-to-reveal. Socials deferred.
 
 ## Listings
 
+- A listing is a container. `listing` holds the ad — asking price, description,
+  location, photos, contact, seller, status. `listing_item` holds each item — model,
+  per-item price, both conditions, shutter count, `sold_separately`, position. A
+  single-item ad is one item row.
+- `listing.price_cents` is always the ad's asking price; for a single-item ad it
+  equals the item's price, kept in sync by the service.
+- A bundle whose price is below the sum of per-item prices gets a discount label —
+  per-item prices are what keep model price statistics clean.
+- A bundle is never a listing referencing other listings — children would carry their
+  own status, URL and photos, and every query would have to filter them out.
 - No title field. The canonical model name is the title.
 - Condition splits into cosmetic and functional.
-- Inclusions are an enum plus a join table, so they can become filters.
+- Inclusions are an enum plus a join table keyed on `listing_item`, not the listing —
+  the charger belongs to the camera, not the bundle.
 - `location`, not `city`.
-- Shutter count is asked only for cameras.
+- Shutter count is asked only for non-film cameras.
+- `sold` and `removed` ads leave public view but stay in the database.
+
+## Item types
+
+- Film cameras are cameras with `camera_spec.is_film`; `camera_body_type` gains `slr`
+  and `rangefinder`. The flag drives the form: no shutter count, memory card or
+  megapixels for film bodies.
+- Accessories are catalog models with `category = 'accessory'` and no spec table —
+  brand and name are enough for MVP.
+- One `listing_item` table for all item types. Specs describe the product and live in
+  the catalog; items store only sale facts, so nullable `shutter_count` is the only
+  type-specific column. No per-type listing tables.
 
 ## Photos
 

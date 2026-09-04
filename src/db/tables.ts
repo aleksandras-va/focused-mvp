@@ -11,10 +11,13 @@ import type {
   CameraSpec as CameraSpecTable,
   LensSpec as LensSpecTable,
   ListingInclusion as ListingInclusionTable,
+  ListingItem as ListingItemTable,
+  ListingPhoto as ListingPhotoTable,
   Listing as ListingTable,
   Model as ModelTable,
   Mount as MountTable,
   Session as SessionTable,
+  Store as StoreTable,
   User as UserTable,
 } from './types';
 
@@ -25,7 +28,6 @@ export type {
   Inclusion,
   ListingStatus,
   ModelCategory,
-  SellerType,
   SensorFormat,
 } from './types';
 
@@ -44,11 +46,20 @@ export type User = Selectable<UserTable>;
 export type NewUser = Insertable<UserTable>;
 export type UserUpdate = Updateable<UserTable>;
 
+export type Store = Selectable<StoreTable>;
+export type NewStore = Insertable<StoreTable>;
+
 export type Session = Selectable<SessionTable>;
 export type NewSession = Insertable<SessionTable>;
 
 export type Listing = Selectable<ListingTable>;
 export type NewListing = Insertable<ListingTable>;
 export type ListingUpdate = Updateable<ListingTable>;
+
+export type ListingItem = Selectable<ListingItemTable>;
+export type NewListingItem = Insertable<ListingItemTable>;
+
+export type ListingPhoto = Selectable<ListingPhotoTable>;
+export type NewListingPhoto = Insertable<ListingPhotoTable>;
 
 export type ListingInclusionRow = Selectable<ListingInclusionTable>;

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { ListingDetail } from '@/components/features/listings/listing-detail';
+import { RecordListingView } from '@/components/features/listings/record-view';
 import { getListing } from '@/services/listing-service';
 
 export default async function ListingPage({ params }: PageProps<'/listings/[id]'>) {
@@ -8,5 +9,12 @@ export default async function ListingPage({ params }: PageProps<'/listings/[id]'
 
   if (!listing) notFound();
 
-  return <ListingDetail listing={listing} />;
+  return (
+    <>
+      <RecordListingView
+        listing={{ id: listing.id, title: listing.title, priceCents: listing.priceCents }}
+      />
+      <ListingDetail listing={listing} />
+    </>
+  );
 }

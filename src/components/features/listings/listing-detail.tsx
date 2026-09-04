@@ -2,7 +2,7 @@ import { ImageIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import type { ListingDetail as Listing } from '@/services/listing-service';
+import type { ListingDetail as Listing, ListingItemSummary } from '@/services/listing-service';
 
 const priceFormatter = new Intl.NumberFormat('en-IE', {
   style: 'currency',
@@ -15,16 +15,44 @@ const shutterFormatter = new Intl.NumberFormat('en-IE');
 export function ListingDetail({ listing }: { listing: Listing }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[3fr_2fr]">
-      <div className="flex aspect-4/3 items-center justify-center rounded-xl bg-muted">
-        <ImageIcon className="size-10 text-muted-foreground/50" />
+      <div className="flex flex-col gap-3">
+        {listing.photos.length > 0 ? (
+          <>
+            {/* biome-ignore lint/performance/noImgElement: photos come from R2, not the image optimizer */}
+            <img
+              src={listing.photos[0].largeUrl}
+              alt={listing.title}
+              className="aspect-4/3 w-full rounded-xl bg-muted object-contain"
+            />
+            {listing.photos.length > 1 ? (
+              <div className="grid grid-cols-4 gap-3">
+                {listing.photos.slice(1).map((photo) => (
+                  // biome-ignore lint/performance/noImgElement: photos come from R2, not the image optimizer
+                  <img
+                    key={photo.largeUrl}
+                    src={photo.largeUrl}
+                    alt={listing.title}
+                    className="aspect-square w-full rounded-lg bg-muted object-cover"
+                  />
+                ))}
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <div className="flex aspect-4/3 items-center justify-center rounded-xl bg-muted">
+            <ImageIcon className="size-10 text-muted-foreground/50" />
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <p className="text-sm text-muted-foreground">{listing.brand}</p>
-          <h1 className="font-heading text-3xl font-semibold tracking-tight">
-            {listing.modelName}
-          </h1>
+          {listing.isBundle ? (
+            <p className="text-sm text-muted-foreground">Bundle</p>
+          ) : (
+            <p className="text-sm text-muted-foreground">{listing.items[0]?.brand}</p>
+          )}
+          <h1 className="font-heading text-3xl font-semibold tracking-tight">{listing.title}</h1>
           <p className="font-heading text-2xl font-semibold">
             {priceFormatter.format(listing.priceCents / 100)}
           </p>
@@ -35,14 +63,12 @@ export function ListingDetail({ listing }: { listing: Listing }) {
           ) : null}
         </div>
 
+        {listing.items.map((item) => (
+          <ListingItemCard key={item.id} item={item} showPrice={listing.isBundle} />
+        ))}
+
         <Card>
           <CardContent className="flex flex-col gap-3 text-sm">
-            <Detail label="Cosmetic" value={listing.cosmeticCondition} />
-            <Detail label="Functional" value={listing.functionalCondition} />
-            {listing.shutterCount !== null ? (
-              <Detail label="Shutter count" value={shutterFormatter.format(listing.shutterCount)} />
-            ) : null}
-            {listing.mount ? <Detail label="Mount" value={listing.mount} /> : null}
             <Detail label="Location" value={listing.location} />
             <Separator />
             <Detail
@@ -53,11 +79,37 @@ export function ListingDetail({ listing }: { listing: Listing }) {
           </CardContent>
         </Card>
 
-        {listing.inclusions.length > 0 ? (
+        {listing.description ? (
+          <p className="text-sm whitespace-pre-line text-muted-foreground">{listing.description}</p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function ListingItemCard({ item, showPrice }: { item: ListingItemSummary; showPrice: boolean }) {
+  return (
+    <Card>
+      <CardContent className="flex flex-col gap-3 text-sm">
+        {showPrice ? (
+          <div className="flex items-center justify-between gap-4">
+            <span className="font-medium">{item.modelName}</span>
+            <span className="font-heading font-semibold">
+              {priceFormatter.format(item.priceCents / 100)}
+            </span>
+          </div>
+        ) : null}
+        <Detail label="Cosmetic" value={item.cosmeticCondition} />
+        <Detail label="Functional" value={item.functionalCondition} />
+        {item.shutterCount !== null ? (
+          <Detail label="Shutter count" value={shutterFormatter.format(item.shutterCount)} />
+        ) : null}
+        {item.mount ? <Detail label="Mount" value={item.mount} /> : null}
+        {item.inclusions.length > 0 ? (
           <div className="flex flex-col gap-2">
-            <h2 className="text-sm font-medium">Included</h2>
+            <span className="text-muted-foreground">Included</span>
             <div className="flex flex-wrap gap-2">
-              {listing.inclusions.map((inclusion) => (
+              {item.inclusions.map((inclusion) => (
                 <Badge key={inclusion} variant="secondary">
                   {inclusion}
                 </Badge>
@@ -65,12 +117,8 @@ export function ListingDetail({ listing }: { listing: Listing }) {
             </div>
           </div>
         ) : null}
-
-        {listing.description ? (
-          <p className="text-sm whitespace-pre-line text-muted-foreground">{listing.description}</p>
-        ) : null}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
