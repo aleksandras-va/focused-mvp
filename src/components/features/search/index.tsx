@@ -15,7 +15,10 @@ import {
 } from '@/components/ui/command';
 import { CATEGORY_LABELS } from '@/lib/listing-options';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
-import type { CatalogModel, SiteSearchResults } from '@/services/catalog-service';
+import type {
+  BrandAndModelSearchResults,
+  CatalogModel,
+} from '@/services/model-catalog/model-catalog.types';
 
 const priceFormatter = new Intl.NumberFormat('en-IE', {
   style: 'currency',
@@ -24,20 +27,20 @@ const priceFormatter = new Intl.NumberFormat('en-IE', {
 });
 
 type SearchOverlayProps = {
-  searchAction: (term: string) => Promise<SiteSearchResults>;
+  searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
   suggestionsAction: () => Promise<CatalogModel[]>;
 };
 
 export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlayProps) {
   const [open, setOpen] = useState(false);
   const [term, setTerm] = useState('');
-  const [results, setResults] = useState<SiteSearchResults>({ brands: [], models: [] });
+  const [results, setResults] = useState<BrandAndModelSearchResults>({ brands: [], models: [] });
   const [suggested, setSuggested] = useState<CatalogModel[]>([]);
   const [recent, setRecent] = useState<RecentlyViewedListing[]>([]);
   const [isSearching, startSearching] = useTransition();
   const router = useRouter();
 
-  const browsing = term.trim().length < 2;
+  const browsing = term.trim().length < 1;
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {

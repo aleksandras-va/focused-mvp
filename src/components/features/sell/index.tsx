@@ -26,8 +26,8 @@ import {
   FUNCTIONAL_CONDITIONS,
   INCLUSIONS,
 } from '@/lib/listing-options';
-import type { CatalogModel } from '@/services/catalog-service';
-import type { PhotoUpload } from '@/services/photo-service';
+import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
+import type { PhotoUpload } from '@/services/photo/photo.service';
 
 type ItemState = {
   key: number;

@@ -1,10 +1,11 @@
 import { redirect } from 'next/navigation';
 import { SellListing } from '@/components/features/sell';
-import { getCurrentUser } from '@/services/auth-service';
+import { authService } from '@/services/auth/auth.service';
 import { createListingAction, createPhotoUploadAction, searchModelsAction } from './actions';
 
 export default async function SellPage() {
-  const user = await getCurrentUser();
+  const user = await authService.getCurrentUserCached();
+
   if (!user) redirect('/login');
 
   return (

@@ -2,11 +2,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { getCurrentUser } from '@/services/auth-service';
+import { authService } from '@/services/auth/auth.service';
 import { signInAction, signOutAction, signUpAction } from './actions';
 
 export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
-  const user = await getCurrentUser();
+  const user = await authService.getCurrentUserCached();
   const { error, form } = await searchParams;
 
   if (user) {
