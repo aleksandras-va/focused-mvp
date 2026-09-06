@@ -1,11 +1,12 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { AuthError, signIn, signOut, signUp } from '@/services/auth-service';
+import { AuthError } from '@/services/auth/auth.error';
+import { authService } from '@/services/auth/auth.service';
 
 export async function signInAction(formData: FormData) {
   try {
-    await signIn({
+    await authService.signIn({
       email: String(formData.get('email') ?? ''),
       password: String(formData.get('password') ?? ''),
     });
@@ -13,6 +14,7 @@ export async function signInAction(formData: FormData) {
     if (error instanceof AuthError) {
       redirect(`/login?form=signin&error=${encodeURIComponent(error.message)}`);
     }
+
     throw error;
   }
 
@@ -21,7 +23,7 @@ export async function signInAction(formData: FormData) {
 
 export async function signUpAction(formData: FormData) {
   try {
-    await signUp({
+    await authService.signUp({
       email: String(formData.get('email') ?? ''),
       password: String(formData.get('password') ?? ''),
       displayName: String(formData.get('displayName') ?? ''),
@@ -32,6 +34,7 @@ export async function signUpAction(formData: FormData) {
     if (error instanceof AuthError) {
       redirect(`/login?form=signup&error=${encodeURIComponent(error.message)}`);
     }
+
     throw error;
   }
 
@@ -39,6 +42,7 @@ export async function signUpAction(formData: FormData) {
 }
 
 export async function signOutAction() {
-  await signOut();
+  await authService.signOut();
+
   redirect('/login');
 }

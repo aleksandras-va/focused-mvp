@@ -30,22 +30,46 @@ here.
 
 ### `src/repositories/` — data access
 
-One file per aggregate, named `<thing>-repository.ts`. Repositories own all SQL,
-speak the schema's snake_case, and return row shapes. Nothing outside this folder
-imports `db` or writes a query.
+One file per aggregate, named `<thing>.repository.ts`, exporting a single object
+(`listingRepository`) whose methods are the queries. Repositories own all SQL, speak
+the schema's snake_case, and return row shapes. Nothing outside this folder imports
+`db` or writes a query. Query builders shared by several methods (`listingCardQuery`)
+stay private to the file; a builder with one caller is inlined.
 
-Current: `model-repository.ts`, `brand-repository.ts`, `mount-repository.ts`,
-`user-repository.ts`, `session-repository.ts`, `listing-repository.ts`.
+Row types are derived from the methods that return them
+(`Awaited<ReturnType<typeof listingRepository.findById>>`), never written by hand.
+
+Current: `model`, `brand`, `mount`, `user`, `session`, `store`, `listing`.
 
 ### `src/services/` — use cases
 
-Named `<area>-service.ts`. Services compose repositories and map rows to camelCase
-DTOs, so a column rename stops here instead of reaching a component. Derived values
-(`isZoom`, formatted prices) are computed at this boundary.
+One folder per area, `services/<area>/`, with the area's name prefixed on every file:
 
-Current: `catalog-service.ts`, `auth-service.ts`, `listing-service.ts`.
+```
+services/listing/
+  listing.service.ts     the use cases, exported as one object (`listingService`)
+  listing.types.ts       DTOs and inputs the layers above import
+  listing.mappers.ts     row → DTO functions (`mapToSummary`, `mapToDetail`)
+  listing.utils.ts       parsing and other private helpers
+  listing.constants.ts   limits, patterns, cookie names
+  listing.error.ts       the area's error class (`ListingError`)
+```
 
-`auth-service.ts` reads and writes the session cookie directly.
+Not every area needs every file; only add one when there is something to put in it.
+Delivery code (`app/`) imports the service object for behaviour and the types file for
+shapes — never a mapper or util.
+
+Services compose repositories and map rows to camelCase DTOs, so a column rename stops
+at the mapper instead of reaching a component. Derived values (`isZoom`, formatted
+prices) are computed at this boundary. A use case gets the shape it needs and no more:
+browse reads a lean card row, the listing page a full detail row.
+
+Current: `model-catalog` (the curated gear reference: brands, mounts, models, specs —
+not what is for sale), `auth`, `listing`, `photo`.
+
+`auth.service.ts` reads and writes the session cookie directly. `photo.service.ts`
+talks to R2 (presigned uploads, public URLs) and is the only module that knows the
+storage provider.
 
 ### `src/components/` — presentation
 
@@ -86,13 +110,19 @@ never a repository, never `db`.
 
 ### Listings
 
-- `listing` — `model_id` and `seller_id`, price in cents, cosmetic and functional
-  condition, optional shutter count, `location`, status, `published_at`.
-- `listing_inclusion` — one row per included item, keyed on `(listing_id, inclusion)`.
+- `listing` — the ad: `seller_id`, asking price in cents, description, `location`,
+  contact email and phone, status, `published_at`. Knows nothing about the gear.
+- `listing_item` — what is in the ad, one row per physical item: `model_id`, per-item
+  price, cosmetic and functional condition, optional shutter count, `sold_separately`,
+  `position`. A single-item ad is one row; a bundle is several.
+- `listing_inclusion` — the included-extras checklist, keyed on
+  `(listing_item_id, inclusion)` because the charger belongs to the camera, not the ad.
+- `listing_photo` — `storage_key` and `position` per photo; position 0 is the cover.
+  Two objects per key in R2 (`<key>/2560.webp`, `<key>/800.webp`).
 
 ### Accounts
 
-- `user` — email, display name, and `seller_type` (`private` or `store`). Store fields
-  are all-or-nothing, enforced by a check constraint.
-- `session` — database-backed, referenced by an httpOnly cookie. Placeholder auth: no
-  passwords, so an unknown email creates an account. Replace before any real traffic.
+- `user` — email, display name, `password_hash` (bcrypt), optional `phone`.
+- `store` — one per user (`user_id` unique), name and slug. A user is a store seller
+  when this row exists.
+- `session` — database-backed, referenced by an httpOnly cookie, 30 days.

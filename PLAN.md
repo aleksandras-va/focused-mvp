@@ -49,7 +49,7 @@ creates an account silently. Existing test users: delete or reseed.
 
 ## 6. Sell flow rework - done
 
-Update `listing-repository`, `listing-service` and the sell form for the new
+Update the listing repository, listing service and the sell form for the new
 schema:
 
 - Per-item fields driven by the catalog: shutter count only for non-film

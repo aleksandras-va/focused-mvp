@@ -2,7 +2,7 @@ import { ImageIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import type { ListingDetail as Listing, ListingItemSummary } from '@/services/listing-service';
+import type { ListingDetail as Listing, ListingItemDetail } from '@/services/listing/listing.types';
 
 const priceFormatter = new Intl.NumberFormat('en-IE', {
   style: 'currency',
@@ -87,7 +87,7 @@ export function ListingDetail({ listing }: { listing: Listing }) {
   );
 }
 
-function ListingItemCard({ item, showPrice }: { item: ListingItemSummary; showPrice: boolean }) {
+function ListingItemCard({ item, showPrice }: { item: ListingItemDetail; showPrice: boolean }) {
   return (
     <Card>
       <CardContent className="flex flex-col gap-3 text-sm">

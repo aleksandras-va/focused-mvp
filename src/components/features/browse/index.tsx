@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
 import { BROWSE_SORTS, type BrowseFilters, hasActiveFilters } from '@/lib/browse-filters';
 import { CATEGORY_LABELS, COSMETIC_CONDITIONS } from '@/lib/listing-options';
-import type { ListingSummary } from '@/services/listing-service';
+import type { ListingSummary } from '@/services/listing/listing.types';
 
 const shutterFormatter = new Intl.NumberFormat('en-IE');
 
@@ -22,20 +22,19 @@ type BrowseProps = {
 };
 
 function toCardItem(listing: ListingSummary): ListingCardItem {
-  const first = listing.items[0];
   const detail =
-    first?.shutterCount !== null && first?.shutterCount !== undefined
-      ? `${shutterFormatter.format(first.shutterCount)} shutter actuations`
-      : (first?.mount ?? listing.location);
+    listing.shutterCount !== null
+      ? `${shutterFormatter.format(listing.shutterCount)} shutter actuations`
+      : (listing.mount ?? listing.location);
 
   return {
     id: listing.id,
     title: listing.title,
-    subtitle: listing.isBundle ? `${listing.items.length} items` : (first?.brand ?? ''),
+    subtitle: listing.isBundle ? `${listing.itemCount} items` : (listing.brand ?? ''),
     detail,
     priceCents: listing.priceCents,
-    condition: first?.cosmeticCondition ?? '',
-    imageUrl: listing.photos[0]?.cardUrl ?? null,
+    condition: listing.cosmeticCondition ?? '',
+    imageUrl: listing.coverUrl,
     isBundle: listing.isBundle,
   };
 }

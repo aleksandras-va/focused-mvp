@@ -1,11 +1,11 @@
 'use server';
 
-import { getSuggestedModels, searchSite } from '@/services/catalog-service';
+import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 
 export async function searchSiteAction(term: string) {
-  return searchSite(term);
+  return modelCatalogService.searchBrandAndModel(term);
 }
 
 export async function getSearchSuggestionsAction() {
-  return getSuggestedModels();
+  return modelCatalogService.getSuggested();
 }

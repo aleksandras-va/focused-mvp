@@ -11,7 +11,7 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import type { CatalogModel } from '@/services/catalog-service';
+import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
 type ModelPickerProps = {
   searchAction: (term: string) => Promise<CatalogModel[]>;
