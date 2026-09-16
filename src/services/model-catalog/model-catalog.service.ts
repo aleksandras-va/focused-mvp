@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { ModelCategory } from '@/db/types';
 
 import { brandRepository } from '@/repositories/brand.repository';

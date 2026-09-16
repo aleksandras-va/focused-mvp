@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { CameraBodyType, ModelCategory, SensorFormat } from '@/db/types';
 
 interface CameraDetails {

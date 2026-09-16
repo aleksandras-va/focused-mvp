@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { LISTING_LABELS } from '@/lib/listing-options';
 import type {
   ListingCardRow,

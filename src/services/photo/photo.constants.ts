@@ -1,1 +1,3 @@
+import 'server-only';
+
 export const UPLOAD_URL_EXPIRES_SECONDS = 600;

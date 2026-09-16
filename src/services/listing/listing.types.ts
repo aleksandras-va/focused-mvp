@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type {
   CosmeticCondition,
   FunctionalCondition,
@@ -76,3 +78,5 @@ export interface CreateListingInput {
   contactPhone: string | null;
   publish: boolean;
 }
+
+export type CreateListingPayload = Omit<CreateListingInput, 'sellerId'>;

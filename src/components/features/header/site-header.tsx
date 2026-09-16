@@ -1,6 +1,5 @@
 import { Camera } from 'lucide-react';
 import Link from 'next/link';
-import { getSearchSuggestionsAction, searchSiteAction } from '@/app/actions';
 import { SearchOverlay } from '@/components/features/search';
 import { buttonVariants } from '@/components/ui/button';
 import {
@@ -10,6 +9,15 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import type {
+  BrandAndModelSearchResults,
+  CatalogModel,
+} from '@/services/model-catalog/model-catalog.types';
+
+type SiteHeaderProps = {
+  searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
+  suggestionsAction: () => Promise<CatalogModel[]>;
+};
 
 const navigation = [
   { href: '/?category=camera', label: 'Cameras' },
@@ -17,7 +25,7 @@ const navigation = [
   { href: '/stores', label: 'Stores' },
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ searchAction, suggestionsAction }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-4 px-6">
@@ -44,10 +52,7 @@ export function SiteHeader() {
         </NavigationMenu>
 
         <div className="ml-auto flex items-center gap-2">
-          <SearchOverlay
-            searchAction={searchSiteAction}
-            suggestionsAction={getSearchSuggestionsAction}
-          />
+          <SearchOverlay searchAction={searchAction} suggestionsAction={suggestionsAction} />
           <Link href="/login" className={buttonVariants({ variant: 'ghost' })}>
             Sign in
           </Link>
