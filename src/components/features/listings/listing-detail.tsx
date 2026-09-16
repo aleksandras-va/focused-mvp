@@ -1,4 +1,5 @@
 import { ImageIcon } from 'lucide-react';
+import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -12,7 +13,17 @@ const priceFormatter = new Intl.NumberFormat('en-IE', {
 
 const shutterFormatter = new Intl.NumberFormat('en-IE');
 
-export function ListingDetail({ listing }: { listing: Listing }) {
+interface ListingDetailProps {
+  listing: Listing;
+  focusedItem: ListingItemDetail | null;
+}
+
+export function ListingDetail({ listing, focusedItem }: ListingDetailProps) {
+  const title = focusedItem?.modelName ?? listing.title;
+  const priceCents = focusedItem?.priceCents ?? listing.priceCents;
+  const shownItems = focusedItem ? [focusedItem] : listing.items;
+  const isBundleOverview = listing.isBundle && !focusedItem;
+
   return (
     <div className="grid gap-8 lg:grid-cols-[3fr_2fr]">
       <div className="flex flex-col gap-3">
@@ -47,14 +58,12 @@ export function ListingDetail({ listing }: { listing: Listing }) {
 
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          {listing.isBundle ? (
-            <p className="text-sm text-muted-foreground">Bundle</p>
-          ) : (
-            <p className="text-sm text-muted-foreground">{listing.items[0]?.brand}</p>
-          )}
-          <h1 className="font-heading text-3xl font-semibold tracking-tight">{listing.title}</h1>
+          <p className="text-sm text-muted-foreground">
+            {isBundleOverview ? 'Bundle' : (focusedItem ?? listing.items[0])?.brand}
+          </p>
+          <h1 className="font-heading text-3xl font-semibold tracking-tight">{title}</h1>
           <p className="font-heading text-2xl font-semibold">
-            {priceFormatter.format(listing.priceCents / 100)}
+            {priceFormatter.format(priceCents / 100)}
           </p>
           {listing.status !== 'active' ? (
             <Badge variant="outline" className="w-fit capitalize">
@@ -63,8 +72,12 @@ export function ListingDetail({ listing }: { listing: Listing }) {
           ) : null}
         </div>
 
-        {listing.items.map((item) => (
-          <ListingItemCard key={item.id} item={item} showPrice={listing.isBundle} />
+        {focusedItem && listing.isBundle ? (
+          <BundleNotice listing={listing} soldSeparately={focusedItem.soldSeparately} />
+        ) : null}
+
+        {shownItems.map((item) => (
+          <ListingItemCard key={item.id} item={item} linkToItem={isBundleOverview} />
         ))}
 
         <Card>
@@ -87,13 +100,26 @@ export function ListingDetail({ listing }: { listing: Listing }) {
   );
 }
 
-function ListingItemCard({ item, showPrice }: { item: ListingItemDetail; showPrice: boolean }) {
+function BundleNotice({ listing, soldSeparately }: { listing: Listing; soldSeparately: boolean }) {
+  return (
+    <p className="rounded-lg border bg-muted/50 px-3 py-2 text-sm">
+      {soldSeparately ? 'Also sold as part of a bundle: ' : 'Only sold as part of a bundle: '}
+      <Link href={`/bundles/${listing.id}`} className="font-medium underline">
+        {listing.title}
+      </Link>
+    </p>
+  );
+}
+
+function ListingItemCard({ item, linkToItem }: { item: ListingItemDetail; linkToItem: boolean }) {
   return (
     <Card>
       <CardContent className="flex flex-col gap-3 text-sm">
-        {showPrice ? (
+        {linkToItem ? (
           <div className="flex items-center justify-between gap-4">
-            <span className="font-medium">{item.modelName}</span>
+            <Link href={`/items/${item.id}`} className="font-medium hover:underline">
+              {item.modelName}
+            </Link>
             <span className="font-heading font-semibold">
               {priceFormatter.format(item.priceCents / 100)}
             </span>

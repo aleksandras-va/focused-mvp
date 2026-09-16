@@ -82,17 +82,21 @@ brand, mount, price range, condition. Sort: newest, price. Only `active`
 listings appear publicly — `sold` and `removed` stay in the database but never
 render.
 
-## 10. Listing detail
+## 10. Listing detail - postponed
 
 Photos, per-item breakdown with per-item prices, a discount label when the
 bundle price is below the sum of item prices, inclusions, condition, seller
 with store badge, contact.
 
-## 11. Store page
+## 11. Store page - postponed
 
 `/store/[slug]`: name, badge, active listings.
 
-## 12. My listings
+## 12. My listings - postponed
 
 A seller's own ads across all statuses, with edit, mark as sold, and delete
 (sets `removed`). Every list in steps 8–12 needs an empty state.
+
+Regarding "postponed" - we will address these issues in [TODO.md](/TODO.md).
+There, issues are listed after going over the app and seeing what we are
+missing for 0.1 version release.

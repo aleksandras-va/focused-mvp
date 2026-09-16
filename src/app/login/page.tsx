@@ -1,30 +1,17 @@
+import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Field, FieldLabel } from '@/components/ui/field';
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { MIN_PASSWORD_LENGTH } from '@/services/auth/auth.constants';
 import { authService } from '@/services/auth/auth.service';
-import { signInAction, signOutAction, signUpAction } from './actions';
+import { signInAction, signUpAction } from './actions';
 
 export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
   const user = await authService.getCurrentUserCached();
   const { error, form } = await searchParams;
 
-  if (user) {
-    return (
-      <div className="mx-auto w-full max-w-md py-8">
-        <h1 className="font-heading text-2xl font-semibold">Account</h1>
-        <p className="mt-4">
-          Signed in as <strong>{user.displayName}</strong> ({user.email})
-        </p>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {user.store ? `Store: ${user.store.name}` : 'Private seller'}
-        </p>
-        <form action={signOutAction} className="mt-8">
-          <Button type="submit">Sign out</Button>
-        </form>
-      </div>
-    );
-  }
+  if (user) redirect('/user');
 
   const errorMessage = typeof error === 'string' ? error : null;
   const errorForm = form === 'signup' ? 'signup' : 'signin';
@@ -77,32 +64,16 @@ export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
                 name="password"
                 type="password"
                 required
-                minLength={8}
+                minLength={MIN_PASSWORD_LENGTH}
                 autoComplete="new-password"
               />
+              <FieldDescription>
+                At least {MIN_PASSWORD_LENGTH} characters, not only numbers.
+              </FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="signup-name">Name</FieldLabel>
               <Input id="signup-name" name="displayName" required />
-            </Field>
-
-            <fieldset className="flex flex-col gap-2">
-              <legend className="text-sm font-medium">Selling as</legend>
-              <label className="flex items-center gap-2 text-sm">
-                <input type="radio" name="sellerType" value="private" defaultChecked />
-                Private person
-              </label>
-              <label className="flex items-center gap-2 text-sm">
-                <input type="radio" name="sellerType" value="store" />
-                Store
-              </label>
-            </fieldset>
-
-            <Field>
-              <FieldLabel htmlFor="signup-store-name">
-                Store name <span className="text-muted-foreground">(stores only)</span>
-              </FieldLabel>
-              <Input id="signup-store-name" name="storeName" />
             </Field>
 
             <Button type="submit" className="mt-2">

@@ -39,12 +39,16 @@ export const listingRepository = {
           .execute();
       }
 
+      const itemIds: string[] = [];
+
       for (const { item, inclusions } of items) {
         const inserted = await trx
           .insertInto('listing_item')
           .values({ ...item, listing_id: listing.id })
           .returning('id')
           .executeTakeFirstOrThrow();
+
+        itemIds.push(inserted.id);
 
         if (inclusions.length > 0) {
           await trx
@@ -54,71 +58,26 @@ export const listingRepository = {
         }
       }
 
-      return listing;
+      return { id: listing.id, itemIds };
     });
   },
 
   findById(id: string) {
-    return db
-      .selectFrom('listing')
-      .innerJoin('user', 'user.id', 'listing.seller_id')
-      .leftJoin('store', 'store.user_id', 'user.id')
-      .select([
-        'listing.id',
-        'listing.description',
-        'listing.price_cents',
-        'listing.location',
-        'listing.status',
-        'listing.published_at',
-        'listing.contact_email',
-        'listing.contact_phone',
-        'user.display_name as seller_name',
-        'store.name as store_name',
-        'store.slug as store_slug',
-      ])
-      .select((eb) =>
-        jsonArrayFrom(
+    return listingDetailQuery().where('listing.id', '=', id).executeTakeFirst();
+  },
+
+  findByItemId(itemId: string) {
+    return listingDetailQuery()
+      .where((eb) =>
+        eb(
+          'listing.id',
+          '=',
           eb
             .selectFrom('listing_item')
-            .innerJoin('model', 'model.id', 'listing_item.model_id')
-            .innerJoin('brand', 'brand.id', 'model.brand_id')
-            .leftJoin('mount', 'mount.id', 'model.mount_id')
-            .select([
-              'listing_item.id',
-              'listing_item.price_cents',
-              'listing_item.cosmetic_condition',
-              'listing_item.functional_condition',
-              'listing_item.shutter_count',
-              'listing_item.sold_separately',
-              'listing_item.position',
-              'model.slug as model_slug',
-              'model.category',
-              'model.display_name as model_name',
-              'brand.name as brand_name',
-              'mount.name as mount_name',
-            ])
-            .select((itemEb) =>
-              jsonArrayFrom(
-                itemEb
-                  .selectFrom('listing_inclusion')
-                  .whereRef('listing_inclusion.listing_item_id', '=', 'listing_item.id')
-                  .select('listing_inclusion.inclusion'),
-              ).as('inclusions'),
-            )
-            .whereRef('listing_item.listing_id', '=', 'listing.id')
-            .orderBy('listing_item.position'),
-        ).as('items'),
+            .select('listing_item.listing_id')
+            .where('listing_item.id', '=', itemId),
+        ),
       )
-      .select((eb) =>
-        jsonArrayFrom(
-          eb
-            .selectFrom('listing_photo')
-            .select(['listing_photo.storage_key', 'listing_photo.position'])
-            .whereRef('listing_photo.listing_id', '=', 'listing.id')
-            .orderBy('listing_photo.position'),
-        ).as('photos'),
-      )
-      .where('listing.id', '=', id)
       .executeTakeFirst();
   },
 
@@ -210,6 +169,7 @@ function listingCardQuery() {
           .innerJoin('brand', 'brand.id', 'model.brand_id')
           .leftJoin('mount', 'mount.id', 'model.mount_id')
           .select([
+            'listing_item.id',
             'listing_item.cosmetic_condition',
             'listing_item.shutter_count',
             'model.display_name as model_name',
@@ -219,5 +179,67 @@ function listingCardQuery() {
           .whereRef('listing_item.listing_id', '=', 'listing.id')
           .orderBy('listing_item.position'),
       ).as('items'),
+    );
+}
+
+function listingDetailQuery() {
+  return db
+    .selectFrom('listing')
+    .innerJoin('user', 'user.id', 'listing.seller_id')
+    .leftJoin('store', 'store.user_id', 'user.id')
+    .select([
+      'listing.id',
+      'listing.description',
+      'listing.price_cents',
+      'listing.location',
+      'listing.status',
+      'listing.published_at',
+      'listing.contact_email',
+      'listing.contact_phone',
+      'user.display_name as seller_name',
+      'store.name as store_name',
+      'store.slug as store_slug',
+    ])
+    .select((eb) =>
+      jsonArrayFrom(
+        eb
+          .selectFrom('listing_item')
+          .innerJoin('model', 'model.id', 'listing_item.model_id')
+          .innerJoin('brand', 'brand.id', 'model.brand_id')
+          .leftJoin('mount', 'mount.id', 'model.mount_id')
+          .select([
+            'listing_item.id',
+            'listing_item.price_cents',
+            'listing_item.cosmetic_condition',
+            'listing_item.functional_condition',
+            'listing_item.shutter_count',
+            'listing_item.sold_separately',
+            'listing_item.position',
+            'model.slug as model_slug',
+            'model.category',
+            'model.display_name as model_name',
+            'brand.name as brand_name',
+            'mount.name as mount_name',
+          ])
+          .select((itemEb) =>
+            jsonArrayFrom(
+              itemEb
+                .selectFrom('listing_inclusion')
+                .whereRef('listing_inclusion.listing_item_id', '=', 'listing_item.id')
+                .select('listing_inclusion.inclusion'),
+            ).as('inclusions'),
+          )
+          .whereRef('listing_item.listing_id', '=', 'listing.id')
+          .orderBy('listing_item.position'),
+      ).as('items'),
+    )
+    .select((eb) =>
+      jsonArrayFrom(
+        eb
+          .selectFrom('listing_photo')
+          .select(['listing_photo.storage_key', 'listing_photo.position'])
+          .whereRef('listing_photo.listing_id', '=', 'listing.id')
+          .orderBy('listing_photo.position'),
+      ).as('photos'),
     );
 }

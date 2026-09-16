@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ListingCard, type ListingCardItem } from '@/components/features/browse/listing-card';
+import { type FeaturedPhoto, Hero } from '@/components/features/browse/hero';
+import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,8 +10,6 @@ import { BROWSE_SORTS, type BrowseFilters, hasActiveFilters } from '@/lib/browse
 import { CATEGORY_LABELS, COSMETIC_CONDITIONS } from '@/lib/listing-options';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
-const shutterFormatter = new Intl.NumberFormat('en-IE');
-
 type BrowseProps = {
   listings: ListingSummary[];
   filters: BrowseFilters;
@@ -19,31 +18,16 @@ type BrowseProps = {
     mounts: { slug: string; name: string }[];
   };
   modelName: string | null;
+  featuredPhoto: FeaturedPhoto;
 };
 
-function toCardItem(listing: ListingSummary): ListingCardItem {
-  const detail =
-    listing.shutterCount !== null
-      ? `${shutterFormatter.format(listing.shutterCount)} shutter actuations`
-      : (listing.mount ?? listing.location);
-
-  return {
-    id: listing.id,
-    title: listing.title,
-    subtitle: listing.isBundle ? `${listing.itemCount} items` : (listing.brand ?? ''),
-    detail,
-    priceCents: listing.priceCents,
-    condition: listing.cosmeticCondition ?? '',
-    imageUrl: listing.coverUrl,
-    isBundle: listing.isBundle,
-  };
-}
-
-export function Browse({ listings, filters, options, modelName }: BrowseProps) {
+export function Browse({ listings, filters, options, modelName, featuredPhoto }: BrowseProps) {
   const cents = (value: number | null) => (value === null ? '' : String(value / 100));
 
   return (
     <>
+      {hasActiveFilters(filters) ? null : <Hero photo={featuredPhoto} />}
+
       <div className="flex flex-col gap-2">
         <h1 className="font-heading text-3xl font-semibold tracking-tight">
           Used cameras and lenses
@@ -166,7 +150,7 @@ export function Browse({ listings, filters, options, modelName }: BrowseProps) {
       ) : (
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {listings.map((listing) => (
-            <ListingCard key={listing.id} item={toCardItem(listing)} />
+            <ListingCard key={listing.id} item={toListingCardItem(listing)} />
           ))}
         </div>
       )}

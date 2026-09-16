@@ -7,12 +7,23 @@ import { modelRepository } from '@/repositories/model.repository';
 import { STORAGE_KEY_PATTERN } from './listing.constants';
 import { ListingError } from './listing.error';
 import { mapToDetail, mapToSummary } from './listing.mappers';
-import type { CreateListingInput, ListingDetail, ListingSummary } from './listing.types';
+import type {
+  CreatedListing,
+  CreateListingInput,
+  ListingDetail,
+  ListingSummary,
+} from './listing.types';
 import { parsePriceCents, parseShutterCount } from './listing.utils';
 
 export const listingService = {
   async get(id: string): Promise<ListingDetail | null> {
     const row = await listingRepository.findById(id);
+
+    return row ? mapToDetail(row) : null;
+  },
+
+  async getByItemId(itemId: string): Promise<ListingDetail | null> {
+    const row = await listingRepository.findByItemId(itemId);
 
     return row ? mapToDetail(row) : null;
   },
@@ -29,7 +40,7 @@ export const listingService = {
     return rows.map(mapToSummary);
   },
 
-  async create(input: CreateListingInput) {
+  async create(input: CreateListingInput): Promise<CreatedListing> {
     if (input.items.length === 0) throw new ListingError('Add at least one item.');
 
     if (input.items.some((item) => !item.modelId)) {
@@ -80,7 +91,7 @@ export const listingService = {
       throw new ListingError('One of the photos failed to upload — remove it and try again.');
     }
 
-    const listing = await listingRepository.insert(
+    return listingRepository.insert(
       {
         seller_id: input.sellerId,
         description: input.description?.trim() || null,
@@ -94,7 +105,5 @@ export const listingService = {
       items,
       input.photoKeys,
     );
-
-    return listing.id;
   },
 } as const;

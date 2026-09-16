@@ -70,6 +70,13 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - `location`, not `city`.
 - Shutter count is asked only for non-film cameras.
 - `sold` and `removed` ads leave public view but stay in the database.
+- Every item in an ad has its own page, bundles included. The bundle page links to each
+  item. An item marked not sold separately shows a notice that it is sold only in the
+  bundle, a list of alternatives, and a link back to the bundle.
+- `/items/[id]` is one item, keyed by `listing_item.id`, for single-item ads and bundle
+  items alike. `/bundles/[id]` is a whole bundle, keyed by `listing.id`; a single-item
+  ad's bundle URL redirects to its item. "Listing" stays the word in code; URLs use the
+  words buyers use, as Vinted does.
 - Only `active` ads are public. A `draft`, `sold` or `removed` ad's page is a 404 for
   everyone but its seller.
 
@@ -83,6 +90,12 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - One `listing_item` table for all item types. Specs describe the product and live in
   the catalog; items store only sale facts, so nullable `shutter_count` is the only
   type-specific column. No per-type listing tables.
+
+## Email
+
+- Resend, called over its REST API with `fetch`; no SDK.
+- Sign-up sends a welcome email only, no verification. It is sent with `after()` so a
+  failed send never blocks sign-up.
 
 ## Photos
 

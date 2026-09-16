@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { SiteHeader } from '@/components/features/header/site-header';
+import { authService } from '@/services/auth/auth.service';
 import { getSearchSuggestionsAction, searchSiteAction } from './actions';
 import './globals.css';
 
@@ -19,11 +20,14 @@ export const metadata: Metadata = {
   description: 'Marketplace for used cameras and lenses',
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default async function RootLayout({ children }: LayoutProps<'/'>) {
+  const user = await authService.getCurrentUserCached();
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <SiteHeader
+          user={user}
           searchAction={searchSiteAction}
           suggestionsAction={getSearchSuggestionsAction}
         />

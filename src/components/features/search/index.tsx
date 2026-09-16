@@ -88,15 +88,12 @@ export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlay
     <>
       <Button
         variant="outline"
-        className="hidden w-56 justify-start gap-2 font-normal text-muted-foreground sm:flex"
+        className="h-10 w-full justify-start gap-2 font-normal text-muted-foreground"
         onClick={() => setOpen(true)}
       >
         <SearchIcon className="size-4" />
-        Search gear
-        <kbd className="ml-auto rounded border bg-muted px-1.5 text-xs">⌘K</kbd>
-      </Button>
-      <Button variant="ghost" size="icon" className="sm:hidden" onClick={() => setOpen(true)}>
-        <SearchIcon />
+        Search cameras, lenses and brands
+        <kbd className="ml-auto hidden rounded border bg-muted px-1.5 text-xs sm:inline">⌘K</kbd>
       </Button>
 
       <CommandDialog
@@ -104,35 +101,38 @@ export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlay
         onOpenChange={setOpen}
         title="Search"
         description="Search cameras, lenses and brands"
-        className="top-24"
+        className="top-24 sm:max-w-2xl"
       >
-        <Command shouldFilter={false}>
+        <Command shouldFilter={false} className="p-2">
           <CommandInput
             placeholder="Try “fuji xt3”, “helios” or “sony”"
             value={term}
             onValueChange={setTerm}
           />
-          <CommandList>
+          <CommandList className="mt-2 max-h-[min(28rem,60vh)]">
             {browsing ? (
               <>
                 {recent.length > 0 ? (
-                  <CommandGroup heading="Recently viewed">
+                  <CommandGroup className="p-2" heading="Recently viewed">
                     {recent.map((listing) => (
                       <CommandItem
-                        key={listing.id}
-                        value={`recent:${listing.id}`}
-                        onSelect={() => go(`/listings/${listing.id}`)}
+                        className="px-3 py-2.5"
+                        key={listing.href}
+                        value={`recent:${listing.href}`}
+                        onSelect={() => go(listing.href)}
                       >
-                        <span>{listing.title}</span>
-                        <span className="ml-auto text-xs text-muted-foreground">
-                          {priceFormatter.format(listing.priceCents / 100)}
-                        </span>
+                        <div className="flex flex-1 items-center justify-between gap-4">
+                          <span>{listing.title}</span>
+                          <span className="text-xs text-muted-foreground">
+                            {priceFormatter.format(listing.priceCents / 100)}
+                          </span>
+                        </div>
                       </CommandItem>
                     ))}
                   </CommandGroup>
                 ) : null}
                 {suggested.length > 0 ? (
-                  <CommandGroup heading="Suggested">
+                  <CommandGroup className="p-2" heading="Suggested">
                     {suggested.map((model) => (
                       <ModelItem key={model.id} model={model} onSelect={go} />
                     ))}
@@ -145,21 +145,24 @@ export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlay
             ) : (
               <>
                 {results.brands.length > 0 ? (
-                  <CommandGroup heading="Brands">
+                  <CommandGroup className="p-2" heading="Brands">
                     {results.brands.map((brand) => (
                       <CommandItem
+                        className="px-3 py-2.5"
                         key={brand.slug}
                         value={`brand:${brand.slug}`}
                         onSelect={() => go(`/?brand=${brand.slug}`)}
                       >
-                        {brand.name}
-                        <span className="ml-auto text-xs text-muted-foreground">Brand</span>
+                        <div className="flex flex-1 items-center justify-between gap-4">
+                          <span>{brand.name}</span>
+                          <span className="text-xs text-muted-foreground">Brand</span>
+                        </div>
                       </CommandItem>
                     ))}
                   </CommandGroup>
                 ) : null}
                 {results.models.length > 0 ? (
-                  <CommandGroup heading="Models">
+                  <CommandGroup className="p-2" heading="Models">
                     {results.models.map((model) => (
                       <ModelItem key={model.id} model={model} onSelect={go} />
                     ))}
@@ -179,8 +182,12 @@ export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlay
 
 function ModelItem({ model, onSelect }: { model: CatalogModel; onSelect: (href: string) => void }) {
   return (
-    <CommandItem value={`model:${model.slug}`} onSelect={() => onSelect(`/?model=${model.slug}`)}>
-      <div className="flex flex-col">
+    <CommandItem
+      className="px-3 py-2.5"
+      value={`model:${model.slug}`}
+      onSelect={() => onSelect(`/?model=${model.slug}`)}
+    >
+      <div className="flex flex-col gap-0.5">
         <span>{model.displayName}</span>
         <span className="text-xs text-muted-foreground">
           {CATEGORY_LABELS[model.category]}

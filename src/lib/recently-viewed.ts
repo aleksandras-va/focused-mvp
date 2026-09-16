@@ -1,5 +1,5 @@
 export type RecentlyViewedListing = {
-  id: string;
+  href: string;
   title: string;
   priceCents: number;
 };
@@ -10,7 +10,10 @@ const MAX_ENTRIES = 6;
 export function readRecentlyViewed(): RecentlyViewedListing[] {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as RecentlyViewedListing[]) : [];
+    const entries = raw ? (JSON.parse(raw) as Partial<RecentlyViewedListing>[]) : [];
+    return entries.filter(
+      (entry): entry is RecentlyViewedListing => typeof entry.href === 'string',
+    );
   } catch {
     return [];
   }
@@ -18,7 +21,7 @@ export function readRecentlyViewed(): RecentlyViewedListing[] {
 
 export function recordRecentlyViewed(entry: RecentlyViewedListing) {
   try {
-    const rest = readRecentlyViewed().filter((other) => other.id !== entry.id);
+    const rest = readRecentlyViewed().filter((other) => other.href !== entry.href);
     window.localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify([entry, ...rest].slice(0, MAX_ENTRIES)),
