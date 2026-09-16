@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { SiteHeader } from '@/components/features/header/site-header';
+import { getSearchSuggestionsAction, searchSiteAction } from './actions';
 import './globals.css';
 
 const geistSans = Geist({
@@ -22,7 +23,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <SiteHeader />
+        <SiteHeader
+          searchAction={searchSiteAction}
+          suggestionsAction={getSearchSuggestionsAction}
+        />
 
         <div className="flex-1">
           <main className="mx-auto w-full max-w-6xl px-6 py-10">{children}</main>

@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { storeRepository } from '@/repositories/store.repository';
 import { AuthError } from './auth.error';
 import type { AuthUser } from './auth.types';

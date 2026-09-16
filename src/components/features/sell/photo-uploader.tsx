@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ACCEPTED_IMAGE_TYPES, compressToWebP, MAX_PHOTOS, PHOTO_SIZES } from '@/lib/photos';
-import type { PhotoUpload } from '@/services/photo/photo.service';
+import type { PhotoUpload } from '@/services/photo/photo.types';
 
 type UploadingPhoto = {
   localId: number;

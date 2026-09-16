@@ -2,12 +2,8 @@ import 'server-only';
 
 import { type PhotoSize, photoObjectPath } from '@/lib/photos';
 import { UPLOAD_URL_EXPIRES_SECONDS } from './photo.constants';
+import type { PhotoUpload } from './photo.types';
 import { storageConfig } from './photo.utils';
-
-export interface PhotoUpload {
-  storageKey: string;
-  uploadUrls: { large: string; card: string };
-}
 
 export const photoService = {
   getPublicUrl(storageKey: string, size: PhotoSize): string | null {

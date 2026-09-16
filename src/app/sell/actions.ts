@@ -5,12 +5,11 @@ import { AuthError } from '@/services/auth/auth.error';
 import { authService } from '@/services/auth/auth.service';
 import { ListingError } from '@/services/listing/listing.error';
 import { listingService } from '@/services/listing/listing.service';
-import type { CreateListingInput } from '@/services/listing/listing.types';
+import type { CreateListingPayload } from '@/services/listing/listing.types';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 import { PhotoStorageError } from '@/services/photo/photo.error';
-import { type PhotoUpload, photoService } from '@/services/photo/photo.service';
-
-export type CreateListingPayload = Omit<CreateListingInput, 'sellerId'>;
+import { photoService } from '@/services/photo/photo.service';
+import type { PhotoUpload } from '@/services/photo/photo.types';
 
 export async function searchModelsAction(term: string) {
   return modelCatalogService.search(term, { limit: 8 });

@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { AwsClient } from 'aws4fetch';
 import { PhotoStorageError } from './photo.error';
 

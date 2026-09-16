@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { BrowseFilters } from '@/lib/browse-filters';
 import { MAX_PHOTOS } from '@/lib/photos';
 import { type ListingItemInput, listingRepository } from '@/repositories/listing.repository';

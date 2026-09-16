@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { ModelDetailRow, ModelRow } from '@/repositories/model.repository';
 import type { CatalogModel, CatalogModelDetail } from './model-catalog.types';
 

@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { ListingError } from './listing.error';
 
 export function parsePriceCents(price: string) {

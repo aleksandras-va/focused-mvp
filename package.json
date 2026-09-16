@@ -11,8 +11,6 @@
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
     "db:reset": "docker compose down -v && docker compose up -d",
-    "db:migrate": "node scripts/migrate.mts && pnpm db:codegen",
-    "db:rollback": "node scripts/migrate.mts down && pnpm db:codegen",
     "db:psql": "docker compose exec postgres psql -U focused -d focused",
     "db:codegen": "kysely-codegen --env-file .env.local --dialect postgres --exclude-pattern '{kysely_*,v_*}' --out-file src/db/types.ts",
     "db:codegen:check": "kysely-codegen --env-file .env.local --dialect postgres --exclude-pattern '{kysely_*,v_*}' --out-file src/db/types.ts --verify",

@@ -67,11 +67,9 @@ Out of scope: lens/body compatibility recommendations, Leica.
 ## Roadmap
 
 `PLAN.md` is the current implementation plan, derived from `HANDOFF.md`. Work through
-it in order. Done so far: catalog, placeholder auth, first listings schema and ad
-creation flow — the plan reworks the latter two.
-
-Open: spec columns are all null until seeded; the home grid still shows placeholder
-data instead of real listings.
+it in order. Steps 1–9 are done: stores table, catalog extensions, listings as
+containers, contact and photos, email and password auth, the sell flow, photos, the
+search overlay and browse. Next is step 10, listing detail.
 
 @STRUCTURE.md
 @DECISIONS.md

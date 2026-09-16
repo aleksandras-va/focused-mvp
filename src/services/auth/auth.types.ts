@@ -1,3 +1,5 @@
+import 'server-only';
+
 export interface AuthUser {
   id: string;
   email: string;

@@ -2,7 +2,6 @@
 
 import { XIcon } from 'lucide-react';
 import { useState, useTransition } from 'react';
-import type { CreateListingPayload } from '@/app/sell/actions';
 import { ModelPicker } from '@/components/features/sell/model-picker';
 import { PhotoUploader } from '@/components/features/sell/photo-uploader';
 import { Button } from '@/components/ui/button';
@@ -26,8 +25,9 @@ import {
   FUNCTIONAL_CONDITIONS,
   INCLUSIONS,
 } from '@/lib/listing-options';
+import type { CreateListingPayload } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
-import type { PhotoUpload } from '@/services/photo/photo.service';
+import type { PhotoUpload } from '@/services/photo/photo.types';
 
 type ItemState = {
   key: number;

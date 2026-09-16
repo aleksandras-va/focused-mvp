@@ -1,3 +1,5 @@
+import 'server-only';
+
 /**
  * Readable aliases over the generated table types in `./types`.
  *

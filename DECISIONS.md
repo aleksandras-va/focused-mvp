@@ -70,6 +70,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - `location`, not `city`.
 - Shutter count is asked only for non-film cameras.
 - `sold` and `removed` ads leave public view but stay in the database.
+- Only `active` ads are public. A `draft`, `sold` or `removed` ad's page is a 404 for
+  everyone but its seller.
 
 ## Item types
 
