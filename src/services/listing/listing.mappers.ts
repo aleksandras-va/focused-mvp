@@ -25,6 +25,7 @@ export function mapToSummary(row: ListingCardRow): ListingSummary {
     status: row.status,
     isBundle: row.items.length > 1,
     itemCount: row.items.length,
+    firstItemId: first?.id ?? null,
     brand: first?.brand_name ?? null,
     mount: first?.mount_name ?? null,
     cosmeticCondition: first

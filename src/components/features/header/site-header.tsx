@@ -1,4 +1,4 @@
-import { Camera } from 'lucide-react';
+import { Camera, UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { SearchOverlay } from '@/components/features/search';
 import { buttonVariants } from '@/components/ui/button';
@@ -15,6 +15,7 @@ import type {
 } from '@/services/model-catalog/model-catalog.types';
 
 type SiteHeaderProps = {
+  user: { displayName: string } | null;
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
   suggestionsAction: () => Promise<CatalogModel[]>;
 };
@@ -25,7 +26,7 @@ const navigation = [
   { href: '/stores', label: 'Stores' },
 ];
 
-export function SiteHeader({ searchAction, suggestionsAction }: SiteHeaderProps) {
+export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-4 px-6">
@@ -52,14 +53,24 @@ export function SiteHeader({ searchAction, suggestionsAction }: SiteHeaderProps)
         </NavigationMenu>
 
         <div className="ml-auto flex items-center gap-2">
-          <SearchOverlay searchAction={searchAction} suggestionsAction={suggestionsAction} />
-          <Link href="/login" className={buttonVariants({ variant: 'ghost' })}>
-            Sign in
-          </Link>
+          {user ? (
+            <Link href="/user" className={buttonVariants({ variant: 'ghost' })}>
+              <UserIcon />
+              <span className="max-w-40 truncate">{user.displayName}</span>
+            </Link>
+          ) : (
+            <Link href="/login" className={buttonVariants({ variant: 'ghost' })}>
+              Sign in
+            </Link>
+          )}
           <Link href="/sell" className={buttonVariants()}>
-            Sell gear
+            Sell
           </Link>
         </div>
+      </div>
+
+      <div className="mx-auto w-full max-w-6xl px-6 pb-3">
+        <SearchOverlay searchAction={searchAction} suggestionsAction={suggestionsAction} />
       </div>
     </header>
   );

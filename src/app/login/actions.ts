@@ -27,8 +27,6 @@ export async function signUpAction(formData: FormData) {
       email: String(formData.get('email') ?? ''),
       password: String(formData.get('password') ?? ''),
       displayName: String(formData.get('displayName') ?? ''),
-      sellerType: formData.get('sellerType') === 'store' ? 'store' : 'private',
-      storeName: String(formData.get('storeName') ?? ''),
     });
   } catch (error) {
     if (error instanceof AuthError) {
@@ -38,11 +36,5 @@ export async function signUpAction(formData: FormData) {
     throw error;
   }
 
-  redirect('/');
-}
-
-export async function signOutAction() {
-  await authService.signOut();
-
-  redirect('/login');
+  redirect('/user');
 }

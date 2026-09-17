@@ -2,9 +2,11 @@ import { ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { LISTING_STATUS_LABELS } from '@/lib/listing-options';
+import type { ListingSummary } from '@/services/listing/listing.types';
 
 export type ListingCardItem = {
-  id: string;
+  href: string;
   title: string;
   subtitle: string;
   detail: string;
@@ -12,7 +14,10 @@ export type ListingCardItem = {
   condition: string;
   imageUrl: string | null;
   isBundle: boolean;
+  statusLabel: string | null;
 };
+
+const shutterFormatter = new Intl.NumberFormat('en-IE');
 
 const priceFormatter = new Intl.NumberFormat('en-IE', {
   style: 'currency',
@@ -20,8 +25,30 @@ const priceFormatter = new Intl.NumberFormat('en-IE', {
   maximumFractionDigits: 0,
 });
 
+export function toListingCardItem(listing: ListingSummary): ListingCardItem {
+  const detail =
+    listing.shutterCount !== null
+      ? `${shutterFormatter.format(listing.shutterCount)} shutter actuations`
+      : (listing.mount ?? listing.location);
+
+  return {
+    href:
+      listing.isBundle || !listing.firstItemId
+        ? `/bundles/${listing.id}`
+        : `/items/${listing.firstItemId}`,
+    title: listing.title,
+    subtitle: listing.isBundle ? `${listing.itemCount} items` : (listing.brand ?? ''),
+    detail,
+    priceCents: listing.priceCents,
+    condition: listing.cosmeticCondition ?? '',
+    imageUrl: listing.coverUrl,
+    isBundle: listing.isBundle,
+    statusLabel: listing.status === 'active' ? null : LISTING_STATUS_LABELS[listing.status],
+  };
+}
+
 export function ListingCard({ item }: { item: ListingCardItem }) {
-  const href = `/listings/${item.id}`;
+  const { href } = item;
 
   return (
     <Card className="overflow-hidden pt-0 transition-shadow hover:shadow-md">
@@ -41,13 +68,14 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
         )}
       </Link>
 
-      <CardContent className="space-y-1">
+      <CardContent className="flex-1 space-y-1">
         <p className="flex items-center gap-2 text-xs text-muted-foreground">
           {item.subtitle}
           {item.isBundle ? <Badge variant="outline">Bundle</Badge> : null}
+          {item.statusLabel ? <Badge>{item.statusLabel}</Badge> : null}
         </p>
         <Link href={href} className="hover:underline">
-          <h3 className="font-medium leading-tight">{item.title}</h3>
+          <h3 className="line-clamp-2 min-h-[2lh] font-medium leading-tight">{item.title}</h3>
         </Link>
         <p className="text-xs text-muted-foreground">{item.detail}</p>
       </CardContent>

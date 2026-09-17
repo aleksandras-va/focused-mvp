@@ -2,14 +2,15 @@ import 'server-only';
 
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
+import { after } from 'next/server';
 import { cache } from 'react';
 import { sessionRepository } from '@/repositories/session.repository';
-import { storeRepository } from '@/repositories/store.repository';
 import { userRepository } from '@/repositories/user.repository';
-import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, SESSION_COOKIE, SESSION_DAYS } from './auth.constants';
+import { emailService } from '../email/email.service';
+import { BCRYPT_ROUNDS, SESSION_COOKIE, SESSION_DAYS } from './auth.constants';
 import { AuthError } from './auth.error';
 import type { AuthUser, SignInInput, SignUpInput } from './auth.types';
-import { reserveStoreSlug, toAuthUser } from './auth.utils';
+import { assertStrongPassword, toAuthUser } from './auth.utils';
 
 export const authService = {
   getCurrentUserCached: cache(async (): Promise<AuthUser | null> => {
@@ -40,12 +41,8 @@ export const authService = {
 
     if (!email.includes('@')) throw new AuthError('Invalid email address.');
     if (!displayName) throw new AuthError('Enter your name.');
-    if (input.password.length < MIN_PASSWORD_LENGTH) {
-      throw new AuthError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
-    }
 
-    const storeName = input.sellerType === 'store' ? input.storeName?.trim() : null;
-    if (input.sellerType === 'store' && !storeName) throw new AuthError('Enter a store name.');
+    assertStrongPassword(input.password, email);
 
     if (await userRepository.findByEmail(email)) {
       throw new AuthError('This email is already registered — sign in instead.');
@@ -57,15 +54,13 @@ export const authService = {
       password_hash: await bcrypt.hash(input.password, BCRYPT_ROUNDS),
     });
 
-    if (storeName) {
-      await storeRepository.insert({
-        user_id: user.id,
-        name: storeName,
-        slug: await reserveStoreSlug(storeName),
-      });
-    }
-
     await this.startSession(user.id);
+
+    after(() =>
+      emailService.sendWelcome(user.email, user.display_name).catch((error) => {
+        console.error('Welcome email failed', error);
+      }),
+    );
 
     return toAuthUser(user);
   },

@@ -12,8 +12,6 @@ export interface SignUpInput {
   email: string;
   password: string;
   displayName: string;
-  sellerType: 'private' | 'store';
-  storeName?: string;
 }
 
 export interface SignInInput {

@@ -5,7 +5,7 @@ import { AuthError } from '@/services/auth/auth.error';
 import { authService } from '@/services/auth/auth.service';
 import { ListingError } from '@/services/listing/listing.error';
 import { listingService } from '@/services/listing/listing.service';
-import type { CreateListingPayload } from '@/services/listing/listing.types';
+import type { CreatedListing, CreateListingPayload } from '@/services/listing/listing.types';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 import { PhotoStorageError } from '@/services/photo/photo.error';
 import { photoService } from '@/services/photo/photo.service';
@@ -31,12 +31,12 @@ export async function createPhotoUploadAction(): Promise<PhotoUpload | { error: 
 export async function createListingAction(
   payload: CreateListingPayload,
 ): Promise<{ error: string }> {
-  let listingId: string;
+  let listing: CreatedListing;
 
   try {
     const user = await authService.requireUser();
 
-    listingId = await listingService.create({ ...payload, sellerId: user.id });
+    listing = await listingService.create({ ...payload, sellerId: user.id });
   } catch (error) {
     if (error instanceof AuthError) return { error: 'Sign in to publish a listing.' };
     if (error instanceof ListingError) return { error: error.message };
@@ -44,5 +44,5 @@ export async function createListingAction(
     throw error;
   }
 
-  redirect(`/listings/${listingId}`);
+  redirect(listing.itemIds.length > 1 ? `/bundles/${listing.id}` : `/items/${listing.itemIds[0]}`);
 }

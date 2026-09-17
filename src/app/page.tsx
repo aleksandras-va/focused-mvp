@@ -3,6 +3,15 @@ import { parseBrowseFilters } from '@/lib/browse-filters';
 import { listingService } from '@/services/listing/listing.service';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 
+const featuredPhoto = {
+  imageUrl: '/images/hero/hero.jpg',
+  width: 2400,
+  height: 1200,
+  place: 'Palanga',
+  takenOn: '2025-07',
+  gear: 'Zenit TTL + Helios 44M-4',
+};
+
 export default async function HomePage({ searchParams }: PageProps<'/'>) {
   const filters = parseBrowseFilters(await searchParams);
 
@@ -18,6 +27,7 @@ export default async function HomePage({ searchParams }: PageProps<'/'>) {
       filters={filters}
       options={options}
       modelName={model?.displayName ?? null}
+      featuredPhoto={featuredPhoto}
     />
   );
 }

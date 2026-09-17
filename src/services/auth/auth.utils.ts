@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { storeRepository } from '@/repositories/store.repository';
+import { MIN_PASSWORD_DISTINCT_CHARACTERS, MIN_PASSWORD_LENGTH } from './auth.constants';
 import { AuthError } from './auth.error';
 import type { AuthUser } from './auth.types';
 
@@ -21,24 +22,22 @@ export async function toAuthUser(row: {
   };
 }
 
-export async function reserveStoreSlug(storeName: string) {
-  const base = slugify(storeName);
-  if (!base) throw new AuthError('Invalid store name.');
-
-  let candidate = base;
-  let suffix = 2;
-
-  while (await storeRepository.slugExists(candidate)) {
-    candidate = `${base}-${suffix}`;
-    suffix += 1;
+export function assertStrongPassword(password: string, email: string) {
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    throw new AuthError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
   }
 
-  return candidate;
-}
+  if (/^\d+$/.test(password)) {
+    throw new AuthError('Password cannot be only numbers.');
+  }
 
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+  if (new Set(password).size < MIN_PASSWORD_DISTINCT_CHARACTERS) {
+    throw new AuthError('Password is too repetitive — mix in more different characters.');
+  }
+
+  const emailName = email.split('@')[0];
+
+  if (emailName.length >= 3 && password.toLowerCase().includes(emailName)) {
+    throw new AuthError('Password cannot contain your email address.');
+  }
 }

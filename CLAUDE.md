@@ -28,6 +28,8 @@ Out of scope: lens/body compatibility recommendations, Leica.
 
 ## Rules
 
+- **Keep replies short and plain.** Answer first, in simple words. Skip exhaustive
+  detail and long option surveys; give one recommendation.
 - **Catch structural drift.** Aleksandras is mid-level fullstack and wants to be
   corrected. Before building anything structural — schema shape, layering, data flow,
   state ownership — check it against standard practice. If the request diverges, say so

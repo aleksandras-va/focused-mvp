@@ -16,6 +16,7 @@ export interface ListingSummary {
   status: ListingStatus;
   isBundle: boolean;
   itemCount: number;
+  firstItemId: string | null;
   brand: string | null;
   mount: string | null;
   cosmeticCondition: string | null;
@@ -77,6 +78,11 @@ export interface CreateListingInput {
   contactEmail: string | null;
   contactPhone: string | null;
   publish: boolean;
+}
+
+export interface CreatedListing {
+  id: string;
+  itemIds: string[];
 }
 
 export type CreateListingPayload = Omit<CreateListingInput, 'sellerId'>;
