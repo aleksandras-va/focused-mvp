@@ -1,15 +1,18 @@
+import { CitySelect } from '@/components/features/city';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import type { AuthUser } from '@/services/auth/auth.types';
+import type { City } from '@/services/city/city.types';
 
 type ProfileFormProps = {
   user: AuthUser;
+  cities: City[];
   action: (formData: FormData) => Promise<void>;
 };
 
-export function ProfileForm({ user, action }: ProfileFormProps) {
+export function ProfileForm({ user, cities, action }: ProfileFormProps) {
   return (
     <Card>
       <CardHeader>
@@ -31,6 +34,16 @@ export function ProfileForm({ user, action }: ProfileFormProps) {
               defaultValue={user.phone ?? ''}
             />
             <FieldDescription>Prefilled as the contact phone on new ads.</FieldDescription>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="profile-city">City</FieldLabel>
+            <CitySelect
+              id="profile-city"
+              name="cityId"
+              cities={cities}
+              defaultValue={user.cityId}
+            />
+            <FieldDescription>Prefilled as the city on new ads.</FieldDescription>
           </Field>
           <Button type="submit" className="self-start">
             Save

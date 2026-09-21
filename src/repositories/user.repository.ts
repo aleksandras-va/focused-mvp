@@ -3,7 +3,7 @@ import { sql } from 'kysely';
 import { db } from '@/db';
 import type { NewUser, UserUpdate } from '@/db/tables';
 
-const userColumns = ['id', 'email', 'display_name', 'phone', 'password_hash'] as const;
+const userColumns = ['id', 'email', 'display_name', 'phone', 'city_id', 'password_hash'] as const;
 
 export const userRepository = {
   findById(id: string) {

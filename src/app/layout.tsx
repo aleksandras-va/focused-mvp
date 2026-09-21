@@ -4,6 +4,7 @@ import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
 import { getSearchSuggestionsAction, searchSiteAction } from './actions';
 import './globals.css';
+import { cn } from '@/lib/utils';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,7 +25,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const user = await authService.getCurrentUserCached();
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="en" className={cn(geistSans.variable, geistMono.variable, 'h-full', 'antialiased')}>
       <body className="flex min-h-full flex-col">
         <SiteHeader
           user={user}

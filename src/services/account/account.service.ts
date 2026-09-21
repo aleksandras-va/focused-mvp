@@ -15,6 +15,7 @@ export const accountService = {
     await userRepository.update(userId, {
       display_name: displayName,
       phone: input.phone.trim() || null,
+      city_id: input.cityId || null,
     });
   },
 

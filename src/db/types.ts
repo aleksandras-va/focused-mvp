@@ -49,6 +49,14 @@ export interface CameraSpec {
   width_mm: number | null;
 }
 
+export interface City {
+  created_at: Generated<Timestamp>;
+  id: Generated<string>;
+  name: string;
+  position: number;
+  slug: string;
+}
+
 export interface LensSpec {
   diameter_mm: number | null;
   filter_thread_mm: number | null;
@@ -62,12 +70,13 @@ export interface LensSpec {
 }
 
 export interface Listing {
+  city_id: string;
   contact_email: string | null;
   contact_phone: string | null;
   created_at: Generated<Timestamp>;
   description: string | null;
   id: Generated<string>;
-  location: string;
+  location: string | null;
   price_cents: number;
   published_at: Timestamp | null;
   seller_id: string;
@@ -141,10 +150,12 @@ export interface Store {
 }
 
 export interface User {
+  city_id: string | null;
   created_at: Generated<Timestamp>;
   display_name: string;
   email: string;
   id: Generated<string>;
+  location: string | null;
   password_hash: string;
   phone: string | null;
   updated_at: Generated<Timestamp>;
@@ -153,6 +164,7 @@ export interface User {
 export interface DB {
   brand: Brand;
   camera_spec: CameraSpec;
+  city: City;
   lens_spec: LensSpec;
   listing: Listing;
   listing_inclusion: ListingInclusion;

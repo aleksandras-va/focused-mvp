@@ -6,7 +6,7 @@ Onion layering. Dependencies point inward, never back out.
 src/
   app/            Next.js App Router: pages, layouts, Server Actions, Route Handlers
   components/     ui/ is shadcn (vendored); features/ is app composition
-  lib/            leaf modules with no layer dependencies (shadcn utils, enum labels)
+  lib/            leaf modules with no layer dependencies (shadcn utils, enum labels, formatters)
   services/       use cases; the only layer app/ may import
   repositories/   every database query
   db/             connection, generated types
@@ -39,7 +39,7 @@ stay private to the file; a builder with one caller is inlined.
 Row types are derived from the methods that return them
 (`Awaited<ReturnType<typeof listingRepository.findById>>`), never written by hand.
 
-Current: `model`, `brand`, `mount`, `user`, `session`, `store`, `listing`.
+Current: `model`, `brand`, `mount`, `city`, `user`, `session`, `store`, `listing`.
 
 ### `src/services/` — use cases
 
@@ -65,7 +65,8 @@ prices) are computed at this boundary. A use case gets the shape it needs and no
 browse reads a lean card row, the listing page a full detail row.
 
 Current: `model-catalog` (the curated gear reference: brands, mounts, models, specs —
-not what is for sale), `auth`, `account` (profile and opening a store), `listing`, `photo`, `email`.
+not what is for sale), `city`, `auth`, `account` (profile and opening a store),
+`listing`, `photo`, `email`.
 
 `auth.service.ts` reads and writes the session cookie directly. `photo.service.ts`
 talks to R2 (presigned uploads, public URLs) and is the only module that knows the
@@ -75,9 +76,42 @@ storage provider. `email.service.ts` is the same for Resend.
 
 `ui/` is shadcn, vendored and excluded from Biome.
 
-`features/<feature>/index.tsx` exports the feature's top-level component; its parts sit
-beside it as their own files. Components take data as props and never call a service or
-a repository.
+`features/<feature>/index.tsx` exports the feature's top-level component. Components
+take data as props and never call a service or a repository.
+
+**Lean components, no god files.** One component per file, and a file that has grown
+into several components gets split before it is edited again. The top-level `index.tsx`
+composes; it does not also render the pieces it composes.
+
+A feature's parts sit beside it as their own files. When a part becomes an area of its
+own — its own state, its own children — it gets a folder with the same shape:
+
+```
+features/listings/
+  index.tsx              composes the two columns, nothing else
+  images/
+    index.tsx            Gallery, the area's top-level component
+    thumbnails.tsx       a child
+    use-gallery.ts       the area's state
+  info/
+    index.tsx            ListingInfo
+    item-card.tsx
+    bundle-notice.tsx
+    detail-row.tsx       shared by the area's other files
+  record-view.tsx        a part with no children stays a flat file
+```
+
+The rule is the same at every depth: `index.tsx` is the entry point, children are
+siblings, and a child with children of its own becomes a folder. Import parts by their
+full path (`@/components/features/listings/info/item-card`), not through a barrel file —
+only `index.tsx` is an entry point.
+
+**Hooks live with the component that owns the state**, named `use-<thing>.ts` beside it.
+A hook is for state and lifecycle. Pure functions — formatting, parsing, label lookup —
+are not hooks; they go in `src/lib/`, so Server Components can call them too.
+
+Push `'use client'` to the leaf that needs it. A feature is not a client component
+because one of its children is interactive.
 
 Pages stay thin. Page chrome — the `main` container, width, padding — lives in
 `app/layout.tsx`.
@@ -94,12 +128,14 @@ never a repository, never `db`.
 - A new page needs a service function, even a thin one, rather than a repository call.
 - Ranking scores, join aliases, and other query mechanics stay inside the repository.
 - Anything a client component needs at runtime cannot live in a service. Enum label
-  lists go in `src/lib/`, which imports nothing but types.
+  lists and formatters go in `src/lib/`, which imports nothing but types.
+- A formatter or helper copied into a second component belongs in `src/lib/` instead.
 
 ## Schema
 
-- `brand`, `mount` — lookups. A mount's `brand_id` is null when no single brand owns
-  it (Micro Four Thirds, L-Mount).
+- `brand`, `mount`, `city` — lookups. A mount's `brand_id` is null when no single brand
+  owns it (Micro Four Thirds, L-Mount). `city` is the curated Lithuanian list sellers
+  pick from, ordered by `position` and seeded by `pnpm db:seed:cities`.
 - `model` — one row per real product ("X-T3"). `mount_id` is null for fixed-lens
   cameras. Unique on `(brand_id, name, mount_id) NULLS NOT DISTINCT`.
 - `camera_spec`, `lens_spec` — one-to-one detail per category, so an ad needs only a
@@ -110,7 +146,7 @@ never a repository, never `db`.
 
 ### Listings
 
-- `listing` — the ad: `seller_id`, asking price in cents, description, `location`,
+- `listing` — the ad: `seller_id`, asking price in cents, description, `city_id`,
   contact email and phone, status, `published_at`. Knows nothing about the gear.
 - `listing_item` — what is in the ad, one row per physical item: `model_id`, per-item
   price, cosmetic and functional condition, optional shutter count, `sold_separately`,
@@ -122,7 +158,8 @@ never a repository, never `db`.
 
 ### Accounts
 
-- `user` — email, display name, `password_hash` (bcrypt), optional `phone`.
+- `user` — email, display name, `password_hash` (bcrypt), optional `phone` and
+  `city_id`, both prefilled onto new ads.
 - `store` — one per user (`user_id` unique), name and slug. A user is a store seller
   when this row exists.
 - `session` — database-backed, referenced by an httpOnly cookie, 30 days.

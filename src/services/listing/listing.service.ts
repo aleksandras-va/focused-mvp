@@ -47,7 +47,7 @@ export const listingService = {
       throw new ListingError('Pick a model from the catalog for every item.');
     }
 
-    if (!input.location.trim()) throw new ListingError('Enter a location.');
+    if (!input.cityId) throw new ListingError('Pick a city.');
 
     const models = await modelRepository.findForListing(input.items.map((item) => item.modelId));
 
@@ -96,7 +96,7 @@ export const listingService = {
         seller_id: input.sellerId,
         description: input.description?.trim() || null,
         price_cents: priceCents,
-        location: input.location.trim(),
+        city_id: input.cityId,
         contact_email: input.contactEmail?.trim() || null,
         contact_phone: input.contactPhone?.trim() || null,
         status: input.publish ? 'active' : 'draft',

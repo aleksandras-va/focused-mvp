@@ -5,6 +5,7 @@ export interface AuthUser {
   email: string;
   displayName: string;
   phone: string | null;
+  cityId: string | null;
   store: { name: string; slug: string } | null;
 }
 

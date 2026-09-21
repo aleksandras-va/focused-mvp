@@ -2,6 +2,7 @@ import { ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { formatCount, formatPrice } from '@/lib/format';
 import { LISTING_STATUS_LABELS } from '@/lib/listing-options';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
@@ -17,19 +18,11 @@ export type ListingCardItem = {
   statusLabel: string | null;
 };
 
-const shutterFormatter = new Intl.NumberFormat('en-IE');
-
-const priceFormatter = new Intl.NumberFormat('en-IE', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-});
-
 export function toListingCardItem(listing: ListingSummary): ListingCardItem {
   const detail =
     listing.shutterCount !== null
-      ? `${shutterFormatter.format(listing.shutterCount)} shutter actuations`
-      : (listing.mount ?? listing.location);
+      ? `${formatCount(listing.shutterCount)} shutter actuations`
+      : (listing.mount ?? listing.city);
 
   return {
     href:
@@ -81,9 +74,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
       </CardContent>
 
       <CardFooter className="justify-between">
-        <span className="font-heading text-lg font-semibold">
-          {priceFormatter.format(item.priceCents / 100)}
-        </span>
+        <span className="font-heading text-lg font-semibold">{formatPrice(item.priceCents)}</span>
         <Badge variant="secondary">{item.condition}</Badge>
       </CardFooter>
     </Card>

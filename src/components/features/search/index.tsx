@@ -13,18 +13,13 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { formatPrice } from '@/lib/format';
 import { CATEGORY_LABELS } from '@/lib/listing-options';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
 import type {
   BrandAndModelSearchResults,
   CatalogModel,
 } from '@/services/model-catalog/model-catalog.types';
-
-const priceFormatter = new Intl.NumberFormat('en-IE', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-});
 
 type SearchOverlayProps = {
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
@@ -124,7 +119,7 @@ export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlay
                         <div className="flex flex-1 items-center justify-between gap-4">
                           <span>{listing.title}</span>
                           <span className="text-xs text-muted-foreground">
-                            {priceFormatter.format(listing.priceCents / 100)}
+                            {formatPrice(listing.priceCents)}
                           </span>
                         </div>
                       </CommandItem>

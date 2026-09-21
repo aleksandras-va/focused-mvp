@@ -10,6 +10,7 @@ export async function toAuthUser(row: {
   email: string;
   display_name: string;
   phone: string | null;
+  city_id: string | null;
 }): Promise<AuthUser> {
   const store = await storeRepository.findByUserId(row.id);
 
@@ -18,6 +19,7 @@ export async function toAuthUser(row: {
     email: row.email,
     displayName: row.display_name,
     phone: row.phone,
+    cityId: row.city_id,
     store: store ? { name: store.name, slug: store.slug } : null,
   };
 }

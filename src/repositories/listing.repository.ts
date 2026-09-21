@@ -145,10 +145,11 @@ export const listingRepository = {
 function listingCardQuery() {
   return db
     .selectFrom('listing')
+    .innerJoin('city', 'city.id', 'listing.city_id')
     .select([
       'listing.id',
       'listing.price_cents',
-      'listing.location',
+      'city.name as city_name',
       'listing.status',
       'listing.published_at',
     ])
@@ -186,12 +187,13 @@ function listingDetailQuery() {
   return db
     .selectFrom('listing')
     .innerJoin('user', 'user.id', 'listing.seller_id')
+    .innerJoin('city', 'city.id', 'listing.city_id')
     .leftJoin('store', 'store.user_id', 'user.id')
     .select([
       'listing.id',
       'listing.description',
       'listing.price_cents',
-      'listing.location',
+      'city.name as city_name',
       'listing.status',
       'listing.published_at',
       'listing.contact_email',
@@ -219,6 +221,7 @@ function listingDetailQuery() {
             'model.category',
             'model.display_name as model_name',
             'brand.name as brand_name',
+            'brand.slug as brand_slug',
             'mount.name as mount_name',
           ])
           .select((itemEb) =>

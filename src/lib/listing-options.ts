@@ -12,6 +12,12 @@ export const CATEGORY_LABELS: Record<ModelCategory, string> = {
   accessory: 'Accessory',
 };
 
+export const CATEGORY_PLURAL_LABELS: Record<ModelCategory, string> = {
+  camera: 'Cameras',
+  lens: 'Lenses',
+  accessory: 'Accessories',
+};
+
 export const LISTING_STATUS_LABELS: Record<ListingStatus, string> = {
   draft: 'Draft',
   active: 'Active',
@@ -47,6 +53,41 @@ export const INCLUSIONS: { value: Inclusion; label: string }[] = [
   { value: 'manual', label: 'Manual' },
   { value: 'receipt', label: 'Receipt' },
 ];
+
+const CATEGORY_INCLUSIONS: Record<ModelCategory, Inclusion[]> = {
+  camera: [
+    'original_box',
+    'charger',
+    'oem_battery',
+    'third_party_battery',
+    'body_cap',
+    'strap',
+    'memory_card',
+    'case',
+    'manual',
+    'receipt',
+  ],
+  lens: ['original_box', 'rear_cap', 'lens_hood', 'case', 'manual', 'receipt'],
+  accessory: ['original_box', 'case', 'manual', 'receipt'],
+};
+
+const FILM_INCLUSIONS_OMITTED: Inclusion[] = ['charger', 'memory_card'];
+const FIXED_LENS_INCLUSIONS_OMITTED: Inclusion[] = ['body_cap'];
+
+export function inclusionsFor(gear: {
+  category: ModelCategory;
+  isFilm: boolean;
+  hasMount: boolean;
+}): { value: Inclusion; label: string }[] {
+  const omitted = new Set<Inclusion>([
+    ...(gear.isFilm ? FILM_INCLUSIONS_OMITTED : []),
+    ...(gear.hasMount ? [] : FIXED_LENS_INCLUSIONS_OMITTED),
+  ]);
+
+  return INCLUSIONS.filter(
+    ({ value }) => CATEGORY_INCLUSIONS[gear.category].includes(value) && !omitted.has(value),
+  );
+}
 
 export const LISTING_LABELS = new Map<string, string>(
   [...COSMETIC_CONDITIONS, ...FUNCTIONAL_CONDITIONS, ...INCLUSIONS].map((option) => [

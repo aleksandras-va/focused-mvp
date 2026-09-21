@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { ListingDetail } from '@/components/features/listings/listing-detail';
+import { ListingDetail } from '@/components/features/listings';
 import { RecordListingView } from '@/components/features/listings/record-view';
 import { listingService } from '@/services/listing/listing.service';
 

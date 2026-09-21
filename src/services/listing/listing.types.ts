@@ -12,7 +12,7 @@ export interface ListingSummary {
   id: string;
   title: string;
   priceCents: number;
-  location: string;
+  city: string;
   status: ListingStatus;
   isBundle: boolean;
   itemCount: number;
@@ -29,6 +29,7 @@ export interface ListingItemDetail {
   modelName: string;
   modelSlug: string;
   brand: string;
+  brandSlug: string;
   mount: string | null;
   category: ModelCategory;
   priceCents: number;
@@ -48,7 +49,7 @@ export interface ListingDetail {
   id: string;
   title: string;
   priceCents: number;
-  location: string;
+  city: string;
   status: ListingStatus;
   isBundle: boolean;
   description: string | null;
@@ -73,7 +74,7 @@ export interface CreateListingInput {
   items: CreateListingItemInput[];
   bundlePrice: string | null;
   photoKeys: string[];
-  location: string;
+  cityId: string;
   description: string | null;
   contactEmail: string | null;
   contactPhone: string | null;

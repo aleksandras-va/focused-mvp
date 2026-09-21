@@ -63,6 +63,7 @@ Out of scope: lens/body compatibility recommendations, Leica.
 - `pnpm db:codegen` — regenerate `src/db/types.ts` after any schema change
 - `pnpm db:codegen:check` — fails if the generated types have drifted
 - `pnpm db:seed` — load the gear catalog, idempotent
+- `pnpm db:seed:cities` — load the city list, idempotent
 - `pnpm db:reset` — drop the volume and start clean
 - `pnpm db:psql` — psql shell in the container
 

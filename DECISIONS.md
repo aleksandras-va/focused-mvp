@@ -54,7 +54,7 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 ## Listings
 
 - A listing is a container. `listing` holds the ad — asking price, description,
-  location, photos, contact, seller, status. `listing_item` holds each item — model,
+  city, photos, contact, seller, status. `listing_item` holds each item — model,
   per-item price, both conditions, shutter count, `sold_separately`, position. A
   single-item ad is one item row.
 - `listing.price_cents` is always the ad's asking price; for a single-item ad it
@@ -67,7 +67,10 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Condition splits into cosmetic and functional.
 - Inclusions are an enum plus a join table keyed on `listing_item`, not the listing —
   the charger belongs to the camera, not the bundle.
-- `location`, not `city`.
+- `city`, not `location`, and it is a `city` lookup table rather than free text —
+  sellers pick from the curated Lithuanian list the way they pick a model, so browse can
+  group by city and the database rejects anything else. Seeded by `pnpm db:seed:cities`,
+  ordered by population with "Other" last.
 - Shutter count is asked only for non-film cameras.
 - `sold` and `removed` ads leave public view but stay in the database.
 - Every item in an ad has its own page, bundles included. The bundle page links to each

@@ -1,21 +1,26 @@
+import { CircleAlertIcon, CircleCheckIcon } from 'lucide-react';
+import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import type { AuthUser } from '@/services/auth/auth.types';
+import type { City } from '@/services/city/city.types';
 import type { ListingSummary } from '@/services/listing/listing.types';
 import { ProfileForm } from './profile-form';
 import { SellerListings } from './seller-listings';
 import { StoreSection } from './store-section';
 
-type AccountProps = {
+interface AccountProps {
   user: AuthUser;
+  cities: City[];
   listings: ListingSummary[];
   notice: { kind: 'error' | 'saved'; message: string } | null;
   updateProfileAction: (formData: FormData) => Promise<void>;
   openStoreAction: (formData: FormData) => Promise<void>;
   signOutAction: () => Promise<void>;
-};
+}
 
 export function Account({
   user,
+  cities,
   listings,
   notice,
   updateProfileAction,
@@ -37,19 +42,14 @@ export function Account({
       </div>
 
       {notice ? (
-        <p
-          className={
-            notice.kind === 'error'
-              ? 'rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive'
-              : 'rounded-lg border bg-muted/50 px-3 py-2 text-sm'
-          }
-        >
-          {notice.message}
-        </p>
+        <Alert variant={notice.kind === 'error' ? 'destructive' : 'success'}>
+          {notice.kind === 'error' ? <CircleAlertIcon /> : <CircleCheckIcon />}
+          <AlertTitle>{notice.message}</AlertTitle>
+        </Alert>
       ) : null}
 
       <div className="grid gap-6 md:grid-cols-2">
-        <ProfileForm user={user} action={updateProfileAction} />
+        <ProfileForm user={user} cities={cities} action={updateProfileAction} />
         <StoreSection store={user.store} action={openStoreAction} />
       </div>
 
