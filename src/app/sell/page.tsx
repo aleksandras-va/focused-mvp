@@ -13,7 +13,7 @@ export default async function SellPage() {
       createAction={createListingAction}
       searchAction={searchModelsAction}
       uploadAction={createPhotoUploadAction}
-      defaultContact={{ email: user.email, phone: user.phone ?? '' }}
+      defaults={{ email: user.email, phone: user.phone ?? '', location: user.location ?? '' }}
     />
   );
 }

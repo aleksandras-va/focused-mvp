@@ -145,6 +145,7 @@ export interface User {
   display_name: string;
   email: string;
   id: Generated<string>;
+  location: string | null;
   password_hash: string;
   phone: string | null;
   updated_at: Generated<Timestamp>;

@@ -32,6 +32,16 @@ export function ProfileForm({ user, action }: ProfileFormProps) {
             />
             <FieldDescription>Prefilled as the contact phone on new ads.</FieldDescription>
           </Field>
+          <Field>
+            <FieldLabel htmlFor="profile-location">Location</FieldLabel>
+            <Input
+              id="profile-location"
+              name="location"
+              placeholder="Vilnius"
+              defaultValue={user.location ?? ''}
+            />
+            <FieldDescription>Prefilled as the location on new ads.</FieldDescription>
+          </Field>
           <Button type="submit" className="self-start">
             Save
           </Button>

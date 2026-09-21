@@ -17,7 +17,7 @@ export default async function UserPage({ searchParams }: PageProps<'/user'>) {
   const { error, saved } = await searchParams;
   const listings = await listingService.getSellerListings(user.id);
 
-  const notice =
+  const pageMessage =
     typeof error === 'string'
       ? { kind: 'error' as const, message: error }
       : typeof saved === 'string' && SAVED_MESSAGES[saved]
@@ -28,7 +28,7 @@ export default async function UserPage({ searchParams }: PageProps<'/user'>) {
     <Account
       user={user}
       listings={listings}
-      notice={notice}
+      notice={pageMessage}
       updateProfileAction={updateProfileAction}
       openStoreAction={openStoreAction}
       signOutAction={signOutAction}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
 import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
 export function SellerListings({ listings }: { listings: ListingSummary[] }) {
@@ -8,7 +9,7 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-heading text-2xl font-semibold tracking-tight">Your ads</h2>
-        <Link href="/sell" className={buttonVariants()}>
+        <Link href="/sell" className={cn(buttonVariants())}>
           Sell
         </Link>
       </div>

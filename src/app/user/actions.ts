@@ -14,6 +14,7 @@ export async function updateProfileAction(formData: FormData) {
     await accountService.updateProfile(user.id, {
       displayName: String(formData.get('displayName') ?? ''),
       phone: String(formData.get('phone') ?? ''),
+      location: String(formData.get('location') ?? ''),
     });
   } catch (error) {
     if (error instanceof AccountError) {

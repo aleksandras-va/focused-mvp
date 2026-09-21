@@ -1,9 +1,10 @@
 'use client';
 
-import { XIcon } from 'lucide-react';
+import { PlusIcon, XIcon } from 'lucide-react';
 import { useState, useTransition } from 'react';
 import { ModelPicker } from '@/components/features/sell/model-picker';
 import { PhotoUploader } from '@/components/features/sell/photo-uploader';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -44,7 +45,7 @@ type SellListingProps = {
   createAction: (payload: CreateListingPayload) => Promise<{ error: string }>;
   searchAction: (term: string) => Promise<CatalogModel[]>;
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
-  defaultContact: { email: string; phone: string };
+  defaults: { email: string; phone: string; location: string };
 };
 
 let nextKey = 1;
@@ -66,15 +67,15 @@ export function SellListing({
   createAction,
   searchAction,
   uploadAction,
-  defaultContact,
+  defaults,
 }: SellListingProps) {
   const [items, setItems] = useState<ItemState[]>(() => [emptyItem()]);
   const [bundlePrice, setBundlePrice] = useState('');
   const [photoKeys, setPhotoKeys] = useState<string[]>([]);
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(defaults.location);
   const [description, setDescription] = useState('');
-  const [contactEmail, setContactEmail] = useState(defaultContact.email);
-  const [contactPhone, setContactPhone] = useState(defaultContact.phone);
+  const [contactEmail, setContactEmail] = useState(defaults.email);
+  const [contactPhone, setContactPhone] = useState(defaults.phone);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -112,14 +113,7 @@ export function SellListing({
   }
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-heading text-3xl font-semibold tracking-tight">List your gear</h1>
-        <p className="text-muted-foreground">
-          Pick the exact model so buyers can find it, then fill in what they always ask about.
-        </p>
-      </div>
-
+    <div className="mx-auto flex max-w-4xl flex-col gap-8">
       {error ? (
         <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
           {error}
@@ -128,7 +122,6 @@ export function SellListing({
 
       <FieldSet>
         <FieldLegend>Photos</FieldLegend>
-        <FieldDescription>The first photo is the cover buyers see in the grid.</FieldDescription>
         <PhotoUploader uploadAction={uploadAction} onChange={setPhotoKeys} />
       </FieldSet>
 
@@ -149,25 +142,34 @@ export function SellListing({
       ))}
 
       <div className="flex flex-col gap-3">
-        {suggestLens ? (
-          <p className="text-sm text-muted-foreground">
-            Selling a lens with it? Add it as its own item — buyers searching for the lens will find
-            your ad too.
-          </p>
-        ) : null}
-        <Button
-          type="button"
-          variant="outline"
-          className="self-start"
-          onClick={() => setItems((current) => [...current, emptyItem()])}
-        >
-          Add another item
-        </Button>
+        <Alert variant="neutral" className="flex justify-between items-center">
+          <div>
+            <AlertTitle>
+              {suggestLens ? 'Selling a lens with it?' : 'Selling more than one item?'}
+            </AlertTitle>
+            <AlertDescription>
+              {suggestLens
+                ? 'Add it as its own item — buyers searching for the lens will find your ad too.'
+                : 'Add another item and this ad becomes a bundle.'}
+            </AlertDescription>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            onClick={() => setItems((current) => [...current, emptyItem()])}
+          >
+            <PlusIcon />
+            Add another item
+          </Button>
+        </Alert>
         {isBundle ? (
-          <p className="rounded-lg border bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
-            This ad will be listed as a bundle. Set a price for the whole bundle and one per item —
-            if the bundle costs less than the items combined, the ad gets a discount label.
-          </p>
+          <Alert variant="neutral">
+            <AlertDescription>
+              This ad will be listed as a bundle. Set a price for the whole bundle and one per item
+              — if the bundle costs less than the items combined, the ad gets a discount label.
+            </AlertDescription>
+          </Alert>
         ) : null}
       </div>
 
@@ -260,16 +262,16 @@ type ItemFieldsProps = {
 function ItemFields({ item, index, isBundle, searchAction, onChange, onRemove }: ItemFieldsProps) {
   const asksShutterCount = item.model?.category === 'camera' && !item.model.isFilm;
 
-  function toggleInclusion(inclusion: Inclusion, checked: boolean) {
+  const toggleInclusion = (inclusion: Inclusion, checked: boolean) => {
     onChange({
       inclusions: checked
         ? [...item.inclusions, inclusion]
         : item.inclusions.filter((other) => other !== inclusion),
     });
-  }
+  };
 
   return (
-    <Card>
+    <Card className="ring-foreground/20">
       {isBundle ? (
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-base">
@@ -291,31 +293,14 @@ function ItemFields({ item, index, isBundle, searchAction, onChange, onRemove }:
             selected={item.model}
             onSelect={(model) => onChange({ model })}
           />
-          <FieldDescription>
-            {item.model
-              ? `${item.model.brand.name} · ${CATEGORY_LABELS[item.model.category]}${item.model.isFilm ? ' · Film' : ''}`
-              : 'Spelling does not matter — “Fuji XT3” finds the X-T3.'}
-          </FieldDescription>
+          {item.model && (
+            <FieldDescription>
+              {`${item.model.brand.name} - ${CATEGORY_LABELS[item.model.category]}${item.model.isFilm ? ' · Film' : ''}`}
+            </FieldDescription>
+          )}
         </Field>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          <Field>
-            <FieldLabel htmlFor={`price-${item.key}`}>
-              {isBundle ? 'Price on its own (EUR)' : 'Price (EUR)'}
-            </FieldLabel>
-            <Input
-              id={`price-${item.key}`}
-              type="number"
-              min="0"
-              step="1"
-              value={item.price}
-              onChange={(event) => onChange({ price: event.target.value })}
-            />
-            {isBundle ? (
-              <FieldDescription>What this item alone would cost.</FieldDescription>
-            ) : null}
-          </Field>
-
           <Field>
             <FieldLabel>Cosmetic condition</FieldLabel>
             <Select
@@ -387,15 +372,35 @@ function ItemFields({ item, index, isBundle, searchAction, onChange, onRemove }:
           </div>
         </FieldSet>
 
-        {isBundle ? (
-          <Label className="flex items-center gap-2 font-normal">
-            <Checkbox
-              checked={item.soldSeparately}
-              onCheckedChange={(checked) => onChange({ soldSeparately: checked === true })}
+        <div className="grid gap-6 sm:grid-cols-2 border-t pt-3">
+          <Field>
+            <FieldLabel htmlFor={`price-${item.key}`}>
+              {isBundle ? 'Price on its own (EUR)' : 'Price (EUR)'}
+            </FieldLabel>
+
+            <Input
+              id={`price-${item.key}`}
+              type="number"
+              placeholder="€0.00"
+              value={item.price}
+              className="w-1/2!"
+              onChange={(event) => onChange({ price: event.target.value })}
             />
-            Would sell this item separately
-          </Label>
-        ) : null}
+            {isBundle ? (
+              <FieldDescription>What this item alone would cost.</FieldDescription>
+            ) : null}
+          </Field>
+
+          {isBundle ? (
+            <Label className="flex items-center gap-2 self-center font-normal">
+              <Checkbox
+                checked={item.soldSeparately}
+                onCheckedChange={(checked) => onChange({ soldSeparately: checked === true })}
+              />
+              Would sell this item separately
+            </Label>
+          ) : null}
+        </div>
       </CardContent>
     </Card>
   );
