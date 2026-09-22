@@ -62,6 +62,10 @@ export const modelRepository = {
       .execute();
   },
 
+  findByIds(ids: string[]) {
+    return modelQuery().where('model.id', 'in', ids).execute();
+  },
+
   findForListing(ids: string[]) {
     return db
       .selectFrom('model')

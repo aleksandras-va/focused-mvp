@@ -13,6 +13,10 @@ export function parsePriceCents(price: string) {
   return Math.round(value * 100);
 }
 
+export function centsToPriceInput(cents: number) {
+  return (cents / 100).toString();
+}
+
 export function parseShutterCount(shutterCount: string | null) {
   if (!shutterCount?.trim()) return null;
 

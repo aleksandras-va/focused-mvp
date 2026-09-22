@@ -6,15 +6,18 @@ import type {
   ListingDetailItemRow,
   ListingDetailRow,
 } from '@/repositories/listing.repository';
+import type { CatalogModel } from '../model-catalog/model-catalog.types';
 import { photoService } from '../photo/photo.service';
 import type {
+  EditableListing,
   ListingDetail,
   ListingItemDetail,
   ListingPhotoUrl,
   ListingSummary,
 } from './listing.types';
+import { centsToPriceInput } from './listing.utils';
 
-export function mapToSummary(row: ListingCardRow): ListingSummary {
+export function mapToSummary(row: ListingCardRow, viewerId: string | null): ListingSummary {
   const first = row.items[0];
 
   return {
@@ -33,10 +36,11 @@ export function mapToSummary(row: ListingCardRow): ListingSummary {
       : null,
     shutterCount: first?.shutter_count ?? null,
     coverUrl: row.cover_key ? photoService.getPublicUrl(row.cover_key, 'card') : null,
+    isOwner: row.seller_id === viewerId,
   };
 }
 
-export function mapToDetail(row: ListingDetailRow): ListingDetail {
+export function mapToDetail(row: ListingDetailRow, viewerId: string | null): ListingDetail {
   const items = row.items.map(mapToItemDetail);
 
   return {
@@ -56,6 +60,43 @@ export function mapToDetail(row: ListingDetailRow): ListingDetail {
     },
     items,
     photos: mapToPhotos(row),
+    isOwner: row.seller_id === viewerId,
+  };
+}
+
+export function mapToEditable(row: ListingDetailRow, models: CatalogModel[]): EditableListing {
+  const modelsById = new Map(models.map((model) => [model.id, model]));
+
+  return {
+    id: row.id,
+    status: row.status,
+    bundlePrice: centsToPriceInput(row.price_cents),
+    cityId: row.city_id,
+    description: row.description ?? '',
+    contactEmail: row.contact_email ?? '',
+    contactPhone: row.contact_phone ?? '',
+    photos: row.photos.flatMap((photo) => {
+      const url = photoService.getPublicUrl(photo.storage_key, 'card');
+
+      return url ? [{ storageKey: photo.storage_key, url }] : [];
+    }),
+    items: row.items.flatMap((item) => {
+      const model = modelsById.get(item.model_id);
+
+      return model
+        ? [
+            {
+              model,
+              price: centsToPriceInput(item.price_cents),
+              cosmeticCondition: item.cosmetic_condition,
+              functionalCondition: item.functional_condition,
+              shutterCount: item.shutter_count === null ? '' : String(item.shutter_count),
+              soldSeparately: item.sold_separately,
+              inclusions: item.inclusions.map(({ inclusion }) => inclusion),
+            },
+          ]
+        : [];
+    }),
   };
 }
 

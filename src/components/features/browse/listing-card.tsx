@@ -1,9 +1,11 @@
-import { ImageIcon } from 'lucide-react';
+import { ImageIcon, PencilIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { formatCount, formatPrice } from '@/lib/format';
 import { LISTING_STATUS_LABELS } from '@/lib/listing-options';
+import { cn } from '@/lib/utils';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
 export type ListingCardItem = {
@@ -16,6 +18,7 @@ export type ListingCardItem = {
   imageUrl: string | null;
   isBundle: boolean;
   statusLabel: string | null;
+  editHref: string | null;
 };
 
 export function toListingCardItem(listing: ListingSummary): ListingCardItem {
@@ -37,6 +40,7 @@ export function toListingCardItem(listing: ListingSummary): ListingCardItem {
     imageUrl: listing.coverUrl,
     isBundle: listing.isBundle,
     statusLabel: listing.status === 'active' ? null : LISTING_STATUS_LABELS[listing.status],
+    editHref: listing.isOwner ? `/sell/${listing.id}` : null,
   };
 }
 
@@ -44,7 +48,20 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
   const { href } = item;
 
   return (
-    <Card className="overflow-hidden pt-0 transition-shadow hover:shadow-md">
+    <Card className="relative overflow-hidden pt-0 transition-shadow hover:shadow-md">
+      {item.editHref ? (
+        <Link
+          href={item.editHref}
+          aria-label="Edit this ad"
+          className={cn(
+            buttonVariants({ variant: 'secondary', size: 'icon' }),
+            'absolute top-2 right-2 z-10 size-8 shadow-sm',
+          )}
+        >
+          <PencilIcon className="size-4" />
+        </Link>
+      ) : null}
+
       <Link href={href} className="block">
         {item.imageUrl ? (
           // biome-ignore lint/performance/noImgElement: photos come from R2, not the image optimizer

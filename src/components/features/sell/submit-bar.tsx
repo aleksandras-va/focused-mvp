@@ -4,12 +4,26 @@ import { Button } from '@/components/ui/button';
 
 interface SubmitBarProps {
   isPending: boolean;
+  isPublished: boolean;
   onSubmit: (publish: boolean) => void;
 }
 
-export function SubmitBar({ isPending, onSubmit }: SubmitBarProps) {
+export function SubmitBar({ isPending, isPublished, onSubmit }: SubmitBarProps) {
+  if (isPublished) {
+    return (
+      <Button
+        type="button"
+        className="self-start"
+        disabled={isPending}
+        onClick={() => onSubmit(false)}
+      >
+        Save changes
+      </Button>
+    );
+  }
+
   return (
-    <div className="flex gap-3 mt-10">
+    <div className="flex gap-3">
       <Button type="button" disabled={isPending} onClick={() => onSubmit(true)}>
         Publish listing
       </Button>

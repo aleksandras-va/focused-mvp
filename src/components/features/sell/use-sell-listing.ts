@@ -2,7 +2,7 @@
 
 import { useRef, useState, useTransition } from 'react';
 import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
-import type { CreateListingPayload } from '@/services/listing/listing.types';
+import type { CreateListingPayload, EditableListing } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
 export interface SellItem {
@@ -17,8 +17,9 @@ export interface SellItem {
 }
 
 interface UseSellListingOptions {
-  createAction: (payload: CreateListingPayload) => Promise<{ error: string }>;
+  submitAction: (payload: CreateListingPayload) => Promise<{ error: string }>;
   defaults: { email: string; phone: string; cityId: string };
+  listing: EditableListing | null;
 }
 
 function emptyItem(key: number): SellItem {
@@ -34,15 +35,23 @@ function emptyItem(key: number): SellItem {
   };
 }
 
-export function useSellListing({ createAction, defaults }: UseSellListingOptions) {
-  const nextKey = useRef(1);
-  const [items, setItems] = useState<SellItem[]>(() => [emptyItem(0)]);
-  const [bundlePrice, setBundlePrice] = useState('');
-  const [photoKeys, setPhotoKeys] = useState<string[]>([]);
-  const [cityId, setCityId] = useState(defaults.cityId);
-  const [description, setDescription] = useState('');
-  const [contactEmail, setContactEmail] = useState(defaults.email);
-  const [contactPhone, setContactPhone] = useState(defaults.phone);
+function initialItems(listing: EditableListing | null): SellItem[] {
+  if (!listing || listing.items.length === 0) return [emptyItem(0)];
+
+  return listing.items.map((item, index) => ({ key: index, ...item }));
+}
+
+export function useSellListing({ submitAction, defaults, listing }: UseSellListingOptions) {
+  const [items, setItems] = useState<SellItem[]>(() => initialItems(listing));
+  const nextKey = useRef(items.length);
+  const [bundlePrice, setBundlePrice] = useState(listing?.bundlePrice ?? '');
+  const [photoKeys, setPhotoKeys] = useState<string[]>(
+    () => listing?.photos.map((photo) => photo.storageKey) ?? [],
+  );
+  const [cityId, setCityId] = useState(listing?.cityId || defaults.cityId);
+  const [description, setDescription] = useState(listing?.description ?? '');
+  const [contactEmail, setContactEmail] = useState(listing ? listing.contactEmail : defaults.email);
+  const [contactPhone, setContactPhone] = useState(listing ? listing.contactPhone : defaults.phone);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -66,7 +75,7 @@ export function useSellListing({ createAction, defaults }: UseSellListingOptions
     setError(null);
 
     startTransition(async () => {
-      const result = await createAction({
+      const result = await submitAction({
         items: items.map((item) => ({
           modelId: item.model?.id ?? '',
           price: item.price,

@@ -7,6 +7,7 @@ import type {
   ListingStatus,
   ModelCategory,
 } from '@/db/types';
+import type { CatalogModel } from '../model-catalog/model-catalog.types';
 
 export interface ListingSummary {
   id: string;
@@ -22,6 +23,7 @@ export interface ListingSummary {
   cosmeticCondition: string | null;
   shutterCount: number | null;
   coverUrl: string | null;
+  isOwner: boolean;
 }
 
 export interface ListingItemDetail {
@@ -57,6 +59,29 @@ export interface ListingDetail {
   seller: { name: string; isStore: boolean; storeName: string | null; storeSlug: string | null };
   items: ListingItemDetail[];
   photos: ListingPhotoUrl[];
+  isOwner: boolean;
+}
+
+export interface EditableListingItem {
+  model: CatalogModel;
+  price: string;
+  cosmeticCondition: CosmeticCondition;
+  functionalCondition: FunctionalCondition;
+  shutterCount: string;
+  soldSeparately: boolean;
+  inclusions: Inclusion[];
+}
+
+export interface EditableListing {
+  id: string;
+  status: ListingStatus;
+  bundlePrice: string;
+  cityId: string;
+  description: string;
+  contactEmail: string;
+  contactPhone: string;
+  photos: { storageKey: string; url: string }[];
+  items: EditableListingItem[];
 }
 
 export interface CreateListingItemInput {

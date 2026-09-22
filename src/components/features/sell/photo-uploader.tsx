@@ -17,12 +17,19 @@ type UploadingPhoto = {
 type PhotoUploaderProps = {
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   onChange: (storageKeys: string[]) => void;
+  initialPhotos: { storageKey: string; url: string }[];
 };
 
-let nextLocalId = 1;
-
-export function PhotoUploader({ uploadAction, onChange }: PhotoUploaderProps) {
-  const [photos, setPhotos] = useState<UploadingPhoto[]>([]);
+export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUploaderProps) {
+  const [photos, setPhotos] = useState<UploadingPhoto[]>(() =>
+    initialPhotos.map((photo, index) => ({
+      localId: index,
+      previewUrl: photo.url,
+      storageKey: photo.storageKey,
+      status: 'done' as const,
+    })),
+  );
+  const nextLocalId = useRef(photos.length);
   const [message, setMessage] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -86,7 +93,7 @@ export function PhotoUploader({ uploadAction, onChange }: PhotoUploaderProps) {
     }
 
     for (const file of accepted) {
-      const localId = nextLocalId++;
+      const localId = nextLocalId.current++;
       setPhotos((current) => [
         ...current,
         {
@@ -103,7 +110,7 @@ export function PhotoUploader({ uploadAction, onChange }: PhotoUploaderProps) {
   function removePhoto(localId: number) {
     setPhotos((current) => {
       const removed = current.find((photo) => photo.localId === localId);
-      if (removed) URL.revokeObjectURL(removed.previewUrl);
+      if (removed?.previewUrl.startsWith('blob:')) URL.revokeObjectURL(removed.previewUrl);
       const updated = current.filter((photo) => photo.localId !== localId);
       notify(updated);
       return updated;

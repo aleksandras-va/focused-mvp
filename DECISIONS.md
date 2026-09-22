@@ -82,6 +82,14 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   words buyers use, as Vinted does.
 - Only `active` ads are public. A `draft`, `sold` or `removed` ad's page is a 404 for
   everyone but its seller.
+- The seller manages an ad from the ad's own page, not from the card. A card the viewer
+  owns carries only a pen icon linking to `/sell/[id]`; the owner bar on the listing page
+  holds edit, mark as sold, hide, publish and delete.
+- Hide sets `removed` — off the public site, still in Your ads, reversible. Delete is a
+  real `DELETE`, behind a confirmation; items, inclusions and photo rows cascade. The R2
+  objects are left behind, since nothing cleans up storage yet.
+- Editing replaces an ad's items rather than diffing them, so item ids — and the
+  `/items/[id]` URLs built on them — change on every save.
 
 ## Item types
 

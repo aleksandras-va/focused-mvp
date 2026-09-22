@@ -13,11 +13,12 @@ export default async function SellPage() {
 
   return (
     <SellListing
-      createAction={createListingAction}
+      submitAction={createListingAction}
       searchAction={searchModelsAction}
       uploadAction={createPhotoUploadAction}
       cities={cities}
       defaults={{ email: user.email, phone: user.phone ?? '', cityId: user.cityId ?? '' }}
+      listing={null}
     />
   );
 }

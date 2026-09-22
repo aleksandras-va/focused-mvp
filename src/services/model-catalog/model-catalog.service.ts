@@ -20,6 +20,14 @@ export const modelCatalogService = {
     return row ? mapToCatalogModelDetail(row) : null;
   },
 
+  async getByIds(ids: string[]): Promise<CatalogModel[]> {
+    if (ids.length === 0) return [];
+
+    const rows = await modelRepository.findByIds(ids);
+
+    return rows.map(mapToCatalogModel);
+  },
+
   async getSuggested(): Promise<CatalogModel[]> {
     const rows = await modelRepository.listSuggested();
 

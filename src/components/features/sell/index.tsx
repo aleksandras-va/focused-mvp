@@ -9,26 +9,28 @@ import { SubmitBar } from '@/components/features/sell/submit-bar';
 import { useSellListing } from '@/components/features/sell/use-sell-listing';
 import { FieldLegend, FieldSet } from '@/components/ui/field';
 import type { City } from '@/services/city/city.types';
-import type { CreateListingPayload } from '@/services/listing/listing.types';
+import type { CreateListingPayload, EditableListing } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 import type { PhotoUpload } from '@/services/photo/photo.types';
 
 interface SellListingProps {
-  createAction: (payload: CreateListingPayload) => Promise<{ error: string }>;
+  submitAction: (payload: CreateListingPayload) => Promise<{ error: string }>;
   searchAction: (term: string) => Promise<CatalogModel[]>;
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   cities: City[];
   defaults: { email: string; phone: string; cityId: string };
+  listing: EditableListing | null;
 }
 
 export function SellListing({
-  createAction,
+  submitAction,
   searchAction,
   uploadAction,
   cities,
   defaults,
+  listing,
 }: SellListingProps) {
-  const sell = useSellListing({ createAction, defaults });
+  const sell = useSellListing({ submitAction, defaults, listing });
 
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-8">
@@ -40,7 +42,11 @@ export function SellListing({
 
       <FieldSet>
         <FieldLegend>Photos</FieldLegend>
-        <PhotoUploader uploadAction={uploadAction} onChange={sell.setPhotoKeys} />
+        <PhotoUploader
+          uploadAction={uploadAction}
+          onChange={sell.setPhotoKeys}
+          initialPhotos={listing?.photos ?? []}
+        />
       </FieldSet>
 
       {sell.items.map((item, index) => (
@@ -75,7 +81,11 @@ export function SellListing({
         onCityChange={sell.setCityId}
       />
 
-      <SubmitBar isPending={sell.isPending} onSubmit={sell.submit} />
+      <SubmitBar
+        isPending={sell.isPending}
+        isPublished={listing !== null && listing.status !== 'draft'}
+        onSubmit={sell.submit}
+      />
     </div>
   );
 }
