@@ -3,32 +3,47 @@
 import { AdFields } from '@/components/features/sell/ad-fields';
 import { AddItemPrompt } from '@/components/features/sell/add-item-prompt';
 import { ContactFields } from '@/components/features/sell/contact-fields';
+import { DraftBar } from '@/components/features/sell/draft-bar';
 import { ItemFields } from '@/components/features/sell/item';
 import { PhotoUploader } from '@/components/features/sell/photo-uploader';
 import { SubmitBar } from '@/components/features/sell/submit-bar';
 import { useSellListing } from '@/components/features/sell/use-sell-listing';
 import { FieldLegend, FieldSet } from '@/components/ui/field';
 import type { City } from '@/services/city/city.types';
-import type { CreateListingPayload } from '@/services/listing/listing.types';
+import type { CreateListingPayload, EditableListing } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 import type { PhotoUpload } from '@/services/photo/photo.types';
 
+type SavedDraft = { id: string; itemIds: string[]; error: null } | { error: string };
+
 interface SellListingProps {
-  createAction: (payload: CreateListingPayload) => Promise<{ error: string }>;
+  submitAction: (
+    listingId: string | null,
+    payload: CreateListingPayload,
+  ) => Promise<{ error: string }>;
+  saveDraftAction: (listingId: string | null, payload: CreateListingPayload) => Promise<SavedDraft>;
   searchAction: (term: string) => Promise<CatalogModel[]>;
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   cities: City[];
   defaults: { email: string; phone: string; cityId: string };
+  listing: EditableListing | null;
 }
 
 export function SellListing({
-  createAction,
+  submitAction,
+  saveDraftAction,
   searchAction,
   uploadAction,
   cities,
   defaults,
+  listing,
 }: SellListingProps) {
-  const sell = useSellListing({ createAction, defaults });
+  const sell = useSellListing({ submitAction, saveDraftAction, defaults, listing });
+  const previewHref = sell.draftId
+    ? sell.draftItemIds.length === 1
+      ? `/items/${sell.draftItemIds[0]}`
+      : `/bundles/${sell.draftId}`
+    : null;
 
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-8">
@@ -40,7 +55,11 @@ export function SellListing({
 
       <FieldSet>
         <FieldLegend>Photos</FieldLegend>
-        <PhotoUploader uploadAction={uploadAction} onChange={sell.setPhotoKeys} />
+        <PhotoUploader
+          uploadAction={uploadAction}
+          onChange={sell.setPhotoKeys}
+          initialPhotos={listing?.photos ?? []}
+        />
       </FieldSet>
 
       {sell.items.map((item, index) => (
@@ -75,7 +94,15 @@ export function SellListing({
         onCityChange={sell.setCityId}
       />
 
-      <SubmitBar isPending={sell.isPending} onSubmit={sell.submit} />
+      {sell.isEditingPublished ? null : (
+        <DraftBar state={sell.draftState} previewHref={previewHref} />
+      )}
+
+      <SubmitBar
+        isPending={sell.isPending}
+        isPublished={sell.isEditingPublished}
+        onSubmit={sell.submit}
+      />
     </div>
   );
 }

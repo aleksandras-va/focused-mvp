@@ -5,7 +5,7 @@ Onion layering. Dependencies point inward, never back out.
 ```
 src/
   app/            Next.js App Router: pages, layouts, Server Actions, Route Handlers
-  components/     ui/ is shadcn (vendored); features/ is app composition
+  components/     ui/ is atomic (shadcn + our own); features/ is significant composition
   lib/            leaf modules with no layer dependencies (shadcn utils, enum labels, formatters)
   services/       use cases; the only layer app/ may import
   repositories/   every database query
@@ -74,10 +74,17 @@ storage provider. `email.service.ts` is the same for Resend.
 
 ### `src/components/` — presentation
 
-`ui/` is shadcn, vendored and excluded from Biome.
+`ui/` holds atomic components: shadcn's vendored primitives, plus our own small
+single-purpose ones built on them (`city-select.tsx` → `CitySelect`). shadcn files are
+excluded from Biome; each of ours is re-included by name in `biome.json`.
 
-`features/<feature>/index.tsx` exports the feature's top-level component. Components
-take data as props and never call a service or a repository.
+`features/` is for significant, composed areas of the app — the sell flow, the listing
+page, the account page — not for a single reusable control. `features/<feature>/index.tsx`
+exports the feature's top-level component. Components take data as props and never call a
+service or a repository.
+
+**Name files and folders after the component.** `city-select.tsx` for `CitySelect`, not
+`city/`. The name alone should say what is inside.
 
 **Lean components, no god files.** One component per file, and a file that has grown
 into several components gets split before it is edited again. The top-level `index.tsx`
@@ -147,7 +154,9 @@ never a repository, never `db`.
 ### Listings
 
 - `listing` — the ad: `seller_id`, asking price in cents, description, `city_id`,
-  contact email and phone, status, `published_at`. Knows nothing about the gear.
+  contact email and phone, status, `published_at`. Knows nothing about the gear. Price
+  and city are nullable so a half-filled draft can be stored; a check constraint
+  requires them once the status is `active`.
 - `listing_item` — what is in the ad, one row per physical item: `model_id`, per-item
   price, cosmetic and functional condition, optional shutter count, `sold_separately`,
   `position`. A single-item ad is one row; a bundle is several.

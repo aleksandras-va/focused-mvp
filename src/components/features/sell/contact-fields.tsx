@@ -1,6 +1,6 @@
 'use client';
 
-import { CitySelect } from '@/components/features/city';
+import { CitySelect } from '@/components/ui/city-select';
 import { Field, FieldDescription, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import type { City } from '@/services/city/city.types';

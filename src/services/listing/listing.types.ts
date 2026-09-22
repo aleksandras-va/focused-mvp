@@ -7,12 +7,13 @@ import type {
   ListingStatus,
   ModelCategory,
 } from '@/db/types';
+import type { CatalogModel } from '../model-catalog/model-catalog.types';
 
 export interface ListingSummary {
   id: string;
   title: string;
-  priceCents: number;
-  city: string;
+  priceCents: number | null;
+  city: string | null;
   status: ListingStatus;
   isBundle: boolean;
   itemCount: number;
@@ -22,6 +23,7 @@ export interface ListingSummary {
   cosmeticCondition: string | null;
   shutterCount: number | null;
   coverUrl: string | null;
+  isOwner: boolean;
 }
 
 export interface ListingItemDetail {
@@ -32,7 +34,7 @@ export interface ListingItemDetail {
   brandSlug: string;
   mount: string | null;
   category: ModelCategory;
-  priceCents: number;
+  priceCents: number | null;
   cosmeticCondition: string;
   functionalCondition: string;
   shutterCount: number | null;
@@ -48,8 +50,8 @@ export interface ListingPhotoUrl {
 export interface ListingDetail {
   id: string;
   title: string;
-  priceCents: number;
-  city: string;
+  priceCents: number | null;
+  city: string | null;
   status: ListingStatus;
   isBundle: boolean;
   description: string | null;
@@ -57,6 +59,29 @@ export interface ListingDetail {
   seller: { name: string; isStore: boolean; storeName: string | null; storeSlug: string | null };
   items: ListingItemDetail[];
   photos: ListingPhotoUrl[];
+  isOwner: boolean;
+}
+
+export interface EditableListingItem {
+  model: CatalogModel;
+  price: string;
+  cosmeticCondition: CosmeticCondition;
+  functionalCondition: FunctionalCondition;
+  shutterCount: string;
+  soldSeparately: boolean;
+  inclusions: Inclusion[];
+}
+
+export interface EditableListing {
+  id: string;
+  status: ListingStatus;
+  bundlePrice: string;
+  cityId: string;
+  description: string;
+  contactEmail: string;
+  contactPhone: string;
+  photos: { storageKey: string; url: string }[];
+  items: EditableListingItem[];
 }
 
 export interface CreateListingItemInput {

@@ -609,7 +609,6 @@ await db.transaction().execute(async (trx) => {
         oc.column('slug').doUpdateSet({
           display_name: displayName,
           release_year: entry.releaseYear ?? null,
-          updated_at: new Date(),
         }),
       )
       .returning('id')

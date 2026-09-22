@@ -39,8 +39,9 @@ Out of scope: lens/body compatibility recommendations, Leica.
   compliance.
 - **No comments.** Code is self-commenting; put the meaning in names.
 - **Check shadcn before building any UI component.** `pnpm shadcn add <name>`; only
-  hand-roll what the registry lacks. `src/components/ui/` and `src/lib/utils.ts` are
-  vendored and excluded from Biome.
+  hand-roll what the registry lacks. shadcn's files in `src/components/ui/` and
+  `src/lib/utils.ts` are vendored and excluded from Biome. Our own atomic components
+  also go in `ui/`, named after the component, and are re-included in `biome.json`.
 - Respect the layering in `@STRUCTURE.md`. Imports point inward only.
 - Repositories return row shapes. Services map them to camelCase DTOs. Nothing above
   `src/services/` sees a snake_case column name.
@@ -69,10 +70,8 @@ Out of scope: lens/body compatibility recommendations, Leica.
 
 ## Roadmap
 
-`PLAN.md` is the current implementation plan, derived from `HANDOFF.md`. Work through
-it in order. Steps 1–9 are done: stores table, catalog extensions, listings as
-containers, contact and photos, email and password auth, the sell flow, photos, the
-search overlay and browse. Next is step 10, listing detail.
+No active plan; the next work is set per session. Settled choices live in
+`DECISIONS.md`.
 
 @STRUCTURE.md
 @DECISIONS.md

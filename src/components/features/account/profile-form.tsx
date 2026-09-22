@@ -1,6 +1,6 @@
-import { CitySelect } from '@/components/features/city';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CitySelect } from '@/components/ui/city-select';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import type { AuthUser } from '@/services/auth/auth.types';

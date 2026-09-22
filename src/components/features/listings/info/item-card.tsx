@@ -3,7 +3,7 @@ import { DetailRow } from '@/components/features/listings/info/detail-row';
 import { SoldSeparatelyLip } from '@/components/features/listings/info/sold-separately-lip';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatCount, formatPrice } from '@/lib/format';
+import { formatCount, formatOptionalPrice } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
@@ -24,7 +24,9 @@ export function ListingItemCard({ item, inBundleOverview }: ListingItemCardProps
             <Link href={`/items/${item.id}`} className="font-medium hover:underline">
               {item.modelName}
             </Link>
-            <span className="font-heading font-semibold">{formatPrice(item.priceCents)}</span>
+            <span className="font-heading font-semibold">
+              {formatOptionalPrice(item.priceCents)}
+            </span>
           </div>
         ) : null}
         <DetailRow label="Cosmetic" value={item.cosmeticCondition} />

@@ -5,7 +5,7 @@ import { ListingItemCard } from '@/components/features/listings/info/item-card';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { formatPrice } from '@/lib/format';
+import { formatOptionalPrice } from '@/lib/format';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
 interface ListingInfoProps {
@@ -25,7 +25,7 @@ export function ListingInfo({ listing, focusedItem }: ListingInfoProps) {
       <div className="flex flex-col gap-2">
         <ListingBreadcrumbs item={breadcrumbItem} />
         <h1 className="font-heading text-3xl font-semibold tracking-tight">{title}</h1>
-        <p className="font-heading text-2xl font-semibold">{formatPrice(priceCents)}</p>
+        <p className="font-heading text-2xl font-semibold">{formatOptionalPrice(priceCents)}</p>
         {listing.status !== 'active' ? (
           <Badge variant="outline" className="w-fit capitalize">
             {listing.status}
@@ -47,7 +47,7 @@ export function ListingInfo({ listing, focusedItem }: ListingInfoProps) {
 
       <Card>
         <CardContent className="flex flex-col gap-3 text-sm">
-          <DetailRow label="City" value={listing.city} />
+          <DetailRow label="City" value={listing.city ?? 'Not set'} />
           <Separator />
           <DetailRow
             label="Seller"

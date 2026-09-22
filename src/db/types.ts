@@ -26,7 +26,6 @@ export type SensorFormat = "aps_c" | "full_frame" | "medium_format" | "micro_fou
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface Brand {
-  created_at: Generated<Timestamp>;
   id: Generated<string>;
   name: string;
   slug: string;
@@ -50,7 +49,6 @@ export interface CameraSpec {
 }
 
 export interface City {
-  created_at: Generated<Timestamp>;
   id: Generated<string>;
   name: string;
   position: number;
@@ -70,14 +68,13 @@ export interface LensSpec {
 }
 
 export interface Listing {
-  city_id: string;
+  city_id: string | null;
   contact_email: string | null;
   contact_phone: string | null;
   created_at: Generated<Timestamp>;
   description: string | null;
   id: Generated<string>;
-  location: string | null;
-  price_cents: number;
+  price_cents: number | null;
   published_at: Timestamp | null;
   seller_id: string;
   status: Generated<ListingStatus>;
@@ -97,7 +94,7 @@ export interface ListingItem {
   listing_id: string;
   model_id: string;
   position: number;
-  price_cents: number;
+  price_cents: number | null;
   shutter_count: number | null;
   sold_separately: Generated<boolean>;
   updated_at: Generated<Timestamp>;
@@ -114,7 +111,6 @@ export interface ListingPhoto {
 export interface Model {
   brand_id: string;
   category: ModelCategory;
-  created_at: Generated<Timestamp>;
   display_name: string;
   id: Generated<string>;
   mount_id: string | null;
@@ -122,12 +118,10 @@ export interface Model {
   normalized: Generated<string | null>;
   release_year: number | null;
   slug: string;
-  updated_at: Generated<Timestamp>;
 }
 
 export interface Mount {
   brand_id: string | null;
-  created_at: Generated<Timestamp>;
   id: Generated<string>;
   name: string;
   slug: string;
@@ -155,7 +149,6 @@ export interface User {
   display_name: string;
   email: string;
   id: Generated<string>;
-  location: string | null;
   password_hash: string;
   phone: string | null;
   updated_at: Generated<Timestamp>;

@@ -14,7 +14,8 @@
       "!dist",
       "!build",
       "!src/db/types.ts",
-      "!src/components/ui",
+      "!src/components/ui/*.tsx",
+      "src/components/ui/city-select.tsx",
       "!src/lib/utils.ts"
     ]
   },

@@ -1,7 +1,9 @@
 import 'server-only';
+import { sql, type Transaction } from 'kysely';
 import { jsonArrayFrom } from 'kysely/helpers/postgres';
 import { db } from '@/db';
-import type { Inclusion, NewListing, NewListingItem } from '@/db/tables';
+import type { Inclusion, ListingUpdate, NewListing, NewListingItem } from '@/db/tables';
+import type { DB } from '@/db/types';
 import type { BrowseFilters } from '@/lib/browse-filters';
 
 export interface ListingItemInput {
@@ -26,40 +28,46 @@ export const listingRepository = {
         .returning('id')
         .executeTakeFirstOrThrow();
 
-      if (photoKeys.length > 0) {
-        await trx
-          .insertInto('listing_photo')
-          .values(
-            photoKeys.map((storageKey, position) => ({
-              listing_id: listing.id,
-              storage_key: storageKey,
-              position,
-            })),
-          )
-          .execute();
-      }
-
-      const itemIds: string[] = [];
-
-      for (const { item, inclusions } of items) {
-        const inserted = await trx
-          .insertInto('listing_item')
-          .values({ ...item, listing_id: listing.id })
-          .returning('id')
-          .executeTakeFirstOrThrow();
-
-        itemIds.push(inserted.id);
-
-        if (inclusions.length > 0) {
-          await trx
-            .insertInto('listing_inclusion')
-            .values(inclusions.map((inclusion) => ({ listing_item_id: inserted.id, inclusion })))
-            .execute();
-        }
-      }
+      const itemIds = await insertContent(trx, listing.id, items, photoKeys);
 
       return { id: listing.id, itemIds };
     });
+  },
+
+  update(id: string, values: ListingUpdate, items: ListingItemInput[], photoKeys: string[]) {
+    return db.transaction().execute(async (trx) => {
+      await trx
+        .updateTable('listing')
+        .set({ ...values, updated_at: sql<Date>`now()` })
+        .where('id', '=', id)
+        .execute();
+      await trx.deleteFrom('listing_item').where('listing_id', '=', id).execute();
+      await trx.deleteFrom('listing_photo').where('listing_id', '=', id).execute();
+
+      const itemIds = await insertContent(trx, id, items, photoKeys);
+
+      return { id, itemIds };
+    });
+  },
+
+  updateStatus(id: string, values: ListingUpdate) {
+    return db
+      .updateTable('listing')
+      .set({ ...values, updated_at: sql<Date>`now()` })
+      .where('id', '=', id)
+      .execute();
+  },
+
+  deleteById(id: string) {
+    return db.deleteFrom('listing').where('id', '=', id).execute();
+  },
+
+  findSeller(id: string) {
+    return db
+      .selectFrom('listing')
+      .select(['listing.id', 'listing.seller_id', 'listing.status', 'listing.published_at'])
+      .where('listing.id', '=', id)
+      .executeTakeFirst();
   },
 
   findById(id: string) {
@@ -142,12 +150,54 @@ export const listingRepository = {
   },
 } as const;
 
+async function insertContent(
+  trx: Transaction<DB>,
+  listingId: string,
+  items: ListingItemInput[],
+  photoKeys: string[],
+) {
+  if (photoKeys.length > 0) {
+    await trx
+      .insertInto('listing_photo')
+      .values(
+        photoKeys.map((storageKey, position) => ({
+          listing_id: listingId,
+          storage_key: storageKey,
+          position,
+        })),
+      )
+      .execute();
+  }
+
+  const itemIds: string[] = [];
+
+  for (const { item, inclusions } of items) {
+    const inserted = await trx
+      .insertInto('listing_item')
+      .values({ ...item, listing_id: listingId })
+      .returning('id')
+      .executeTakeFirstOrThrow();
+
+    itemIds.push(inserted.id);
+
+    if (inclusions.length > 0) {
+      await trx
+        .insertInto('listing_inclusion')
+        .values(inclusions.map((inclusion) => ({ listing_item_id: inserted.id, inclusion })))
+        .execute();
+    }
+  }
+
+  return itemIds;
+}
+
 function listingCardQuery() {
   return db
     .selectFrom('listing')
-    .innerJoin('city', 'city.id', 'listing.city_id')
+    .leftJoin('city', 'city.id', 'listing.city_id')
     .select([
       'listing.id',
+      'listing.seller_id',
       'listing.price_cents',
       'city.name as city_name',
       'listing.status',
@@ -187,12 +237,14 @@ function listingDetailQuery() {
   return db
     .selectFrom('listing')
     .innerJoin('user', 'user.id', 'listing.seller_id')
-    .innerJoin('city', 'city.id', 'listing.city_id')
+    .leftJoin('city', 'city.id', 'listing.city_id')
     .leftJoin('store', 'store.user_id', 'user.id')
     .select([
       'listing.id',
+      'listing.seller_id',
       'listing.description',
       'listing.price_cents',
+      'listing.city_id',
       'city.name as city_name',
       'listing.status',
       'listing.published_at',
@@ -217,6 +269,7 @@ function listingDetailQuery() {
             'listing_item.shutter_count',
             'listing_item.sold_separately',
             'listing_item.position',
+            'listing_item.model_id',
             'model.slug as model_slug',
             'model.category',
             'model.display_name as model_name',

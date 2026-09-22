@@ -62,7 +62,15 @@ export const modelRepository = {
       .execute();
   },
 
-  findForListing(ids: string[]) {
+  async findByIds(ids: string[]) {
+    if (ids.length === 0) return [];
+
+    return modelQuery().where('model.id', 'in', ids).execute();
+  },
+
+  async findForListing(ids: string[]) {
+    if (ids.length === 0) return [];
+
     return db
       .selectFrom('model')
       .leftJoin('camera_spec', 'camera_spec.model_id', 'model.id')

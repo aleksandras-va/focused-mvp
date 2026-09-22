@@ -1,7 +1,7 @@
 'use client';
 
 import { ImagePlusIcon, XIcon } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ACCEPTED_IMAGE_TYPES, compressToWebP, MAX_PHOTOS, PHOTO_SIZES } from '@/lib/photos';
@@ -17,31 +17,34 @@ type UploadingPhoto = {
 type PhotoUploaderProps = {
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   onChange: (storageKeys: string[]) => void;
+  initialPhotos: { storageKey: string; url: string }[];
 };
 
-let nextLocalId = 1;
-
-export function PhotoUploader({ uploadAction, onChange }: PhotoUploaderProps) {
-  const [photos, setPhotos] = useState<UploadingPhoto[]>([]);
+export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUploaderProps) {
+  const [photos, setPhotos] = useState<UploadingPhoto[]>(() =>
+    initialPhotos.map((photo, index) => ({
+      localId: index,
+      previewUrl: photo.url,
+      storageKey: photo.storageKey,
+      status: 'done' as const,
+    })),
+  );
+  const nextLocalId = useRef(photos.length);
   const [message, setMessage] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function notify(updated: UploadingPhoto[]) {
+  useEffect(() => {
     onChange(
-      updated
+      photos
         .filter((photo) => photo.status === 'done' && photo.storageKey)
         .map((photo) => photo.storageKey as string),
     );
-  }
+  }, [photos, onChange]);
 
   function patchPhoto(localId: number, patch: Partial<UploadingPhoto>) {
-    setPhotos((current) => {
-      const updated = current.map((photo) =>
-        photo.localId === localId ? { ...photo, ...patch } : photo,
-      );
-      notify(updated);
-      return updated;
-    });
+    setPhotos((current) =>
+      current.map((photo) => (photo.localId === localId ? { ...photo, ...patch } : photo)),
+    );
   }
 
   async function uploadPhoto(file: File, localId: number) {
@@ -86,7 +89,7 @@ export function PhotoUploader({ uploadAction, onChange }: PhotoUploaderProps) {
     }
 
     for (const file of accepted) {
-      const localId = nextLocalId++;
+      const localId = nextLocalId.current++;
       setPhotos((current) => [
         ...current,
         {
@@ -101,13 +104,11 @@ export function PhotoUploader({ uploadAction, onChange }: PhotoUploaderProps) {
   }
 
   function removePhoto(localId: number) {
-    setPhotos((current) => {
-      const removed = current.find((photo) => photo.localId === localId);
-      if (removed) URL.revokeObjectURL(removed.previewUrl);
-      const updated = current.filter((photo) => photo.localId !== localId);
-      notify(updated);
-      return updated;
-    });
+    const removed = photos.find((photo) => photo.localId === localId);
+
+    if (removed?.previewUrl.startsWith('blob:')) URL.revokeObjectURL(removed.previewUrl);
+
+    setPhotos((current) => current.filter((photo) => photo.localId !== localId));
   }
 
   return (
