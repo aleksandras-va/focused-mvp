@@ -159,7 +159,8 @@ never a repository, never `db`.
   requires them once the status is `active`.
 - `listing_item` — what is in the ad, one row per physical item: `model_id`, per-item
   price, cosmetic and functional condition, optional shutter count, `sold_separately`,
-  `position`. A single-item ad is one row; a bundle is several.
+  `position`. A single-item ad is one row; a bundle is several. An item the catalog
+  lacks has `model_id` null and `custom_name` plus `custom_category` instead.
 - `listing_inclusion` — the included-extras checklist, keyed on
   `(listing_item_id, inclusion)` because the charger belongs to the camera, not the ad.
 - `listing_photo` — `storage_key` and `position` per photo; position 0 is the cover.

@@ -48,7 +48,7 @@ Out of scope: lens/body compatibility recommendations, Leica.
 - Never edit `src/db/types.ts` — it is generated.
 - **No migration files.** Schema changes are SQL run with
   `docker compose exec -T postgres psql`, then `pnpm db:codegen`, then a read of the
-  schema. Run additive changes yourself; hand over anything destructive or lossy.
+  schema. Hand every statement to Aleksandras to run, additive ones included.
 - Money is stored as EUR cents, never floats.
 - Everything is English: routes, copy, identifiers, errors. Model names stay canonical
   ("X-T3"). Lithuanian comes later as i18n.

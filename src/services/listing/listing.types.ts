@@ -29,9 +29,8 @@ export interface ListingSummary {
 export interface ListingItemDetail {
   id: string;
   modelName: string;
-  modelSlug: string;
-  brand: string;
-  brandSlug: string;
+  brand: string | null;
+  brandSlug: string | null;
   mount: string | null;
   category: ModelCategory;
   priceCents: number | null;
@@ -62,8 +61,14 @@ export interface ListingDetail {
   isOwner: boolean;
 }
 
+export interface CustomItem {
+  name: string;
+  category: ModelCategory | null;
+}
+
 export interface EditableListingItem {
-  model: CatalogModel;
+  model: CatalogModel | null;
+  custom: CustomItem | null;
   price: string;
   cosmeticCondition: CosmeticCondition;
   functionalCondition: FunctionalCondition;
@@ -86,6 +91,7 @@ export interface EditableListing {
 
 export interface CreateListingItemInput {
   modelId: string;
+  custom: CustomItem | null;
   price: string;
   cosmeticCondition: CosmeticCondition;
   functionalCondition: FunctionalCondition;

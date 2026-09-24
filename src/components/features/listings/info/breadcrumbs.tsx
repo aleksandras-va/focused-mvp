@@ -25,12 +25,16 @@ export function ListingBreadcrumbs({ item }: ListingBreadcrumbsProps) {
                 {CATEGORY_PLURAL_LABELS[item.category]}
               </BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink render={<Link href={`/?brand=${item.brandSlug}`} />}>
-                {item.brand}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+            {item.brand && item.brandSlug ? (
+              <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink render={<Link href={`/?brand=${item.brandSlug}`} />}>
+                    {item.brand}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </>
+            ) : null}
           </>
         ) : (
           <BreadcrumbItem>

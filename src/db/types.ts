@@ -89,10 +89,12 @@ export interface ListingInclusion {
 export interface ListingItem {
   cosmetic_condition: CosmeticCondition;
   created_at: Generated<Timestamp>;
+  custom_category: ModelCategory | null;
+  custom_name: string | null;
   functional_condition: FunctionalCondition;
   id: Generated<string>;
   listing_id: string;
-  model_id: string;
+  model_id: string | null;
   position: number;
   price_cents: number | null;
   shutter_count: number | null;
