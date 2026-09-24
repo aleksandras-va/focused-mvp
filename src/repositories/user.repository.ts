@@ -10,6 +10,22 @@ export const userRepository = {
     return db.selectFrom('user').select(userColumns).where('id', '=', id).executeTakeFirst();
   },
 
+  findSellerProfile(id: string) {
+    return db
+      .selectFrom('user')
+      .leftJoin('store', 'store.user_id', 'user.id')
+      .leftJoin('city', 'city.id', 'user.city_id')
+      .select([
+        'user.id',
+        'user.display_name',
+        'user.created_at',
+        'store.name as store_name',
+        'city.name as city_name',
+      ])
+      .where('user.id', '=', id)
+      .executeTakeFirst();
+  },
+
   findByEmail(email: string) {
     return db.selectFrom('user').select(userColumns).where('email', '=', email).executeTakeFirst();
   },

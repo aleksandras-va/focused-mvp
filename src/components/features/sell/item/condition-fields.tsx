@@ -21,7 +21,9 @@ interface ConditionFieldsProps {
 
 export function ConditionFields({ item, onChange }: ConditionFieldsProps) {
   const shutterCountId = useId();
-  const asksShutterCount = item.model?.category === 'camera' && !item.model.isFilm;
+  const asksShutterCount = item.model
+    ? item.model.category === 'camera' && !item.model.isFilm
+    : item.custom?.category === 'camera';
 
   return (
     <div className="grid gap-6 sm:grid-cols-2">

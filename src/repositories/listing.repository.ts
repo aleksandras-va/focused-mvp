@@ -102,13 +102,19 @@ export const listingRepository = {
     if (filtersItems) {
       query = query.where(({ exists, selectFrom }) => {
         let items = selectFrom('listing_item')
-          .innerJoin('model', 'model.id', 'listing_item.model_id')
-          .innerJoin('brand', 'brand.id', 'model.brand_id')
+          .leftJoin('model', 'model.id', 'listing_item.model_id')
+          .leftJoin('brand', 'brand.id', 'model.brand_id')
           .leftJoin('mount', 'mount.id', 'model.mount_id')
           .select('listing_item.id')
           .whereRef('listing_item.listing_id', '=', 'listing.id');
 
-        if (filters.category) items = items.where('model.category', '=', filters.category);
+        if (filters.category) {
+          const { category } = filters;
+
+          items = items.where((eb) =>
+            eb(eb.fn.coalesce('model.category', 'listing_item.custom_category'), '=', category),
+          );
+        }
         if (filters.brand) items = items.where('brand.slug', '=', filters.brand);
         if (filters.mount) items = items.where('mount.slug', '=', filters.mount);
         if (filters.model) items = items.where('model.slug', '=', filters.model);
@@ -140,6 +146,14 @@ export const listingRepository = {
     }
 
     return query.limit(limit).execute();
+  },
+
+  listPublishedBySeller(sellerId: string) {
+    return listingCardQuery()
+      .where('listing.seller_id', '=', sellerId)
+      .where('listing.status', '=', 'active')
+      .orderBy('listing.published_at', 'desc')
+      .execute();
   },
 
   listBySeller(sellerId: string) {
@@ -216,14 +230,15 @@ function listingCardQuery() {
       jsonArrayFrom(
         eb
           .selectFrom('listing_item')
-          .innerJoin('model', 'model.id', 'listing_item.model_id')
-          .innerJoin('brand', 'brand.id', 'model.brand_id')
+          .leftJoin('model', 'model.id', 'listing_item.model_id')
+          .leftJoin('brand', 'brand.id', 'model.brand_id')
           .leftJoin('mount', 'mount.id', 'model.mount_id')
           .select([
             'listing_item.id',
             'listing_item.cosmetic_condition',
             'listing_item.shutter_count',
             'model.display_name as model_name',
+            'listing_item.custom_name',
             'brand.name as brand_name',
             'mount.name as mount_name',
           ])
@@ -258,8 +273,8 @@ function listingDetailQuery() {
       jsonArrayFrom(
         eb
           .selectFrom('listing_item')
-          .innerJoin('model', 'model.id', 'listing_item.model_id')
-          .innerJoin('brand', 'brand.id', 'model.brand_id')
+          .leftJoin('model', 'model.id', 'listing_item.model_id')
+          .leftJoin('brand', 'brand.id', 'model.brand_id')
           .leftJoin('mount', 'mount.id', 'model.mount_id')
           .select([
             'listing_item.id',
@@ -273,6 +288,8 @@ function listingDetailQuery() {
             'model.slug as model_slug',
             'model.category',
             'model.display_name as model_name',
+            'listing_item.custom_name',
+            'listing_item.custom_category',
             'brand.name as brand_name',
             'brand.slug as brand_slug',
             'mount.name as mount_name',

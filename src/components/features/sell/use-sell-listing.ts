@@ -3,12 +3,17 @@
 import { useEffect, useRef, useState, useTransition } from 'react';
 import { AUTOSAVE_DELAY_MS } from '@/components/features/sell/sell.constants';
 import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
-import type { CreateListingPayload, EditableListing } from '@/services/listing/listing.types';
+import type {
+  CreateListingPayload,
+  CustomItem,
+  EditableListing,
+} from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
 export interface SellItem {
   key: number;
   model: CatalogModel | null;
+  custom: CustomItem | null;
   price: string;
   cosmeticCondition: CosmeticCondition;
   functionalCondition: FunctionalCondition;
@@ -37,6 +42,7 @@ function emptyItem(key: number): SellItem {
   return {
     key,
     model: null,
+    custom: null,
     price: '',
     cosmeticCondition: 'good',
     functionalCondition: 'fully_working',
@@ -82,6 +88,7 @@ export function useSellListing({
   const payload: CreateListingPayload = {
     items: items.map((item) => ({
       modelId: item.model?.id ?? '',
+      custom: item.custom,
       price: item.price,
       cosmeticCondition: item.cosmeticCondition,
       functionalCondition: item.functionalCondition,
@@ -99,7 +106,9 @@ export function useSellListing({
   };
 
   const isEditingPublished = listing !== null && listing.status !== 'draft';
-  const hasContent = photoKeys.length > 0 || items.some((item) => item.model !== null);
+  const hasContent =
+    photoKeys.length > 0 ||
+    items.some((item) => item.model !== null || Boolean(item.custom?.name.trim()));
   const serialized = JSON.stringify(payload);
   const savedPayload = useRef(listing ? serialized : null);
   const draftIdRef = useRef(draftId);

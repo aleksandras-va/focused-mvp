@@ -22,7 +22,15 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 
 ## Catalog and search
 
-- Sellers pick a curated model, they never type one.
+- Sellers pick a curated model. When it is missing, they add the item by name instead —
+  a camera, lens or accessory with free-text `custom_name` and `custom_category` on
+  `listing_item`, `model_id` null. A check constraint allows a model or a custom name,
+  never both. `WHERE model_id IS NULL` is the review queue; adding the model to the
+  catalog and setting `model_id` promotes the item in place, URL and photos intact.
+- Custom items publish normally, may sit in bundles, and show under category filters.
+  They stay out of brand, mount and model filters, model search and price statistics
+  until promoted. No separate tables for unknown gear — every query would have to union
+  them.
 - One name per model: `model.display_name`. No alias table.
 - Search uses `word_similarity` against `model.normalized` (punctuation stripped,
   spaces kept) with a 0.3 floor, plus a prefix match. Use `word_similarity`, not
@@ -95,8 +103,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   picked model, then updates it a second after each change. `listing.price_cents`,
   `listing.city_id` and `listing_item.price_cents` are nullable for this, and
   `listing_active_complete_check` keeps `active` rows complete — the invariant sits in
-  the database, not in a publish handler. Items with no model yet are simply not
-  persisted, so `listing_item.model_id` stays `NOT NULL`.
+  the database, not in a publish handler. Items with neither a model nor a named,
+  categorised custom entry are simply not persisted.
 - Autosave never touches a published ad. Editing an `active` listing is explicit: one
   Save changes button, and the ad stays active.
 - Preview is the ad's own page, which the seller can already see while others get a 404.

@@ -16,6 +16,7 @@
       "!src/db/types.ts",
       "!src/components/ui/*.tsx",
       "src/components/ui/city-select.tsx",
+      "src/components/ui/scroll-to-top.tsx",
       "!src/lib/utils.ts"
     ]
   },

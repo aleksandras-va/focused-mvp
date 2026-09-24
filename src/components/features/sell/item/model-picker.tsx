@@ -17,9 +17,10 @@ type ModelPickerProps = {
   searchAction: (term: string) => Promise<CatalogModel[]>;
   selected: CatalogModel | null;
   onSelect: (model: CatalogModel) => void;
+  onAddByName: (name: string) => void;
 };
 
-export function ModelPicker({ searchAction, selected, onSelect }: ModelPickerProps) {
+export function ModelPicker({ searchAction, selected, onSelect, onAddByName }: ModelPickerProps) {
   const [open, setOpen] = useState(false);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<CatalogModel[]>([]);
@@ -61,7 +62,27 @@ export function ModelPicker({ searchAction, selected, onSelect }: ModelPickerPro
           />
           <CommandList>
             <CommandEmpty>
-              {isSearching ? 'Searching…' : term ? 'Nothing found.' : 'Start typing.'}
+              {isSearching ? (
+                'Searching…'
+              ) : term ? (
+                <div className="flex flex-col items-center gap-2">
+                  <span>Nothing found.</span>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      onAddByName(term.trim());
+                      setOpen(false);
+                    }}
+                  >
+                    Add “{term.trim()}” by name
+                  </Button>
+                </div>
+              ) : (
+                'Start typing.'
+              )}
             </CommandEmpty>
             {results.map((model) => (
               <CommandItem

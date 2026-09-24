@@ -1,0 +1,14 @@
+To see what needs adding to the catalog:
+
+
+SELECT custom_category, custom_name, listing_id FROM listing_item WHERE model_id IS NULL;
+
+what i ran:
+ALTER TABLE listing_item ALTER COLUMN model_id DROP NOT NULL;
+ALTER TABLE listing_item
+  ADD COLUMN custom_name text,
+  ADD COLUMN custom_category model_category;
+ALTER TABLE listing_item ADD CONSTRAINT listing_item_model_or_custom_check CHECK (
+  (model_id IS NOT NULL AND custom_name IS NULL AND custom_category IS NULL)
+  OR (model_id IS NULL AND length(btrim(custom_name)) > 0 AND custom_category IS NOT NULL)
+);

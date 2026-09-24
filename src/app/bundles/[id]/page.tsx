@@ -1,7 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
+import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
 import { RecordListingView } from '@/components/features/listings/record-view';
+import { bundleMetadata } from '@/lib/listing-metadata';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
 import {
@@ -11,10 +13,21 @@ import {
   restoreListingAction,
 } from '../../sell/actions';
 
+const loadListing = cache(async (id: string) => {
+  const user = await authService.getCurrentUserCached();
+
+  return listingService.get(id, user?.id ?? null);
+});
+
+export async function generateMetadata({ params }: PageProps<'/bundles/[id]'>) {
+  const listing = await loadListing((await params).id);
+
+  return listing ? bundleMetadata(listing) : {};
+}
+
 export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>) {
   const { id } = await params;
-  const user = await authService.getCurrentUserCached();
-  const listing = await listingService.get(id, user?.id ?? null);
+  const listing = await loadListing(id);
 
   if (!listing) notFound();
   if (!listing.isBundle && listing.items[0]) redirect(`/items/${listing.items[0].id}`);

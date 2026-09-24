@@ -53,6 +53,7 @@ export function ListingInfo({ listing, focusedItem }: ListingInfoProps) {
             label="Seller"
             value={listing.seller.storeName ?? listing.seller.name}
             badge={listing.seller.isStore ? 'Store' : null}
+            href={`/sellers/${listing.seller.id}`}
           />
         </CardContent>
       </Card>

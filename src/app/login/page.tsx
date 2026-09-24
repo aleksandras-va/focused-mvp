@@ -67,8 +67,10 @@ export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
                 minLength={MIN_PASSWORD_LENGTH}
                 autoComplete="new-password"
               />
+              {/* TODO REMOVE pass */}
               <FieldDescription>
-                At least {MIN_PASSWORD_LENGTH} characters, not only numbers.
+                At least {MIN_PASSWORD_LENGTH} characters, not only numbers.{' '}
+                <span className="text-red-600">test12341234</span>
               </FieldDescription>
             </Field>
             <Field>

@@ -1,5 +1,6 @@
 import 'server-only';
 
+import type { ModelCategory } from '@/db/types';
 import { LISTING_LABELS } from '@/lib/listing-options';
 import type {
   ListingCardRow,
@@ -22,7 +23,7 @@ export function mapToSummary(row: ListingCardRow, viewerId: string | null): List
 
   return {
     id: row.id,
-    title: listingTitle(row.items.map((item) => item.model_name)),
+    title: listingTitle(row.items.map((item) => item.model_name ?? item.custom_name ?? '')),
     priceCents: row.price_cents,
     city: row.city_name,
     status: row.status,
@@ -53,6 +54,7 @@ export function mapToDetail(row: ListingDetailRow, viewerId: string | null): Lis
     description: row.description,
     contact: { email: row.contact_email, phone: row.contact_phone },
     seller: {
+      id: row.seller_id,
       name: row.seller_name,
       isStore: row.store_name !== null,
       storeName: row.store_name,
@@ -81,21 +83,26 @@ export function mapToEditable(row: ListingDetailRow, models: CatalogModel[]): Ed
       return url ? [{ storageKey: photo.storage_key, url }] : [];
     }),
     items: row.items.flatMap((item) => {
-      const model = modelsById.get(item.model_id);
+      const model = item.model_id ? modelsById.get(item.model_id) : undefined;
 
-      return model
-        ? [
-            {
-              model,
-              price: item.price_cents === null ? '' : centsToPriceInput(item.price_cents),
-              cosmeticCondition: item.cosmetic_condition,
-              functionalCondition: item.functional_condition,
-              shutterCount: item.shutter_count === null ? '' : String(item.shutter_count),
-              soldSeparately: item.sold_separately,
-              inclusions: item.inclusions.map(({ inclusion }) => inclusion),
-            },
-          ]
-        : [];
+      const custom = item.custom_name
+        ? { name: item.custom_name, category: item.custom_category }
+        : null;
+
+      if (!model && !custom) return [];
+
+      return [
+        {
+          model: model ?? null,
+          custom,
+          price: item.price_cents === null ? '' : centsToPriceInput(item.price_cents),
+          cosmeticCondition: item.cosmetic_condition,
+          functionalCondition: item.functional_condition,
+          shutterCount: item.shutter_count === null ? '' : String(item.shutter_count),
+          soldSeparately: item.sold_separately,
+          inclusions: item.inclusions.map(({ inclusion }) => inclusion),
+        },
+      ];
     }),
   };
 }
@@ -103,12 +110,11 @@ export function mapToEditable(row: ListingDetailRow, models: CatalogModel[]): Ed
 function mapToItemDetail(row: ListingDetailItemRow): ListingItemDetail {
   return {
     id: row.id,
-    modelName: row.model_name,
-    modelSlug: row.model_slug,
+    modelName: row.model_name ?? row.custom_name ?? '',
     brand: row.brand_name,
     brandSlug: row.brand_slug,
     mount: row.mount_name,
-    category: row.category,
+    category: itemCategory(row),
     priceCents: row.price_cents,
     cosmeticCondition: LISTING_LABELS.get(row.cosmetic_condition) ?? row.cosmetic_condition,
     functionalCondition: LISTING_LABELS.get(row.functional_condition) ?? row.functional_condition,
@@ -116,6 +122,14 @@ function mapToItemDetail(row: ListingDetailItemRow): ListingItemDetail {
     soldSeparately: row.sold_separately,
     inclusions: row.inclusions.map(({ inclusion }) => LISTING_LABELS.get(inclusion) ?? inclusion),
   };
+}
+
+function itemCategory(row: ListingDetailItemRow): ModelCategory {
+  const category = row.category ?? row.custom_category;
+
+  if (!category) throw new Error(`Listing item ${row.id} has no category.`);
+
+  return category;
 }
 
 function listingTitle(modelNames: string[]) {

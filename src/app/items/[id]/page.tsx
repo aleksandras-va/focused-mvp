@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
 import { RecordListingView } from '@/components/features/listings/record-view';
+import { itemMetadata } from '@/lib/listing-metadata';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
 import {
@@ -11,11 +13,23 @@ import {
   restoreListingAction,
 } from '../../sell/actions';
 
-export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
-  const { id } = await params;
+const loadItem = cache(async (id: string) => {
   const user = await authService.getCurrentUserCached();
   const listing = await listingService.getByItemId(id, user?.id ?? null);
   const item = listing?.items.find((candidate) => candidate.id === id);
+
+  return { listing, item };
+});
+
+export async function generateMetadata({ params }: PageProps<'/items/[id]'>) {
+  const { listing, item } = await loadItem((await params).id);
+
+  return listing && item ? itemMetadata(listing, item) : {};
+}
+
+export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
+  const { id } = await params;
+  const { listing, item } = await loadItem(id);
 
   if (!listing || !item) notFound();
 

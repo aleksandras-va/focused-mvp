@@ -10,6 +10,7 @@ import { ListingError } from './listing.error';
 import { mapToDetail, mapToEditable, mapToSummary } from './listing.mappers';
 import type {
   CreatedListing,
+  CreateListingItemInput,
   CreateListingPayload,
   EditableListing,
   ListingDetail,
@@ -40,6 +41,12 @@ export const listingService = {
     return rows.map((row) => mapToSummary(row, viewerId));
   },
 
+  async getPublishedBySeller(sellerId: string, viewerId: string | null): Promise<ListingSummary[]> {
+    const rows = await listingRepository.listPublishedBySeller(sellerId);
+
+    return rows.map((row) => mapToSummary(row, viewerId));
+  },
+
   async getSellerListings(sellerId: string): Promise<ListingSummary[]> {
     const rows = await listingRepository.listBySeller(sellerId);
 
@@ -52,7 +59,9 @@ export const listingService = {
     if (!row) throw new ListingError('That ad no longer exists.');
     if (row.seller_id !== sellerId) throw new ListingError('That ad is not yours.');
 
-    const models = await modelCatalogService.getByIds(row.items.map((item) => item.model_id));
+    const models = await modelCatalogService.getByIds(
+      row.items.flatMap((item) => (item.model_id ? [item.model_id] : [])),
+    );
 
     return mapToEditable(row, models);
   },
@@ -143,6 +152,21 @@ async function assertPublishable(listingId: string) {
   }
 }
 
+function isDescribed(item: CreateListingItemInput) {
+  return item.custom
+    ? item.custom.name.trim() !== '' && item.custom.category !== null
+    : item.modelId !== '';
+}
+
+function undescribedItemMessage(items: CreateListingItemInput[]) {
+  const custom = items.find((item) => item.custom && !isDescribed(item))?.custom;
+
+  if (!custom) return 'Pick a model from the catalog for every item.';
+  if (!custom.name.trim()) return 'Name every item you add by hand.';
+
+  return 'Choose camera, lens or accessory for every item you add by hand.';
+}
+
 async function buildContent(input: CreateListingPayload, publish: boolean) {
   if (input.photoKeys.length > MAX_PHOTOS) {
     throw new ListingError(`A listing can have up to ${MAX_PHOTOS} photos.`);
@@ -154,30 +178,39 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
     throw new ListingError('One of the photos failed to upload — remove it and try again.');
   }
 
-  const described = input.items.filter((item) => item.modelId);
+  const described = input.items.filter(isDescribed);
 
   if (publish) {
     if (described.length === 0) throw new ListingError('Add at least one item.');
     if (described.length !== input.items.length) {
-      throw new ListingError('Pick a model from the catalog for every item.');
+      throw new ListingError(undescribedItemMessage(input.items));
     }
     if (!input.cityId) throw new ListingError('Pick a city.');
   }
 
-  const models = await modelRepository.findForListing(described.map((item) => item.modelId));
+  const models = await modelRepository.findForListing(
+    described.flatMap((item) => (item.custom ? [] : [item.modelId])),
+  );
 
   const modelsById = new Map(models.map((model) => [model.id, model]));
 
   const items: ListingItemInput[] = described.map((item, position) => {
-    const model = modelsById.get(item.modelId);
+    const model = item.custom ? null : modelsById.get(item.modelId);
+    const custom = item.custom?.category
+      ? { name: item.custom.name.trim(), category: item.custom.category }
+      : null;
 
-    if (!model) throw new ListingError('Pick a model from the catalog for every item.');
+    if (!model && !custom) throw new ListingError('Pick a model from the catalog for every item.');
 
-    const asksShutterCount = model.category === 'camera' && !model.is_film;
+    const asksShutterCount = model
+      ? model.category === 'camera' && !model.is_film
+      : custom?.category === 'camera';
 
     return {
       item: {
-        model_id: item.modelId,
+        model_id: model?.id ?? null,
+        custom_name: custom?.name ?? null,
+        custom_category: custom?.category ?? null,
         price_cents: publish ? parsePriceCents(item.price) : optionalPriceCents(item.price),
         cosmetic_condition: item.cosmeticCondition,
         functional_condition: item.functionalCondition,

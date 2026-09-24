@@ -16,9 +16,15 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
-  title: 'Focused',
+  metadataBase: new URL(siteUrl),
+  title: { default: 'Focused', template: '%s | Focused' },
   description: 'Marketplace for used cameras and lenses',
+  openGraph: { type: 'website', siteName: 'Focused' },
 };
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {

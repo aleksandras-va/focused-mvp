@@ -7,8 +7,9 @@ import { ModelField } from '@/components/features/sell/item/model-field';
 import { PriceFields } from '@/components/features/sell/item/price-fields';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
 import { Card, CardContent } from '@/components/ui/card';
-import type { Inclusion } from '@/db/tables';
+import type { Inclusion, ModelCategory } from '@/db/tables';
 import { inclusionsFor } from '@/lib/listing-options';
+import type { CustomItem } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
 interface ItemFieldsProps {
@@ -28,6 +29,23 @@ function inclusionOptions(model: CatalogModel) {
   });
 }
 
+function customInclusionOptions(category: ModelCategory) {
+  return inclusionsFor({ category, isFilm: false, hasMount: true });
+}
+
+function itemInclusionOptions(item: SellItem) {
+  if (item.model) return inclusionOptions(item.model);
+  if (item.custom?.category) return customInclusionOptions(item.custom.category);
+
+  return [];
+}
+
+function keepOffered(inclusions: Inclusion[], options: { value: Inclusion }[]) {
+  const offered = options.map(({ value }) => value);
+
+  return inclusions.filter((inclusion) => offered.includes(inclusion));
+}
+
 export function ItemFields({
   item,
   index,
@@ -36,13 +54,25 @@ export function ItemFields({
   onChange,
   onRemove,
 }: ItemFieldsProps) {
-  const availableInclusions = item.model ? inclusionOptions(item.model) : [];
+  const availableInclusions = itemInclusionOptions(item);
 
   const selectModel = (model: CatalogModel) => {
-    const offered = inclusionOptions(model).map(({ value }) => value);
     onChange({
       model,
-      inclusions: item.inclusions.filter((inclusion) => offered.includes(inclusion)),
+      custom: null,
+      inclusions: keepOffered(item.inclusions, inclusionOptions(model)),
+    });
+  };
+
+  const clearModel = () => onChange({ model: null, inclusions: [] });
+
+  const changeCustom = (custom: CustomItem | null) => {
+    const options = custom?.category ? customInclusionOptions(custom.category) : [];
+
+    onChange({
+      model: null,
+      custom,
+      inclusions: keepOffered(item.inclusions, options),
     });
   };
 
@@ -58,13 +88,20 @@ export function ItemFields({
     <Card className="ring-foreground/20">
       {isBundle ? (
         <ItemHeader
-          title={item.model ? item.model.displayName : `Item ${index + 1}`}
+          title={item.model?.displayName || item.custom?.name.trim() || `Item ${index + 1}`}
           onRemove={onRemove}
         />
       ) : null}
 
       <CardContent className="flex flex-col gap-6">
-        <ModelField model={item.model} searchAction={searchAction} onSelect={selectModel} />
+        <ModelField
+          model={item.model}
+          custom={item.custom}
+          searchAction={searchAction}
+          onSelect={selectModel}
+          onCustomChange={changeCustom}
+          onClear={clearModel}
+        />
         <ConditionFields item={item} onChange={onChange} />
         {availableInclusions.length > 0 ? (
           <InclusionFields

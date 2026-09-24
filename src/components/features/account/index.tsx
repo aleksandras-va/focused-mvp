@@ -35,7 +35,7 @@ export function Account({
           <p className="text-muted-foreground">{user.email}</p>
         </div>
         <form action={signOutAction}>
-          <Button type="submit" variant="outline">
+          <Button type="submit" variant="destructive">
             Sign out
           </Button>
         </form>
