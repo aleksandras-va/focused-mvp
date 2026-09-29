@@ -93,6 +93,7 @@ export function mapToEditable(row: ListingDetailRow, models: CatalogModel[]): Ed
 
       return [
         {
+          id: item.id,
           model: model ?? null,
           custom,
           price: item.price_cents === null ? '' : centsToPriceInput(item.price_cents),

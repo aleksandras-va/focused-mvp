@@ -7,7 +7,7 @@ import type { DB } from '@/db/types';
 import type { BrowseFilters } from '@/lib/browse-filters';
 
 export interface ListingItemInput {
-  item: Omit<NewListingItem, 'listing_id'>;
+  item: Omit<NewListingItem, 'listing_id'> & { id: string };
   inclusions: Inclusion[];
 }
 
@@ -28,7 +28,9 @@ export const listingRepository = {
         .returning('id')
         .executeTakeFirstOrThrow();
 
-      const itemIds = await insertContent(trx, listing.id, items, photoKeys);
+      await insertPhotos(trx, listing.id, photoKeys);
+
+      const itemIds = await saveItems(trx, listing.id, items);
 
       return { id: listing.id, itemIds };
     });
@@ -41,10 +43,10 @@ export const listingRepository = {
         .set({ ...values, updated_at: sql<Date>`now()` })
         .where('id', '=', id)
         .execute();
-      await trx.deleteFrom('listing_item').where('listing_id', '=', id).execute();
       await trx.deleteFrom('listing_photo').where('listing_id', '=', id).execute();
+      await insertPhotos(trx, id, photoKeys);
 
-      const itemIds = await insertContent(trx, id, items, photoKeys);
+      const itemIds = await saveItems(trx, id, items);
 
       return { id, itemIds };
     });
@@ -164,40 +166,70 @@ export const listingRepository = {
   },
 } as const;
 
-async function insertContent(
-  trx: Transaction<DB>,
-  listingId: string,
-  items: ListingItemInput[],
-  photoKeys: string[],
-) {
-  if (photoKeys.length > 0) {
-    await trx
-      .insertInto('listing_photo')
-      .values(
-        photoKeys.map((storageKey, position) => ({
-          listing_id: listingId,
-          storage_key: storageKey,
-          position,
-        })),
-      )
-      .execute();
+async function insertPhotos(trx: Transaction<DB>, listingId: string, photoKeys: string[]) {
+  if (photoKeys.length === 0) return;
+
+  await trx
+    .insertInto('listing_photo')
+    .values(
+      photoKeys.map((storageKey, position) => ({
+        listing_id: listingId,
+        storage_key: storageKey,
+        position,
+      })),
+    )
+    .execute();
+}
+
+async function saveItems(trx: Transaction<DB>, listingId: string, items: ListingItemInput[]) {
+  let removed = trx.deleteFrom('listing_item').where('listing_id', '=', listingId);
+
+  if (items.length > 0) {
+    removed = removed.where(
+      'id',
+      'not in',
+      items.map(({ item }) => item.id),
+    );
   }
+
+  await removed.execute();
 
   const itemIds: string[] = [];
 
   for (const { item, inclusions } of items) {
-    const inserted = await trx
+    const saved = await trx
       .insertInto('listing_item')
       .values({ ...item, listing_id: listingId })
+      .onConflict((oc) =>
+        oc
+          .column('id')
+          .doUpdateSet((eb) => ({
+            model_id: eb.ref('excluded.model_id'),
+            custom_name: eb.ref('excluded.custom_name'),
+            custom_category: eb.ref('excluded.custom_category'),
+            price_cents: eb.ref('excluded.price_cents'),
+            cosmetic_condition: eb.ref('excluded.cosmetic_condition'),
+            functional_condition: eb.ref('excluded.functional_condition'),
+            shutter_count: eb.ref('excluded.shutter_count'),
+            sold_separately: eb.ref('excluded.sold_separately'),
+            position: eb.ref('excluded.position'),
+            updated_at: sql<Date>`now()`,
+          }))
+          .where('listing_item.listing_id', '=', listingId),
+      )
       .returning('id')
-      .executeTakeFirstOrThrow();
+      .executeTakeFirst();
 
-    itemIds.push(inserted.id);
+    if (!saved) throw new Error(`Listing item ${item.id} belongs to another listing.`);
+
+    itemIds.push(saved.id);
+
+    await trx.deleteFrom('listing_inclusion').where('listing_item_id', '=', saved.id).execute();
 
     if (inclusions.length > 0) {
       await trx
         .insertInto('listing_inclusion')
-        .values(inclusions.map((inclusion) => ({ listing_item_id: inserted.id, inclusion })))
+        .values(inclusions.map((inclusion) => ({ listing_item_id: saved.id, inclusion })))
         .execute();
     }
   }
