@@ -5,7 +5,7 @@ import { MAX_PHOTOS } from '@/lib/photos';
 import { type ListingItemInput, listingRepository } from '@/repositories/listing.repository';
 import { modelRepository } from '@/repositories/model.repository';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
-import { STORAGE_KEY_PATTERN } from './listing.constants';
+import { ITEM_ID_PATTERN, STORAGE_KEY_PATTERN } from './listing.constants';
 import { ListingError } from './listing.error';
 import { mapToDetail, mapToEditable, mapToSummary } from './listing.mappers';
 import type {
@@ -174,6 +174,10 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
 
   const photoKeys = input.photoKeys.filter((key) => STORAGE_KEY_PATTERN.test(key));
 
+  if (input.items.some((item) => !ITEM_ID_PATTERN.test(item.id))) {
+    throw new ListingError('Something went wrong with an item — reload the page and try again.');
+  }
+
   if (publish && photoKeys.length !== input.photoKeys.length) {
     throw new ListingError('One of the photos failed to upload — remove it and try again.');
   }
@@ -208,6 +212,7 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
 
     return {
       item: {
+        id: item.id,
         model_id: model?.id ?? null,
         custom_name: custom?.name ?? null,
         custom_category: custom?.category ?? null,

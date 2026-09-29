@@ -97,8 +97,11 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Hide sets `removed` — off the public site, still in Your ads, reversible. Delete is a
   real `DELETE`, behind a confirmation; items, inclusions and photo rows cascade. The R2
   objects are left behind, since nothing cleans up storage yet.
-- Editing replaces an ad's items rather than diffing them, so item ids — and the
-  `/items/[id]` URLs built on them — change on every save.
+- Item ids never change, because `/items/[id]` URLs get shared. The sell form gives each
+  new item a uuid in the browser and sends it on every save; the repository upserts by id
+  within the listing, deletes only removed items, and replaces inclusions per item.
+  `listing_item_listing_id_position_key` is deferrable so items can swap positions in one
+  save. Photos are still replaced on each save; their rows are not addressed by id.
 - A draft saves itself. The sell form creates a draft as soon as the ad has a photo or a
   picked model, then updates it a second after each change. `listing.price_cents`,
   `listing.city_id` and `listing_item.price_cents` are nullable for this, and

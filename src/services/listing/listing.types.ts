@@ -73,6 +73,7 @@ export interface CustomItem {
 }
 
 export interface EditableListingItem {
+  id: string;
   model: CatalogModel | null;
   custom: CustomItem | null;
   price: string;
@@ -96,6 +97,7 @@ export interface EditableListing {
 }
 
 export interface CreateListingItemInput {
+  id: string;
   modelId: string;
   custom: CustomItem | null;
   price: string;

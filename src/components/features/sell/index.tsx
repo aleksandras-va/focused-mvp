@@ -64,13 +64,13 @@ export function SellListing({
 
       {sell.items.map((item, index) => (
         <ItemFields
-          key={item.key}
+          key={item.id}
           item={item}
           index={index}
           isBundle={sell.isBundle}
           searchAction={searchAction}
-          onChange={(patch) => sell.updateItem(item.key, patch)}
-          onRemove={sell.isBundle ? () => sell.removeItem(item.key) : null}
+          onChange={(patch) => sell.updateItem(item.id, patch)}
+          onRemove={sell.isBundle ? () => sell.removeItem(item.id) : null}
         />
       ))}
 

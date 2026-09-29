@@ -11,7 +11,7 @@ import type {
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
 export interface SellItem {
-  key: number;
+  id: string;
   model: CatalogModel | null;
   custom: CustomItem | null;
   price: string;
@@ -38,9 +38,9 @@ interface UseSellListingOptions {
   listing: EditableListing | null;
 }
 
-function emptyItem(key: number): SellItem {
+function emptyItem(): SellItem {
   return {
-    key,
+    id: crypto.randomUUID(),
     model: null,
     custom: null,
     price: '',
@@ -53,9 +53,9 @@ function emptyItem(key: number): SellItem {
 }
 
 function initialItems(listing: EditableListing | null): SellItem[] {
-  if (!listing || listing.items.length === 0) return [emptyItem(0)];
+  if (!listing || listing.items.length === 0) return [emptyItem()];
 
-  return listing.items.map((item, index) => ({ key: index, ...item }));
+  return listing.items;
 }
 
 export function useSellListing({
@@ -65,7 +65,6 @@ export function useSellListing({
   listing,
 }: UseSellListingOptions) {
   const [items, setItems] = useState<SellItem[]>(() => initialItems(listing));
-  const nextKey = useRef(items.length);
   const [bundlePrice, setBundlePrice] = useState(listing?.bundlePrice ?? '');
   const [photoKeys, setPhotoKeys] = useState<string[]>(
     () => listing?.photos.map((photo) => photo.storageKey) ?? [],
@@ -87,6 +86,7 @@ export function useSellListing({
 
   const payload: CreateListingPayload = {
     items: items.map((item) => ({
+      id: item.id,
       modelId: item.model?.id ?? '',
       custom: item.custom,
       price: item.price,
@@ -143,21 +143,23 @@ export function useSellListing({
   }, [serialized, hasContent, isEditingPublished, saveDraftAction]);
 
   function addItem() {
-    setItems((current) => [...current, emptyItem(nextKey.current++)]);
+    setItems((current) => [...current, emptyItem()]);
   }
 
-  function removeItem(key: number) {
-    setItems((current) => current.filter((item) => item.key !== key));
+  function removeItem(id: string) {
+    setItems((current) => current.filter((item) => item.id !== id));
   }
 
-  function updateItem(key: number, patch: Partial<SellItem>) {
-    setItems((current) => current.map((item) => (item.key === key ? { ...item, ...patch } : item)));
+  function updateItem(id: string, patch: Partial<SellItem>) {
+    setItems((current) => current.map((item) => (item.id === id ? { ...item, ...patch } : item)));
   }
 
   function submit(publish: boolean) {
     setError(null);
 
     startTransition(async () => {
+      await saveChain.current;
+
       const result = await submitAction(draftIdRef.current, { ...payload, publish });
 
       if (result?.error) {
