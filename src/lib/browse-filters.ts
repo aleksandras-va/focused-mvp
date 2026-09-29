@@ -54,6 +54,24 @@ export function parseBrowseFilters(params: SearchParams): BrowseFilters {
   };
 }
 
+export function browseHref(filters: BrowseFilters, overrides: Partial<BrowseFilters> = {}) {
+  const merged = { ...filters, ...overrides };
+  const params = new URLSearchParams();
+
+  if (merged.category) params.set('category', merged.category);
+  if (merged.brand) params.set('brand', merged.brand);
+  if (merged.mount) params.set('mount', merged.mount);
+  if (merged.model) params.set('model', merged.model);
+  if (merged.minPriceCents !== null) params.set('min', String(merged.minPriceCents / 100));
+  if (merged.maxPriceCents !== null) params.set('max', String(merged.maxPriceCents / 100));
+  if (merged.cosmeticCondition) params.set('condition', merged.cosmeticCondition);
+  if (merged.sort !== 'newest') params.set('sort', merged.sort);
+
+  const query = params.toString();
+
+  return query ? `/items?${query}` : '/items';
+}
+
 export function hasActiveFilters(filters: BrowseFilters) {
   return (
     filters.category !== null ||

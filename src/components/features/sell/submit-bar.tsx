@@ -11,24 +11,19 @@ interface SubmitBarProps {
 export function SubmitBar({ isPending, isPublished, onSubmit }: SubmitBarProps) {
   if (isPublished) {
     return (
-      <Button
-        type="button"
-        className="self-start"
-        disabled={isPending}
-        onClick={() => onSubmit(false)}
-      >
+      <Button type="button" disabled={isPending} onClick={() => onSubmit(false)}>
         Save changes
       </Button>
     );
   }
 
   return (
-    <div className="flex gap-3">
-      <Button type="button" disabled={isPending} onClick={() => onSubmit(true)}>
-        Publish listing
-      </Button>
+    <div className="flex gap-2">
       <Button type="button" variant="outline" disabled={isPending} onClick={() => onSubmit(false)}>
-        Save as draft
+        Save draft
+      </Button>
+      <Button type="button" disabled={isPending} onClick={() => onSubmit(true)}>
+        Publish
       </Button>
     </div>
   );

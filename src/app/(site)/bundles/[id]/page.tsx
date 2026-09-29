@@ -32,6 +32,8 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
   if (!listing) notFound();
   if (!listing.isBundle && listing.items[0]) redirect(`/items/${listing.items[0].id}`);
 
+  const viewer = await authService.getCurrentUserCached();
+
   return (
     <>
       {listing.status === 'active' && listing.priceCents !== null ? (
@@ -54,7 +56,7 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
           deleteAction={deleteListingAction}
         />
       ) : null}
-      <ListingDetail listing={listing} focusedItem={null} />
+      <ListingDetail listing={listing} focusedItem={null} isSignedIn={viewer !== null} />
     </>
   );
 }

@@ -33,6 +33,8 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
 
   if (!listing || !item) notFound();
 
+  const viewer = await authService.getCurrentUserCached();
+
   return (
     <>
       {listing.status === 'active' && item.priceCents !== null ? (
@@ -55,7 +57,7 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
           deleteAction={deleteListingAction}
         />
       ) : null}
-      <ListingDetail listing={listing} focusedItem={item} />
+      <ListingDetail listing={listing} focusedItem={item} isSignedIn={viewer !== null} />
     </>
   );
 }

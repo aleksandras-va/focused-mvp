@@ -142,6 +142,25 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Photo rows store a provider-agnostic `storage_key`, never a vendor URL.
 - Originals are not kept.
 
+## Design
+
+- The visible brand is "exposé" (expose.lt); code, package and docs keep "focused".
+- Nunito bold for the site's own voice (headings, section titles); Inter for everything
+  else, model names included. The logo is an inline SVG component filled with
+  `currentColor`.
+- White background, cool greys, a muted sea blue as primary, apricot "sun" for the sell
+  call to action. Light mode only for now; tokens live in `globals.css`.
+- Rounded everywhere: pill buttons and filter pills, 12px inputs, 16px cards. Inputs and
+  buttons are 40px tall.
+- The header is a floating pill; on the homepage it starts transparent over the hero and
+  gains its background on scroll.
+- `/` is the landing page (hero, category pills, eight recent ads, sell break). `/items`
+  is the full browse page with filters; every change resubmits the GET form.
+- Listing cards keep a light border and a grey price chin so any photo reads as a card.
+- The listing page shows the seller's phone as plain text to signed-in users only, never
+  the email, plus a "Write a message" button that does nothing yet.
+- `/styleguide` renders every primitive; it 404s in production.
+
 ## Left alone
 
 - Table naming stays as it is. If the schema outgrows one flat list, use Postgres

@@ -15,7 +15,7 @@ export function Gallery({ photos, title }: GalleryProps) {
 
   if (photos.length === 0) {
     return (
-      <div className="flex aspect-4/3 items-center justify-center rounded-xl bg-muted">
+      <div className="flex aspect-4/3 items-center justify-center rounded-2xl border bg-muted">
         <ImageIcon className="size-10 text-muted-foreground/50" />
       </div>
     );
@@ -27,7 +27,7 @@ export function Gallery({ photos, title }: GalleryProps) {
       <img
         src={photos[selectedIndex].largeUrl}
         alt={title}
-        className="aspect-4/3 w-full rounded-xl bg-muted object-contain"
+        className="aspect-4/3 w-full rounded-2xl border bg-muted object-contain"
       />
       {photos.length > 1 ? (
         <Thumbnails photos={photos} selectedIndex={selectedIndex} title={title} onSelect={select} />

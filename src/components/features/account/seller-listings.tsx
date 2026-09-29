@@ -8,7 +8,7 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-4">
-        <h2 className="font-heading text-2xl font-semibold tracking-tight">Your ads</h2>
+        <h2 className="font-heading text-2xl font-bold">Your ads</h2>
 
         <Link href="/sell" className={cn(buttonVariants())}>
           Sell
@@ -16,14 +16,14 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
       </div>
 
       {listings.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed py-16 text-center">
+        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed py-16 text-center">
           <p className="font-medium">No ads yet</p>
           <p className="text-sm text-muted-foreground">
             List a camera, lens or accessory in a few minutes.
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {listings.map((listing) => (
             <ListingCard key={listing.id} item={toListingCardItem(listing)} />
           ))}

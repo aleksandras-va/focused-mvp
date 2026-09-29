@@ -16,6 +16,7 @@ import {
 import { formatPrice } from '@/lib/format';
 import { CATEGORY_LABELS } from '@/lib/listing-options';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
+import { cn } from '@/lib/utils';
 import type {
   BrandAndModelSearchResults,
   CatalogModel,
@@ -82,13 +83,27 @@ export function SearchOverlay({ searchAction, suggestionsAction }: SearchOverlay
   return (
     <>
       <Button
-        variant="outline"
-        className="h-10 w-full justify-start gap-2 font-normal text-muted-foreground"
+        variant="ghost"
+        className={cn(
+          'hidden h-10 w-full max-w-sm justify-start gap-2 bg-muted/80 px-4 font-normal text-muted-foreground hover:bg-muted sm:flex',
+          'group-data-overlay/header:bg-white/15 group-data-overlay/header:text-white/85 group-data-overlay/header:backdrop-blur-md group-data-overlay/header:hover:bg-white/25 group-data-overlay/header:hover:text-white',
+        )}
         onClick={() => setOpen(true)}
       >
         <SearchIcon className="size-4" />
-        Search cameras, lenses and brands
-        <kbd className="ml-auto hidden rounded border bg-muted px-1.5 text-xs sm:inline">⌘K</kbd>
+        <span className="truncate">Search cameras, lenses and brands</span>
+        <kbd className="ml-auto hidden rounded-md border border-current/20 px-1.5 font-sans text-xs lg:inline">
+          ⌘K
+        </kbd>
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Search"
+        className="group-data-overlay/header:hover:bg-white/10 group-data-overlay/header:hover:text-white sm:hidden"
+        onClick={() => setOpen(true)}
+      >
+        <SearchIcon className="size-5" />
       </Button>
 
       <CommandDialog

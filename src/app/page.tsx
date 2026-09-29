@@ -1,35 +1,21 @@
-import { Browse } from '@/components/features/browse';
+import { Home } from '@/components/features/home';
 import { parseBrowseFilters } from '@/lib/browse-filters';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
-import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
+
+const RECENT_LISTINGS = 8;
 
 const featuredPhoto = {
-  imageUrl: '/images/hero/hero.jpg',
-  width: 2400,
-  height: 1200,
+  imageUrl: '/images/hero/hero.avif',
   place: 'Palanga',
   takenOn: '2025-07',
-  gear: 'Zenit TTL + Helios 44M-4',
+  gear: 'Sony A7R',
 };
 
 export default async function HomePage({ searchParams }: PageProps<'/'>) {
   const filters = parseBrowseFilters(await searchParams);
   const user = await authService.getCurrentUserCached();
+  const listings = await listingService.getPublished(filters, user?.id ?? null, RECENT_LISTINGS);
 
-  const [listings, options, model] = await Promise.all([
-    listingService.getPublished(filters, user?.id ?? null),
-    modelCatalogService.getFilters(filters.category ?? undefined),
-    filters.model ? modelCatalogService.getModel(filters.model) : null,
-  ]);
-
-  return (
-    <Browse
-      listings={listings}
-      filters={filters}
-      options={options}
-      modelName={model?.displayName ?? null}
-      featuredPhoto={featuredPhoto}
-    />
-  );
+  return <Home listings={listings} category={filters.category} featuredPhoto={featuredPhoto} />;
 }

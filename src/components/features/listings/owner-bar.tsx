@@ -52,7 +52,7 @@ export function OwnerBar({
   };
 
   return (
-    <div className="mb-6 flex flex-col gap-3 rounded-xl border bg-muted/40 p-4">
+    <div className="mb-6 flex flex-col gap-3 rounded-2xl border bg-muted/40 p-4">
       <div className="flex flex-wrap items-center gap-3">
         <p className="font-medium">This is your ad</p>
         <Badge variant={status === 'active' ? 'secondary' : 'default'}>

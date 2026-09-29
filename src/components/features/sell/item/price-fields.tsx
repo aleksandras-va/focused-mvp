@@ -17,7 +17,7 @@ export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
   const priceId = useId();
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 border-t pt-3">
+    <div className="grid gap-6 border-t pt-6 sm:grid-cols-2">
       <Field>
         <FieldLabel htmlFor={priceId}>
           {isBundle ? 'Price on its own (EUR)' : 'Price (EUR)'}
@@ -27,7 +27,7 @@ export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
           type="number"
           placeholder="€0.00"
           value={item.price}
-          className="w-1/2!"
+          className="max-w-48"
           onChange={(event) => onChange({ price: event.target.value })}
         />
         {isBundle ? <FieldDescription>What this item alone would cost.</FieldDescription> : null}

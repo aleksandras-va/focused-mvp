@@ -115,7 +115,7 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
     <div className="flex flex-col gap-3">
       <button
         type="button"
-        className="flex min-h-28 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed p-6 text-sm text-muted-foreground transition-colors hover:bg-muted/50"
+        className="flex min-h-36 cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-dashed bg-muted/40 p-6 text-sm text-muted-foreground transition-colors hover:bg-muted"
         onClick={() => inputRef.current?.click()}
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => {
@@ -123,7 +123,9 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
           addFiles(event.dataTransfer.files);
         }}
       >
-        <ImagePlusIcon className="size-6" />
+        <span className="flex size-11 items-center justify-center rounded-full bg-background shadow-sm">
+          <ImagePlusIcon className="size-5" />
+        </span>
         Drag photos here or click to choose (up to {MAX_PHOTOS})
       </button>
       <input
@@ -148,7 +150,7 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
               <img
                 src={photo.previewUrl}
                 alt=""
-                className={`size-full rounded-lg object-cover ${photo.status === 'uploading' ? 'opacity-50' : ''} ${photo.status === 'error' ? 'opacity-30' : ''}`}
+                className={`size-full rounded-xl border object-cover ${photo.status === 'uploading' ? 'opacity-50' : ''} ${photo.status === 'error' ? 'opacity-30' : ''}`}
               />
               {index === 0 && photo.status === 'done' ? (
                 <Badge className="absolute bottom-1 left-1">Cover</Badge>
@@ -160,12 +162,13 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
               ) : null}
               <Button
                 type="button"
-                variant="secondary"
-                size="icon"
-                className="absolute top-1 right-1 size-6"
+                variant="outline"
+                size="icon-xs"
+                aria-label="Remove photo"
+                className="absolute top-1.5 right-1.5 shadow-sm"
                 onClick={() => removePhoto(photo.localId)}
               >
-                <XIcon className="size-3" />
+                <XIcon />
               </Button>
             </div>
           ))}

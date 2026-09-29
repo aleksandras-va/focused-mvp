@@ -33,8 +33,12 @@ export function ConditionFields({ item, onChange }: ConditionFieldsProps) {
           value={item.cosmeticCondition}
           onValueChange={(value) => onChange({ cosmeticCondition: value as CosmeticCondition })}
         >
-          <SelectTrigger>
-            <SelectValue />
+          <SelectTrigger className="w-full">
+            <SelectValue>
+              {(value: string | null) =>
+                COSMETIC_CONDITIONS.find((condition) => condition.value === value)?.label
+              }
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {COSMETIC_CONDITIONS.map((condition) => (
@@ -52,8 +56,12 @@ export function ConditionFields({ item, onChange }: ConditionFieldsProps) {
           value={item.functionalCondition}
           onValueChange={(value) => onChange({ functionalCondition: value as FunctionalCondition })}
         >
-          <SelectTrigger>
-            <SelectValue />
+          <SelectTrigger className="w-full">
+            <SelectValue>
+              {(value: string | null) =>
+                FUNCTIONAL_CONDITIONS.find((condition) => condition.value === value)?.label
+              }
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {FUNCTIONAL_CONDITIONS.map((condition) => (

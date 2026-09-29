@@ -35,8 +35,12 @@ export const listingService = {
     return mapToDetail(row, viewerId);
   },
 
-  async getPublished(filters: BrowseFilters, viewerId: string | null): Promise<ListingSummary[]> {
-    const rows = await listingRepository.listPublished(filters);
+  async getPublished(
+    filters: BrowseFilters,
+    viewerId: string | null,
+    limit?: number,
+  ): Promise<ListingSummary[]> {
+    const rows = await listingRepository.listPublished(filters, limit);
 
     return rows.map((row) => mapToSummary(row, viewerId));
   },
