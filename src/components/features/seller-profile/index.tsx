@@ -1,5 +1,7 @@
+import { PackageOpenIcon } from 'lucide-react';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
 import { Badge } from '@/components/ui/badge';
+import { EmptyState } from '@/components/ui/empty-state';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import { formatMonth } from '@/lib/format';
 import type { ListingSummary } from '@/services/listing/listing.types';
@@ -16,28 +18,38 @@ export function SellerProfile({ seller, listings }: SellerProfileProps) {
   return (
     <div className="flex flex-col gap-8">
       <ScrollToTop />
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-3">
-          <h1 className="font-heading text-3xl font-semibold tracking-tight">{seller.name}</h1>
-          {seller.isStore ? <Badge variant="secondary">Store</Badge> : null}
+      <div className="flex items-center gap-4">
+        <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-accent text-2xl font-semibold text-accent-foreground">
+          {seller.name.charAt(0).toUpperCase()}
+        </span>
+        <div className="flex min-w-0 flex-col gap-1">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-3xl font-semibold tracking-tight">{seller.name}</h1>
+            {seller.isStore ? <Badge variant="secondary">Store</Badge> : null}
+          </div>
+          <p className="text-muted-foreground">{facts.join(' · ')}</p>
         </div>
-        <p className="text-muted-foreground">{facts.join(' · ')}</p>
       </div>
 
-      {listings.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed py-16 text-center">
-          <p className="font-medium">No ads right now</p>
-          <p className="text-sm text-muted-foreground">
-            This seller has nothing for sale at the moment.
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {listings.map((listing) => (
-            <ListingCard key={listing.id} item={toListingCardItem(listing)} />
-          ))}
-        </div>
-      )}
+      <section className="flex flex-col gap-4">
+        <h2 className="font-heading text-2xl font-bold">
+          {listings.length === 1 ? '1 ad' : `${listings.length} ads`}
+        </h2>
+
+        {listings.length === 0 ? (
+          <EmptyState
+            icon={<PackageOpenIcon />}
+            title="Nothing for sale right now"
+            description="Check back later — sellers list new gear all the time."
+          />
+        ) : (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+            {listings.map((listing) => (
+              <ListingCard key={listing.id} item={toListingCardItem(listing)} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

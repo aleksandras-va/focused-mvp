@@ -14,7 +14,7 @@ interface InclusionFieldsProps {
 export function InclusionFields({ options, selected, onToggle }: InclusionFieldsProps) {
   return (
     <FieldSet>
-      <FieldLegend>What is included</FieldLegend>
+      <FieldLegend variant="label">What is included</FieldLegend>
       <div className="grid gap-3 sm:grid-cols-2">
         {options.map((inclusion) => (
           <Label key={inclusion.value} className="flex items-center gap-2 font-normal">

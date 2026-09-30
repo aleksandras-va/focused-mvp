@@ -85,13 +85,8 @@ export function ItemFields({
   };
 
   return (
-    <Card className="ring-foreground/20">
-      {isBundle ? (
-        <ItemHeader
-          title={item.model?.displayName || item.custom?.name.trim() || `Item ${index + 1}`}
-          onRemove={onRemove}
-        />
-      ) : null}
+    <Card>
+      <ItemHeader title={isBundle ? `Item ${index + 1}` : 'Item'} onRemove={onRemove} />
 
       <CardContent className="flex flex-col gap-6">
         <ModelField

@@ -12,9 +12,15 @@ interface ItemHeaderProps {
 export function ItemHeader({ title, onRemove }: ItemHeaderProps) {
   return (
     <CardHeader className="flex flex-row items-center justify-between">
-      <CardTitle className="text-base">{title}</CardTitle>
+      <CardTitle>{title}</CardTitle>
       {onRemove ? (
-        <Button type="button" variant="ghost" size="icon" onClick={onRemove}>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon-sm"
+          aria-label="Remove item"
+          onClick={onRemove}
+        >
           <XIcon />
         </Button>
       ) : null}

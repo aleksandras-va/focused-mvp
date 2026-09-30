@@ -4,21 +4,21 @@ export function welcomeEmail(displayName: string) {
   const name = escapeHtml(displayName);
 
   return {
-    subject: 'Welcome to Focused',
+    subject: 'Welcome to exposé',
     text: [
       `Hi ${displayName},`,
       '',
-      'Your Focused account is ready. You can now list your cameras, lenses and accessories.',
+      'Your exposé account is ready. You can now list your cameras, lenses and accessories.',
       '',
       'Pick the exact model when you sell, so buyers searching for it find your ad.',
       '',
-      'Focused',
+      'exposé',
     ].join('\n'),
     html: [
       `<p>Hi ${name},</p>`,
-      '<p>Your Focused account is ready. You can now list your cameras, lenses and accessories.</p>',
+      '<p>Your exposé account is ready. You can now list your cameras, lenses and accessories.</p>',
       '<p>Pick the exact model when you sell, so buyers searching for it find your ad.</p>',
-      '<p>Focused</p>',
+      '<p>exposé</p>',
     ].join(''),
   };
 }

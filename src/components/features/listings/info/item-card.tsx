@@ -24,9 +24,7 @@ export function ListingItemCard({ item, inBundleOverview }: ListingItemCardProps
             <Link href={`/items/${item.id}`} className="font-medium hover:underline">
               {item.modelName}
             </Link>
-            <span className="font-heading font-semibold">
-              {formatOptionalPrice(item.priceCents)}
-            </span>
+            <span className="font-semibold">{formatOptionalPrice(item.priceCents)}</span>
           </div>
         ) : null}
         <DetailRow label="Cosmetic" value={item.cosmeticCondition} />

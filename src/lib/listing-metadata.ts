@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 import { formatCount, formatPrice } from './format';
 
-const SITE_NAME = 'Focused';
+const SITE_NAME = 'exposé';
 
 function joinParts(parts: (string | null)[]) {
   return parts.filter(Boolean).join(' · ');

@@ -1,19 +1,20 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Nunito } from 'next/font/google';
+import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
 import { getSearchSuggestionsAction, searchSiteAction } from './actions';
 import './globals.css';
 import { cn } from '@/lib/utils';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin', 'latin-ext'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const nunito = Nunito({
+  variable: '--font-nunito',
+  subsets: ['latin', 'latin-ext'],
 });
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -22,26 +23,24 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: 'Focused', template: '%s | Focused' },
+  title: { default: 'exposé', template: '%s | exposé' },
   description: 'Marketplace for used cameras and lenses',
-  openGraph: { type: 'website', siteName: 'Focused' },
+  openGraph: { type: 'website', siteName: 'exposé' },
 };
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const user = await authService.getCurrentUserCached();
 
   return (
-    <html lang="en" className={cn(geistSans.variable, geistMono.variable, 'h-full', 'antialiased')}>
+    <html lang="en" className={cn(inter.variable, nunito.variable, 'h-full', 'antialiased')}>
       <body className="flex min-h-full flex-col">
         <SiteHeader
           user={user}
           searchAction={searchSiteAction}
           suggestionsAction={getSearchSuggestionsAction}
         />
-
-        <div className="flex-1">
-          <main className="mx-auto w-full max-w-6xl px-6 py-10">{children}</main>
-        </div>
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

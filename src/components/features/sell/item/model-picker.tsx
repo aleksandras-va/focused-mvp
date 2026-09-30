@@ -45,7 +45,10 @@ export function ModelPicker({ searchAction, selected, onSelect, onAddByName }: M
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
-          <Button variant="outline" className="h-9 w-full justify-between font-normal">
+          <Button
+            variant="outline"
+            className="w-full justify-between rounded-xl px-3.5 font-normal"
+          >
             <span className={selected ? '' : 'text-muted-foreground'}>
               {selected ? selected.displayName : 'Search for a camera, lens or accessory'}
             </span>

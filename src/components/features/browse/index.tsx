@@ -1,13 +1,19 @@
+import { SearchXIcon, XIcon } from 'lucide-react';
 import Link from 'next/link';
-import { type FeaturedPhoto, Hero } from '@/components/features/browse/hero';
+import { FilterForm } from '@/components/features/browse/filter-form';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { buttonVariants } from '@/components/ui/button';
+import { EmptyState } from '@/components/ui/empty-state';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
-import { BROWSE_SORTS, type BrowseFilters, hasActiveFilters } from '@/lib/browse-filters';
-import { CATEGORY_LABELS, COSMETIC_CONDITIONS } from '@/lib/listing-options';
+import { PillLink } from '@/components/ui/pill-link';
+import type { ModelCategory } from '@/db/tables';
+import {
+  BROWSE_SORTS,
+  type BrowseFilters,
+  browseHref,
+  hasActiveFilters,
+} from '@/lib/browse-filters';
+import { CATEGORY_PLURAL_LABELS, COSMETIC_CONDITIONS } from '@/lib/listing-options';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
 type BrowseProps = {
@@ -18,151 +24,178 @@ type BrowseProps = {
     mounts: { slug: string; name: string }[];
   };
   modelName: string | null;
-  featuredPhoto: FeaturedPhoto;
 };
 
-export function Browse({ listings, filters, options, modelName, featuredPhoto }: BrowseProps) {
-  const cents = (value: number | null) => (value === null ? '' : String(value / 100));
+const categories: ModelCategory[] = ['camera', 'lens', 'accessory'];
+
+const pillSelectClass =
+  '[&>select]:rounded-full [&>select]:border-border [&>select]:hover:bg-muted';
+
+const priceInputClass =
+  'w-14 bg-transparent text-sm outline-none placeholder:text-muted-foreground [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
+
+export function Browse({ listings, filters, options, modelName }: BrowseProps) {
+  const euros = (value: number | null) => (value === null ? '' : String(value / 100));
+  const heading = filters.category ? CATEGORY_PLURAL_LABELS[filters.category] : 'All items';
 
   return (
-    <>
-      {hasActiveFilters(filters) ? null : <Hero photo={featuredPhoto} />}
-
-      <div className="flex flex-col gap-2">
-        <h1 className="font-heading text-3xl font-semibold tracking-tight">
-          Used cameras and lenses
-        </h1>
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-1">
+        <h1 className="font-heading text-3xl font-bold sm:text-4xl">{heading}</h1>
         <p className="text-muted-foreground">
-          Every listing is tied to a real model, so specs and search actually work.
+          {listings.length === 1 ? '1 item' : `${listings.length} items`}
         </p>
       </div>
 
-      <form method="get" action="/" className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-7">
+      <nav className="-mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+        <PillLink
+          href={browseHref(filters, { category: null })}
+          isActive={filters.category === null}
+        >
+          All
+        </PillLink>
+        {categories.map((category) => (
+          <PillLink
+            key={category}
+            href={browseHref(filters, { category })}
+            isActive={filters.category === category}
+          >
+            {CATEGORY_PLURAL_LABELS[category]}
+          </PillLink>
+        ))}
+      </nav>
+
+      <FilterForm>
+        {filters.category ? <input type="hidden" name="category" value={filters.category} /> : null}
         {filters.model ? <input type="hidden" name="model" value={filters.model} /> : null}
 
-        <FilterField label="Category">
-          <NativeSelect name="category" defaultValue={filters.category ?? ''}>
-            <NativeSelectOption value="">All</NativeSelectOption>
-            {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-              <NativeSelectOption key={value} value={value}>
-                {label}
-              </NativeSelectOption>
-            ))}
-          </NativeSelect>
-        </FilterField>
+        <NativeSelect
+          name="brand"
+          aria-label="Brand"
+          defaultValue={filters.brand ?? ''}
+          className={pillSelectClass}
+        >
+          <NativeSelectOption value="">All brands</NativeSelectOption>
+          {options.brands.map((brand) => (
+            <NativeSelectOption key={brand.slug} value={brand.slug}>
+              {brand.name}
+            </NativeSelectOption>
+          ))}
+        </NativeSelect>
 
-        <FilterField label="Brand">
-          <NativeSelect name="brand" defaultValue={filters.brand ?? ''}>
-            <NativeSelectOption value="">All</NativeSelectOption>
-            {options.brands.map((brand) => (
-              <NativeSelectOption key={brand.slug} value={brand.slug}>
-                {brand.name}
-              </NativeSelectOption>
-            ))}
-          </NativeSelect>
-        </FilterField>
+        <NativeSelect
+          name="mount"
+          aria-label="Mount"
+          defaultValue={filters.mount ?? ''}
+          className={pillSelectClass}
+        >
+          <NativeSelectOption value="">All mounts</NativeSelectOption>
+          {options.mounts.map((mount) => (
+            <NativeSelectOption key={mount.slug} value={mount.slug}>
+              {mount.name}
+            </NativeSelectOption>
+          ))}
+        </NativeSelect>
 
-        <FilterField label="Mount">
-          <NativeSelect name="mount" defaultValue={filters.mount ?? ''}>
-            <NativeSelectOption value="">All</NativeSelectOption>
-            {options.mounts.map((mount) => (
-              <NativeSelectOption key={mount.slug} value={mount.slug}>
-                {mount.name}
-              </NativeSelectOption>
-            ))}
-          </NativeSelect>
-        </FilterField>
+        <NativeSelect
+          name="condition"
+          aria-label="Condition"
+          defaultValue={filters.cosmeticCondition ?? ''}
+          className={pillSelectClass}
+        >
+          <NativeSelectOption value="">Any condition</NativeSelectOption>
+          {COSMETIC_CONDITIONS.map((condition) => (
+            <NativeSelectOption key={condition.value} value={condition.value}>
+              {condition.label}
+            </NativeSelectOption>
+          ))}
+        </NativeSelect>
 
-        <FilterField label="Min price">
-          <Input
+        <div className="flex h-10 items-center gap-1.5 rounded-full border px-3.5 text-sm">
+          <span className="text-muted-foreground">€</span>
+          <input
             name="min"
             type="number"
             min="0"
             step="1"
-            defaultValue={cents(filters.minPriceCents)}
+            placeholder="Min"
+            aria-label="Minimum price"
+            defaultValue={euros(filters.minPriceCents)}
+            className={priceInputClass}
           />
-        </FilterField>
-
-        <FilterField label="Max price">
-          <Input
+          <span className="text-muted-foreground">–</span>
+          <input
             name="max"
             type="number"
             min="0"
             step="1"
-            defaultValue={cents(filters.maxPriceCents)}
+            placeholder="Max"
+            aria-label="Maximum price"
+            defaultValue={euros(filters.maxPriceCents)}
+            className={priceInputClass}
           />
-        </FilterField>
+        </div>
 
-        <FilterField label="Condition">
-          <NativeSelect name="condition" defaultValue={filters.cosmeticCondition ?? ''}>
-            <NativeSelectOption value="">Any</NativeSelectOption>
-            {COSMETIC_CONDITIONS.map((condition) => (
-              <NativeSelectOption key={condition.value} value={condition.value}>
-                {condition.label}
-              </NativeSelectOption>
-            ))}
-          </NativeSelect>
-        </FilterField>
+        {modelName ? (
+          <Link
+            href={browseHref(filters, { model: null })}
+            className="flex h-10 items-center gap-1.5 rounded-full bg-accent pr-2.5 pl-3.5 text-sm font-medium text-accent-foreground"
+          >
+            {modelName}
+            <XIcon className="size-4" />
+          </Link>
+        ) : null}
 
-        <FilterField label="Sort">
-          <NativeSelect name="sort" defaultValue={filters.sort}>
+        {hasActiveFilters(filters) ? (
+          <Link href="/items" className="px-2 text-sm text-muted-foreground hover:text-foreground">
+            Clear
+          </Link>
+        ) : null}
+
+        <div className="ml-auto flex items-center gap-2 text-sm text-muted-foreground">
+          <label htmlFor="browse-sort">Sort</label>
+          <NativeSelect
+            id="browse-sort"
+            name="sort"
+            defaultValue={filters.sort}
+            className={pillSelectClass}
+          >
             {BROWSE_SORTS.map((sort) => (
               <NativeSelectOption key={sort.value} value={sort.value}>
                 {sort.label}
               </NativeSelectOption>
             ))}
           </NativeSelect>
-        </FilterField>
-
-        <div className="flex items-end gap-2 sm:col-span-3 lg:col-span-7">
-          <Button type="submit">Apply</Button>
-          {hasActiveFilters(filters) ? (
-            <Link href="/" className="text-sm text-muted-foreground hover:underline">
-              Clear filters
-            </Link>
-          ) : null}
-          {modelName ? (
-            <Badge variant="secondary" className="ml-auto">
-              Model: {modelName}
-            </Badge>
-          ) : null}
         </div>
-      </form>
+      </FilterForm>
 
       {listings.length === 0 ? (
-        <div className="mt-12 flex flex-col items-center gap-2 rounded-xl border border-dashed py-16 text-center">
-          <p className="font-medium">No listings match</p>
-          <p className="text-sm text-muted-foreground">
-            {hasActiveFilters(filters)
+        <EmptyState
+          icon={<SearchXIcon />}
+          title={hasActiveFilters(filters) ? 'No listings match' : 'Nothing listed yet'}
+          description={
+            hasActiveFilters(filters)
               ? 'Try fewer filters, or check back later.'
-              : 'Nothing has been listed yet — be the first.'}
-          </p>
+              : 'Be the first to list something.'
+          }
+        >
           {hasActiveFilters(filters) ? (
-            <Link href="/" className="text-sm underline">
+            <Link href="/items" className={buttonVariants({ variant: 'outline' })}>
               Clear filters
             </Link>
           ) : (
-            <Link href="/sell" className="text-sm underline">
+            <Link href="/sell" className={buttonVariants({ variant: 'outline' })}>
               Sell gear
             </Link>
           )}
-        </div>
+        </EmptyState>
       ) : (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {listings.map((listing) => (
             <ListingCard key={listing.id} item={toListingCardItem(listing)} />
           ))}
         </div>
       )}
-    </>
-  );
-}
-
-function FilterField({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <Label className="flex flex-col items-start gap-1.5 text-xs text-muted-foreground">
-      {label}
-      {children}
-    </Label>
+    </div>
   );
 }

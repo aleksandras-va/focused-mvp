@@ -1,6 +1,7 @@
 'use client';
 
-import { Field, FieldLabel } from '@/components/ui/field';
+import { FormSection } from '@/components/features/sell/form-section';
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -20,21 +21,23 @@ export function AdFields({
   onDescriptionChange,
 }: AdFieldsProps) {
   return (
-    <>
+    <FormSection title="About the ad">
       {isBundle ? (
-        <div className="grid gap-6 sm:grid-cols-2">
-          <Field>
-            <FieldLabel htmlFor="bundlePrice">Bundle price (EUR)</FieldLabel>
-            <Input
-              id="bundlePrice"
-              type="number"
-              min="0"
-              step="1"
-              value={bundlePrice}
-              onChange={(event) => onBundlePriceChange(event.target.value)}
-            />
-          </Field>
-        </div>
+        <Field>
+          <FieldLabel htmlFor="bundlePrice">Bundle price (EUR)</FieldLabel>
+          <Input
+            id="bundlePrice"
+            type="number"
+            min="0"
+            step="1"
+            value={bundlePrice}
+            className="max-w-48"
+            onChange={(event) => onBundlePriceChange(event.target.value)}
+          />
+          <FieldDescription>
+            Below the items combined, and the ad gets a discount label.
+          </FieldDescription>
+        </Field>
       ) : null}
 
       <Field>
@@ -47,6 +50,6 @@ export function AdFields({
           onChange={(event) => onDescriptionChange(event.target.value)}
         />
       </Field>
-    </>
+    </FormSection>
   );
 }

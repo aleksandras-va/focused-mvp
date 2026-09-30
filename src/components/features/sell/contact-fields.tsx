@@ -1,7 +1,8 @@
 'use client';
 
+import { FormSection } from '@/components/features/sell/form-section';
 import { CitySelect } from '@/components/ui/city-select';
-import { Field, FieldDescription, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field';
+import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import type { City } from '@/services/city/city.types';
 
@@ -25,11 +26,10 @@ export function ContactFields({
   onCityChange,
 }: ContactFieldsProps) {
   return (
-    <FieldSet>
-      <FieldLegend>Contact</FieldLegend>
-      <FieldDescription>
-        Prefilled from your profile — edit it for this listing only.
-      </FieldDescription>
+    <FormSection
+      title="Contact"
+      description="Prefilled from your profile — edit it for this ad only."
+    >
       <div className="grid gap-6 sm:grid-cols-2">
         <Field>
           <FieldLabel htmlFor="contactEmail">Email</FieldLabel>
@@ -60,6 +60,6 @@ export function ContactFields({
           />
         </Field>
       </div>
-    </FieldSet>
+    </FormSection>
   );
 }
