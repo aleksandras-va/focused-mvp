@@ -3,6 +3,7 @@
 import { UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { MobileMenu } from '@/components/features/header/mobile-menu';
 import { useScrolled } from '@/components/features/header/use-scrolled';
 import { SearchOverlay } from '@/components/features/search';
 import { buttonVariants } from '@/components/ui/button';
@@ -63,7 +64,7 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
               href="/user"
               className={cn(
                 buttonVariants({ variant: 'ghost' }),
-                'px-2 group-data-overlay/header:hover:bg-white/10 group-data-overlay/header:hover:text-white',
+                'hidden px-2 group-data-overlay/header:hover:bg-white/10 group-data-overlay/header:hover:text-white md:inline-flex',
               )}
             >
               <UserIcon />
@@ -74,7 +75,7 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
               href="/login"
               className={cn(
                 buttonVariants({ variant: 'ghost' }),
-                'hidden group-data-overlay/header:hover:bg-white/10 group-data-overlay/header:hover:text-white sm:inline-flex',
+                'hidden group-data-overlay/header:hover:bg-white/10 group-data-overlay/header:hover:text-white md:inline-flex',
               )}
             >
               Log in
@@ -84,6 +85,8 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
           <Link href="/sell" className={buttonVariants({ variant: 'sun' })}>
             Sell gear
           </Link>
+
+          <MobileMenu user={user} navigation={navigation} />
         </div>
       </div>
     </header>

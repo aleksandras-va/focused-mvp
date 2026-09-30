@@ -1,7 +1,9 @@
-import { XIcon } from 'lucide-react';
+import { SearchXIcon, XIcon } from 'lucide-react';
 import Link from 'next/link';
 import { FilterForm } from '@/components/features/browse/filter-form';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
+import { buttonVariants } from '@/components/ui/button';
+import { EmptyState } from '@/components/ui/empty-state';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
 import { PillLink } from '@/components/ui/pill-link';
 import type { ModelCategory } from '@/db/tables';
@@ -168,23 +170,25 @@ export function Browse({ listings, filters, options, modelName }: BrowseProps) {
       </FilterForm>
 
       {listings.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed py-16 text-center">
-          <p className="font-medium">No listings match</p>
-          <p className="text-sm text-muted-foreground">
-            {hasActiveFilters(filters)
+        <EmptyState
+          icon={<SearchXIcon />}
+          title={hasActiveFilters(filters) ? 'No listings match' : 'Nothing listed yet'}
+          description={
+            hasActiveFilters(filters)
               ? 'Try fewer filters, or check back later.'
-              : 'Nothing has been listed yet — be the first.'}
-          </p>
+              : 'Be the first to list something.'
+          }
+        >
           {hasActiveFilters(filters) ? (
-            <Link href="/items" className="text-sm text-primary underline underline-offset-4">
+            <Link href="/items" className={buttonVariants({ variant: 'outline' })}>
               Clear filters
             </Link>
           ) : (
-            <Link href="/sell" className="text-sm text-primary underline underline-offset-4">
+            <Link href="/sell" className={buttonVariants({ variant: 'outline' })}>
               Sell gear
             </Link>
           )}
-        </div>
+        </EmptyState>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {listings.map((listing) => (

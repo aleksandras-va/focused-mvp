@@ -1,8 +1,11 @@
+import { CameraIcon } from 'lucide-react';
 import Link from 'next/link';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
 import { CategoryPills } from '@/components/features/home/category-pills';
 import { type FeaturedPhoto, Hero } from '@/components/features/home/hero';
 import { SellBreak } from '@/components/features/home/sell-break';
+import { buttonVariants } from '@/components/ui/button';
+import { EmptyState } from '@/components/ui/empty-state';
 import type { ModelCategory } from '@/db/tables';
 import { CATEGORY_PLURAL_LABELS } from '@/lib/listing-options';
 import type { ListingSummary } from '@/services/listing/listing.types';
@@ -29,13 +32,15 @@ export function Home({ listings, category, featuredPhoto }: HomeProps) {
           </h2>
 
           {listings.length === 0 ? (
-            <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed py-16 text-center">
-              <p className="font-medium">Nothing here yet</p>
-              <p className="text-sm text-muted-foreground">Be the first to list one.</p>
-              <Link href="/sell" className="text-sm text-primary underline underline-offset-4">
+            <EmptyState
+              icon={<CameraIcon />}
+              title="Nothing here yet"
+              description="Be the first to list one."
+            >
+              <Link href="/sell" className={buttonVariants({ variant: 'outline' })}>
                 Sell gear
               </Link>
-            </div>
+            </EmptyState>
           ) : (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
               {listings.map((listing) => (

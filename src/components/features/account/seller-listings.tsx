@@ -1,6 +1,8 @@
+import { CameraIcon } from 'lucide-react';
 import Link from 'next/link';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
 import { buttonVariants } from '@/components/ui/button';
+import { EmptyState } from '@/components/ui/empty-state';
 import { cn } from '@/lib/utils';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
@@ -16,12 +18,11 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
       </div>
 
       {listings.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed py-16 text-center">
-          <p className="font-medium">No ads yet</p>
-          <p className="text-sm text-muted-foreground">
-            List a camera, lens or accessory in a few minutes.
-          </p>
-        </div>
+        <EmptyState
+          icon={<CameraIcon />}
+          title="No ads yet"
+          description="List a camera, lens or accessory in a few minutes."
+        />
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {listings.map((listing) => (

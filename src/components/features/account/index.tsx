@@ -29,7 +29,7 @@ export function Account({
 }: AccountProps) {
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
           <h1 className="font-heading text-3xl font-bold">Your account</h1>
           <p className="text-muted-foreground">{user.email}</p>

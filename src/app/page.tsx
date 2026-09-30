@@ -6,7 +6,7 @@ import { listingService } from '@/services/listing/listing.service';
 const RECENT_LISTINGS = 8;
 
 const featuredPhoto = {
-  imageUrl: '/images/hero/hero.avif',
+  imageUrl: '/images/hero/herox.jpg',
   place: 'Palanga',
   takenOn: '2025-07',
   gear: 'Sony A7R',
