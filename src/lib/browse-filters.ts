@@ -54,22 +54,51 @@ export function parseBrowseFilters(params: SearchParams): BrowseFilters {
   };
 }
 
-export function browseHref(filters: BrowseFilters, overrides: Partial<BrowseFilters> = {}) {
-  const merged = { ...filters, ...overrides };
-  const params = new URLSearchParams();
+const MAX_BROWSE_PAGE = 50;
 
-  if (merged.category) params.set('category', merged.category);
-  if (merged.brand) params.set('brand', merged.brand);
-  if (merged.mount) params.set('mount', merged.mount);
-  if (merged.model) params.set('model', merged.model);
-  if (merged.minPriceCents !== null) params.set('min', String(merged.minPriceCents / 100));
-  if (merged.maxPriceCents !== null) params.set('max', String(merged.maxPriceCents / 100));
-  if (merged.cosmeticCondition) params.set('condition', merged.cosmeticCondition);
-  if (merged.sort !== 'newest') params.set('sort', merged.sort);
+export function parseBrowsePage(params: SearchParams): number {
+  const page = Number(single(params, 'page'));
+
+  return Number.isInteger(page) && page >= 1 ? Math.min(page, MAX_BROWSE_PAGE) : 1;
+}
+
+export function browseParams(filters: BrowseFilters): [name: string, value: string][] {
+  const params: [string, string][] = [];
+
+  if (filters.category) params.push(['category', filters.category]);
+  if (filters.brand) params.push(['brand', filters.brand]);
+  if (filters.mount) params.push(['mount', filters.mount]);
+  if (filters.model) params.push(['model', filters.model]);
+  if (filters.minPriceCents !== null) params.push(['min', String(filters.minPriceCents / 100)]);
+  if (filters.maxPriceCents !== null) params.push(['max', String(filters.maxPriceCents / 100)]);
+  if (filters.cosmeticCondition) params.push(['condition', filters.cosmeticCondition]);
+  if (filters.sort !== 'newest') params.push(['sort', filters.sort]);
+
+  return params;
+}
+
+export function browseHref(
+  filters: BrowseFilters,
+  overrides: Partial<BrowseFilters> = {},
+  page = 1,
+) {
+  const params = new URLSearchParams(browseParams({ ...filters, ...overrides }));
+
+  if (page > 1) params.set('page', String(page));
 
   const query = params.toString();
 
-  return query ? `/items?${query}` : '/items';
+  return query ? `/?${query}` : '/';
+}
+
+export function countAdvancedFilters(filters: BrowseFilters) {
+  return [
+    filters.brand,
+    filters.mount,
+    filters.cosmeticCondition,
+    filters.minPriceCents,
+    filters.maxPriceCents,
+  ].filter((value) => value !== null).length;
 }
 
 export function hasActiveFilters(filters: BrowseFilters) {

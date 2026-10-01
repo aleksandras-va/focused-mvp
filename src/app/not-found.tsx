@@ -10,11 +10,8 @@ export default function NotFound() {
         The ad may have been sold or removed, or the link is wrong.
       </p>
       <div className="mt-2 flex gap-2">
-        <Link href="/" className={buttonVariants({ variant: 'outline' })}>
-          Home
-        </Link>
-        <Link href="/items" className={buttonVariants()}>
-          Browse items
+        <Link href="/" className={buttonVariants()}>
+          Browse gear
         </Link>
       </div>
     </div>

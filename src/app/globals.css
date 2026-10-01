@@ -57,6 +57,7 @@
   --container-content: 72.5rem;
   --container-nav: 77rem;
   --spacing-header: 5.5rem;
+  --spacing-header-expansion: 3.75rem;
 }
 
 :root {

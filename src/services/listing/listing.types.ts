@@ -26,6 +26,11 @@ export interface ListingSummary {
   isOwner: boolean;
 }
 
+export interface ListingPage {
+  listings: ListingSummary[];
+  hasMore: boolean;
+}
+
 export interface ListingItemDetail {
   id: string;
   modelName: string;

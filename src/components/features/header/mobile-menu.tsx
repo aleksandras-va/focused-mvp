@@ -27,14 +27,7 @@ export function MobileMenu({ user, navigation }: MobileMenuProps) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Menu"
-            className="group-data-overlay/header:hover:bg-white/10 group-data-overlay/header:hover:text-white md:hidden"
-          />
-        }
+        render={<Button variant="ghost" size="icon" aria-label="Menu" className="md:hidden" />}
       >
         <MenuIcon className="size-5" />
       </SheetTrigger>

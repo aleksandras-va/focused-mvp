@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { Logo } from '@/components/ui/logo';
 
 const links = [
-  { href: '/items?category=camera', label: 'Cameras' },
-  { href: '/items?category=lens', label: 'Lenses' },
-  { href: '/items?category=accessory', label: 'Accessories' },
+  { href: '/?category=camera', label: 'Cameras' },
+  { href: '/?category=lens', label: 'Lenses' },
+  { href: '/?category=accessory', label: 'Accessories' },
   { href: '/sell', label: 'Sell gear' },
 ];
 

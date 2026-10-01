@@ -5,7 +5,7 @@ Onion layering. Dependencies point inward, never back out.
 ```
 src/
   app/            Next.js App Router: pages, layouts, Server Actions, Route Handlers
-                  page.tsx is the homepage; every other page lives in the (site) group
+                  every page lives in the (site) group, the homepage included
   components/     ui/ is atomic (shadcn + our own); features/ is significant composition
   lib/            leaf modules with no layer dependencies (shadcn utils, enum labels, formatters)
   services/       use cases; the only layer app/ may import
@@ -122,9 +122,8 @@ Push `'use client'` to the leaf that needs it. A feature is not a client compone
 because one of its children is interactive.
 
 Pages stay thin. Page chrome — the content container, width, padding — lives in
-`app/(site)/layout.tsx`. The homepage sits outside that group so its hero can run
-full-bleed under the floating header; `app/layout.tsx` holds only fonts, header and
-footer.
+`app/(site)/layout.tsx`; `app/layout.tsx` holds only fonts, header and footer. The
+homepage adds `pt-header-expansion` because the header is taller there.
 
 ### `src/app/` — delivery
 
