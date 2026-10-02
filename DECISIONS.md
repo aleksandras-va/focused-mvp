@@ -145,7 +145,7 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 ## Design
 
 - The visible brand is "exposé" (expose.lt); code, package and docs keep "focused".
-- Nunito bold for the site's own voice (headings, section titles); Inter for everything
+- Geist bold for the site's own voice (headings, section titles); Inter for everything
   else, model names included. The logo is an inline SVG component filled with
   `currentColor`.
 - White background, cool greys, a muted sea blue as primary, apricot "sun" for the sell

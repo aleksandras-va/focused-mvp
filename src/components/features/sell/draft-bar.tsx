@@ -36,7 +36,7 @@ export function DraftBar({ state, previewHref }: DraftBarProps) {
           href={previewHref}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline"
+          className="flex items-center gap-1 font-medium text-foreground underline underline-offset-4 hover:no-underline"
         >
           Preview
           <ExternalLinkIcon className="size-3.5" />

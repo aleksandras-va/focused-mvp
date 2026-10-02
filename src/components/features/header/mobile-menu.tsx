@@ -64,7 +64,7 @@ export function MobileMenu({ user, navigation }: MobileMenuProps) {
               Log in
             </Link>
           )}
-          <Link href="/sell" onClick={close} className={buttonVariants({ variant: 'sun' })}>
+          <Link href="/sell" onClick={close} className={buttonVariants()}>
             Sell gear
           </Link>
         </SheetFooter>

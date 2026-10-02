@@ -12,7 +12,7 @@ export function SearchTrigger({ onClick, className }: SearchTriggerProps) {
       type="button"
       onClick={onClick}
       className={cn(
-        'relative flex h-10 w-full cursor-pointer items-center justify-center rounded-full bg-muted px-11 text-sm text-muted-foreground transition-colors outline-none hover:bg-secondary focus-visible:ring-3 focus-visible:ring-ring/50',
+        'relative flex h-10 w-full cursor-pointer items-center justify-center rounded-full bg-muted px-11 text-sm text-muted-foreground transition-colors outline-none hover:bg-foreground/10 focus-visible:ring-3 focus-visible:ring-ring/50',
         className,
       )}
     >

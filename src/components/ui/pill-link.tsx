@@ -14,10 +14,10 @@ export function PillLink({ href, isActive, className, children }: PillLinkProps)
       href={href}
       aria-current={isActive ? 'page' : undefined}
       className={cn(
-        'inline-flex h-10 shrink-0 items-center rounded-full px-4 text-sm font-medium transition-colors',
+        'inline-flex h-10 shrink-0 items-center rounded-full px-6 text-sm font-medium transition-colors',
         isActive
-          ? 'bg-primary text-primary-foreground'
-          : 'bg-secondary text-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_6%)]',
+          ? 'bg-primary text-secondary-foreground'
+          : 'bg-muted text-foreground hover:bg-primary/55',
         className,
       )}
     >

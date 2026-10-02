@@ -47,7 +47,9 @@ export function Browse({
   return (
     <div className="flex flex-col gap-6 pt-header-expansion">
       <div className="flex flex-col gap-1">
-        <h1 className="font-heading text-3xl font-bold sm:text-4xl">Second-hand camera gear</h1>
+        <h1 className="font-heading text-3xl font-extrabold sm:text-4xl">
+          Second-hand camera gear
+        </h1>
         <p className="text-muted-foreground">From people who actually shot with it.</p>
       </div>
 

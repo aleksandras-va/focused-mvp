@@ -20,7 +20,7 @@ export function Thumbnails({ photos, selectedIndex, title, onSelect }: Thumbnail
           onClick={() => onSelect(index)}
           className={cn(
             'overflow-hidden rounded-xl ring-2 ring-offset-2 ring-offset-background transition',
-            index === selectedIndex ? 'ring-primary' : 'ring-transparent hover:ring-border',
+            index === selectedIndex ? 'ring-foreground' : 'ring-transparent hover:ring-border',
           )}
         >
           {/* biome-ignore lint/performance/noImgElement: photos come from R2, not the image optimizer */}
