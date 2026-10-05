@@ -5,7 +5,7 @@ import { MAX_PHOTOS } from '@/lib/photos';
 import { type ListingItemInput, listingRepository } from '@/repositories/listing.repository';
 import { modelRepository } from '@/repositories/model.repository';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
-import { ITEM_ID_PATTERN, STORAGE_KEY_PATTERN } from './listing.constants';
+import { BROWSE_PAGE_SIZE, ITEM_ID_PATTERN, STORAGE_KEY_PATTERN } from './listing.constants';
 import { ListingError } from './listing.error';
 import { mapToDetail, mapToEditable, mapToSummary } from './listing.mappers';
 import type {
@@ -14,6 +14,7 @@ import type {
   CreateListingPayload,
   EditableListing,
   ListingDetail,
+  ListingPage,
   ListingSummary,
 } from './listing.types';
 import { optionalPriceCents, parsePriceCents, parseShutterCount } from './listing.utils';
@@ -35,14 +36,18 @@ export const listingService = {
     return mapToDetail(row, viewerId);
   },
 
-  async getPublished(
+  async getPublishedPage(
     filters: BrowseFilters,
     viewerId: string | null,
-    limit?: number,
-  ): Promise<ListingSummary[]> {
-    const rows = await listingRepository.listPublished(filters, limit);
+    page: number,
+  ): Promise<ListingPage> {
+    const limit = page * BROWSE_PAGE_SIZE;
+    const rows = await listingRepository.listPublished(filters, limit + 1);
 
-    return rows.map((row) => mapToSummary(row, viewerId));
+    return {
+      listings: rows.slice(0, limit).map((row) => mapToSummary(row, viewerId)),
+      hasMore: rows.length > limit,
+    };
   },
 
   async getPublishedBySeller(sellerId: string, viewerId: string | null): Promise<ListingSummary[]> {

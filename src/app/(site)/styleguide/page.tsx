@@ -15,9 +15,6 @@ const colors = [
   { name: 'background', className: 'bg-background' },
   { name: 'foreground', className: 'bg-foreground' },
   { name: 'primary', className: 'bg-primary' },
-  { name: 'sun', className: 'bg-sun' },
-  { name: 'coral', className: 'bg-coral' },
-  { name: 'moss', className: 'bg-moss' },
   { name: 'secondary', className: 'bg-secondary' },
   { name: 'muted', className: 'bg-muted' },
   { name: 'accent', className: 'bg-accent' },
@@ -29,7 +26,7 @@ const colors = [
 
 const buttonVariantNames = [
   'default',
-  'sun',
+  'dark',
   'secondary',
   'outline',
   'ghost',
@@ -75,9 +72,9 @@ export default function StyleguidePage() {
 
       <Section title="Type">
         <div className="flex flex-col gap-4">
-          <p className="font-heading font-bold text-5xl">Heading one, Nunito</p>
-          <p className="font-heading font-bold text-4xl">Heading two, Nunito</p>
-          <p className="font-heading font-bold text-2xl">Heading three, Nunito</p>
+          <p className="font-heading font-bold text-5xl">Heading one, Geist</p>
+          <p className="font-heading font-bold text-4xl">Heading two, Geist</p>
+          <p className="font-heading font-bold text-2xl">Heading three, Geist</p>
           <p className="text-xl font-medium">Fujifilm X-T3 — a model name stays in Inter</p>
           <p className="max-w-prose text-base">
             Body text in Inter. Every ad is tied to a real model, so specs and search actually work.

@@ -145,17 +145,25 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 ## Design
 
 - The visible brand is "exposé" (expose.lt); code, package and docs keep "focused".
-- Nunito bold for the site's own voice (headings, section titles); Inter for everything
+- Geist bold for the site's own voice (headings, section titles); Inter for everything
   else, model names included. The logo is an inline SVG component filled with
   `currentColor`.
 - White background, cool greys, a muted sea blue as primary, apricot "sun" for the sell
   call to action. Light mode only for now; tokens live in `globals.css`.
 - Rounded everywhere: pill buttons and filter pills, 12px inputs, 16px cards. Inputs and
   buttons are 40px tall.
-- The header is a floating pill; on the homepage it starts transparent over the hero and
-  gains its background on scroll.
-- `/` is the landing page (hero, category pills, eight recent ads, sell break). `/items`
-  is the full browse page with filters; every change resubmits the GET form.
+- The header is always a floating rounded bar. On the homepage at the top it is two rows:
+  logo, centred menu, account and sell above a large search field. On scroll, and on
+  every other page, it collapses to one row with the search field in place of the menu.
+- `/` is the browse page: no hero, so buyers start on the ads. Title, category pills on
+  the left, a Filters button and the sort dropdown on the right. Brand, mount, condition
+  and price sit in the Filters popover and apply on "Show results"; sort applies on
+  change. There is no `/items` list route.
+- Ads load 24 at a time; "Load more" is a link to `?page=n` that re-renders a longer
+  list on the server, with no client data layer.
+- Breaks divide the grid every 12 ads — a count that fills whole rows at four, three and
+  two columns. The first break is the featured photo, the second the sell call to
+  action; later groups run on without one.
 - Listing cards keep a light border and a grey price chin so any photo reads as a card.
 - The listing page shows the seller's phone as plain text to signed-in users only, never
   the email, plus a "Write a message" button that does nothing yet.

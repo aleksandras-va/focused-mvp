@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Nunito } from 'next/font/google';
+import { Geist, Inter } from 'next/font/google';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
@@ -12,8 +12,8 @@ const inter = Inter({
   subsets: ['latin', 'latin-ext'],
 });
 
-const nunito = Nunito({
-  variable: '--font-nunito',
+const geist = Geist({
+  variable: '--font-geist',
   subsets: ['latin', 'latin-ext'],
 });
 
@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const user = await authService.getCurrentUserCached();
 
   return (
-    <html lang="en" className={cn(inter.variable, nunito.variable, 'h-full', 'antialiased')}>
+    <html lang="en" className={cn(inter.variable, geist.variable, 'h-full', 'antialiased')}>
       <body className="flex min-h-full flex-col">
         <SiteHeader
           user={user}

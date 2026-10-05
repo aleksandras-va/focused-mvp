@@ -102,7 +102,7 @@ export function SellListing({
         onCityChange={sell.setCityId}
       />
 
-      <div className="sticky bottom-4 z-10 flex flex-wrap items-center justify-between gap-3 rounded-2xl border bg-background/90 p-3 pl-4 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.25)] backdrop-blur-xl">
+      <div className="sticky bottom-5 z-10 flex flex-wrap items-center justify-between gap-3 rounded-2xl border bg-background/90 p-3 pl-4 py-5 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.35)] backdrop-blur-xl mx-2">
         {sell.isEditingPublished ? (
           <p className="text-sm text-muted-foreground">Changes go live when you save.</p>
         ) : (
