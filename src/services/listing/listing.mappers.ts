@@ -1,7 +1,7 @@
 import 'server-only';
 
 import type { ModelCategory } from '@/db/types';
-import { LISTING_LABELS } from '@/lib/listing-options';
+import { inclusionsFor, LISTING_LABELS } from '@/lib/listing-options';
 import type {
   ListingCardRow,
   ListingDetailItemRow,
@@ -122,7 +122,19 @@ function mapToItemDetail(row: ListingDetailItemRow): ListingItemDetail {
     shutterCount: row.shutter_count,
     soldSeparately: row.sold_separately,
     inclusions: row.inclusions.map(({ inclusion }) => LISTING_LABELS.get(inclusion) ?? inclusion),
+    missingInclusions: missingInclusions(row),
   };
+}
+
+function missingInclusions(row: ListingDetailItemRow): string[] {
+  const included = new Set(row.inclusions.map(({ inclusion }) => inclusion));
+  const offered = inclusionsFor({
+    category: itemCategory(row),
+    isFilm: row.is_film ?? false,
+    hasMount: row.model_id === null || row.mount_name !== null,
+  });
+
+  return offered.filter(({ value }) => !included.has(value)).map(({ label }) => label);
 }
 
 function itemCategory(row: ListingDetailItemRow): ModelCategory {
