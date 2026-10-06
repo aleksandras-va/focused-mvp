@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CitySelect } from '@/components/ui/city-select';
-import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
+import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import type { AuthUser } from '@/services/auth/auth.types';
 import type { City } from '@/services/city/city.types';
+import { SettingsCard } from './settings-card';
 
 type ProfileFormProps = {
   user: AuthUser;
@@ -14,16 +14,17 @@ type ProfileFormProps = {
 
 export function ProfileForm({ user, cities, action }: ProfileFormProps) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Profile</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form action={action} className="flex flex-col gap-4">
-          <Field>
-            <FieldLabel htmlFor="profile-name">Name</FieldLabel>
-            <Input id="profile-name" name="displayName" defaultValue={user.displayName} required />
-          </Field>
+    <SettingsCard
+      title="Profile"
+      description="Prefilled on every new ad. You can still change it per ad."
+      className="flex-[1_1_26rem]"
+    >
+      <form action={action} className="flex flex-col gap-5">
+        <Field>
+          <FieldLabel htmlFor="profile-name">Name</FieldLabel>
+          <Input id="profile-name" name="displayName" defaultValue={user.displayName} required />
+        </Field>
+        <div className="grid gap-4 sm:grid-cols-2">
           <Field>
             <FieldLabel htmlFor="profile-phone">Phone</FieldLabel>
             <Input
@@ -33,7 +34,6 @@ export function ProfileForm({ user, cities, action }: ProfileFormProps) {
               placeholder="+370…"
               defaultValue={user.phone ?? ''}
             />
-            <FieldDescription>Prefilled as the contact phone on new ads.</FieldDescription>
           </Field>
           <Field>
             <FieldLabel htmlFor="profile-city">City</FieldLabel>
@@ -43,13 +43,12 @@ export function ProfileForm({ user, cities, action }: ProfileFormProps) {
               cities={cities}
               defaultValue={user.cityId}
             />
-            <FieldDescription>Prefilled as the city on new ads.</FieldDescription>
           </Field>
-          <Button type="submit" className="self-start">
-            Save
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+        </div>
+        <Button type="submit" className="self-start">
+          Save profile
+        </Button>
+      </form>
+    </SettingsCard>
   );
 }
