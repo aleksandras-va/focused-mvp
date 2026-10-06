@@ -6,9 +6,9 @@ import { InclusionFields } from '@/components/features/sell/item/inclusion-field
 import { ModelField } from '@/components/features/sell/item/model-field';
 import { PriceFields } from '@/components/features/sell/item/price-fields';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
-import { Card, CardContent } from '@/components/ui/card';
 import type { Inclusion, ModelCategory } from '@/db/tables';
 import { inclusionsFor } from '@/lib/listing-options';
+import { cn } from '@/lib/utils';
 import type { CustomItem } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
@@ -85,28 +85,30 @@ export function ItemFields({
   };
 
   return (
-    <Card>
-      <ItemHeader title={isBundle ? `Item ${index + 1}` : 'Item'} onRemove={onRemove} />
-
-      <CardContent className="flex flex-col gap-6">
-        <ModelField
-          model={item.model}
-          custom={item.custom}
-          searchAction={searchAction}
-          onSelect={selectModel}
-          onCustomChange={changeCustom}
-          onClear={clearModel}
+    <div
+      className={cn(
+        'flex flex-col gap-6',
+        isBundle && 'rounded-2xl border-2 border-foreground p-4 sm:p-5',
+      )}
+    >
+      {isBundle ? <ItemHeader title={`Item ${index + 1}`} onRemove={onRemove} /> : null}
+      <ModelField
+        model={item.model}
+        custom={item.custom}
+        searchAction={searchAction}
+        onSelect={selectModel}
+        onCustomChange={changeCustom}
+        onClear={clearModel}
+      />
+      <ConditionFields item={item} onChange={onChange} />
+      {availableInclusions.length > 0 ? (
+        <InclusionFields
+          options={availableInclusions}
+          selected={item.inclusions}
+          onToggle={toggleInclusion}
         />
-        <ConditionFields item={item} onChange={onChange} />
-        {availableInclusions.length > 0 ? (
-          <InclusionFields
-            options={availableInclusions}
-            selected={item.inclusions}
-            onToggle={toggleInclusion}
-          />
-        ) : null}
-        <PriceFields item={item} isBundle={isBundle} onChange={onChange} />
-      </CardContent>
-    </Card>
+      ) : null}
+      <PriceFields item={item} isBundle={isBundle} onChange={onChange} />
+    </div>
   );
 }

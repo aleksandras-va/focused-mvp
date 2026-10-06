@@ -179,6 +179,7 @@ export function useSellListing({
     bundlePrice,
     setBundlePrice,
     setPhotoKeys,
+    photoCount: photoKeys.length,
     cityId,
     setCityId,
     description,

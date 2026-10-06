@@ -25,6 +25,14 @@ export const LISTING_STATUS_LABELS: Record<ListingStatus, string> = {
   removed: 'Removed',
 };
 
+export const COSMETIC_CONDITION_HINTS: Record<CosmeticCondition, string> = {
+  mint: 'Looks new',
+  excellent: 'Barely any marks',
+  good: 'Light wear',
+  well_used: 'Visible wear',
+  damaged: 'Dents or cracks',
+};
+
 export const COSMETIC_CONDITIONS: { value: CosmeticCondition; label: string }[] = [
   { value: 'mint', label: 'Mint' },
   { value: 'excellent', label: 'Excellent' },
