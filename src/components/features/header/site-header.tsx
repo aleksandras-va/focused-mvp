@@ -48,7 +48,7 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
         <div className="mx-auto max-w-[calc(var(--container-nav)-1.75rem)]">
           <div className="relative flex h-14 items-center gap-1">
             <Link href="/" className="mr-3 flex items-center">
-              <Logo />
+              <Logo className="fill-primary" />
             </Link>
 
             <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex">
