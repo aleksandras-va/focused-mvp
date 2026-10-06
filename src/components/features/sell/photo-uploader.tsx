@@ -17,10 +17,16 @@ type UploadingPhoto = {
 type PhotoUploaderProps = {
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   onChange: (storageKeys: string[]) => void;
+  onCoverChange: (url: string | null) => void;
   initialPhotos: { storageKey: string; url: string }[];
 };
 
-export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUploaderProps) {
+export function PhotoUploader({
+  uploadAction,
+  onChange,
+  onCoverChange,
+  initialPhotos,
+}: PhotoUploaderProps) {
   const [photos, setPhotos] = useState<UploadingPhoto[]>(() =>
     initialPhotos.map((photo, index) => ({
       localId: index,
@@ -39,7 +45,8 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
         .filter((photo) => photo.status === 'done' && photo.storageKey)
         .map((photo) => photo.storageKey as string),
     );
-  }, [photos, onChange]);
+    onCoverChange(photos.find((photo) => photo.status !== 'error')?.previewUrl ?? null);
+  }, [photos, onChange, onCoverChange]);
 
   function patchPhoto(localId: number, patch: Partial<UploadingPhoto>) {
     setPhotos((current) =>
@@ -115,7 +122,7 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
     <div className="flex flex-col gap-3">
       <button
         type="button"
-        className="flex min-h-36 cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-dashed bg-muted/40 p-6 text-sm text-muted-foreground transition-colors hover:bg-muted"
+        className="flex min-h-32 cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-[1.5px] border-dashed border-input bg-muted/40 p-6 text-sm text-foreground/75 transition-colors hover:bg-muted"
         onClick={() => inputRef.current?.click()}
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => {
@@ -124,7 +131,7 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
         }}
       >
         <span className="flex size-11 items-center justify-center rounded-full bg-background shadow-sm">
-          <ImagePlusIcon className="size-5" />
+          <ImagePlusIcon className="size-5 text-primary" />
         </span>
         Drag photos here or click to choose (up to {MAX_PHOTOS})
       </button>
@@ -143,9 +150,9 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
       {message ? <p className="text-sm text-destructive">{message}</p> : null}
 
       {photos.length > 0 ? (
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] gap-3">
           {photos.map((photo, index) => (
-            <div key={photo.localId} className="group relative aspect-square">
+            <div key={photo.localId} className="group relative aspect-4/3">
               {/* biome-ignore lint/performance/noImgElement: previews are local object URLs */}
               <img
                 src={photo.previewUrl}
@@ -153,7 +160,7 @@ export function PhotoUploader({ uploadAction, onChange, initialPhotos }: PhotoUp
                 className={`size-full rounded-xl border object-cover ${photo.status === 'uploading' ? 'opacity-50' : ''} ${photo.status === 'error' ? 'opacity-30' : ''}`}
               />
               {index === 0 && photo.status === 'done' ? (
-                <Badge className="absolute bottom-1 left-1">Cover</Badge>
+                <Badge className="absolute top-2 left-2 bg-white/90 text-foreground">Cover</Badge>
               ) : null}
               {photo.status === 'error' ? (
                 <span className="absolute inset-x-1 bottom-1 rounded bg-destructive px-1 text-center text-xs text-white">

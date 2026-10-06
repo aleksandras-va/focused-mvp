@@ -1,18 +1,15 @@
 'use client';
 
 import { useId } from 'react';
+import { ChoiceGroup } from '@/components/features/sell/choice-group';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import type { CosmeticCondition, FunctionalCondition } from '@/db/tables';
-import { COSMETIC_CONDITIONS, FUNCTIONAL_CONDITIONS } from '@/lib/listing-options';
+  COSMETIC_CONDITION_HINTS,
+  COSMETIC_CONDITIONS,
+  FUNCTIONAL_CONDITIONS,
+} from '@/lib/listing-options';
 
 interface ConditionFieldsProps {
   item: SellItem;
@@ -21,72 +18,49 @@ interface ConditionFieldsProps {
 
 export function ConditionFields({ item, onChange }: ConditionFieldsProps) {
   const shutterCountId = useId();
+  const groupId = useId();
   const asksShutterCount = item.model
     ? item.model.category === 'camera' && !item.model.isFilm
     : item.custom?.category === 'camera';
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
-      <Field>
-        <FieldLabel>Cosmetic condition</FieldLabel>
-        <Select
-          value={item.cosmeticCondition}
-          onValueChange={(value) => onChange({ cosmeticCondition: value as CosmeticCondition })}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue>
-              {(value: string | null) =>
-                COSMETIC_CONDITIONS.find((condition) => condition.value === value)?.label
-              }
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            {COSMETIC_CONDITIONS.map((condition) => (
-              <SelectItem key={condition.value} value={condition.value}>
-                {condition.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </Field>
+    <>
+      <ChoiceGroup
+        legend="Cosmetic condition"
+        name={`${groupId}-cosmetic`}
+        minWidth="7.5rem"
+        options={COSMETIC_CONDITIONS.map((condition) => ({
+          ...condition,
+          hint: COSMETIC_CONDITION_HINTS[condition.value],
+        }))}
+        value={item.cosmeticCondition}
+        onChange={(cosmeticCondition) => onChange({ cosmeticCondition })}
+      />
 
-      <Field>
-        <FieldLabel>Functional condition</FieldLabel>
-        <Select
-          value={item.functionalCondition}
-          onValueChange={(value) => onChange({ functionalCondition: value as FunctionalCondition })}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue>
-              {(value: string | null) =>
-                FUNCTIONAL_CONDITIONS.find((condition) => condition.value === value)?.label
-              }
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            {FUNCTIONAL_CONDITIONS.map((condition) => (
-              <SelectItem key={condition.value} value={condition.value}>
-                {condition.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </Field>
+      <ChoiceGroup
+        legend="Does everything work?"
+        name={`${groupId}-functional`}
+        minWidth="9.5rem"
+        options={FUNCTIONAL_CONDITIONS}
+        value={item.functionalCondition}
+        onChange={(functionalCondition) => onChange({ functionalCondition })}
+      />
 
       {asksShutterCount ? (
-        <Field>
+        <Field className="max-w-xs">
           <FieldLabel htmlFor={shutterCountId}>Shutter count</FieldLabel>
           <Input
             id={shutterCountId}
             type="number"
             min="0"
             step="1"
+            className="h-12 rounded-xl"
             value={item.shutterCount}
             onChange={(event) => onChange({ shutterCount: event.target.value })}
           />
           <FieldDescription>Leave empty if your camera does not report it.</FieldDescription>
         </Field>
       ) : null}
-    </div>
+    </>
   );
 }

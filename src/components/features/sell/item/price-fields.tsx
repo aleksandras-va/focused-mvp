@@ -1,11 +1,10 @@
 'use client';
 
 import { useId } from 'react';
+import { PriceInput } from '@/components/features/sell/price-input';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 interface PriceFieldsProps {
   item: SellItem;
@@ -17,30 +16,33 @@ export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
   const priceId = useId();
 
   return (
-    <div className="grid gap-6 border-t pt-6 sm:grid-cols-2">
-      <Field>
-        <FieldLabel htmlFor={priceId}>
-          {isBundle ? 'Price on its own (EUR)' : 'Price (EUR)'}
-        </FieldLabel>
-        <Input
-          id={priceId}
-          type="number"
-          placeholder="€0.00"
-          value={item.price}
-          className="max-w-48"
-          onChange={(event) => onChange({ price: event.target.value })}
-        />
+    <div className="flex flex-wrap items-start gap-x-6 gap-y-4 border-t pt-6">
+      <Field className="w-full max-w-56">
+        <FieldLabel htmlFor={priceId}>{isBundle ? 'Price on its own' : 'Price'}</FieldLabel>
+        <PriceInput id={priceId} value={item.price} onChange={(price) => onChange({ price })} />
         {isBundle ? <FieldDescription>What this item alone would cost.</FieldDescription> : null}
       </Field>
 
       {isBundle ? (
-        <Label className="flex items-center gap-2 self-center font-normal">
-          <Checkbox
+        <label
+          className={cn(
+            'flex min-w-60 flex-1 cursor-pointer items-start gap-3 rounded-xl border px-3.5 py-3 sm:mt-7',
+            item.soldSeparately ? 'border-success/40 bg-success/8' : 'border-input',
+          )}
+        >
+          <input
+            type="checkbox"
             checked={item.soldSeparately}
-            onCheckedChange={(checked) => onChange({ soldSeparately: checked === true })}
+            onChange={(event) => onChange({ soldSeparately: event.target.checked })}
+            className="mt-0.5 size-4.5 accent-(--color-success)"
           />
-          Would sell this item separately
-        </Label>
+          <span className="flex flex-col gap-0.5">
+            <span className="text-sm font-semibold">Would sell this item separately</span>
+            <span className="text-xs text-muted-foreground">
+              Buyers looking for just this item can find it too.
+            </span>
+          </span>
+        </label>
       ) : null}
     </div>
   );

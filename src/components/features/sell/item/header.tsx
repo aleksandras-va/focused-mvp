@@ -2,7 +2,6 @@
 
 import { XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ItemHeaderProps {
   title: string;
@@ -11,19 +10,19 @@ interface ItemHeaderProps {
 
 export function ItemHeader({ title, onRemove }: ItemHeaderProps) {
   return (
-    <CardHeader className="flex flex-row items-center justify-between">
-      <CardTitle>{title}</CardTitle>
+    <div className="flex items-center justify-between gap-3">
+      <span className="text-[0.9375rem] font-bold">{title}</span>
       {onRemove ? (
         <Button
           type="button"
           variant="ghost"
           size="icon-sm"
-          aria-label="Remove item"
+          aria-label={`Remove ${title.toLowerCase()}`}
           onClick={onRemove}
         >
           <XIcon />
         </Button>
       ) : null}
-    </CardHeader>
+    </div>
   );
 }
