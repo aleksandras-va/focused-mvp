@@ -59,17 +59,17 @@ export function Browse({
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <nav className="-mx-4 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+        <nav className="-mx-4 flex gap-1 overflow-x-auto px-4 sm:mx-0 sm:px-0">
           {categoryLinks.map(({ category, label }) => (
             <Link
               key={label}
               href={browseHref(filters, { category })}
               aria-current={filters.category === category ? 'page' : undefined}
               className={cn(
-                'flex h-8 shrink-0 items-center font-medium transition-colors',
+                'flex h-9 shrink-0 items-center rounded-full px-4 text-sm font-medium transition-colors',
                 filters.category === category
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? 'bg-foreground text-background'
+                  : 'text-foreground/75 hover:bg-muted hover:text-foreground',
               )}
             >
               {label}
