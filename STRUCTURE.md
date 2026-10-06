@@ -11,7 +11,7 @@ src/
   services/       use cases; the only layer app/ may import
   repositories/   every database query
   db/             connection, generated types
-scripts/          operational scripts run with plain node (.mts)
+scripts/          operational scripts run with plain node (.mts): migrate, seeds
 ```
 
 ## Layers
@@ -27,7 +27,9 @@ here.
   `pnpm db:codegen` after any schema change.
 - `tables.ts` — readable aliases over the generated types (`GearModel`, `Brand`,
   `CameraSpec`). Row shapes, not domain objects.
-- `migrations/` — historical record only. Nothing new is added there.
+- `migrations/` — every schema change, one numbered file each, applied in order by
+  `pnpm db:migrate`. `0001_baseline` is the schema as it stood when migrations began; it
+  creates everything on an empty database and does nothing on one that already has it.
 
 ### `src/repositories/` — data access
 

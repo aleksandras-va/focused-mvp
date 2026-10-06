@@ -46,9 +46,11 @@ Out of scope: lens/body compatibility recommendations, Leica.
 - Repositories return row shapes. Services map them to camelCase DTOs. Nothing above
   `src/services/` sees a snake_case column name.
 - Never edit `src/db/types.ts` — it is generated.
-- **No migration files.** Schema changes are SQL run with
-  `docker compose exec -T postgres psql`, then `pnpm db:codegen`, then a read of the
-  schema. Hand every statement to Aleksandras to run, additive ones included.
+- **Schema changes are migration files.** One file per change in `src/db/migrations/`,
+  numbered in order (`0002_listing_views.mts`), written as raw SQL through Kysely's `sql`
+  tag. Never edit a migration that has been applied; add a new one. Claude writes the
+  file, Aleksandras runs `pnpm db:migrate` — locally and against production — then
+  `pnpm db:codegen`, then Claude reads the schema. No ad-hoc `ALTER` in psql.
 - Money is stored as EUR cents, never floats.
 - Everything is English: routes, copy, identifiers, errors. Model names stay canonical
   ("X-T3"). Lithuanian comes later as i18n.
@@ -61,11 +63,13 @@ Out of scope: lens/body compatibility recommendations, Leica.
 - `pnpm dev` — Next dev server
 - `pnpm lint` / `pnpm format` — Biome
 - `pnpm db:up` / `pnpm db:down` — Postgres container, host port 5434
+- `pnpm db:migrate` — apply pending migrations to the database in `DATABASE_URL`;
+  prefix `DATABASE_URL=<production url>` to migrate production
 - `pnpm db:codegen` — regenerate `src/db/types.ts` after any schema change
 - `pnpm db:codegen:check` — fails if the generated types have drifted
 - `pnpm db:seed` — load the gear catalog, idempotent
 - `pnpm db:seed:cities` — load the city list, idempotent
-- `pnpm db:reset` — drop the volume and start clean
+- `pnpm db:reset` — drop the volume and start clean; follow with `pnpm db:migrate`
 - `pnpm db:psql` — psql shell in the container
 
 ## Roadmap
