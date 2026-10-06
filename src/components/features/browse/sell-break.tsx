@@ -1,33 +1,53 @@
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 
+const steps = [
+  {
+    title: 'Pick your model',
+    description: 'Choose it from the catalog instead of typing a title.',
+  },
+  { title: 'Answer what buyers ask', description: 'Shutter count, condition, what is in the box.' },
+  { title: 'Add photos and publish', description: 'Up to 12 per ad, of the actual item.' },
+];
+
 export function SellBreak() {
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-primary px-6 py-12 text-primary-foreground sm:px-12 sm:py-16">
-      <div
-        aria-hidden
-        className="absolute -top-16 -right-16 size-72 rounded-full border-[28px] border-secondary/70 sm:-top-20 sm:-right-10 sm:size-96"
-      />
-      <div
-        aria-hidden
-        className="absolute right-24 bottom-6 size-24 rounded-full bg-secondary/80 sm:right-40 sm:bottom-10"
-      />
-
-      <div className="relative max-w-xl">
-        <h2 className="font-heading font-bold text-3xl leading-tight text-balance sm:text-4xl">
+    <section className="flex flex-wrap items-center gap-x-14 gap-y-10 rounded-3xl bg-primary-soft p-6 sm:p-12">
+      <div className="flex min-w-0 flex-[1_1_22rem] flex-col items-start">
+        <p className="text-[0.8125rem] font-semibold tracking-[0.08em] text-primary-ink uppercase">
+          Selling
+        </p>
+        <h2 className="mt-3 font-heading text-3xl leading-tight font-extrabold text-balance sm:text-4xl">
           Got a camera gathering dust?
         </h2>
-        <p className="mt-3 text-base text-primary-foreground/80 sm:text-lg">
-          Pick the model from the catalog, answer the questions buyers actually ask, and your ad is
-          up. No title to invent.
+        <p className="mt-4 max-w-md text-base text-foreground/75 sm:text-lg">
+          Your ad is built from the catalog, so there is no title to invent and buyers find it by
+          model.
         </p>
         <Link
           href="/sell"
-          className={buttonVariants({ variant: 'dark', size: 'lg', className: 'mt-8' })}
+          className={buttonVariants({ variant: 'dark', size: 'lg', className: 'mt-7' })}
         >
           Sell gear
         </Link>
       </div>
+
+      <ol className="flex min-w-0 flex-[1_1_26rem] flex-col gap-3">
+        {steps.map((step, index) => (
+          <li
+            key={step.title}
+            className="flex items-start gap-4 rounded-2xl border border-primary/15 bg-background p-5"
+          >
+            <span className="w-7 shrink-0 font-heading text-[1.75rem] leading-none font-extrabold text-primary">
+              {index + 1}
+            </span>
+            <span className="flex flex-col gap-0.5">
+              <span className="font-semibold">{step.title}</span>
+              <span className="text-sm text-muted-foreground">{step.description}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

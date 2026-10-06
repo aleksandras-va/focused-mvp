@@ -110,7 +110,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
       <div className="flex items-center justify-between gap-2 border-t bg-muted/60 px-4 py-3">
         <span className="text-lg font-semibold">{formatOptionalPrice(item.priceCents)}</span>
         {item.condition ? (
-          <span className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium">
+          <span className="rounded-full border border-input bg-background px-2.5 py-0.5 text-xs font-medium">
             {item.condition}
           </span>
         ) : null}
