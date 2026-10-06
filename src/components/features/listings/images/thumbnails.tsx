@@ -12,7 +12,7 @@ interface ThumbnailsProps {
 
 export function Thumbnails({ photos, selectedIndex, title, onSelect }: ThumbnailsProps) {
   return (
-    <div className="grid grid-cols-4 gap-3">
+    <div className="grid grid-cols-4 gap-3 sm:grid-cols-5">
       {photos.map((photo, index) => (
         <button
           key={photo.largeUrl}
@@ -27,7 +27,7 @@ export function Thumbnails({ photos, selectedIndex, title, onSelect }: Thumbnail
           <img
             src={photo.cardUrl}
             alt={title}
-            className="aspect-square w-full bg-muted object-cover"
+            className="aspect-4/3 w-full bg-muted object-cover"
           />
         </button>
       ))}

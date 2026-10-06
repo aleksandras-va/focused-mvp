@@ -308,6 +308,7 @@ function listingDetailQuery() {
           .leftJoin('model', 'model.id', 'listing_item.model_id')
           .leftJoin('brand', 'brand.id', 'model.brand_id')
           .leftJoin('mount', 'mount.id', 'model.mount_id')
+          .leftJoin('camera_spec', 'camera_spec.model_id', 'listing_item.model_id')
           .select([
             'listing_item.id',
             'listing_item.price_cents',
@@ -325,6 +326,7 @@ function listingDetailQuery() {
             'brand.name as brand_name',
             'brand.slug as brand_slug',
             'mount.name as mount_name',
+            'camera_spec.is_film',
           ])
           .select((itemEb) =>
             jsonArrayFrom(

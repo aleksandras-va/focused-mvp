@@ -44,6 +44,7 @@ export interface ListingItemDetail {
   shutterCount: number | null;
   soldSeparately: boolean;
   inclusions: string[];
+  missingInclusions: string[];
 }
 
 export interface ListingPhotoUrl {
