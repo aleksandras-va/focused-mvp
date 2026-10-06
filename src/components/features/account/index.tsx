@@ -1,6 +1,7 @@
-import { CircleAlertIcon, CircleCheckIcon } from 'lucide-react';
+import { CircleAlertIcon, CircleCheckIcon, EyeIcon } from 'lucide-react';
+import Link from 'next/link';
 import { Alert, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import type { AuthUser } from '@/services/auth/auth.types';
 import type { City } from '@/services/city/city.types';
 import type { ListingSummary } from '@/services/listing/listing.types';
@@ -27,18 +28,38 @@ export function Account({
   openStoreAction,
   signOutAction,
 }: AccountProps) {
+  const name = user.store?.name ?? user.displayName;
+  const cityName = cities.find((city) => city.id === user.cityId)?.name ?? null;
+  const meta = [user.store ? 'Store' : 'Private seller', cityName, user.email].filter(Boolean);
+
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-col gap-1">
-          <h1 className="font-heading text-3xl font-bold">Your account</h1>
-          <p className="text-muted-foreground">{user.email}</p>
+      <div className="flex flex-wrap items-center justify-between gap-5">
+        <div className="flex min-w-0 items-center gap-4">
+          <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary-soft font-heading text-2xl font-extrabold text-primary-ink">
+            {name.charAt(0).toUpperCase()}
+          </span>
+          <div className="flex min-w-0 flex-col gap-1">
+            <h1 className="truncate font-heading text-3xl leading-tight font-extrabold sm:text-4xl">
+              {name}
+            </h1>
+            <p className="truncate text-sm text-muted-foreground">{meta.join(' · ')}</p>
+          </div>
         </div>
-        <form action={signOutAction}>
-          <Button type="submit" variant="destructive">
-            Sign out
-          </Button>
-        </form>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href={`/sellers/${user.id}`}
+            className={buttonVariants({ variant: 'outline', className: 'border-input' })}
+          >
+            <EyeIcon />
+            See public profile
+          </Link>
+          <form action={signOutAction}>
+            <Button type="submit" variant="ghost" className="text-muted-foreground">
+              Sign out
+            </Button>
+          </form>
+        </div>
       </div>
 
       {notice ? (
@@ -48,12 +69,15 @@ export function Account({
         </Alert>
       ) : null}
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <ProfileForm user={user} cities={cities} action={updateProfileAction} />
-        <StoreSection store={user.store} action={openStoreAction} />
-      </div>
-
       <SellerListings listings={listings} />
+
+      <section className="flex flex-col gap-5">
+        <h2 className="font-heading text-2xl font-extrabold">Settings</h2>
+        <div className="flex flex-wrap items-start gap-5">
+          <ProfileForm user={user} cities={cities} action={updateProfileAction} />
+          <StoreSection store={user.store} action={openStoreAction} />
+        </div>
+      </section>
     </div>
   );
 }
