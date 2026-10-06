@@ -155,7 +155,7 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - The header is always a floating rounded bar. On the homepage at the top it is two rows:
   logo, centred menu, account and sell above a large search field. On scroll, and on
   every other page, it collapses to one row with the search field in place of the menu.
-- `/` is the browse page: no hero, so buyers start on the ads. Title, category pills on
+- `/` is the browse page: no hero, so buyers start on the ads. Title, category links on
   the left, a Filters button and the sort dropdown on the right. Brand, mount, condition
   and price sit in the Filters popover and apply on "Show results"; sort applies on
   change. There is no `/items` list route.

@@ -8,7 +8,6 @@ import { SellBreak } from '@/components/features/browse/sell-break';
 import { buttonVariants } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
-import { PillLink } from '@/components/ui/pill-link';
 import type { ModelCategory } from '@/db/tables';
 import {
   BROWSE_SORTS,
@@ -18,6 +17,7 @@ import {
   hasActiveFilters,
 } from '@/lib/browse-filters';
 import { CATEGORY_PLURAL_LABELS } from '@/lib/listing-options';
+import { cn } from '@/lib/utils';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
 type BrowseProps = {
@@ -34,6 +34,11 @@ type BrowseProps = {
 };
 
 const categories: ModelCategory[] = ['camera', 'lens', 'accessory'];
+
+const categoryLinks: { category: ModelCategory | null; label: string }[] = [
+  { category: null, label: 'All' },
+  ...categories.map((category) => ({ category, label: CATEGORY_PLURAL_LABELS[category] })),
+];
 
 export function Browse({
   listings,
@@ -54,21 +59,21 @@ export function Browse({
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <nav className="-mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          <PillLink
-            href={browseHref(filters, { category: null })}
-            isActive={filters.category === null}
-          >
-            All
-          </PillLink>
-          {categories.map((category) => (
-            <PillLink
-              key={category}
+        <nav className="-mx-4 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+          {categoryLinks.map(({ category, label }) => (
+            <Link
+              key={label}
               href={browseHref(filters, { category })}
-              isActive={filters.category === category}
+              aria-current={filters.category === category ? 'page' : undefined}
+              className={cn(
+                'flex h-8 shrink-0 items-center font-medium transition-colors',
+                filters.category === category
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground',
+              )}
             >
-              {CATEGORY_PLURAL_LABELS[category]}
-            </PillLink>
+              {label}
+            </Link>
           ))}
         </nav>
 
@@ -111,7 +116,7 @@ export function Browse({
 
       {listings.length === 0 ? (
         <EmptyState
-          icon={<SearchXIcon />}
+          icon={<SearchXIcon className="text-primary" />}
           title={hasActiveFilters(filters) ? 'No listings match' : 'Nothing listed yet'}
           description={
             hasActiveFilters(filters)

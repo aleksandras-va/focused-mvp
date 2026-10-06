@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -42,14 +42,14 @@
 
 :root {
   --background: oklch(1 0 0);
-  --foreground: oklch(0.1802 0.0551 3.5);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.148 0.004 228.8);
+  --foreground: oklch(0.15 0 0);
+  --card: var(--background);
+  --card-foreground: var(--foreground);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.148 0.004 228.8);
-  --primary: oklch(0.9499 0.1223 106);
+  --primary: oklch(0.6325 0.1945 23.64);
   --primary-foreground: oklch(var(--background));
-  --secondary: #bfdcf4;
+  --secondary: oklch(0.622 0.0766 44.82);
   --secondary-foreground: var(--foreground);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);

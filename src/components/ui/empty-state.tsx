@@ -21,10 +21,7 @@ export function EmptyState({ icon, title, description, className, children }: Em
     <Empty className={cn('rounded-2xl border border-dashed py-14', className)}>
       <EmptyHeader>
         {icon ? (
-          <EmptyMedia
-            variant="icon"
-            className="size-12 rounded-full text-muted-foreground [&_svg:not([class*='size-'])]:size-6"
-          >
+          <EmptyMedia variant="default" className="size-12">
             {icon}
           </EmptyMedia>
         ) : null}
