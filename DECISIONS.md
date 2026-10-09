@@ -50,24 +50,49 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   `scripts/seed.mts`.
 - The seed upserts in batches of 500 rows inside one transaction, so a remote database
   sees about twenty statements rather than one round trip per model.
-- Apertures are written without a trailing zero: `f/2`, `f/16`, but `f/1.8`. Never
-  `f/2.0`.
+- Apertures are written without a trailing zero: `f/2`, `f/16`, `f/4-5.6`, but `f/1.8`.
+  Never `f/2.0`.
+- A word has one casing across the catalog: series names in title case (Nokton, Macro,
+  Fisheye), with NIKKOR and ASPH in capitals. `cleanModelName` in
+  `scripts/lens-seed-data.mts` holds the list and applies both rules in every importer.
 - European names only: no Rebel, Kiss, IXY, PowerShot SD or Lumix ZS duplicates.
 - Sensor format is loose, bucketed from crop factor: APS-H counts as APS-C, and anything
   smaller than one inch is null.
 - A lens sold in several mounts is one model row per mount. Focal length and maximum
   aperture are parsed from the name; a lens whose name does not give both is left out.
 - A lens slug ends with its mount (`sigma-35mm-f-1-4-dg-hsm-art-canon-ef`), because
-  third-party lenses share a name across mounts. The seed upserts on
-  `(brand, name, mount)`, not on the slug.
-- Search uses `word_similarity` against `model.normalized` (punctuation stripped,
-  spaces kept) with a 0.3 floor, plus a prefix match. Use `word_similarity`, not
-  `similarity` — the latter compares whole strings and fails on short forms like "xt3".
-- Ties break on shorter name first, then newer model, so "r6" ranks the R6 above the
-  R6 Mark II.
+  third-party lenses share a name across mounts.
+- The seed upserts a model by its slug, so a name can change casing or spacing and keep
+  its row. A rename that changes the slug is a migration that renames the existing rows
+  first (`0007`); otherwise the seed would add the new name beside the old one.
+- Search matches word by word, not as one fuzzy string. `src/lib/search-text.ts` turns a
+  name and a query into the same tokens: letters split from digits, roman numerals and
+  "mark/mk/m" read as digits, `50mm f/1.8` read as `50` and `1.8`. So "a7r3", "A7R III"
+  and "a7r mark 3" are all `a 7 r 3`.
+- Every typed word must match the model: its tokens exactly, or run together ("em10" in
+  "E-M10"), or as a typo of a word of four letters or more (`word_similarity` at 0.5).
+  The last word may be unfinished. Numbers never match fuzzily — 35 is not 28.
+- Ranking: exact words first, then words typed in the same order as the name, then the
+  shorter name, then the newer model, so "r6" ranks the R6 above the R6 Mark II. A term
+  that gives a focal length or aperture lists lenses before cameras.
+- `model.search_text` holds a model's tokens. TypeScript writes it, not the database:
+  `pnpm db:seed` recomputes it for every model row, seeded or not, so a model added by
+  hand is searchable only after a seed run. `model.normalized` is no longer read.
 - Always show a list of matches. Never auto-pick a model for the user.
-- Synonyms with no shared characters (`ILCE-7M3`, "nifty fifty") are not supported and
-  are out of scope for MVP. When needed, add `models.search_terms text[]`.
+- Other names are data, in `brand.search_terms` and `model.search_terms`, stored as
+  search tokens. A brand's terms are its other names and lines (Fujinon, Nikkor, Lumix,
+  Rokinon, Olympus for OM System), hand-written beside the brand in `scripts/seed.mts`. A
+  model's terms are the maker's model code (`ILCE-7M3`, `DC-S5M2`), taken from lensfun.
+  A word may match the name or either list.
+- Brand suggestions match a brand by the start of its name, by a search term or by a
+  typo, on any word of the term, so "sony a7" suggests Sony. Named brands list before
+  look-alikes.
+- A lens sold in several mounts stays one result per mount. A word may also match the
+  model's mount, through `mount.search_terms` (the mount's name plus nicknames such as
+  "fuji", "m43", "FE"), so "viltrox 35 fuji" returns only the Fujifilm X versions. A
+  mount match scores below a name match: "sony 85 1.8" lists Sony's own lens first, then
+  other makers' lenses in Sony mounts.
+- Slang with no source to import ("nifty fifty") is still out of scope.
 - Semantic search (pgvector) is deferred. Poor at model codes; cannot separate X-T3
   from X-T30.
 - Model uniqueness is `(brand, name, mount)` with NULLS NOT DISTINCT — third-party

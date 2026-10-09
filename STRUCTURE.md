@@ -167,9 +167,13 @@ the luck of tie order.
   cameras. Unique on `(brand_id, name, mount_id) NULLS NOT DISTINCT`.
 - `camera_spec`, `lens_spec` — one-to-one detail per category, so an ad needs only a
   single `model_id` foreign key.
-- `model.display_name` — "Fujifilm X-T3", the one name shown anywhere. `normalized` is
-  generated from it: lowercased, punctuation stripped, **spaces kept**, which is what
-  makes `word_similarity` match "xt3" inside "fujifilm xt3".
+- `model.display_name` — "Fujifilm X-T3", the one name shown anywhere.
+- `brand.search_terms`, `model.search_terms`, `mount.search_terms` — other names as
+  search tokens: a brand's other names and lines, a model's maker code, a mount's name
+  and nicknames. Written by the seed.
+- `model.search_text` — the name as search tokens ("fujifilm x t 3"), written by the seed
+  from `toSearchText` in `src/lib/search-text.ts`. The repository runs the query through
+  the same module, so both sides are split the same way.
 
 ### Listings
 

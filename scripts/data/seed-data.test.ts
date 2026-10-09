@@ -12,7 +12,7 @@ const names = readdirSync(import.meta.dirname)
   .map((row) => row.name);
 
 describe('seed data names', () => {
-  it.fails('write each word in one casing', () => {
+  it('write each word in one casing', () => {
     const spellingsByWord = new Map<string, Set<string>>();
 
     for (const word of names.flatMap((name) => name.split(' '))) {
@@ -30,7 +30,7 @@ describe('seed data names', () => {
     expect(inconsistent).toEqual([]);
   });
 
-  it.fails('write a whole-number aperture without a trailing zero', () => {
-    expect(names.filter((name) => /f\/\d+\.0\b/.test(name))).toEqual([]);
+  it('write a whole-number aperture without a trailing zero', () => {
+    expect(names.filter((name) => /f\/[\d.-]*\d\.0(?!\d)/.test(name))).toEqual([]);
   });
 });

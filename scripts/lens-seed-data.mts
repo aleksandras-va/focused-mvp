@@ -14,6 +14,72 @@ export type ImportedLens = {
   weightGrams?: number;
 };
 
+const WORD_CASING = [
+  'APOLanthar',
+  'APOSkopar',
+  'APOSummicronM',
+  'APOSummicronSL',
+  'APOUltron',
+  'Argus',
+  'ASPH',
+  'Aspherical',
+  'atxi',
+  'Aurora',
+  'Biotar',
+  'Black',
+  'CADreamer',
+  'CDDreamer',
+  'CDreamer',
+  'ColorSkopar',
+  'Creator',
+  'Distagon',
+  'Elegant',
+  'Fisheye',
+  'Heliar',
+  'Iberit',
+  'Lite',
+  'Macro',
+  'Mini',
+  'NIKKOR',
+  'Noctilux',
+  'NoctiluxM',
+  'Nokton',
+  'Nonikkor',
+  'Otus',
+  'Paint',
+  'PentaxD',
+  'PentaxDA',
+  'Power',
+  'Sonnar',
+  'Speedmaster',
+  'SummiluxM',
+  'Ultron',
+  'Varioprasma',
+  'Zoom',
+];
+
+const CASING_BY_WORD = new Map(WORD_CASING.map((word) => [word.toLowerCase(), word]));
+
+function withConsistentCasing(word: string): string {
+  const casing = CASING_BY_WORD.get(word.replace(/[^A-Za-z]/g, '').toLowerCase());
+  if (!casing) return word;
+
+  let letter = 0;
+  return word.replace(/[A-Za-z]/g, () => casing[letter++]);
+}
+
+function withoutTrailingZero(aperture: string): string {
+  return aperture.replace(/(\d)\.0(?!\d)/g, '$1');
+}
+
+export function cleanModelName(name: string): string {
+  return name
+    .replace(/f\/[\d.]+(?:-[\d.]+)?/g, withoutTrailingZero)
+    .split(' ')
+    .map(withConsistentCasing)
+    .join(' ');
+}
+
 export const STABILIZATION_MARKER = /\b(IS|VR|OSS|OIS|VC|OS)\b|O\.I\.S\./;
 
 export function slugify(value: string): string {

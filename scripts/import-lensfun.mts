@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { CameraBodyType, SensorFormat } from '../src/db/types';
 import {
+  cleanModelName,
   type ImportedLens,
   lensKey,
   STABILIZATION_MARKER,
@@ -24,6 +25,7 @@ type ImportedCamera = {
   mount?: string;
   bodyType: CameraBodyType;
   sensorFormat: SensorFormat | null;
+  searchTerms?: string[];
 };
 
 const BODY_TYPE_BY_FILE_PREFIX: [string, CameraBodyType][] = [
@@ -130,6 +132,8 @@ const NAME_OVERRIDES: Record<string, string> = {
   'pentax/K-3 III Monochrome': 'K-3 Mark III Monochrome',
 };
 
+const MODEL_CODE = /^(ILCE|ILCA|ILME|SLT|DSLR|DSC|DMC|DC)-/;
+
 const BODY_TYPE_OVERRIDES: Record<string, CameraBodyType> = {
   'leica/Digilux 3': 'dslr',
   'leica/M EV1': 'mirrorless',
@@ -182,7 +186,7 @@ function resolveName(brand: string, camera: LensfunCamera): string {
     .split(',')[0];
 
   const name = brandName(brand, model, english).trim();
-  return NAME_OVERRIDES[`${brand}/${name}`] ?? name;
+  return cleanModelName(NAME_OVERRIDES[`${brand}/${name}`] ?? name);
 }
 
 function brandName(brand: string, model: string, english: string): string {
@@ -274,6 +278,7 @@ for (const file of readdirSync(lensfunDatabaseDirectory).sort()) {
       mount: MOUNT_OVERRIDES[key] ?? mount,
       bodyType: BODY_TYPE_OVERRIDES[key] ?? fileBodyType,
       sensorFormat,
+      searchTerms: MODEL_CODE.test(camera.model) ? [camera.model] : undefined,
     });
   }
 }
@@ -387,7 +392,7 @@ function resolveLensName(brand: string, lens: LensfunLens): string {
     .replace(/\b[Ff]\/?(?=\d)/g, 'f/');
 
   const name = brandLensName(brand, common).replace(/\s+/g, ' ').trim();
-  return LENS_NAME_OVERRIDES[`${brand}/${name}`] ?? name;
+  return cleanModelName(LENS_NAME_OVERRIDES[`${brand}/${name}`] ?? name);
 }
 
 function brandLensName(brand: string, name: string): string {

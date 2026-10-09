@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import {
+  cleanModelName,
   type ImportedLens,
   lensKey,
   STABILIZATION_MARKER,
@@ -174,7 +175,7 @@ for (const row of parseRows(readFileSync(htmlPath, 'utf8'))) {
   }
 
   const brand = resolveBrand(row);
-  const name = resolveName(row);
+  const name = cleanModelName(resolveName(row));
   const releaseYear = Number(row.year) || undefined;
   const weightGrams = Number(row.weight.match(/^(\d+)g$/)?.[1]) || undefined;
 
