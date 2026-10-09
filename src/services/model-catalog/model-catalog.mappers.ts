@@ -20,15 +20,14 @@ export function mapToCatalogModel(row: ModelRow): CatalogModel {
 export function mapToCatalogModelDetail(row: ModelDetailRow): CatalogModelDetail {
   return {
     ...mapToCatalogModel(row),
-    camera:
-      row.body_type && row.sensor_format
-        ? {
-            bodyType: row.body_type,
-            sensorFormat: row.sensor_format,
-            megapixels: row.megapixels,
-            hasMechanicalShutter: row.has_mechanical_shutter ?? true,
-          }
-        : null,
+    camera: row.body_type
+      ? {
+          bodyType: row.body_type,
+          sensorFormat: row.sensor_format,
+          megapixels: row.megapixels,
+          hasMechanicalShutter: row.has_mechanical_shutter ?? true,
+        }
+      : null,
     lens:
       row.focal_min_mm !== null && row.focal_max_mm !== null && row.max_aperture !== null
         ? {

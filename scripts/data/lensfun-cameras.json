@@ -1,0 +1,5733 @@
+[
+  {
+    "brand": "canon",
+    "name": "EOS 5D",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 5D Mark II",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 5D Mark III",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 5D Mark IV",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 5DS",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 5DS R",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 6D",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 6D Mark II",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 7D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 7D Mark II",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 10D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 20D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 30D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 40D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 50D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 60D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 70D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 77D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 80D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 90D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 100D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 200D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 200D II",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 250D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 300D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 350D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 400D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 450D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 500D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 550D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 600D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 650D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 700D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 750D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 760D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 800D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 850D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 1000D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 1100D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 1200D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 1300D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 2000D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS 4000D",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS D30",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS D60",
+    "mount": "canon-ef-s",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M2",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M3",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M5",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M6",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M6 Mark II",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M10",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M50",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M50 Mark II",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M100",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS M200",
+    "mount": "canon-ef-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R1",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R3",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R5",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R5 C",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R5 Mark II",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R6",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R6 Mark II",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R6 Mark III",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R6 V",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R7",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R8",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R8 Mark II",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R10",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R50",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R50 V",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS R100",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS RP",
+    "mount": "canon-rf",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D Mark II",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D Mark II N",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D Mark III",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D Mark IV",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D X",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1D X Mark II",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1Ds",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1Ds Mark II",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "EOS-1Ds Mark III",
+    "mount": "canon-ef",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 40",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 50",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 55",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 70",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 80 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 95 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 125 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 220 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 400",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 430",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 500",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 700",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS 750",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS i",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS II",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "IXUS v2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A10",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A20",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A40",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A60",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A70",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A75",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A80",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A85",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A95",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A490",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A495",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A510",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A520",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A610",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A620",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A640",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A650 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A710 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A720 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A1200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot A4000 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G1 X",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G1 X Mark II",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G1 X Mark III",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G3 X",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G5",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G5 X",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G5 X Mark II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G6",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G7",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G7 X",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G7 X Mark II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G7 X Mark III",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G9",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G9 X",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G9 X Mark II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G10",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G11",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G12",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G15",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot G16",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot Pro1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot Pro70",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot Pro90 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S1 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S2 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S5 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S40",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S45",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S50",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S60",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S70",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S80",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S90",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S95",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S100",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S110",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S120",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S400",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S410",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot S500",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX1 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX10 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX30 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX50 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX60 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX130 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX150 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX160 IS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX220 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX230 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX240 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX260 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX510 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX700 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "canon",
+    "name": "PowerShot SX710 HS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-FH20",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-P600",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-P700",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-Z3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-Z4",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-Z30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-Z40",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-Z55",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "EX-Z750",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "QV-3000EX",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "QV-3500EX",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "casio",
+    "name": "QV-4000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix 2800 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix 3800",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix A370",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix E550",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F10",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F11",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F200EXR",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F601 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F710",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F770EXR",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix F810",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix HS20EXR",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix HS30EXR",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix IS Pro",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S1 Pro",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S2 Pro",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S3 Pro",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S5 Pro",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S20Pro",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S304",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S602 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S3000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S5100",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S5500",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S5600",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S7000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S9000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S9500",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix S9600",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "FinePix X100",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX 50R",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX 50S",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX 100",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX50S II",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX100 II",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX100RF",
+    "bodyType": "compact",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX100S",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "GFX100S II",
+    "mount": "fujifilm-g",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-A1",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-A2",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-A3",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-A5",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-A7",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-A10",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-E1",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-E2",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-E2S",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-E3",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-E4",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-E5",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-H1",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-H2",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-H2S",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-M1",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-M5",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-Pro1",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-Pro2",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-Pro3",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-S1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-S10",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-S20",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T1",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T2",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T3",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T4",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T5",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T10",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T20",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T30",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T30 II",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T30 III",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T50",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T100",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X-T200",
+    "mount": "fujifilm-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X10",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X20",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X70",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X100F",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X100S",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X100T",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X100V",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "X100VI",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "XF10",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "fujifilm",
+    "name": "XQ1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "hasselblad",
+    "name": "907X & CFV 100C",
+    "mount": "hasselblad-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "hasselblad",
+    "name": "907X 50C",
+    "mount": "hasselblad-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "hasselblad",
+    "name": "X1D II 50C",
+    "mount": "hasselblad-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "hasselblad",
+    "name": "X2D 100C",
+    "mount": "hasselblad-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "hasselblad",
+    "name": "X2D II 100C",
+    "mount": "hasselblad-x",
+    "bodyType": "mirrorless",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE A2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE A200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE G400",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE Z2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE Z3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE Z5",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE Z6",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE Z10",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "DiMAGE Z20",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "Dynax 5D",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "Dynax 7D",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "konica-minolta",
+    "name": "Revio KD-420Z",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "leica",
+    "name": "C-Lux",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "leica",
+    "name": "CL",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "leica",
+    "name": "D-Lux (Typ 109)",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "leica",
+    "name": "D-Lux 2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "leica",
+    "name": "D-Lux 3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "leica",
+    "name": "D-Lux 4",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "leica",
+    "name": "D-Lux 7",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "leica",
+    "name": "D-Lux 8",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "leica",
+    "name": "Digilux 2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "leica",
+    "name": "Digilux 3",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "leica",
+    "name": "M (Typ 240)",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M EV1",
+    "mount": "leica-m",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M Monochrom (Typ 246)",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M8",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "leica",
+    "name": "M9",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M10",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M10 Monochrom",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M10-D",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M10-P",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M10-R",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M11",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M11 Monochrom",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M11-D",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "M11-P",
+    "mount": "leica-m",
+    "bodyType": "rangefinder",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "Q (Typ 116)",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "Q2",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "Q2 Monochrom",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "Q3",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "Q3 43",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "Q3 Monochrom",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "SL (Typ 601)",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "SL2",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "SL2-S",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "SL3",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "SL3-P",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "SL3-S",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "leica",
+    "name": "T (Typ 701)",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "leica",
+    "name": "TL",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "leica",
+    "name": "TL2",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "leica",
+    "name": "X Vario (Typ 107)",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE 7",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE 7Hi",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE 7i",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE A1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE X",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE Xi",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE Xt",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "minolta",
+    "name": "DiMAGE Z1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "1 AW1",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 J1",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 J2",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 J3",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 J4",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 J5",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 S1",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 S2",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 V1",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 V2",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "1 V3",
+    "mount": "nikon-1",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 950",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 990",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 995",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 4200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 4500",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 4800",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 5000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 5200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 5400",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 5700",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 5900",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 7600",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 7900",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 8400",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 8700",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix 8800",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix A",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P60",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P330",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P340",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P1000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P1100",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P6000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P7000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix P7800",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "Coolpix S3300",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "nikon",
+    "name": "D1",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D1H",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D1X",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D2H",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D2Hs",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D2X",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D2Xs",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3S",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3X",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D4",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D4s",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D6",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D40",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D40X",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D50",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D60",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D70",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D70s",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D80",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D90",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D100",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D200",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D300",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D300S",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D500",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D600",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D610",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D700",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D750",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D780",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D800",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D800E",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D810",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D850",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3000",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3100",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3200",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3300",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3400",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D3500",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5000",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5100",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5200",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5300",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5500",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D5600",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D7000",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D7100",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D7200",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "D7500",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "Df",
+    "mount": "nikon-f",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z5",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z5 II",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z6",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z6 II",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z6 III",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z7",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z7 II",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z8",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z9",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z30",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z50",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "Z50 II",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "Zf",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "nikon",
+    "name": "Zfc",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "nikon",
+    "name": "ZR",
+    "mount": "nikon-z",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "olympus",
+    "name": "C-50 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-70 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-700 Ultra Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-730 Ultra Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-750 Ultra Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-860L",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-2040 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-3040 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-4000 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-4040 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-5050 Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-5060 Wide Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-7070 Wide Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "C-8080 Wide Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "E-1",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-3",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-5",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-30",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-300",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-330",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-400",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-410",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-420",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-450",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-500",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-510",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-520",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-600",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "E-620",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "mju-mini Digital",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M1 Mark II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M1 Mark III",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M5 Mark II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M5 Mark III",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M10",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M10 Mark II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M10 Mark III",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M10 Mark IIIS",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "OM-D E-M10 Mark IV",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-P1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-P2",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-P3",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-P5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-P7",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL1s",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL2",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL3",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL6",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL7",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL8",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PL9",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PM1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN E-PM2",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "PEN-F",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "olympus",
+    "name": "SP-350",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "SP-500 Ultra Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "SP-560 Ultra Zoom",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Stylus 1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Tough TG-1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Tough TG-2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Tough TG-3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Tough TG-4",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Tough TG-5",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "Tough TG-6",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "X-2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "XZ-1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "olympus",
+    "name": "XZ-2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "om-system",
+    "name": "OM-1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "om-system",
+    "name": "OM-1 Mark II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "om-system",
+    "name": "OM-3",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "om-system",
+    "name": "OM-5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "om-system",
+    "name": "OM-5 Mark II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FX2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FX7",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FX8",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FX9",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FX150",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ5",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ8",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ10",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ18",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ20",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ28",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ35",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ40",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ45",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ50",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ100",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ150",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ300",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ330",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ1000",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ1000 II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ2000",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix FZ2500",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G2",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G3",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G6",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G7",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G8",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G9",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G9 II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G10",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G70",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G80",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G81",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G85",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G90",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G91",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G95",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G95D",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G97",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G99",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G99D",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G100",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G100D",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix G110",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF2",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF3",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF6",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF7",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GF8",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH2",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH3",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH4",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH5 II",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH5S",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH6",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GH7",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GM1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GM5",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX1",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX7",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX8",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX9",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX80",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX85",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX800",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix GX880",
+    "mount": "micro-four-thirds",
+    "bodyType": "mirrorless",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix L1",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix L10",
+    "mount": "four-thirds",
+    "bodyType": "dslr",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LC1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LF1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX5",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX7",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX10",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX15",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX100",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LX100 II",
+    "bodyType": "compact",
+    "sensorFormat": "micro_four_thirds"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LZ1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix LZ2",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S1",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S1 II",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S1 IIE",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S1H",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S1R",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S1R II",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S5",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S5 II",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S5 IIX",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S5D",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix S9",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ60",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ61",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ70",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ71",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ80",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ81",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ90",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ91",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ96",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ99",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ100",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ101",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ110",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ200",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ200D",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ202",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ220",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "panasonic",
+    "name": "Lumix TZ300",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "pentax",
+    "name": "*ist D",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "*ist DL",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "*ist DL2",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "*ist DS",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "*ist DS2",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "645D",
+    "mount": "pentax-645",
+    "bodyType": "dslr",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "pentax",
+    "name": "645Z",
+    "mount": "pentax-645",
+    "bodyType": "dslr",
+    "sensorFormat": "medium_format"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-1",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-01",
+    "mount": "pentax-k",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-1 Mark II",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-3",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-3 II",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-3 Mark III",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-3 Mark III Monochrome",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-5",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-5 II",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-5 IIs",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-7",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-30",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-50",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-70",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-500",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-m",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-r",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-S1",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-S2",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K-x",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K10D",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K20D",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K100D",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K100D Super",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K110D",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K200D",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "K2000",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "KF",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "KP",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 33L",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 33LF",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 43WR",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 230GS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 330GS",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 430",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 450",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 550",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 555",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Optio 750Z",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Q",
+    "mount": "pentax-q",
+    "bodyType": "mirrorless",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Q-S1",
+    "mount": "pentax-q",
+    "bodyType": "mirrorless",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Q7",
+    "mount": "pentax-q",
+    "bodyType": "mirrorless",
+    "sensorFormat": null
+  },
+  {
+    "brand": "pentax",
+    "name": "Q10",
+    "mount": "pentax-q",
+    "bodyType": "mirrorless",
+    "sensorFormat": null
+  },
+  {
+    "brand": "ricoh",
+    "name": "Caplio GX",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "ricoh",
+    "name": "Caplio GX8",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "ricoh",
+    "name": "Caplio RR30",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR Digital",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR III",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR III HDF",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR IIIx",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR IIIx HDF",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "ricoh",
+    "name": "GR IV",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "EX2F",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "samsung",
+    "name": "Galaxy NX",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "GX-1L",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "GX-1S",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "GX10",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "GX20",
+    "mount": "pentax-k",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX mini",
+    "mount": "samsung-nx-mini",
+    "bodyType": "mirrorless",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX1",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX5",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX10",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX11",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX20",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX30",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX100",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX200",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX210",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX300",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX300M",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX500",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX1000",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX1100",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX2000",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "NX3000",
+    "mount": "samsung-nx",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "samsung",
+    "name": "WB2000",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sigma",
+    "name": "BF",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP1",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP1 Merrill",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP1S",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP1X",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP2",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP2 Merrill",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP2S",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP2X",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "DP3 Merrill",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "fp",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sigma",
+    "name": "fp L",
+    "mount": "l-mount",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sigma",
+    "name": "sd Quattro",
+    "mount": "sigma-sa",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "sd Quattro H",
+    "mount": "sigma-sa",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "SD1",
+    "mount": "sigma-sa",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "SD1 Merrill",
+    "mount": "sigma-sa",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "SD9",
+    "mount": "sigma-sa",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "SD10",
+    "mount": "sigma-sa",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "SD14",
+    "mount": "sigma-sa",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sigma",
+    "name": "SD15",
+    "mount": "sigma-sa",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A1",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A1 II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7 II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7 III",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7 IV",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7 V",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7C",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7C II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7CR",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R III",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R IIIA",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R IV",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R IVA",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R V",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7R VI",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7S",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7S II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A7S III",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A9",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A9 II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A9 III",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A33",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A35",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A37",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A55",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A57",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A58",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A65",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A68",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A77",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A77 II",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A99",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A99 II",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A100",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A200",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A230",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A290",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A300",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A330",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A350",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A380",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A390",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A450",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A500",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A550",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A560",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A580",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A700",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A850",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A900",
+    "mount": "sony-a",
+    "bodyType": "dslr",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "A3000",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A5000",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A5100",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6000",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6100",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6300",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6400",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6500",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6600",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "A6700",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-F828",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-H1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-HX20V",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-HX300",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-P73",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-P93",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-P100",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-P150",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-P200",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-R1",
+    "bodyType": "compact",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-S60",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-S80",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-S90",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-ST80",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-T1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-V1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-V3",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-W1",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-W5",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-W7",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-W12",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "Cyber-shot DSC-W15",
+    "bodyType": "compact",
+    "sensorFormat": null
+  },
+  {
+    "brand": "sony",
+    "name": "FX2",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "FX3",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "FX30",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-3",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-3N",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-5",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-5N",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-5R",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-5T",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-6",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-7",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-C3",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "NEX-F3",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "RX0",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX0 II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX1R",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "RX1R II",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "RX1R III",
+    "bodyType": "compact",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "RX10",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX10 II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX10 III",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX10 IV",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 II",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 III",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 IV",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 V",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 VA",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 VI",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 VII",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "RX100 VIIA",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "ZV-1",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "ZV-1A",
+    "bodyType": "compact",
+    "sensorFormat": "one_inch"
+  },
+  {
+    "brand": "sony",
+    "name": "ZV-E1",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "full_frame"
+  },
+  {
+    "brand": "sony",
+    "name": "ZV-E10",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  },
+  {
+    "brand": "sony",
+    "name": "ZV-E10 II",
+    "mount": "sony-e",
+    "bodyType": "mirrorless",
+    "sensorFormat": "aps_c"
+  }
+]

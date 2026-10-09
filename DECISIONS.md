@@ -35,6 +35,23 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   until promoted. No separate tables for unknown gear — every query would have to union
   them.
 - One name per model: `model.display_name`. No alias table.
+- Cameras and lenses come from lensfun (CC BY-SA 3.0, credited in the README).
+  `scripts/import-lensfun.mts` cleans the names and writes `scripts/data/lensfun-*.json`.
+  Mirrorless-era lenses (2010 on) come from a saved copy of the lens-db table
+  (`scripts/import-lens-db.mts`), which also gives release year and weight. When two
+  sources name the same lens the order is hand-written, lens-db, lensfun. The JSON is
+  generated, never hand-edited; a correction goes in the hand-written list in
+  `scripts/seed.mts`.
+- The seed upserts in batches of 500 rows inside one transaction, so a remote database
+  sees about twenty statements rather than one round trip per model.
+- European names only: no Rebel, Kiss, IXY, PowerShot SD or Lumix ZS duplicates.
+- Sensor format is loose, bucketed from crop factor: APS-H counts as APS-C, and anything
+  smaller than one inch is null.
+- A lens sold in several mounts is one model row per mount. Focal length and maximum
+  aperture are parsed from the name; a lens whose name does not give both is left out.
+- A lens slug ends with its mount (`sigma-35mm-f-1-4-dg-hsm-art-canon-ef`), because
+  third-party lenses share a name across mounts. The seed upserts on
+  `(brand, name, mount)`, not on the slug.
 - Search uses `word_similarity` against `model.normalized` (punctuation stripped,
   spaces kept) with a 0.3 floor, plus a prefix match. Use `word_similarity`, not
   `similarity` — the latter compares whole strings and fails on short forms like "xt3".

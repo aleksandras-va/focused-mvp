@@ -6,13 +6,14 @@
  * Model names follow how the manufacturer writes them; the permutations
  * people actually type live in `aliases`.
  */
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 // @next/env is CommonJS-only, so it has no named ESM exports.
 import nextEnv from '@next/env';
 import { Kysely, PostgresDialect } from 'kysely';
 import pg from 'pg';
-import type { CameraBodyType, DB, SensorFormat } from '../src/db/types';
+import type { CameraBodyType, DB, ModelCategory, SensorFormat } from '../src/db/types';
 
 type BrandSeed = { slug: string; name: string };
 type MountSeed = { slug: string; name: string; brand?: string };
@@ -21,9 +22,9 @@ type CameraSeed = {
   brand: string;
   name: string;
   mount?: string;
-  releaseYear: number;
+  releaseYear?: number;
   bodyType: CameraBodyType;
-  sensorFormat: SensorFormat;
+  sensorFormat: SensorFormat | null;
   megapixels?: number;
   hasMechanicalShutter?: boolean;
   isFilm?: boolean;
@@ -33,11 +34,13 @@ type LensSeed = {
   brand: string;
   name: string;
   mount: string;
-  releaseYear: number;
+  releaseYear?: number;
   focal: [number, number];
   maxAperture: number;
   stabilized?: boolean;
   filterThreadMm?: number;
+  weightGrams?: number;
+  brandName?: string;
 };
 
 type AccessorySeed = {
@@ -46,20 +49,33 @@ type AccessorySeed = {
   releaseYear?: number;
 };
 
+const BATCH_SIZE = 500;
+
 const BRANDS: BrandSeed[] = [
   { slug: 'canon', name: 'Canon' },
+  { slug: 'casio', name: 'Casio' },
   { slug: 'fujifilm', name: 'Fujifilm' },
+  { slug: 'hasselblad', name: 'Hasselblad' },
   { slug: 'helios', name: 'Helios' },
+  { slug: 'konica-minolta', name: 'Konica Minolta' },
+  { slug: 'leica', name: 'Leica' },
+  { slug: 'minolta', name: 'Minolta' },
   { slug: 'nikon', name: 'Nikon' },
   { slug: 'olympus', name: 'Olympus' },
+  { slug: 'om-system', name: 'OM System' },
   { slug: 'panasonic', name: 'Panasonic' },
   { slug: 'peak-design', name: 'Peak Design' },
+  { slug: 'pentax', name: 'Pentax' },
   { slug: 'ricoh', name: 'Ricoh' },
+  { slug: 'samsung', name: 'Samsung' },
   { slug: 'samyang', name: 'Samyang' },
   { slug: 'sigma', name: 'Sigma' },
   { slug: 'smallrig', name: 'SmallRig' },
   { slug: 'sony', name: 'Sony' },
   { slug: 'tamron', name: 'Tamron' },
+  { slug: 'tokina', name: 'Tokina' },
+  { slug: 'viltrox', name: 'Viltrox' },
+  { slug: 'zeiss', name: 'Zeiss' },
   { slug: 'zenit', name: 'Zenit' },
 ];
 
@@ -69,11 +85,25 @@ const MOUNTS: MountSeed[] = [
   { slug: 'canon-ef-s', name: 'Canon EF-S', brand: 'canon' },
   { slug: 'canon-fd', name: 'Canon FD', brand: 'canon' },
   { slug: 'canon-rf', name: 'Canon RF', brand: 'canon' },
+  { slug: 'fujifilm-g', name: 'Fujifilm G', brand: 'fujifilm' },
   { slug: 'fujifilm-x', name: 'Fujifilm X', brand: 'fujifilm' },
+  { slug: 'hasselblad-x', name: 'Hasselblad X', brand: 'hasselblad' },
+  { slug: 'leica-ltm', name: 'Leica L39 (LTM)', brand: 'leica' },
+  { slug: 'leica-m', name: 'Leica M', brand: 'leica' },
+  { slug: 'minolta-md', name: 'Minolta MD', brand: 'minolta' },
+  { slug: 'nikon-1', name: 'Nikon 1', brand: 'nikon' },
   { slug: 'nikon-f', name: 'Nikon F', brand: 'nikon' },
   { slug: 'nikon-z', name: 'Nikon Z', brand: 'nikon' },
+  { slug: 'pentax-645', name: 'Pentax 645', brand: 'pentax' },
+  { slug: 'pentax-k', name: 'Pentax K', brand: 'pentax' },
+  { slug: 'pentax-q', name: 'Pentax Q', brand: 'pentax' },
+  { slug: 'samsung-nx', name: 'Samsung NX', brand: 'samsung' },
+  { slug: 'samsung-nx-mini', name: 'Samsung NX mini', brand: 'samsung' },
+  { slug: 'sigma-sa', name: 'Sigma SA', brand: 'sigma' },
+  { slug: 'sony-a', name: 'Sony A', brand: 'sony' },
   { slug: 'sony-e', name: 'Sony E', brand: 'sony' },
-  // No single brand owns these.
+  { slug: 'contax-yashica', name: 'Contax/Yashica' },
+  { slug: 'four-thirds', name: 'Four Thirds' },
   { slug: 'l-mount', name: 'L-Mount' },
   { slug: 'm42', name: 'M42' },
   { slug: 'micro-four-thirds', name: 'Micro Four Thirds' },
@@ -542,6 +572,43 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 
 nextEnv.loadEnvConfig(projectRoot);
 
+function readSeedData<Seed>(file: string): Seed[] {
+  return JSON.parse(readFileSync(path.join(projectRoot, 'scripts/data', file), 'utf8'));
+}
+
+function withImported<Seed>(curated: Seed[], imported: Seed[], key: (seed: Seed) => string) {
+  const seedsByKey = new Map<string, Seed>();
+  for (const seed of [...curated, ...imported]) {
+    if (!seedsByKey.has(key(seed))) seedsByKey.set(key(seed), seed);
+  }
+  return [...seedsByKey.values()];
+}
+
+const cameras = withImported(
+  CAMERAS,
+  readSeedData<CameraSeed>('lensfun-cameras.json'),
+  (camera) => `${camera.brand}/${camera.name}`,
+);
+
+const lenses = withImported(
+  LENSES,
+  [
+    ...readSeedData<LensSeed>('lens-db-lenses.json'),
+    ...readSeedData<LensSeed>('lensfun-lenses.json'),
+  ],
+  (lens) => slugify(`${lens.brand} ${lens.name} ${lens.mount}`),
+);
+
+const curatedBrandSlugs = new Set(BRANDS.map((brand) => brand.slug));
+const brands = [
+  ...BRANDS,
+  ...new Map(
+    lenses
+      .filter((lens) => lens.brandName && !curatedBrandSlugs.has(lens.brand))
+      .map((lens) => [lens.brand, { slug: lens.brand, name: lens.brandName as string }]),
+  ).values(),
+];
+
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
@@ -552,119 +619,150 @@ const db = new Kysely<DB>({
   dialect: new PostgresDialect({ pool: new pg.Pool({ connectionString }) }),
 });
 
-await db.transaction().execute(async (trx) => {
-  const brandIds = new Map<string, string>();
-  for (const brand of BRANDS) {
-    const row = await trx
-      .insertInto('brand')
-      .values(brand)
-      .onConflict((oc) => oc.column('slug').doUpdateSet({ name: brand.name }))
-      .returning(['id', 'slug'])
-      .executeTakeFirstOrThrow();
-    brandIds.set(row.slug, row.id);
-  }
+type ModelSeed = { brand: string; name: string; mount?: string; releaseYear?: number };
 
-  const mountIds = new Map<string, string>();
-  for (const mount of MOUNTS) {
-    const row = await trx
-      .insertInto('mount')
-      .values({
+function chunked<Row>(rows: Row[]): Row[][] {
+  const chunks: Row[][] = [];
+  for (let start = 0; start < rows.length; start += BATCH_SIZE) {
+    chunks.push(rows.slice(start, start + BATCH_SIZE));
+  }
+  return chunks;
+}
+
+function modelSlug(entry: ModelSeed, category: ModelCategory): string {
+  return slugify(
+    category === 'lens' && entry.mount
+      ? `${entry.brand} ${entry.name} ${entry.mount}`
+      : `${entry.brand} ${entry.name}`,
+  );
+}
+
+await db.transaction().execute(async (trx) => {
+  const brandRows = await trx
+    .insertInto('brand')
+    .values(brands)
+    .onConflict((oc) => oc.column('slug').doUpdateSet((eb) => ({ name: eb.ref('excluded.name') })))
+    .returning(['id', 'slug'])
+    .execute();
+  const brandIds = new Map(brandRows.map((row) => [row.slug, row.id]));
+  const brandNames = new Map(brands.map((brand) => [brand.slug, brand.name]));
+
+  const mountRows = await trx
+    .insertInto('mount')
+    .values(
+      MOUNTS.map((mount) => ({
         slug: mount.slug,
         name: mount.name,
         brand_id: mount.brand ? brandIds.get(mount.brand) : null,
-      })
-      .onConflict((oc) => oc.column('slug').doUpdateSet({ name: mount.name }))
-      .returning(['id', 'slug'])
-      .executeTakeFirstOrThrow();
-    mountIds.set(row.slug, row.id);
+      })),
+    )
+    .onConflict((oc) => oc.column('slug').doUpdateSet((eb) => ({ name: eb.ref('excluded.name') })))
+    .returning(['id', 'slug'])
+    .execute();
+  const mountIds = new Map(mountRows.map((row) => [row.slug, row.id]));
+
+  async function upsertModels(
+    entries: ModelSeed[],
+    category: ModelCategory,
+  ): Promise<Map<string, string>> {
+    const modelIds = new Map<string, string>();
+
+    for (const chunk of chunked(entries)) {
+      const rows = await trx
+        .insertInto('model')
+        .values(
+          chunk.map((entry) => {
+            const brandId = brandIds.get(entry.brand);
+            if (!brandId) throw new Error(`Unknown brand: ${entry.brand}`);
+
+            const mountId = entry.mount ? mountIds.get(entry.mount) : null;
+            if (entry.mount && !mountId) throw new Error(`Unknown mount: ${entry.mount}`);
+
+            return {
+              category,
+              brand_id: brandId,
+              mount_id: mountId,
+              name: entry.name,
+              display_name: `${brandNames.get(entry.brand)} ${entry.name}`,
+              slug: modelSlug(entry, category),
+              release_year: entry.releaseYear ?? null,
+            };
+          }),
+        )
+        .onConflict((oc) =>
+          oc.constraint('model_brand_id_name_mount_id_key').doUpdateSet((eb) => ({
+            slug: eb.ref('excluded.slug'),
+            display_name: eb.ref('excluded.display_name'),
+            release_year: eb.ref('excluded.release_year'),
+          })),
+        )
+        .returning(['id', 'slug'])
+        .execute();
+
+      for (const row of rows) modelIds.set(row.slug, row.id);
+    }
+
+    return modelIds;
   }
 
-  const brandNames = new Map(BRANDS.map((b) => [b.slug, b.name]));
-
-  async function upsertModel(
-    entry: { brand: string; name: string; mount?: string; releaseYear?: number },
-    category: 'camera' | 'lens' | 'accessory',
-  ): Promise<string> {
-    const brandId = brandIds.get(entry.brand);
-    if (!brandId) throw new Error(`Unknown brand: ${entry.brand}`);
-
-    const mountId = entry.mount ? mountIds.get(entry.mount) : null;
-    if (entry.mount && !mountId) throw new Error(`Unknown mount: ${entry.mount}`);
-
-    const slug = slugify(`${entry.brand} ${entry.name}`);
-    const displayName = `${brandNames.get(entry.brand)} ${entry.name}`;
-
-    const model = await trx
-      .insertInto('model')
-      .values({
-        category,
-        brand_id: brandId,
-        mount_id: mountId,
-        name: entry.name,
-        display_name: displayName,
-        slug,
-        release_year: entry.releaseYear ?? null,
-      })
-      .onConflict((oc) =>
-        oc.column('slug').doUpdateSet({
-          display_name: displayName,
-          release_year: entry.releaseYear ?? null,
-        }),
-      )
-      .returning('id')
-      .executeTakeFirstOrThrow();
-
-    return model.id;
+  function modelId(modelIds: Map<string, string>, entry: ModelSeed, category: ModelCategory) {
+    const id = modelIds.get(modelSlug(entry, category));
+    if (!id) throw new Error(`Model was not upserted: ${entry.brand} ${entry.name}`);
+    return id;
   }
 
-  for (const camera of CAMERAS) {
-    const modelId = await upsertModel(camera, 'camera');
+  const cameraModelIds = await upsertModels(cameras, 'camera');
+  for (const chunk of chunked(cameras)) {
     await trx
       .insertInto('camera_spec')
-      .values({
-        model_id: modelId,
-        body_type: camera.bodyType,
-        sensor_format: camera.sensorFormat,
-        megapixels: camera.megapixels ?? null,
-        has_mechanical_shutter: camera.hasMechanicalShutter ?? true,
-        is_film: camera.isFilm ?? false,
-      })
-      .onConflict((oc) =>
-        oc.column('model_id').doUpdateSet({
+      .values(
+        chunk.map((camera) => ({
+          model_id: modelId(cameraModelIds, camera, 'camera'),
           body_type: camera.bodyType,
           sensor_format: camera.sensorFormat,
           megapixels: camera.megapixels ?? null,
+          has_mechanical_shutter: camera.hasMechanicalShutter ?? true,
           is_film: camera.isFilm ?? false,
-        }),
+        })),
+      )
+      .onConflict((oc) =>
+        oc.column('model_id').doUpdateSet((eb) => ({
+          body_type: eb.ref('excluded.body_type'),
+          sensor_format: eb.ref('excluded.sensor_format'),
+          megapixels: eb.ref('excluded.megapixels'),
+          is_film: eb.ref('excluded.is_film'),
+        })),
       )
       .execute();
   }
 
-  for (const lens of LENSES) {
-    const modelId = await upsertModel(lens, 'lens');
+  const lensModelIds = await upsertModels(lenses, 'lens');
+  for (const chunk of chunked(lenses)) {
     await trx
       .insertInto('lens_spec')
-      .values({
-        model_id: modelId,
-        focal_min_mm: lens.focal[0],
-        focal_max_mm: lens.focal[1],
-        max_aperture: lens.maxAperture,
-        has_stabilization: lens.stabilized ?? false,
-        filter_thread_mm: lens.filterThreadMm ?? null,
-      })
-      .onConflict((oc) =>
-        oc.column('model_id').doUpdateSet({
+      .values(
+        chunk.map((lens) => ({
+          model_id: modelId(lensModelIds, lens, 'lens'),
           focal_min_mm: lens.focal[0],
           focal_max_mm: lens.focal[1],
           max_aperture: lens.maxAperture,
-        }),
+          has_stabilization: lens.stabilized ?? false,
+          filter_thread_mm: lens.filterThreadMm ?? null,
+          weight_grams: lens.weightGrams ?? null,
+        })),
+      )
+      .onConflict((oc) =>
+        oc.column('model_id').doUpdateSet((eb) => ({
+          focal_min_mm: eb.ref('excluded.focal_min_mm'),
+          focal_max_mm: eb.ref('excluded.focal_max_mm'),
+          max_aperture: eb.ref('excluded.max_aperture'),
+          weight_grams: eb.ref('excluded.weight_grams'),
+        })),
       )
       .execute();
   }
 
-  for (const accessory of ACCESSORIES) {
-    await upsertModel(accessory, 'accessory');
-  }
+  await upsertModels(ACCESSORIES, 'accessory');
 });
 
 const [{ total }] = await db

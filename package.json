@@ -15,6 +15,8 @@
     "db:codegen": "kysely-codegen --env-file .env.local --dialect postgres --exclude-pattern '{kysely_*,v_*}' --out-file src/db/types.ts",
     "db:codegen:check": "kysely-codegen --env-file .env.local --dialect postgres --exclude-pattern '{kysely_*,v_*}' --out-file src/db/types.ts --verify",
     "db:migrate": "node scripts/migrate.mts",
+    "db:import:lens-db": "node scripts/import-lens-db.mts",
+    "db:import:lensfun": "node scripts/import-lensfun.mts",
     "db:seed": "node scripts/seed.mts",
     "db:seed:cities": "node scripts/seed-cities.mts"
   },
