@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Data attribution
+
+The camera and lens catalogs in `scripts/data/lensfun-*.json` are derived from the
+[lensfun](https://lensfun.github.io/) database, licensed under
+[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Those files are shared under
+the same license.

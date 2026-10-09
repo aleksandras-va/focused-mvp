@@ -19,12 +19,13 @@ server, no client-side data layer.
 ## Scope
 
 - Cameras, lenses and accessories.
-- A hand-seeded catalog of common models, borrowed from MPB.
+- A catalog of models: cameras and lenses imported from lensfun and maker store feeds,
+  plus a hand-seeded list.
 - Auth, sellers choosing private person or store. Stores get a storefront and a badge.
 - Ad details: shutter count where applicable, separate cosmetic and functional
   condition, and a fixed checklist of what is included.
 
-Out of scope: lens/body compatibility recommendations, Leica.
+Out of scope: lens/body compatibility recommendations.
 
 ## Rules
 
@@ -68,6 +69,10 @@ Out of scope: lens/body compatibility recommendations, Leica.
 - `pnpm db:codegen` — regenerate `src/db/types.ts` after any schema change
 - `pnpm db:codegen:check` — fails if the generated types have drifted
 - `pnpm db:seed` — load the gear catalog, idempotent
+- `pnpm db:import:lensfun <path to lensfun/data/db>` — regenerate the lensfun camera
+  and lens files in `scripts/data/` from a lensfun checkout
+- `pnpm db:import:lens-db <path to saved html>` — regenerate
+  `scripts/data/lens-db-lenses.json` from a saved copy of the lens-db lens table
 - `pnpm db:seed:cities` — load the city list, idempotent
 - `pnpm db:reset` — drop the volume and start clean; follow with `pnpm db:migrate`
 - `pnpm db:psql` — psql shell in the container

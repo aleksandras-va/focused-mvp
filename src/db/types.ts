@@ -42,7 +42,7 @@ export interface CameraSpec {
   megapixels: number | null;
   model_id: string;
   records_4k: boolean | null;
-  sensor_format: SensorFormat;
+  sensor_format: SensorFormat | null;
   weather_sealed: boolean | null;
   weight_grams: number | null;
   width_mm: number | null;

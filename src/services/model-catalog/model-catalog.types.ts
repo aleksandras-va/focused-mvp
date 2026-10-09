@@ -4,7 +4,7 @@ import type { CameraBodyType, ModelCategory, SensorFormat } from '@/db/types';
 
 interface CameraDetails {
   bodyType: CameraBodyType;
-  sensorFormat: SensorFormat;
+  sensorFormat: SensorFormat | null;
   megapixels: number | null;
   hasMechanicalShutter: boolean;
 }
