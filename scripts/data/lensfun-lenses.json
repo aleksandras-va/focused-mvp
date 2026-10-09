@@ -1105,7 +1105,7 @@
   },
   {
     "brand": "canon",
-    "name": "RF 24mm f/1.8 MACRO IS STM",
+    "name": "RF 24mm f/1.8 Macro IS STM",
     "mount": "canon-rf",
     "focal": [24, 24],
     "maxAperture": 1.8,
@@ -1145,7 +1145,7 @@
   },
   {
     "brand": "canon",
-    "name": "RF 35mm f/1.8 MACRO IS STM",
+    "name": "RF 35mm f/1.8 Macro IS STM",
     "mount": "canon-rf",
     "focal": [35, 35],
     "maxAperture": 1.8,
@@ -1209,7 +1209,7 @@
   },
   {
     "brand": "canon",
-    "name": "RF 85mm f/2 MACRO IS STM",
+    "name": "RF 85mm f/2 Macro IS STM",
     "mount": "canon-rf",
     "focal": [85, 85],
     "maxAperture": 2,
@@ -1673,7 +1673,7 @@
   },
   {
     "brand": "leica",
-    "name": "APO-Summicron-M 75mm f/2 Asph.",
+    "name": "APO-Summicron-M 75mm f/2 ASPH.",
     "mount": "leica-m",
     "focal": [75, 75],
     "maxAperture": 2,
@@ -1681,7 +1681,7 @@
   },
   {
     "brand": "leica",
-    "name": "APO-Summicron-SL 35mm f/2 Asph.",
+    "name": "APO-Summicron-SL 35mm f/2 ASPH.",
     "mount": "l-mount",
     "focal": [35, 35],
     "maxAperture": 2,
@@ -1689,7 +1689,7 @@
   },
   {
     "brand": "leica",
-    "name": "APO-Summicron-SL 50mm f/2 Asph.",
+    "name": "APO-Summicron-SL 50mm f/2 ASPH.",
     "mount": "l-mount",
     "focal": [50, 50],
     "maxAperture": 2,
@@ -1697,7 +1697,7 @@
   },
   {
     "brand": "leica",
-    "name": "Elmarit-M 28mm f/2.8 Asph.",
+    "name": "Elmarit-M 28mm f/2.8 ASPH.",
     "mount": "leica-m",
     "focal": [28, 28],
     "maxAperture": 2.8,
@@ -1713,7 +1713,7 @@
   },
   {
     "brand": "leica",
-    "name": "Elmarit-TL 18mm f/2.8 Asph.",
+    "name": "Elmarit-TL 18mm f/2.8 ASPH.",
     "mount": "l-mount",
     "focal": [18, 18],
     "maxAperture": 2.8,
@@ -1721,7 +1721,7 @@
   },
   {
     "brand": "leica",
-    "name": "Summicron-M 28mm f/2 Asph.",
+    "name": "Summicron-M 28mm f/2 ASPH.",
     "mount": "leica-m",
     "focal": [28, 28],
     "maxAperture": 2,
@@ -1729,7 +1729,7 @@
   },
   {
     "brand": "leica",
-    "name": "Summicron-M 35mm f/2 Asph.",
+    "name": "Summicron-M 35mm f/2 ASPH.",
     "mount": "leica-m",
     "focal": [35, 35],
     "maxAperture": 2,
@@ -1745,7 +1745,7 @@
   },
   {
     "brand": "leica",
-    "name": "Summicron-TL 23mm f/2 Asph.",
+    "name": "Summicron-TL 23mm f/2 ASPH.",
     "mount": "l-mount",
     "focal": [23, 23],
     "maxAperture": 2,
@@ -1753,7 +1753,7 @@
   },
   {
     "brand": "leica",
-    "name": "Summilux-TL 35mm f/1.4 Asph.",
+    "name": "Summilux-TL 35mm f/1.4 ASPH.",
     "mount": "l-mount",
     "focal": [35, 35],
     "maxAperture": 1.4,
@@ -1761,7 +1761,7 @@
   },
   {
     "brand": "leica",
-    "name": "Vario-Elmarit-SL 24-70mm f/2.8 Asph.",
+    "name": "Vario-Elmarit-SL 24-70mm f/2.8 ASPH.",
     "mount": "l-mount",
     "focal": [24, 70],
     "maxAperture": 2.8,
@@ -2161,18 +2161,18 @@
   },
   {
     "brand": "nikon",
-    "name": "AF NIKKOR 35mm f/2.0D",
+    "name": "AF NIKKOR 35mm f/2.8 PC “Black knob”",
     "mount": "nikon-f",
     "focal": [35, 35],
-    "maxAperture": 2,
+    "maxAperture": 2.8,
     "stabilized": false
   },
   {
     "brand": "nikon",
-    "name": "AF NIKKOR 35mm f/2.8 PC “black knob”",
+    "name": "AF NIKKOR 35mm f/2D",
     "mount": "nikon-f",
     "focal": [35, 35],
-    "maxAperture": 2.8,
+    "maxAperture": 2,
     "stabilized": false
   },
   {
@@ -3025,7 +3025,7 @@
   },
   {
     "brand": "nikon",
-    "name": "AI-S NIKKOR 85mm f/2.0",
+    "name": "AI-S NIKKOR 85mm f/2",
     "mount": "nikon-f",
     "focal": [85, 85],
     "maxAperture": 2,
@@ -3129,7 +3129,7 @@
   },
   {
     "brand": "nikon",
-    "name": "Nikkor 50mm f/2",
+    "name": "NIKKOR 50mm f/2",
     "mount": "nikon-f",
     "focal": [50, 50],
     "maxAperture": 2,
@@ -3137,7 +3137,7 @@
   },
   {
     "brand": "nikon",
-    "name": "Nikkor 55mm f/3.5 Micro",
+    "name": "NIKKOR 55mm f/3.5 Micro",
     "mount": "nikon-f",
     "focal": [55, 55],
     "maxAperture": 3.5,
@@ -3145,7 +3145,7 @@
   },
   {
     "brand": "nikon",
-    "name": "Nikkor Auto 43-86mm f/3.5",
+    "name": "NIKKOR Auto 43-86mm f/3.5",
     "mount": "nikon-f",
     "focal": [43, 86],
     "maxAperture": 3.5,
@@ -3481,7 +3481,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 8-25mm f/4.0 PRO",
+    "name": "M.Zuiko Digital ED 8-25mm f/4 PRO",
     "mount": "micro-four-thirds",
     "focal": [8, 25],
     "maxAperture": 4,
@@ -3497,7 +3497,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 9-18mm f/4.0-5.6",
+    "name": "M.Zuiko Digital ED 9-18mm f/4-5.6",
     "mount": "micro-four-thirds",
     "focal": [9, 18],
     "maxAperture": 4,
@@ -3513,7 +3513,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 12-45mm f/4.0 Pro",
+    "name": "M.Zuiko Digital ED 12-45mm f/4 Pro",
     "mount": "micro-four-thirds",
     "focal": [12, 45],
     "maxAperture": 4,
@@ -3529,7 +3529,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 12-100mm f/4.0 IS Pro",
+    "name": "M.Zuiko Digital ED 12-100mm f/4 IS Pro",
     "mount": "micro-four-thirds",
     "focal": [12, 100],
     "maxAperture": 4,
@@ -3545,7 +3545,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 12mm f/2.0",
+    "name": "M.Zuiko Digital ED 12mm f/2",
     "mount": "micro-four-thirds",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -3585,7 +3585,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 14-150mm f/4.0-5.6",
+    "name": "M.Zuiko Digital ED 14-150mm f/4-5.6",
     "mount": "micro-four-thirds",
     "focal": [14, 150],
     "maxAperture": 4,
@@ -3593,7 +3593,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 14-150mm f/4.0-5.6 II",
+    "name": "M.Zuiko Digital ED 14-150mm f/4-5.6 II",
     "mount": "micro-four-thirds",
     "focal": [14, 150],
     "maxAperture": 4,
@@ -3633,7 +3633,7 @@
   },
   {
     "brand": "olympus",
-    "name": "M.Zuiko Digital ED 40-150mm f/4.0-5.6 R",
+    "name": "M.Zuiko Digital ED 40-150mm f/4-5.6 R",
     "mount": "micro-four-thirds",
     "focal": [40, 150],
     "maxAperture": 4,
@@ -3729,7 +3729,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital 70-300mm f/4.0-5.6",
+    "name": "Zuiko Digital 70-300mm f/4-5.6",
     "mount": "four-thirds",
     "focal": [70, 300],
     "maxAperture": 4,
@@ -3737,7 +3737,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital ED 7-14mm f/4.0",
+    "name": "Zuiko Digital ED 7-14mm f/4",
     "mount": "four-thirds",
     "focal": [7, 14],
     "maxAperture": 4,
@@ -3745,7 +3745,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital ED 9-18mm f/4.0-5.6",
+    "name": "Zuiko Digital ED 9-18mm f/4-5.6",
     "mount": "four-thirds",
     "focal": [9, 18],
     "maxAperture": 4,
@@ -3753,7 +3753,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital ED 12-60mm f/2.8-4.0 SWD",
+    "name": "Zuiko Digital ED 12-60mm f/2.8-4 SWD",
     "mount": "four-thirds",
     "focal": [12, 60],
     "maxAperture": 2.8,
@@ -3761,7 +3761,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital ED 14-35mm f/2.0 SWD",
+    "name": "Zuiko Digital ED 14-35mm f/2 SWD",
     "mount": "four-thirds",
     "focal": [14, 35],
     "maxAperture": 2,
@@ -3777,7 +3777,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital ED 40-150mm f/4.0-5.6",
+    "name": "Zuiko Digital ED 40-150mm f/4-5.6",
     "mount": "four-thirds",
     "focal": [40, 150],
     "maxAperture": 4,
@@ -3801,7 +3801,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital ED 50mm f/2.0 Macro",
+    "name": "Zuiko Digital ED 50mm f/2 Macro",
     "mount": "four-thirds",
     "focal": [50, 50],
     "maxAperture": 2,
@@ -3809,7 +3809,7 @@
   },
   {
     "brand": "olympus",
-    "name": "Zuiko Digital Pro ED 35-100mm f/2.0",
+    "name": "Zuiko Digital Pro ED 35-100mm f/2",
     "mount": "four-thirds",
     "focal": [35, 100],
     "maxAperture": 2,
@@ -3817,7 +3817,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica D Summilux 25mm f/1.4 Asph.",
+    "name": "Leica D Summilux 25mm f/1.4 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [25, 25],
     "maxAperture": 1.4,
@@ -3825,7 +3825,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica D Vario-Elmar 14-150mm f/3.5-5.6 Asph. OIS",
+    "name": "Leica D Vario-Elmar 14-150mm f/3.5-5.6 ASPH. OIS",
     "mount": "four-thirds",
     "focal": [14, 150],
     "maxAperture": 3.5,
@@ -3833,7 +3833,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Macro-Elmarit 45mm f/2.8 Asph. Mega OIS",
+    "name": "Leica DG Macro-Elmarit 45mm f/2.8 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [45, 45],
     "maxAperture": 2.8,
@@ -3841,7 +3841,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Nocticron 42.5mm f/1.2 Asph. Power OIS",
+    "name": "Leica DG Nocticron 42.5mm f/1.2 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [42.5, 42.5],
     "maxAperture": 1.2,
@@ -3849,7 +3849,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Summilux 9mm f/1.7 Asph.",
+    "name": "Leica DG Summilux 9mm f/1.7 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [9, 9],
     "maxAperture": 1.7,
@@ -3857,7 +3857,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Summilux 15mm f/1.7 Asph.",
+    "name": "Leica DG Summilux 15mm f/1.7 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [15, 15],
     "maxAperture": 1.7,
@@ -3865,7 +3865,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Summilux 25mm f/1.4 Asph.",
+    "name": "Leica DG Summilux 25mm f/1.4 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [25, 25],
     "maxAperture": 1.4,
@@ -3881,7 +3881,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Vario-Elmar 100-400mm f/4.0-6.3 Asph. Power OIS",
+    "name": "Leica DG Vario-Elmar 100-400mm f/4-6.3 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [100, 400],
     "maxAperture": 4,
@@ -3889,7 +3889,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Vario-Elmarit 8-18mm f/2.8-4 Asph.",
+    "name": "Leica DG Vario-Elmarit 8-18mm f/2.8-4 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [8, 18],
     "maxAperture": 2.8,
@@ -3897,7 +3897,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Vario-Elmarit 12-60mm f/2.8-4.0 Asph. Power OIS",
+    "name": "Leica DG Vario-Elmarit 12-60mm f/2.8-4 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [12, 60],
     "maxAperture": 2.8,
@@ -3905,7 +3905,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Vario-Elmarit 50-200mm f/2.8-4 Asph. OIS",
+    "name": "Leica DG Vario-Elmarit 50-200mm f/2.8-4 ASPH. OIS",
     "mount": "micro-four-thirds",
     "focal": [50, 200],
     "maxAperture": 2.8,
@@ -3913,7 +3913,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Leica DG Vario-Summilux 10-25mm f/1.7 Asph.",
+    "name": "Leica DG Vario-Summilux 10-25mm f/1.7 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [10, 25],
     "maxAperture": 1.7,
@@ -3921,7 +3921,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G 14mm f/2.5 Asph.",
+    "name": "Lumix G 14mm f/2.5 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [14, 14],
     "maxAperture": 2.5,
@@ -3929,7 +3929,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G 14mm f/2.5 II Asph.",
+    "name": "Lumix G 14mm f/2.5 II ASPH.",
     "mount": "micro-four-thirds",
     "focal": [14, 14],
     "maxAperture": 2.5,
@@ -3937,7 +3937,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G 20mm f/1.7 Asph.",
+    "name": "Lumix G 20mm f/1.7 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [20, 20],
     "maxAperture": 1.7,
@@ -3945,7 +3945,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G 20mm f/1.7 II Asph.",
+    "name": "Lumix G 20mm f/1.7 II ASPH.",
     "mount": "micro-four-thirds",
     "focal": [20, 20],
     "maxAperture": 1.7,
@@ -3953,7 +3953,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G 25mm f/1.7 Asph.",
+    "name": "Lumix G 25mm f/1.7 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [25, 25],
     "maxAperture": 1.7,
@@ -3961,7 +3961,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G 42.5mm f/1.7 Asph. Power OIS",
+    "name": "Lumix G 42.5mm f/1.7 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [42.5, 42.5],
     "maxAperture": 1.7,
@@ -3969,7 +3969,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Macro 30mm f/2.8 Asph. Mega OIS",
+    "name": "Lumix G Macro 30mm f/2.8 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [30, 30],
     "maxAperture": 2.8,
@@ -3977,7 +3977,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 7-14mm f/4.0 Asph.",
+    "name": "Lumix G Vario 7-14mm f/4 ASPH.",
     "mount": "micro-four-thirds",
     "focal": [7, 14],
     "maxAperture": 4,
@@ -3985,7 +3985,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 12-32mm f/3.5-5.6 Asph. Mega OIS",
+    "name": "Lumix G Vario 12-32mm f/3.5-5.6 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [12, 32],
     "maxAperture": 3.5,
@@ -3993,7 +3993,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 12-60mm f/3.5-5.6 Asph. Power OIS",
+    "name": "Lumix G Vario 12-60mm f/3.5-5.6 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [12, 60],
     "maxAperture": 3.5,
@@ -4001,7 +4001,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 14-42mm f/3.5-5.6 II Asph. Mega OIS",
+    "name": "Lumix G Vario 14-42mm f/3.5-5.6 II ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [14, 42],
     "maxAperture": 3.5,
@@ -4009,7 +4009,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 14-45mm f/3.5-5.6 Asph. Mega OIS",
+    "name": "Lumix G Vario 14-45mm f/3.5-5.6 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [14, 45],
     "maxAperture": 3.5,
@@ -4017,7 +4017,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 14-140mm f/3.5-5.6 Asph. II Power OIS",
+    "name": "Lumix G Vario 14-140mm f/3.5-5.6 ASPH. II Power OIS",
     "mount": "micro-four-thirds",
     "focal": [14, 140],
     "maxAperture": 3.5,
@@ -4025,7 +4025,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 14-140mm f/3.5-5.6 Asph. Power OIS",
+    "name": "Lumix G Vario 14-140mm f/3.5-5.6 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [14, 140],
     "maxAperture": 3.5,
@@ -4033,7 +4033,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 35-100mm f/4.0-5.6 Asph. Mega OIS",
+    "name": "Lumix G Vario 35-100mm f/4-5.6 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [35, 100],
     "maxAperture": 4,
@@ -4041,7 +4041,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 45-150mm f/4.0-5.6 Asph. Mega OIS",
+    "name": "Lumix G Vario 45-150mm f/4-5.6 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [45, 150],
     "maxAperture": 4,
@@ -4049,7 +4049,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 45-200mm f/4.0-5.6 II Power OIS",
+    "name": "Lumix G Vario 45-200mm f/4-5.6 II Power OIS",
     "mount": "micro-four-thirds",
     "focal": [45, 200],
     "maxAperture": 4,
@@ -4057,7 +4057,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 45-200mm f/4.0-5.6 Mega OIS",
+    "name": "Lumix G Vario 45-200mm f/4-5.6 Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [45, 200],
     "maxAperture": 4,
@@ -4073,7 +4073,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario 100-300mm f/4.0-5.6 Mega OIS",
+    "name": "Lumix G Vario 100-300mm f/4-5.6 Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [100, 300],
     "maxAperture": 4,
@@ -4081,7 +4081,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G Vario HD 14-140mm f/4.0-5.8 Asph. Mega OIS",
+    "name": "Lumix G Vario HD 14-140mm f/4-5.8 ASPH. Mega OIS",
     "mount": "micro-four-thirds",
     "focal": [14, 140],
     "maxAperture": 4,
@@ -4089,7 +4089,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G X Vario 12-35mm f/2.8 Asph. Power OIS",
+    "name": "Lumix G X Vario 12-35mm f/2.8 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [12, 35],
     "maxAperture": 2.8,
@@ -4097,7 +4097,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G X Vario 12-35mm f/2.8 II Asph. Power OIS",
+    "name": "Lumix G X Vario 12-35mm f/2.8 II ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [12, 35],
     "maxAperture": 2.8,
@@ -4121,7 +4121,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G X Vario PZ 14-42mm f/3.5-5.6 Asph. Power OIS",
+    "name": "Lumix G X Vario PZ 14-42mm f/3.5-5.6 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [14, 42],
     "maxAperture": 3.5,
@@ -4129,7 +4129,7 @@
   },
   {
     "brand": "panasonic",
-    "name": "Lumix G X Vario PZ 45-175mm f/4.0-5.6 Asph. Power OIS",
+    "name": "Lumix G X Vario PZ 45-175mm f/4-5.6 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "focal": [45, 175],
     "maxAperture": 4,
@@ -4281,7 +4281,7 @@
   },
   {
     "brand": "pentax",
-    "name": "HD PENTAX-D FA 21mm f/2.4 ED Limited DC WR",
+    "name": "HD Pentax-D FA 21mm f/2.4 ED Limited DC WR",
     "mount": "pentax-k",
     "focal": [21, 21],
     "maxAperture": 2.4,
@@ -4473,7 +4473,7 @@
   },
   {
     "brand": "pentax",
-    "name": "smc PENTAX-DA 14mm f/2.8 ED[IF]",
+    "name": "smc Pentax-DA 14mm f/2.8 ED[IF]",
     "mount": "pentax-k",
     "focal": [14, 14],
     "maxAperture": 2.8,
@@ -4609,7 +4609,7 @@
   },
   {
     "brand": "pentax",
-    "name": "smc Pentax-DA Fish-Eye 10-17mm f/3.5-4.5 ED IF",
+    "name": "smc Pentax-DA Fish-eye 10-17mm f/3.5-4.5 ED IF",
     "mount": "pentax-k",
     "focal": [10, 17],
     "maxAperture": 3.5,
@@ -4681,7 +4681,7 @@
   },
   {
     "brand": "pentax",
-    "name": "smc Pentax-F ZOOM 35-70mm f/3.5-4.5",
+    "name": "smc Pentax-F Zoom 35-70mm f/3.5-4.5",
     "mount": "pentax-k",
     "focal": [35, 70],
     "maxAperture": 3.5,
@@ -5001,7 +5001,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "canon-ef",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5009,7 +5009,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "four-thirds",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5017,7 +5017,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "fujifilm-x",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5025,7 +5025,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "micro-four-thirds",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5033,7 +5033,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "nikon-f",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5041,7 +5041,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "pentax-k",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5049,7 +5049,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "samsung-nx",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5057,7 +5057,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "sony-a",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5065,7 +5065,7 @@
   },
   {
     "brand": "samyang",
-    "name": "8mm f/3.5 Fish-Eye CS",
+    "name": "8mm f/3.5 Fish-eye CS",
     "mount": "sony-e",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5145,7 +5145,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.0 NCS CS",
+    "name": "12mm f/2 NCS CS",
     "mount": "canon-ef-m",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5153,7 +5153,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.0 NCS CS",
+    "name": "12mm f/2 NCS CS",
     "mount": "fujifilm-x",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5161,7 +5161,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.0 NCS CS",
+    "name": "12mm f/2 NCS CS",
     "mount": "micro-four-thirds",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5169,7 +5169,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.0 NCS CS",
+    "name": "12mm f/2 NCS CS",
     "mount": "samsung-nx",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5177,7 +5177,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.0 NCS CS",
+    "name": "12mm f/2 NCS CS",
     "mount": "sony-e",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5185,7 +5185,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.8 Fish-Eye ED AS NCS",
+    "name": "12mm f/2.8 Fish-eye ED AS NCS",
     "mount": "canon-ef",
     "focal": [12, 12],
     "maxAperture": 2.8,
@@ -5193,7 +5193,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.8 Fish-Eye ED AS NCS",
+    "name": "12mm f/2.8 Fish-eye ED AS NCS",
     "mount": "nikon-f",
     "focal": [12, 12],
     "maxAperture": 2.8,
@@ -5201,7 +5201,7 @@
   },
   {
     "brand": "samyang",
-    "name": "12mm f/2.8 Fish-Eye ED AS NCS",
+    "name": "12mm f/2.8 Fish-eye ED AS NCS",
     "mount": "sony-e",
     "focal": [12, 12],
     "maxAperture": 2.8,
@@ -5305,7 +5305,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "canon-ef",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5313,7 +5313,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "canon-ef-m",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5321,7 +5321,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "fujifilm-x",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5329,7 +5329,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "micro-four-thirds",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5337,7 +5337,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "nikon-f",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5345,7 +5345,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "pentax-k",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5353,7 +5353,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "samsung-nx",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5361,7 +5361,7 @@
   },
   {
     "brand": "samyang",
-    "name": "16mm f/2.0 ED AS UMC CS",
+    "name": "16mm f/2 ED AS UMC CS",
     "mount": "sony-a",
     "focal": [16, 16],
     "maxAperture": 2,
@@ -5673,7 +5673,7 @@
   },
   {
     "brand": "samyang",
-    "name": "AF 12mm f/2.0",
+    "name": "AF 12mm f/2",
     "mount": "fujifilm-x",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5681,7 +5681,7 @@
   },
   {
     "brand": "samyang",
-    "name": "AF 12mm f/2.0",
+    "name": "AF 12mm f/2",
     "mount": "sony-e",
     "focal": [12, 12],
     "maxAperture": 2,
@@ -5825,7 +5825,7 @@
   },
   {
     "brand": "sigma",
-    "name": "4.5mm f/2.8 EX DC HSM circular fisheye",
+    "name": "4.5mm f/2.8 EX DC HSM circular Fisheye",
     "mount": "canon-ef",
     "focal": [4.5, 4.5],
     "maxAperture": 2.8,
@@ -5833,7 +5833,7 @@
   },
   {
     "brand": "sigma",
-    "name": "4.5mm f/2.8 EX DC HSM circular fisheye",
+    "name": "4.5mm f/2.8 EX DC HSM circular Fisheye",
     "mount": "nikon-f",
     "focal": [4.5, 4.5],
     "maxAperture": 2.8,
@@ -5841,7 +5841,7 @@
   },
   {
     "brand": "sigma",
-    "name": "4.5mm f/2.8 EX DC HSM circular fisheye",
+    "name": "4.5mm f/2.8 EX DC HSM circular Fisheye",
     "mount": "pentax-k",
     "focal": [4.5, 4.5],
     "maxAperture": 2.8,
@@ -5849,7 +5849,7 @@
   },
   {
     "brand": "sigma",
-    "name": "4.5mm f/2.8 EX DC HSM circular fisheye",
+    "name": "4.5mm f/2.8 EX DC HSM circular Fisheye",
     "mount": "sigma-sa",
     "focal": [4.5, 4.5],
     "maxAperture": 2.8,
@@ -5857,7 +5857,7 @@
   },
   {
     "brand": "sigma",
-    "name": "4.5mm f/2.8 EX DC HSM circular fisheye",
+    "name": "4.5mm f/2.8 EX DC HSM circular Fisheye",
     "mount": "sony-a",
     "focal": [4.5, 4.5],
     "maxAperture": 2.8,
@@ -5905,7 +5905,7 @@
   },
   {
     "brand": "sigma",
-    "name": "8mm f/3.5 EX DG circular fisheye",
+    "name": "8mm f/3.5 EX DG circular Fisheye",
     "mount": "canon-ef",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5913,7 +5913,7 @@
   },
   {
     "brand": "sigma",
-    "name": "8mm f/3.5 EX DG circular fisheye",
+    "name": "8mm f/3.5 EX DG circular Fisheye",
     "mount": "nikon-f",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -5921,7 +5921,7 @@
   },
   {
     "brand": "sigma",
-    "name": "8mm f/3.5 EX DG circular fisheye",
+    "name": "8mm f/3.5 EX DG circular Fisheye",
     "mount": "sigma-sa",
     "focal": [8, 8],
     "maxAperture": 3.5,
@@ -7481,7 +7481,7 @@
   },
   {
     "brand": "sigma",
-    "name": "24-105mm f/4.0 DG OS HSM [A]",
+    "name": "24-105mm f/4 DG OS HSM [A]",
     "mount": "canon-ef",
     "focal": [24, 105],
     "maxAperture": 4,
@@ -7489,7 +7489,7 @@
   },
   {
     "brand": "sigma",
-    "name": "24-105mm f/4.0 DG OS HSM [A]",
+    "name": "24-105mm f/4 DG OS HSM [A]",
     "mount": "nikon-f",
     "focal": [24, 105],
     "maxAperture": 4,
@@ -7497,7 +7497,7 @@
   },
   {
     "brand": "sigma",
-    "name": "24-105mm f/4.0 DG OS HSM [A]",
+    "name": "24-105mm f/4 DG OS HSM [A]",
     "mount": "sigma-sa",
     "focal": [24, 105],
     "maxAperture": 4,
@@ -7505,7 +7505,7 @@
   },
   {
     "brand": "sigma",
-    "name": "24-105mm f/4.0 DG OS HSM [A]",
+    "name": "24-105mm f/4 DG OS HSM [A]",
     "mount": "sony-a",
     "focal": [24, 105],
     "maxAperture": 4,
@@ -9089,7 +9089,7 @@
   },
   {
     "brand": "sigma",
-    "name": "105mm f/2.8 DG DN MACRO Art",
+    "name": "105mm f/2.8 DG DN Macro Art",
     "mount": "l-mount",
     "focal": [105, 105],
     "maxAperture": 2.8,
@@ -9097,7 +9097,7 @@
   },
   {
     "brand": "sigma",
-    "name": "105mm f/2.8 DG DN MACRO Art",
+    "name": "105mm f/2.8 DG DN Macro Art",
     "mount": "sony-e",
     "focal": [105, 105],
     "maxAperture": 2.8,
@@ -11721,7 +11721,7 @@
   },
   {
     "brand": "tokina",
-    "name": "ATX-i 11-20mm f/2.8 CF",
+    "name": "atx-i 11-20mm f/2.8 CF",
     "mount": "canon-ef",
     "focal": [11, 20],
     "maxAperture": 2.8,
@@ -11729,7 +11729,7 @@
   },
   {
     "brand": "tokina",
-    "name": "ATX-i 11-20mm f/2.8 CF",
+    "name": "atx-i 11-20mm f/2.8 CF",
     "mount": "nikon-f",
     "focal": [11, 20],
     "maxAperture": 2.8,

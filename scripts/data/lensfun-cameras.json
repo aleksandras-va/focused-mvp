@@ -3449,784 +3449,904 @@
     "brand": "panasonic",
     "name": "Lumix FX2",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FX2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FX7",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FX7"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FX8",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FX8"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FX9",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FX9"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FX150",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FX150"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ3",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ3"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ5",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ8",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ8"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ10",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ10"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ18",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ18"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ20",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ20"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ28",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ28"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ30",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ30"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ35",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ35"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ40",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ40"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ45",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ45"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ50",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ50"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ100",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ100"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ150",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ150"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ200",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ200"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ300",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ300"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ330",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-FZ330"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ1000",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-FZ1000"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ1000 II",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DC-FZ10002"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ2000",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-FZ2000"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix FZ2500",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-FZ2500"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G1",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G2",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G3",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G3"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G5",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G6",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G6"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G7",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G7"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G8",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G8"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G9",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G9"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G9 II",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G9M2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G10",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G10"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G70",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G70"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G80",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G80"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G81",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G81"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G85",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-G85"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G90",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G90"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G91",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G91"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G95",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G95"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G95D",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G95D"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G97",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G97"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G99",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G99"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G99D",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G99D"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G100",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G100"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G100D",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G100D"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix G110",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-G110"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF1",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF2",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF3",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF3"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF5",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF6",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF6"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF7",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF7"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GF8",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GF8"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH1",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GH1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH2",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GH2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH3",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GH3"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH4",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GH4"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH5",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GH5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH5 II",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GH5M2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH5S",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GH5S"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH6",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GH6"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GH7",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GH7"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GM1",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GM1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GM5",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GM5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX1",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GX1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX7",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GX7"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX8",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GX8"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX9",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GX9"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX80",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GX80"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX85",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-GX85"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX800",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GX800"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix GX880",
     "mount": "micro-four-thirds",
     "bodyType": "mirrorless",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-GX880"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix L1",
     "mount": "four-thirds",
     "bodyType": "dslr",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-L1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix L10",
     "mount": "four-thirds",
     "bodyType": "dslr",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-L10"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LC1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LC1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LF1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LF1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LX1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX2",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LX2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX3",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LX3"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX5",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LX5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX7",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LX7"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX10",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-LX10"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX15",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-LX15"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX100",
     "bodyType": "compact",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DMC-LX100"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LX100 II",
     "bodyType": "compact",
-    "sensorFormat": "micro_four_thirds"
+    "sensorFormat": "micro_four_thirds",
+    "searchTerms": ["DC-LX100M2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LZ1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LZ1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix LZ2",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-LZ2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S1",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S1"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S1 II",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S1M2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S1 IIE",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S1M2ES"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S1H",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S1H"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S1R",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S1R"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S1R II",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S1RM2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S5",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S5"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S5 II",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S5M2"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S5 IIX",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S5M2X"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S5D",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S5D"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix S9",
     "mount": "l-mount",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DC-S9"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ60",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-TZ60"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ61",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-TZ61"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ70",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-TZ70"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ71",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-TZ71"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ80",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-TZ80"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ81",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DMC-TZ81"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ90",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DC-TZ90"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ91",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DC-TZ91"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ96",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DC-TZ96"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ99",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DC-TZ99"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ100",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-TZ100"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ101",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-TZ101"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ110",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DMC-TZ110"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ200",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DC-TZ200"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ200D",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DC-TZ200D"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ202",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DC-TZ202"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ220",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DC-TZ220"]
   },
   {
     "brand": "panasonic",
     "name": "Lumix TZ300",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DC-TZ300"]
   },
   {
     "brand": "pentax",
@@ -4671,7 +4791,7 @@
   },
   {
     "brand": "samsung",
-    "name": "NX mini",
+    "name": "NX Mini",
     "mount": "samsung-nx-mini",
     "bodyType": "mirrorless",
     "sensorFormat": "one_inch"
@@ -4930,594 +5050,682 @@
     "name": "A1",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-1"]
   },
   {
     "brand": "sony",
     "name": "A1 II",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-1M2"]
   },
   {
     "brand": "sony",
     "name": "A7",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7"]
   },
   {
     "brand": "sony",
     "name": "A7 II",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7M2"]
   },
   {
     "brand": "sony",
     "name": "A7 III",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7M3"]
   },
   {
     "brand": "sony",
     "name": "A7 IV",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7M4"]
   },
   {
     "brand": "sony",
     "name": "A7 V",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7M5"]
   },
   {
     "brand": "sony",
     "name": "A7C",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7C"]
   },
   {
     "brand": "sony",
     "name": "A7C II",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7CM2"]
   },
   {
     "brand": "sony",
     "name": "A7CR",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7CR"]
   },
   {
     "brand": "sony",
     "name": "A7R",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7R"]
   },
   {
     "brand": "sony",
     "name": "A7R II",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM2"]
   },
   {
     "brand": "sony",
     "name": "A7R III",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM3"]
   },
   {
     "brand": "sony",
     "name": "A7R IIIA",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM3A"]
   },
   {
     "brand": "sony",
     "name": "A7R IV",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM4"]
   },
   {
     "brand": "sony",
     "name": "A7R IVA",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM4A"]
   },
   {
     "brand": "sony",
     "name": "A7R V",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM5"]
   },
   {
     "brand": "sony",
     "name": "A7R VI",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7RM6"]
   },
   {
     "brand": "sony",
     "name": "A7S",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7S"]
   },
   {
     "brand": "sony",
     "name": "A7S II",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7SM2"]
   },
   {
     "brand": "sony",
     "name": "A7S III",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-7SM3"]
   },
   {
     "brand": "sony",
     "name": "A9",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-9"]
   },
   {
     "brand": "sony",
     "name": "A9 II",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-9M2"]
   },
   {
     "brand": "sony",
     "name": "A9 III",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCE-9M3"]
   },
   {
     "brand": "sony",
     "name": "A33",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A33"]
   },
   {
     "brand": "sony",
     "name": "A35",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A35"]
   },
   {
     "brand": "sony",
     "name": "A37",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A37"]
   },
   {
     "brand": "sony",
     "name": "A55",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A55V"]
   },
   {
     "brand": "sony",
     "name": "A57",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A57"]
   },
   {
     "brand": "sony",
     "name": "A58",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A58"]
   },
   {
     "brand": "sony",
     "name": "A65",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A65V"]
   },
   {
     "brand": "sony",
     "name": "A68",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCA-68"]
   },
   {
     "brand": "sony",
     "name": "A77",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["SLT-A77V"]
   },
   {
     "brand": "sony",
     "name": "A77 II",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCA-77M2"]
   },
   {
     "brand": "sony",
     "name": "A99",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["SLT-A99"]
   },
   {
     "brand": "sony",
     "name": "A99 II",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILCA-99M2"]
   },
   {
     "brand": "sony",
     "name": "A100",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A100"]
   },
   {
     "brand": "sony",
     "name": "A200",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A200"]
   },
   {
     "brand": "sony",
     "name": "A230",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A230"]
   },
   {
     "brand": "sony",
     "name": "A290",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A290"]
   },
   {
     "brand": "sony",
     "name": "A300",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A300"]
   },
   {
     "brand": "sony",
     "name": "A330",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A330"]
   },
   {
     "brand": "sony",
     "name": "A350",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A350"]
   },
   {
     "brand": "sony",
     "name": "A380",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A380"]
   },
   {
     "brand": "sony",
     "name": "A390",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A390"]
   },
   {
     "brand": "sony",
     "name": "A450",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A450"]
   },
   {
     "brand": "sony",
     "name": "A500",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A500"]
   },
   {
     "brand": "sony",
     "name": "A550",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A550"]
   },
   {
     "brand": "sony",
     "name": "A560",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A560"]
   },
   {
     "brand": "sony",
     "name": "A580",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A580"]
   },
   {
     "brand": "sony",
     "name": "A700",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSLR-A700"]
   },
   {
     "brand": "sony",
     "name": "A850",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DSLR-A850"]
   },
   {
     "brand": "sony",
     "name": "A900",
     "mount": "sony-a",
     "bodyType": "dslr",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DSLR-A900"]
   },
   {
     "brand": "sony",
     "name": "A3000",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-3000"]
   },
   {
     "brand": "sony",
     "name": "A5000",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-5000"]
   },
   {
     "brand": "sony",
     "name": "A5100",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-5100"]
   },
   {
     "brand": "sony",
     "name": "A6000",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6000"]
   },
   {
     "brand": "sony",
     "name": "A6100",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6100"]
   },
   {
     "brand": "sony",
     "name": "A6300",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6300"]
   },
   {
     "brand": "sony",
     "name": "A6400",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6400"]
   },
   {
     "brand": "sony",
     "name": "A6500",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6500"]
   },
   {
     "brand": "sony",
     "name": "A6600",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6600"]
   },
   {
     "brand": "sony",
     "name": "A6700",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILCE-6700"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-F828",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-F828"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-H1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-H1"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-HX20V",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-HX20V"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-HX300",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-HX300"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-P73",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-P73"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-P93",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-P93"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-P100",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-P100"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-P150",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-P150"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-P200",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-P200"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-R1",
     "bodyType": "compact",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["DSC-R1"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-S60",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-S60"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-S80",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-S80"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-S90",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-S90"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-ST80",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-ST80"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-T1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-T1"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-V1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-V1"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-V3",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-V3"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-W1",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-W1"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-W5",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-W5"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-W7",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-W7"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-W12",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-W12"]
   },
   {
     "brand": "sony",
     "name": "Cyber-shot DSC-W15",
     "bodyType": "compact",
-    "sensorFormat": null
+    "sensorFormat": null,
+    "searchTerms": ["DSC-W15"]
   },
   {
     "brand": "sony",
     "name": "FX2",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILME-FX2"]
   },
   {
     "brand": "sony",
     "name": "FX3",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["ILME-FX3"]
   },
   {
     "brand": "sony",
     "name": "FX30",
     "mount": "sony-e",
     "bodyType": "mirrorless",
-    "sensorFormat": "aps_c"
+    "sensorFormat": "aps_c",
+    "searchTerms": ["ILME-FX30"]
   },
   {
     "brand": "sony",
@@ -5593,109 +5801,127 @@
     "brand": "sony",
     "name": "RX0",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX0"]
   },
   {
     "brand": "sony",
     "name": "RX0 II",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX0M2"]
   },
   {
     "brand": "sony",
     "name": "RX1R",
     "bodyType": "compact",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DSC-RX1R"]
   },
   {
     "brand": "sony",
     "name": "RX1R II",
     "bodyType": "compact",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DSC-RX1RM2"]
   },
   {
     "brand": "sony",
     "name": "RX1R III",
     "bodyType": "compact",
-    "sensorFormat": "full_frame"
+    "sensorFormat": "full_frame",
+    "searchTerms": ["DSC-RX1RM3"]
   },
   {
     "brand": "sony",
     "name": "RX10",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX10"]
   },
   {
     "brand": "sony",
     "name": "RX10 II",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX10M2"]
   },
   {
     "brand": "sony",
     "name": "RX10 III",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX10M3"]
   },
   {
     "brand": "sony",
     "name": "RX10 IV",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX10M4"]
   },
   {
     "brand": "sony",
     "name": "RX100",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100"]
   },
   {
     "brand": "sony",
     "name": "RX100 II",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M2"]
   },
   {
     "brand": "sony",
     "name": "RX100 III",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M3"]
   },
   {
     "brand": "sony",
     "name": "RX100 IV",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M4"]
   },
   {
     "brand": "sony",
     "name": "RX100 V",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M5"]
   },
   {
     "brand": "sony",
     "name": "RX100 VA",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M5A"]
   },
   {
     "brand": "sony",
     "name": "RX100 VI",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M6"]
   },
   {
     "brand": "sony",
     "name": "RX100 VII",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M7"]
   },
   {
     "brand": "sony",
     "name": "RX100 VIIA",
     "bodyType": "compact",
-    "sensorFormat": "one_inch"
+    "sensorFormat": "one_inch",
+    "searchTerms": ["DSC-RX100M7A"]
   },
   {
     "brand": "sony",

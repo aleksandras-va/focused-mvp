@@ -711,7 +711,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 18mm f/2.0 Lite",
+    "name": "AF 18mm f/2 Lite",
     "mount": "sony-e",
     "releaseYear": 2026,
     "focal": [18, 18],
@@ -744,7 +744,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 25mm f/1.8 LITE",
+    "name": "AF 25mm f/1.8 Lite",
     "mount": "fujifilm-x",
     "releaseYear": 2026,
     "focal": [25, 25],
@@ -755,7 +755,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 25mm f/1.8 LITE",
+    "name": "AF 25mm f/1.8 Lite",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [25, 25],
@@ -766,7 +766,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 25mm f/1.8 LITE",
+    "name": "AF 25mm f/1.8 Lite",
     "mount": "sony-e",
     "releaseYear": 2026,
     "focal": [25, 25],
@@ -832,7 +832,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 35mm f/1.8 LITE",
+    "name": "AF 35mm f/1.8 Lite",
     "mount": "fujifilm-x",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -843,7 +843,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 35mm f/1.8 LITE",
+    "name": "AF 35mm f/1.8 Lite",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -854,7 +854,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 35mm f/1.8 LITE",
+    "name": "AF 35mm f/1.8 Lite",
     "mount": "sony-e",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -865,7 +865,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 40mm f/2.5 LITE",
+    "name": "AF 40mm f/2.5 Lite",
     "mount": "l-mount",
     "releaseYear": 2026,
     "focal": [40, 40],
@@ -876,7 +876,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 40mm f/2.5 LITE",
+    "name": "AF 40mm f/2.5 Lite",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [40, 40],
@@ -887,7 +887,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 40mm f/2.5 LITE",
+    "name": "AF 40mm f/2.5 Lite",
     "mount": "sony-e",
     "releaseYear": 2026,
     "focal": [40, 40],
@@ -931,7 +931,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 50mm f/1.8 LITE",
+    "name": "AF 50mm f/1.8 Lite",
     "mount": "fujifilm-x",
     "releaseYear": 2026,
     "focal": [50, 50],
@@ -942,7 +942,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 50mm f/1.8 LITE",
+    "name": "AF 50mm f/1.8 Lite",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [50, 50],
@@ -953,7 +953,7 @@
   {
     "brand": "7artisans",
     "brandName": "7Artisans",
-    "name": "AF 50mm f/1.8 LITE",
+    "name": "AF 50mm f/1.8 Lite",
     "mount": "sony-e",
     "releaseYear": 2026,
     "focal": [50, 50],
@@ -1198,7 +1198,7 @@
   {
     "brand": "artra",
     "brandName": "Artra",
-    "name": "NONIKKOR 35mm f/1.4 MC",
+    "name": "Nonikkor 35mm f/1.4 MC",
     "mount": "fujifilm-x",
     "releaseYear": 2023,
     "focal": [35, 35],
@@ -3498,7 +3498,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "ELEGANT 24mm f/2.4 M",
+    "name": "Elegant 24mm f/2.4 M",
     "mount": "leica-m",
     "releaseYear": 2024,
     "focal": [24, 24],
@@ -3509,7 +3509,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "ELEGANT 35mm f/2.4",
+    "name": "Elegant 35mm f/2.4",
     "mount": "canon-rf",
     "releaseYear": 2018,
     "focal": [35, 35],
@@ -3520,7 +3520,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "ELEGANT 50mm f/2.4",
+    "name": "Elegant 50mm f/2.4",
     "mount": "canon-rf",
     "releaseYear": 2018,
     "focal": [50, 50],
@@ -3531,7 +3531,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "ELEGANT 75mm f/2.4",
+    "name": "Elegant 75mm f/2.4",
     "mount": "canon-rf",
     "releaseYear": 2018,
     "focal": [75, 75],
@@ -3639,7 +3639,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "IBERIT 24mm f/2.4",
+    "name": "Iberit 24mm f/2.4",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [24, 24],
@@ -3650,7 +3650,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "IBERIT 35mm f/2.4 M",
+    "name": "Iberit 35mm f/2.4 M",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [35, 35],
@@ -3661,7 +3661,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "IBERIT 50mm f/2.4",
+    "name": "Iberit 50mm f/2.4",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [50, 50],
@@ -3672,7 +3672,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "IBERIT 75mm f/2.4",
+    "name": "Iberit 75mm f/2.4",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [75, 75],
@@ -3683,7 +3683,7 @@
   {
     "brand": "kipon",
     "brandName": "Kipon",
-    "name": "IBERIT 75mm f/2.4 GFX",
+    "name": "Iberit 75mm f/2.4 GFX",
     "mount": "fujifilm-g",
     "releaseYear": 2019,
     "focal": [75, 75],
@@ -4414,7 +4414,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "ARGUS 25mm f/0.95 APO CF",
+    "name": "Argus 25mm f/0.95 APO CF",
     "mount": "canon-rf",
     "releaseYear": 2022,
     "focal": [25, 25],
@@ -4425,7 +4425,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "ARGUS 28mm f/1.2 FF II",
+    "name": "Argus 28mm f/1.2 FF II",
     "mount": "canon-rf",
     "releaseYear": 2023,
     "focal": [28, 28],
@@ -4436,7 +4436,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "ARGUS 33mm f/0.95 APO CF",
+    "name": "Argus 33mm f/0.95 APO CF",
     "mount": "canon-ef-m",
     "releaseYear": 2021,
     "focal": [33, 33],
@@ -4524,7 +4524,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "ARGUS 35mm f/0.95 FF II",
+    "name": "Argus 35mm f/0.95 FF II",
     "mount": "canon-rf",
     "releaseYear": 2021,
     "focal": [35, 35],
@@ -4568,7 +4568,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "ARGUS 45mm f/0.95 FF II",
+    "name": "Argus 45mm f/0.95 FF II",
     "mount": "canon-rf",
     "releaseYear": 2021,
     "focal": [45, 45],
@@ -4743,7 +4743,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF",
     "mount": "canon-rf",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4753,7 +4753,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "canon-ef",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4764,7 +4764,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "canon-rf",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4775,7 +4775,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "fujifilm-g",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4786,7 +4786,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "l-mount",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4797,7 +4797,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "nikon-f",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4808,7 +4808,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "nikon-z",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4819,7 +4819,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "pentax-k",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4830,7 +4830,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF GFX",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF GFX",
     "mount": "sony-e",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4841,7 +4841,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF SLR",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF SLR",
     "mount": "canon-ef",
     "releaseYear": 2022,
     "focal": [20, 20],
@@ -4852,7 +4852,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER 20mm f/4 Zero-D Shift FF XCD",
+    "name": "C-Dreamer 20mm f/4 Zero-D Shift FF XCD",
     "mount": "hasselblad-x",
     "releaseYear": 2024,
     "focal": [20, 20],
@@ -4862,7 +4862,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER AF 200mm f/2 FF",
+    "name": "C-Dreamer AF 200mm f/2 FF",
     "mount": "nikon-z",
     "releaseYear": 2025,
     "focal": [200, 200],
@@ -4873,7 +4873,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C-DREAMER AF 200mm f/2 FF SLR",
+    "name": "C-Dreamer AF 200mm f/2 FF SLR",
     "mount": "canon-ef",
     "releaseYear": 2025,
     "focal": [200, 200],
@@ -4884,7 +4884,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C&D-DREAMER 12mm f/2.8 Zero-D Lite FF II",
+    "name": "C&D-Dreamer 12mm f/2.8 Zero-D Lite FF II",
     "mount": "canon-rf",
     "releaseYear": 2025,
     "focal": [12, 12],
@@ -4895,7 +4895,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "C&D-DREAMER AF 12mm f/2.8 Zero-D Lite FF II",
+    "name": "C&D-Dreamer AF 12mm f/2.8 Zero-D Lite FF II",
     "mount": "nikon-z",
     "releaseYear": 2025,
     "focal": [12, 12],
@@ -4906,7 +4906,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "CA-DREAMER 58mm f/2.8 APO Ultra Macro FF II",
+    "name": "CA-Dreamer 58mm f/2.8 APO Ultra Macro FF II",
     "mount": "canon-rf",
     "releaseYear": 2022,
     "focal": [58, 58],
@@ -4917,7 +4917,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "CA-DREAMER 65mm f/2.8 APO Ultra Macro CF",
+    "name": "CA-Dreamer 65mm f/2.8 APO Ultra Macro CF",
     "mount": "canon-ef-m",
     "releaseYear": 2020,
     "focal": [65, 65],
@@ -4928,7 +4928,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "CA-DREAMER 65mm f/2.8 APO Ultra Macro CF",
+    "name": "CA-Dreamer 65mm f/2.8 APO Ultra Macro CF",
     "mount": "fujifilm-x",
     "releaseYear": 2020,
     "focal": [65, 65],
@@ -4939,7 +4939,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "CA-DREAMER 65mm f/2.8 APO Ultra Macro CF",
+    "name": "CA-Dreamer 65mm f/2.8 APO Ultra Macro CF",
     "mount": "l-mount",
     "releaseYear": 2020,
     "focal": [65, 65],
@@ -4950,7 +4950,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "CA-DREAMER 65mm f/2.8 APO Ultra Macro CF",
+    "name": "CA-Dreamer 65mm f/2.8 APO Ultra Macro CF",
     "mount": "nikon-z",
     "releaseYear": 2020,
     "focal": [65, 65],
@@ -4961,7 +4961,7 @@
   {
     "brand": "laowa",
     "brandName": "Laowa",
-    "name": "CA-DREAMER 65mm f/2.8 APO Ultra Macro CF",
+    "name": "CA-Dreamer 65mm f/2.8 APO Ultra Macro CF",
     "mount": "sony-e",
     "releaseYear": 2020,
     "focal": [65, 65],
@@ -5254,7 +5254,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "APO-SUMMICRON-M 35mm f/2 ASPH. [VII]",
+    "name": "APO-Summicron-M 35mm f/2 ASPH. [VII]",
     "mount": "leica-m",
     "releaseYear": 2021,
     "focal": [35, 35],
@@ -5265,7 +5265,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "APO-SUMMICRON-M 50mm f/2 ASPH.",
+    "name": "APO-Summicron-M 50mm f/2 ASPH.",
     "mount": "leica-m",
     "releaseYear": 2024,
     "focal": [50, 50],
@@ -5318,7 +5318,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "APO-SUMMICRON-SL 50mm f/2 ASPH.",
+    "name": "APO-Summicron-SL 50mm f/2 ASPH.",
     "mount": "l-mount",
     "releaseYear": 2019,
     "focal": [50, 50],
@@ -5329,7 +5329,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "APO-SUMMICRON-SL 75mm f/2 ASPH.",
+    "name": "APO-Summicron-SL 75mm f/2 ASPH.",
     "mount": "l-mount",
     "releaseYear": 2018,
     "focal": [75, 75],
@@ -5362,7 +5362,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "M 35mm f/1.2 Noctilux Asph.",
+    "name": "M 35mm f/1.2 Noctilux ASPH.",
     "mount": "leica-m",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -5373,7 +5373,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "NOCTILUX 50mm f/1.2",
+    "name": "Noctilux 50mm f/1.2",
     "mount": "leica-m",
     "releaseYear": 2024,
     "focal": [50, 50],
@@ -5404,7 +5404,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "NOCTILUX-M 50mm f/1.2 ASPH. Classic",
+    "name": "Noctilux-M 50mm f/1.2 ASPH. Classic",
     "mount": "leica-m",
     "releaseYear": 2021,
     "focal": [50, 50],
@@ -5426,7 +5426,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "Summaron-M 28mm f/5.6 Matte black paint",
+    "name": "Summaron-M 28mm f/5.6 Matte Black Paint",
     "mount": "leica-m",
     "releaseYear": 2019,
     "focal": [28, 28],
@@ -5458,7 +5458,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "Summicron-M 28mm f/2 ASPH. Matte black paint",
+    "name": "Summicron-M 28mm f/2 ASPH. Matte Black Paint",
     "mount": "leica-m",
     "releaseYear": 2022,
     "focal": [28, 28],
@@ -5584,7 +5584,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "SUMMILUX-M 35mm f/1.4 ASPH. Safari",
+    "name": "Summilux-M 35mm f/1.4 ASPH. Safari",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -5595,7 +5595,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "SUMMILUX-M 35mm f/1.4 ASPHERICAL",
+    "name": "Summilux-M 35mm f/1.4 Aspherical",
     "mount": "leica-m",
     "releaseYear": 2021,
     "focal": [35, 35],
@@ -5606,7 +5606,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "SUMMILUX-M 35mm f/1.4 Classic",
+    "name": "Summilux-M 35mm f/1.4 Classic",
     "mount": "leica-m",
     "releaseYear": 2022,
     "focal": [35, 35],
@@ -5617,7 +5617,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "Summilux-M 35mm f/1.4 FLE. ASPHERICAL",
+    "name": "Summilux-M 35mm f/1.4 FLE. Aspherical",
     "mount": "leica-m",
     "releaseYear": 2021,
     "focal": [35, 35],
@@ -5671,7 +5671,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "SUMMILUX-M 50mm f/1.4 ASPH. Safari",
+    "name": "Summilux-M 50mm f/1.4 ASPH. Safari",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [50, 50],
@@ -5682,7 +5682,7 @@
   {
     "brand": "leica",
     "brandName": "Leica",
-    "name": "SUMMILUX-M 50mm f/1.4 Classic",
+    "name": "Summilux-M 50mm f/1.4 Classic",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [50, 50],
@@ -5957,7 +5957,7 @@
   {
     "brand": "light-lens-lab",
     "brandName": "Light Lens Lab",
-    "name": "35mm f/1.4 ASPHERICAL M",
+    "name": "35mm f/1.4 Aspherical M",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -6660,7 +6660,7 @@
   {
     "brand": "meyer-optik-gorlitz",
     "brandName": "Meyer-Optik Gorlitz",
-    "name": "BIOTAR 58mm f/1.5 II",
+    "name": "Biotar 58mm f/1.5 II",
     "mount": "canon-ef",
     "releaseYear": 2022,
     "focal": [58, 58],
@@ -6671,7 +6671,7 @@
   {
     "brand": "meyer-optik-gorlitz",
     "brandName": "Meyer-Optik Gorlitz",
-    "name": "BIOTAR 75mm f/1.5 II M",
+    "name": "Biotar 75mm f/1.5 II M",
     "mount": "leica-m",
     "releaseYear": 2023,
     "focal": [75, 75],
@@ -6681,7 +6681,7 @@
   {
     "brand": "meyer-optik-gorlitz",
     "brandName": "Meyer-Optik Gorlitz",
-    "name": "BIOTAR 75mm f/1.5 II MILC",
+    "name": "Biotar 75mm f/1.5 II MILC",
     "mount": "canon-rf",
     "releaseYear": 2023,
     "focal": [75, 75],
@@ -7165,7 +7165,7 @@
   {
     "brand": "ms-optics",
     "brandName": "MS Optics",
-    "name": "VARIOPRASMA 50mm f/1.5 Soft MC",
+    "name": "Varioprasma 50mm f/1.5 Soft MC",
     "mount": "leica-m",
     "releaseYear": 2019,
     "focal": [50, 50],
@@ -7953,7 +7953,7 @@
   {
     "brand": "olympus",
     "brandName": "Olympus",
-    "name": "M.Zuiko Digital ED 9-18mm f/4.0-5.6 II",
+    "name": "M.Zuiko Digital ED 9-18mm f/4-5.6 II",
     "mount": "micro-four-thirds",
     "releaseYear": 2024,
     "focal": [9, 18],
@@ -7986,7 +7986,7 @@
   {
     "brand": "olympus",
     "brandName": "Olympus",
-    "name": "M.Zuiko Digital ED 100-400mm f/5.0-6.3 IS",
+    "name": "M.Zuiko Digital ED 100-400mm f/5-6.3 IS",
     "mount": "micro-four-thirds",
     "releaseYear": 2020,
     "focal": [100, 400],
@@ -8019,7 +8019,7 @@
   {
     "brand": "om-system",
     "brandName": "OM System",
-    "name": "40-150mm f/4.0 PRO",
+    "name": "40-150mm f/4 PRO",
     "mount": "micro-four-thirds",
     "releaseYear": 2022,
     "focal": [40, 150],
@@ -8030,7 +8030,7 @@
   {
     "brand": "om-system",
     "brandName": "OM System",
-    "name": "150-600mm f/5.0-6.3",
+    "name": "150-600mm f/5-6.3",
     "mount": "micro-four-thirds",
     "releaseYear": 2024,
     "focal": [150, 600],
@@ -8074,7 +8074,7 @@
   {
     "brand": "om-system",
     "brandName": "OM System",
-    "name": "M.Zuiko Digital 100-400mm f/5.0-6.3 IS II",
+    "name": "M.Zuiko Digital 100-400mm f/5-6.3 IS II",
     "mount": "micro-four-thirds",
     "releaseYear": 2025,
     "focal": [100, 400],
@@ -8140,7 +8140,7 @@
   {
     "brand": "panasonic",
     "brandName": "Panasonic",
-    "name": "Leica DG Vario-Elmar 100-400mm f/4.0-6.3 II ASPH Power OIS",
+    "name": "Leica DG Vario-Elmar 100-400mm f/4-6.3 II ASPH Power OIS",
     "mount": "micro-four-thirds",
     "releaseYear": 2023,
     "focal": [100, 400],
@@ -8151,7 +8151,7 @@
   {
     "brand": "panasonic",
     "brandName": "Panasonic",
-    "name": "Leica DG Vario-Elmarit 12-35mm f/2.8 ASPH. POWER OIS",
+    "name": "Leica DG Vario-Elmarit 12-35mm f/2.8 ASPH. Power OIS",
     "mount": "micro-four-thirds",
     "releaseYear": 2022,
     "focal": [12, 35],
@@ -8173,7 +8173,7 @@
   {
     "brand": "panasonic",
     "brandName": "Panasonic",
-    "name": "Leica DG Vario-Elmarit 50-200mm f/2.8-4.0 ASPH Power OIS",
+    "name": "Leica DG Vario-Elmarit 50-200mm f/2.8-4 ASPH Power OIS",
     "mount": "micro-four-thirds",
     "releaseYear": 2018,
     "focal": [50, 200],
@@ -11714,7 +11714,7 @@
   {
     "brand": "sirui",
     "brandName": "Sirui",
-    "name": "AURORA AF 35mm f/1.4",
+    "name": "Aurora AF 35mm f/1.4",
     "mount": "fujifilm-x",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -11725,7 +11725,7 @@
   {
     "brand": "sirui",
     "brandName": "Sirui",
-    "name": "AURORA AF 35mm f/1.4",
+    "name": "Aurora AF 35mm f/1.4",
     "mount": "l-mount",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -11736,7 +11736,7 @@
   {
     "brand": "sirui",
     "brandName": "Sirui",
-    "name": "AURORA AF 35mm f/1.4",
+    "name": "Aurora AF 35mm f/1.4",
     "mount": "nikon-z",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -11747,7 +11747,7 @@
   {
     "brand": "sirui",
     "brandName": "Sirui",
-    "name": "AURORA AF 35mm f/1.4",
+    "name": "Aurora AF 35mm f/1.4",
     "mount": "sony-e",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -15151,7 +15151,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 28mm f/2 Aspherical E",
+    "name": "APO-Lanthar 28mm f/2 Aspherical E",
     "mount": "sony-e",
     "releaseYear": 2025,
     "focal": [28, 28],
@@ -15162,7 +15162,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 28mm f/2 Aspherical VM",
+    "name": "APO-Lanthar 28mm f/2 Aspherical VM",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [28, 28],
@@ -15173,7 +15173,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 28mm f/2 Aspherical Z",
+    "name": "APO-Lanthar 28mm f/2 Aspherical Z",
     "mount": "nikon-z",
     "releaseYear": 2025,
     "focal": [28, 28],
@@ -15195,7 +15195,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 35mm f/2 Aspherical II Z",
+    "name": "APO-Lanthar 35mm f/2 Aspherical II Z",
     "mount": "nikon-z",
     "releaseYear": 2024,
     "focal": [35, 35],
@@ -15217,7 +15217,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 35mm f/2 Aspherical Z",
+    "name": "APO-Lanthar 35mm f/2 Aspherical Z",
     "mount": "nikon-z",
     "releaseYear": 2022,
     "focal": [35, 35],
@@ -15239,7 +15239,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 50mm f/2 Aspherical II Z",
+    "name": "APO-Lanthar 50mm f/2 Aspherical II Z",
     "mount": "nikon-z",
     "releaseYear": 2024,
     "focal": [50, 50],
@@ -15261,7 +15261,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 50mm f/2 Aspherical Z",
+    "name": "APO-Lanthar 50mm f/2 Aspherical Z",
     "mount": "nikon-z",
     "releaseYear": 2022,
     "focal": [50, 50],
@@ -15294,7 +15294,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-LANTHAR 90mm f/4 VM",
+    "name": "APO-Lanthar 90mm f/4 VM",
     "mount": "leica-m",
     "releaseYear": 2026,
     "focal": [90, 90],
@@ -15305,7 +15305,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-SKOPAR 75mm f/2.8 VM",
+    "name": "APO-Skopar 75mm f/2.8 VM",
     "mount": "leica-m",
     "releaseYear": 2026,
     "focal": [75, 75],
@@ -15338,7 +15338,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "APO-ULTRON 90mm f/2 VM",
+    "name": "APO-Ultron 90mm f/2 VM",
     "mount": "leica-m",
     "releaseYear": 2024,
     "focal": [90, 90],
@@ -15371,7 +15371,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "Color-SKOPAR 21mm f/3.5 Aspherical Vintage Line VM Type 1",
+    "name": "Color-Skopar 21mm f/3.5 Aspherical Vintage Line VM Type 1",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [21, 21],
@@ -15448,7 +15448,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "Color-SKOPAR 35mm f/3.5 Aspherical VM",
+    "name": "Color-Skopar 35mm f/3.5 Aspherical VM",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -15492,7 +15492,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "HELIAR 50mm f/1.5 Classic Line VM",
+    "name": "Heliar 50mm f/1.5 Classic Line VM",
     "mount": "leica-m",
     "releaseYear": 2022,
     "focal": [50, 50],
@@ -15590,7 +15590,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 23mm f/1.2 Aspherical Z",
+    "name": "Nokton 23mm f/1.2 Aspherical Z",
     "mount": "nikon-z",
     "releaseYear": 2022,
     "focal": [23, 23],
@@ -15623,7 +15623,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 28mm f/1.5 Aspherical E",
+    "name": "Nokton 28mm f/1.5 Aspherical E",
     "mount": "sony-e",
     "releaseYear": 2024,
     "focal": [28, 28],
@@ -15634,7 +15634,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 28mm f/1.5 Aspherical Vintage Line VM Type 1",
+    "name": "Nokton 28mm f/1.5 Aspherical Vintage Line VM Type 1",
     "mount": "leica-m",
     "releaseYear": 2023,
     "focal": [28, 28],
@@ -15656,7 +15656,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 28mm f/1.5 Aspherical Z",
+    "name": "Nokton 28mm f/1.5 Aspherical Z",
     "mount": "nikon-z",
     "releaseYear": 2025,
     "focal": [28, 28],
@@ -15689,7 +15689,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 35mm f/1.2 Aspherical IV VM",
+    "name": "Nokton 35mm f/1.2 Aspherical IV VM",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [35, 35],
@@ -15722,7 +15722,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 35mm f/1.2 Z",
+    "name": "Nokton 35mm f/1.2 Z",
     "mount": "nikon-z",
     "releaseYear": 2022,
     "focal": [35, 35],
@@ -15733,7 +15733,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 35mm f/1.4 Classic Line II VM",
+    "name": "Nokton 35mm f/1.4 Classic Line II VM",
     "mount": "leica-m",
     "releaseYear": 2019,
     "focal": [35, 35],
@@ -15744,7 +15744,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 35mm f/1.4 Classic Line RF",
+    "name": "Nokton 35mm f/1.4 Classic Line RF",
     "mount": "canon-rf",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -15755,7 +15755,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 35mm f/1.4 Classic Line Z",
+    "name": "Nokton 35mm f/1.4 Classic Line Z",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -15788,7 +15788,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 35mm f/1.5 Aspherical Vintage Line VM Type 1",
+    "name": "Nokton 35mm f/1.5 Aspherical Vintage Line VM Type 1",
     "mount": "leica-m",
     "releaseYear": 2022,
     "focal": [35, 35],
@@ -15810,7 +15810,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 40mm f/1.2 Aspherical II VM",
+    "name": "Nokton 40mm f/1.2 Aspherical II VM",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [40, 40],
@@ -15843,7 +15843,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 40mm f/1.2 Aspherical VM",
+    "name": "Nokton 40mm f/1.2 Aspherical VM",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [40, 40],
@@ -15920,7 +15920,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 50mm f/1.2 Aspherical II VM",
+    "name": "Nokton 50mm f/1.2 Aspherical II VM",
     "mount": "leica-m",
     "releaseYear": 2025,
     "focal": [50, 50],
@@ -15942,7 +15942,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 50mm f/1.2 Aspherical VM",
+    "name": "Nokton 50mm f/1.2 Aspherical VM",
     "mount": "leica-m",
     "releaseYear": 2020,
     "focal": [50, 50],
@@ -15986,7 +15986,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "NOKTON 50mm f/1.5 Aspherical Vintage Line II VM",
+    "name": "Nokton 50mm f/1.5 Aspherical Vintage Line II VM",
     "mount": "leica-m",
     "releaseYear": 2020,
     "focal": [50, 50],
@@ -16052,7 +16052,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "Portrait HELIAR 75mm f/1.8 E",
+    "name": "Portrait Heliar 75mm f/1.8 E",
     "mount": "sony-e",
     "releaseYear": 2025,
     "focal": [75, 75],
@@ -16063,7 +16063,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "Portrait HELIAR 75mm f/1.8 RF",
+    "name": "Portrait Heliar 75mm f/1.8 RF",
     "mount": "canon-rf",
     "releaseYear": 2026,
     "focal": [75, 75],
@@ -16074,7 +16074,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "Portrait HELIAR 75mm f/1.8 Z",
+    "name": "Portrait Heliar 75mm f/1.8 Z",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [75, 75],
@@ -16129,7 +16129,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "ULTRON 28mm f/2 Aspherical Vintage Line VM Type 2",
+    "name": "Ultron 28mm f/2 Aspherical Vintage Line VM Type 2",
     "mount": "leica-m",
     "releaseYear": 2021,
     "focal": [28, 28],
@@ -16162,7 +16162,7 @@
   {
     "brand": "voigtlander",
     "brandName": "Voigtlander",
-    "name": "ULTRON 35mm f/2 Aspherical Vintage Line VM Type 1",
+    "name": "Ultron 35mm f/2 Aspherical Vintage Line VM Type 1",
     "mount": "leica-m",
     "releaseYear": 2018,
     "focal": [35, 35],
@@ -16393,7 +16393,7 @@
   {
     "brand": "zeiss",
     "brandName": "Zeiss",
-    "name": "OTUS Apo DISTAGON T* 35mm f/1.4 ML",
+    "name": "Otus Apo Distagon T* 35mm f/1.4 ML",
     "mount": "canon-rf",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -16404,7 +16404,7 @@
   {
     "brand": "zeiss",
     "brandName": "Zeiss",
-    "name": "OTUS Apo DISTAGON T* 35mm f/1.4 ML",
+    "name": "Otus Apo Distagon T* 35mm f/1.4 ML",
     "mount": "nikon-z",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -16415,7 +16415,7 @@
   {
     "brand": "zeiss",
     "brandName": "Zeiss",
-    "name": "OTUS Apo DISTAGON T* 35mm f/1.4 ML",
+    "name": "Otus Apo Distagon T* 35mm f/1.4 ML",
     "mount": "sony-e",
     "releaseYear": 2026,
     "focal": [35, 35],
@@ -16426,7 +16426,7 @@
   {
     "brand": "zeiss",
     "brandName": "Zeiss",
-    "name": "OTUS Apo DISTAGON T* 50mm f/1.4 ML",
+    "name": "Otus Apo Distagon T* 50mm f/1.4 ML",
     "mount": "canon-rf",
     "releaseYear": 2025,
     "focal": [50, 50],
@@ -16437,7 +16437,7 @@
   {
     "brand": "zeiss",
     "brandName": "Zeiss",
-    "name": "OTUS Apo SONNAR T* 85mm f/1.4 ML",
+    "name": "Otus Apo Sonnar T* 85mm f/1.4 ML",
     "mount": "canon-rf",
     "releaseYear": 2025,
     "focal": [85, 85],
@@ -16612,7 +16612,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR / Tourist 28mm f/5.6 M",
+    "name": "Mitakon Creator / Tourist 28mm f/5.6 M",
     "mount": "leica-m",
     "releaseYear": 2023,
     "focal": [28, 28],
@@ -16623,7 +16623,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR 55mm f/2.8 Super Macro",
+    "name": "Mitakon Creator 55mm f/2.8 Super Macro",
     "mount": "canon-rf",
     "releaseYear": 2025,
     "focal": [55, 55],
@@ -16633,7 +16633,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR 55mm f/2.8 Super Macro GFX",
+    "name": "Mitakon Creator 55mm f/2.8 Super Macro GFX",
     "mount": "fujifilm-g",
     "releaseYear": 2025,
     "focal": [55, 55],
@@ -16644,7 +16644,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR 55mm f/2.8 Super Macro SLR",
+    "name": "Mitakon Creator 55mm f/2.8 Super Macro SLR",
     "mount": "canon-ef",
     "releaseYear": 2025,
     "focal": [55, 55],
@@ -16655,7 +16655,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR 55mm f/2.8 Super Macro XCD",
+    "name": "Mitakon Creator 55mm f/2.8 Super Macro XCD",
     "mount": "hasselblad-x",
     "releaseYear": 2025,
     "focal": [55, 55],
@@ -16813,7 +16813,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR APO 200mm f/4 Macro",
+    "name": "Mitakon Creator APO 200mm f/4 Macro",
     "mount": "canon-rf",
     "releaseYear": 2023,
     "focal": [200, 200],
@@ -16824,7 +16824,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR APO 200mm f/4 Macro GFX",
+    "name": "Mitakon Creator APO 200mm f/4 Macro GFX",
     "mount": "fujifilm-g",
     "releaseYear": 2023,
     "focal": [200, 200],
@@ -16835,7 +16835,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR APO 200mm f/4 Macro SLR",
+    "name": "Mitakon Creator APO 200mm f/4 Macro SLR",
     "mount": "canon-ef",
     "releaseYear": 2023,
     "focal": [200, 200],
@@ -16846,7 +16846,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon CREATOR APO 200mm f/4 Macro XCD",
+    "name": "Mitakon Creator APO 200mm f/4 Macro XCD",
     "mount": "hasselblad-x",
     "releaseYear": 2023,
     "focal": [200, 200],
@@ -16856,7 +16856,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon SPEEDMASTER 20mm f/0.95 ASPH",
+    "name": "Mitakon Speedmaster 20mm f/0.95 ASPH",
     "mount": "canon-rf",
     "releaseYear": 2024,
     "focal": [20, 20],
@@ -16867,7 +16867,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon SPEEDMASTER 50mm f/0.95 EF",
+    "name": "Mitakon Speedmaster 50mm f/0.95 EF",
     "mount": "canon-ef",
     "releaseYear": 2020,
     "focal": [50, 50],
@@ -16878,7 +16878,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon SPEEDMASTER 50mm f/0.95 III",
+    "name": "Mitakon Speedmaster 50mm f/0.95 III",
     "mount": "canon-rf",
     "releaseYear": 2019,
     "focal": [50, 50],
@@ -16889,7 +16889,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon SPEEDMASTER 50mm f/0.95 M",
+    "name": "Mitakon Speedmaster 50mm f/0.95 M",
     "mount": "leica-m",
     "releaseYear": 2020,
     "focal": [50, 50],
@@ -16911,7 +16911,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon SPEEDMASTER 80mm f/1.6 GFX",
+    "name": "Mitakon Speedmaster 80mm f/1.6 GFX",
     "mount": "fujifilm-g",
     "releaseYear": 2024,
     "focal": [80, 80],
@@ -16922,7 +16922,7 @@
   {
     "brand": "zhongyi",
     "brandName": "Zhongyi",
-    "name": "Mitakon SPEEDMASTER 80mm f/1.6 XCD",
+    "name": "Mitakon Speedmaster 80mm f/1.6 XCD",
     "mount": "hasselblad-x",
     "releaseYear": 2024,
     "focal": [80, 80],

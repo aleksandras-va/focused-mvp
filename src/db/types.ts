@@ -28,6 +28,7 @@ export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 export interface Brand {
   id: Generated<string>;
   name: string;
+  search_terms: Generated<string[]>;
   slug: string;
 }
 
@@ -119,6 +120,8 @@ export interface Model {
   name: string;
   normalized: Generated<string | null>;
   release_year: number | null;
+  search_terms: Generated<string[]>;
+  search_text: string | null;
   slug: string;
 }
 
@@ -126,6 +129,7 @@ export interface Mount {
   brand_id: string | null;
   id: Generated<string>;
   name: string;
+  search_terms: Generated<string[]>;
   slug: string;
 }
 

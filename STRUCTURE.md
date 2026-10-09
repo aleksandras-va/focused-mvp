@@ -12,6 +12,7 @@ src/
   repositories/   every database query
   db/             connection, generated types
 scripts/          operational scripts run with plain node (.mts): migrate, seeds
+test/             Vitest setup: the test database
 ```
 
 ## Layers
@@ -142,6 +143,21 @@ never a repository, never `db`.
   lists and formatters go in `src/lib/`, which imports nothing but types.
 - A formatter or helper copied into a second component belongs in `src/lib/` instead.
 
+## Tests
+
+Vitest, run with `pnpm test`. A test file sits beside what it tests
+(`model-catalog.service.test.ts`). Services are tested through the real database, not
+mocked repositories: `test/global-setup.mts` creates `focused_test` in the local
+container, then migrates and seeds it with the same scripts production uses, so a test
+can assert on real catalog rows. `.env.test` holds its URL, and the setup refuses any
+database that is not local and named `*_test`.
+
+Search tests are tables of `[term, expected]` grouped by the kind of problem, not by
+model. A case that is wrong today carries a trailing `GAP`, which runs it as `it.fails`:
+it passes while the gap exists and fails the run once it is fixed, which is the cue to
+delete the flag. A mount case checks several mounts for one lens, so it cannot pass on
+the luck of tie order.
+
 ## Schema
 
 - `brand`, `mount`, `city` — lookups. A mount's `brand_id` is null when no single brand
@@ -151,9 +167,13 @@ never a repository, never `db`.
   cameras. Unique on `(brand_id, name, mount_id) NULLS NOT DISTINCT`.
 - `camera_spec`, `lens_spec` — one-to-one detail per category, so an ad needs only a
   single `model_id` foreign key.
-- `model.display_name` — "Fujifilm X-T3", the one name shown anywhere. `normalized` is
-  generated from it: lowercased, punctuation stripped, **spaces kept**, which is what
-  makes `word_similarity` match "xt3" inside "fujifilm xt3".
+- `model.display_name` — "Fujifilm X-T3", the one name shown anywhere.
+- `brand.search_terms`, `model.search_terms`, `mount.search_terms` — other names as
+  search tokens: a brand's other names and lines, a model's maker code, a mount's name
+  and nicknames. Written by the seed.
+- `model.search_text` — the name as search tokens ("fujifilm x t 3"), written by the seed
+  from `toSearchText` in `src/lib/search-text.ts`. The repository runs the query through
+  the same module, so both sides are split the same way.
 
 ### Listings
 

@@ -63,6 +63,8 @@ Out of scope: lens/body compatibility recommendations.
 
 - `pnpm dev` — Next dev server
 - `pnpm lint` / `pnpm format` — Biome
+- `pnpm test` / `pnpm test:watch` — Vitest, against the `focused_test` database in the
+  local Postgres container; the run creates, migrates and seeds it
 - `pnpm db:up` / `pnpm db:down` — Postgres container, host port 5434
 - `pnpm db:migrate` — apply pending migrations to the database in `DATABASE_URL`;
   prefix `DATABASE_URL=<production url>` to migrate production

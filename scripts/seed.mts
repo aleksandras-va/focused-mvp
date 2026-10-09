@@ -11,12 +11,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 // @next/env is CommonJS-only, so it has no named ESM exports.
 import nextEnv from '@next/env';
-import { Kysely, PostgresDialect } from 'kysely';
+import { Kysely, PostgresDialect, sql } from 'kysely';
 import pg from 'pg';
 import type { CameraBodyType, DB, ModelCategory, SensorFormat } from '../src/db/types';
+import { toSearchText, toSearchTokens } from '../src/lib/search-text.ts';
 
-type BrandSeed = { slug: string; name: string };
-type MountSeed = { slug: string; name: string; brand?: string };
+type BrandSeed = { slug: string; name: string; searchTerms?: string[] };
+type MountSeed = { slug: string; name: string; brand?: string; searchTerms?: string[] };
 
 type CameraSeed = {
   brand: string;
@@ -28,6 +29,7 @@ type CameraSeed = {
   megapixels?: number;
   hasMechanicalShutter?: boolean;
   isFilm?: boolean;
+  searchTerms?: string[];
 };
 
 type LensSeed = {
@@ -54,59 +56,73 @@ const BATCH_SIZE = 500;
 const BRANDS: BrandSeed[] = [
   { slug: 'canon', name: 'Canon' },
   { slug: 'casio', name: 'Casio' },
-  { slug: 'fujifilm', name: 'Fujifilm' },
+  { slug: 'fujifilm', name: 'Fujifilm', searchTerms: ['Fujinon'] },
   { slug: 'hasselblad', name: 'Hasselblad' },
   { slug: 'helios', name: 'Helios' },
-  { slug: 'konica-minolta', name: 'Konica Minolta' },
-  { slug: 'leica', name: 'Leica' },
+  { slug: 'konica-minolta', name: 'Konica Minolta', searchTerms: ['Dynax', 'Maxxum'] },
+  { slug: 'leica', name: 'Leica', searchTerms: ['Leitz'] },
   { slug: 'minolta', name: 'Minolta' },
-  { slug: 'nikon', name: 'Nikon' },
-  { slug: 'olympus', name: 'Olympus' },
-  { slug: 'om-system', name: 'OM System' },
-  { slug: 'panasonic', name: 'Panasonic' },
+  { slug: 'nikon', name: 'Nikon', searchTerms: ['Nikkor'] },
+  { slug: 'olympus', name: 'Olympus', searchTerms: ['Zuiko'] },
+  { slug: 'om-system', name: 'OM System', searchTerms: ['Olympus', 'Zuiko'] },
+  { slug: 'panasonic', name: 'Panasonic', searchTerms: ['Lumix'] },
   { slug: 'peak-design', name: 'Peak Design' },
-  { slug: 'pentax', name: 'Pentax' },
+  { slug: 'pentax', name: 'Pentax', searchTerms: ['Takumar'] },
   { slug: 'ricoh', name: 'Ricoh' },
   { slug: 'samsung', name: 'Samsung' },
-  { slug: 'samyang', name: 'Samyang' },
+  { slug: 'samyang', name: 'Samyang', searchTerms: ['Rokinon'] },
   { slug: 'sigma', name: 'Sigma' },
   { slug: 'smallrig', name: 'SmallRig' },
-  { slug: 'sony', name: 'Sony' },
+  { slug: 'sony', name: 'Sony', searchTerms: ['Alpha'] },
   { slug: 'tamron', name: 'Tamron' },
   { slug: 'tokina', name: 'Tokina' },
   { slug: 'viltrox', name: 'Viltrox' },
-  { slug: 'zeiss', name: 'Zeiss' },
+  { slug: 'zeiss', name: 'Zeiss', searchTerms: ['Carl Zeiss'] },
   { slug: 'zenit', name: 'Zenit' },
 ];
 
 const MOUNTS: MountSeed[] = [
   { slug: 'canon-ef', name: 'Canon EF', brand: 'canon' },
-  { slug: 'canon-ef-m', name: 'Canon EF-M', brand: 'canon' },
-  { slug: 'canon-ef-s', name: 'Canon EF-S', brand: 'canon' },
+  { slug: 'canon-ef-m', name: 'Canon EF-M', brand: 'canon', searchTerms: ['EOS M', 'EFM'] },
+  { slug: 'canon-ef-s', name: 'Canon EF-S', brand: 'canon', searchTerms: ['EFS'] },
   { slug: 'canon-fd', name: 'Canon FD', brand: 'canon' },
   { slug: 'canon-rf', name: 'Canon RF', brand: 'canon' },
-  { slug: 'fujifilm-g', name: 'Fujifilm G', brand: 'fujifilm' },
-  { slug: 'fujifilm-x', name: 'Fujifilm X', brand: 'fujifilm' },
-  { slug: 'hasselblad-x', name: 'Hasselblad X', brand: 'hasselblad' },
-  { slug: 'leica-ltm', name: 'Leica L39 (LTM)', brand: 'leica' },
+  { slug: 'fujifilm-g', name: 'Fujifilm G', brand: 'fujifilm', searchTerms: ['Fuji', 'GFX', 'GF'] },
+  { slug: 'fujifilm-x', name: 'Fujifilm X', brand: 'fujifilm', searchTerms: ['Fuji', 'XF'] },
+  { slug: 'hasselblad-x', name: 'Hasselblad X', brand: 'hasselblad', searchTerms: ['XCD'] },
+  {
+    slug: 'leica-ltm',
+    name: 'Leica L39 (LTM)',
+    brand: 'leica',
+    searchTerms: ['M39', 'LSM', 'Screw'],
+  },
   { slug: 'leica-m', name: 'Leica M', brand: 'leica' },
-  { slug: 'minolta-md', name: 'Minolta MD', brand: 'minolta' },
-  { slug: 'nikon-1', name: 'Nikon 1', brand: 'nikon' },
+  { slug: 'minolta-md', name: 'Minolta MD', brand: 'minolta', searchTerms: ['MC', 'SR'] },
+  { slug: 'nikon-1', name: 'Nikon 1', brand: 'nikon', searchTerms: ['CX'] },
   { slug: 'nikon-f', name: 'Nikon F', brand: 'nikon' },
   { slug: 'nikon-z', name: 'Nikon Z', brand: 'nikon' },
   { slug: 'pentax-645', name: 'Pentax 645', brand: 'pentax' },
-  { slug: 'pentax-k', name: 'Pentax K', brand: 'pentax' },
+  { slug: 'pentax-k', name: 'Pentax K', brand: 'pentax', searchTerms: ['PK'] },
   { slug: 'pentax-q', name: 'Pentax Q', brand: 'pentax' },
   { slug: 'samsung-nx', name: 'Samsung NX', brand: 'samsung' },
   { slug: 'samsung-nx-mini', name: 'Samsung NX mini', brand: 'samsung' },
   { slug: 'sigma-sa', name: 'Sigma SA', brand: 'sigma' },
-  { slug: 'sony-a', name: 'Sony A', brand: 'sony' },
-  { slug: 'sony-e', name: 'Sony E', brand: 'sony' },
-  { slug: 'contax-yashica', name: 'Contax/Yashica' },
-  { slug: 'four-thirds', name: 'Four Thirds' },
-  { slug: 'l-mount', name: 'L-Mount' },
-  { slug: 'm42', name: 'M42' },
-  { slug: 'micro-four-thirds', name: 'Micro Four Thirds' },
+  {
+    slug: 'sony-a',
+    name: 'Sony A',
+    brand: 'sony',
+    searchTerms: ['Alpha', 'Minolta AF', 'Dynax', 'Maxxum'],
+  },
+  { slug: 'sony-e', name: 'Sony E', brand: 'sony', searchTerms: ['FE', 'NEX'] },
+  { slug: 'contax-yashica', name: 'Contax/Yashica', searchTerms: ['C/Y', 'CY'] },
+  { slug: 'four-thirds', name: 'Four Thirds', searchTerms: ['4/3'] },
+  { slug: 'l-mount', name: 'L-Mount', searchTerms: ['Leica L', 'Panasonic', 'Lumix S'] },
+  { slug: 'm42', name: 'M42', searchTerms: ['Pentax Screw', 'Praktica', 'Zenit'] },
+  {
+    slug: 'micro-four-thirds',
+    name: 'Micro Four Thirds',
+    searchTerms: ['M43', 'MFT', 'M4/3', 'Micro 4/3', 'Olympus', 'Panasonic'],
+  },
 ];
 
 const CAMERAS: CameraSeed[] = [
@@ -537,7 +553,7 @@ const LENSES: LensSeed[] = [
   },
   {
     brand: 'samyang',
-    name: '12mm f/2.0 NCS CS',
+    name: '12mm f/2 NCS CS',
     mount: 'fujifilm-x',
     releaseYear: 2014,
     focal: [12, 12],
@@ -579,7 +595,7 @@ function readSeedData<Seed>(file: string): Seed[] {
 function withImported<Seed>(curated: Seed[], imported: Seed[], key: (seed: Seed) => string) {
   const seedsByKey = new Map<string, Seed>();
   for (const seed of [...curated, ...imported]) {
-    if (!seedsByKey.has(key(seed))) seedsByKey.set(key(seed), seed);
+    seedsByKey.set(key(seed), { ...seed, ...seedsByKey.get(key(seed)) });
   }
   return [...seedsByKey.values()];
 }
@@ -600,7 +616,7 @@ const lenses = withImported(
 );
 
 const curatedBrandSlugs = new Set(BRANDS.map((brand) => brand.slug));
-const brands = [
+const brands: BrandSeed[] = [
   ...BRANDS,
   ...new Map(
     lenses
@@ -640,11 +656,21 @@ function modelSlug(entry: ModelSeed, category: ModelCategory): string {
 await db.transaction().execute(async (trx) => {
   const brandRows = await trx
     .insertInto('brand')
-    .values(brands)
+    .values(brands.map(({ slug, name }) => ({ slug, name })))
     .onConflict((oc) => oc.column('slug').doUpdateSet((eb) => ({ name: eb.ref('excluded.name') })))
     .returning(['id', 'slug'])
     .execute();
   const brandIds = new Map(brandRows.map((row) => [row.slug, row.id]));
+
+  const brandSearchTerms = sql.join(
+    brands.map((brand) => sql`(${brand.slug}, ${toSearchTokens(brand.searchTerms ?? [])}::text[])`),
+  );
+  await sql`
+    update brand
+    set search_terms = seeded.search_terms
+    from (values ${brandSearchTerms}) as seeded (slug, search_terms)
+    where brand.slug = seeded.slug
+  `.execute(trx);
   const brandNames = new Map(brands.map((brand) => [brand.slug, brand.name]));
 
   const mountRows = await trx
@@ -660,6 +686,19 @@ await db.transaction().execute(async (trx) => {
     .returning(['id', 'slug'])
     .execute();
   const mountIds = new Map(mountRows.map((row) => [row.slug, row.id]));
+
+  const mountSearchTerms = sql.join(
+    MOUNTS.map((mount) => {
+      const tokens = new Set(toSearchTokens([mount.name, ...(mount.searchTerms ?? [])]));
+      return sql`(${mount.slug}, ${[...tokens]}::text[])`;
+    }),
+  );
+  await sql`
+    update mount
+    set search_terms = seeded.search_terms
+    from (values ${mountSearchTerms}) as seeded (slug, search_terms)
+    where mount.slug = seeded.slug
+  `.execute(trx);
 
   async function upsertModels(
     entries: ModelSeed[],
@@ -690,8 +729,8 @@ await db.transaction().execute(async (trx) => {
           }),
         )
         .onConflict((oc) =>
-          oc.constraint('model_brand_id_name_mount_id_key').doUpdateSet((eb) => ({
-            slug: eb.ref('excluded.slug'),
+          oc.column('slug').doUpdateSet((eb) => ({
+            name: eb.ref('excluded.name'),
             display_name: eb.ref('excluded.display_name'),
             release_year: eb.ref('excluded.release_year'),
           })),
@@ -736,6 +775,22 @@ await db.transaction().execute(async (trx) => {
       .execute();
   }
 
+  const coded = cameras.filter((camera) => camera.searchTerms?.length);
+  for (const chunk of chunked(coded)) {
+    const modelSearchTerms = sql.join(
+      chunk.map(
+        (camera) =>
+          sql`(${modelId(cameraModelIds, camera, 'camera')}::uuid, ${toSearchTokens(camera.searchTerms ?? [])}::text[])`,
+      ),
+    );
+    await sql`
+      update model
+      set search_terms = seeded.search_terms
+      from (values ${modelSearchTerms}) as seeded (id, search_terms)
+      where model.id = seeded.id
+    `.execute(trx);
+  }
+
   const lensModelIds = await upsertModels(lenses, 'lens');
   for (const chunk of chunked(lenses)) {
     await trx
@@ -763,6 +818,19 @@ await db.transaction().execute(async (trx) => {
   }
 
   await upsertModels(ACCESSORIES, 'accessory');
+
+  const models = await trx.selectFrom('model').select(['id', 'display_name']).execute();
+  for (const chunk of chunked(models)) {
+    const searchTexts = sql.join(
+      chunk.map((model) => sql`(${model.id}::uuid, ${toSearchText(model.display_name)})`),
+    );
+    await sql`
+      update model
+      set search_text = indexed.search_text
+      from (values ${searchTexts}) as indexed (id, search_text)
+      where model.id = indexed.id
+    `.execute(trx);
+  }
 });
 
 const [{ total }] = await db
