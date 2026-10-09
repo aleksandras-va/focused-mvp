@@ -13,7 +13,7 @@ import { photoService } from '@/services/photo/photo.service';
 import type { PhotoUpload } from '@/services/photo/photo.types';
 
 export async function searchModelsAction(term: string) {
-  return modelCatalogService.search(term, { limit: 8 });
+  return modelCatalogService.searchModel(term, { limit: 8 });
 }
 
 export async function createPhotoUploadAction(): Promise<PhotoUpload | { error: string }> {

@@ -12,6 +12,7 @@ src/
   repositories/   every database query
   db/             connection, generated types
 scripts/          operational scripts run with plain node (.mts): migrate, seeds
+test/             Vitest setup: the test database
 ```
 
 ## Layers
@@ -141,6 +142,21 @@ never a repository, never `db`.
 - Anything a client component needs at runtime cannot live in a service. Enum label
   lists and formatters go in `src/lib/`, which imports nothing but types.
 - A formatter or helper copied into a second component belongs in `src/lib/` instead.
+
+## Tests
+
+Vitest, run with `pnpm test`. A test file sits beside what it tests
+(`model-catalog.service.test.ts`). Services are tested through the real database, not
+mocked repositories: `test/global-setup.mts` creates `focused_test` in the local
+container, then migrates and seeds it with the same scripts production uses, so a test
+can assert on real catalog rows. `.env.test` holds its URL, and the setup refuses any
+database that is not local and named `*_test`.
+
+Search tests are tables of `[term, expected]` grouped by the kind of problem, not by
+model. A case that is wrong today carries a trailing `GAP`, which runs it as `it.fails`:
+it passes while the gap exists and fails the run once it is fixed, which is the cue to
+delete the flag. A mount case checks several mounts for one lens, so it cannot pass on
+the luck of tie order.
 
 ## Schema
 

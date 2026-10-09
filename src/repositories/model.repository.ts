@@ -16,12 +16,13 @@ export const modelRepository = {
     let query = modelQuery()
       .select(sql<number>`word_similarity(${needle}, model.normalized)`.as('score'))
       .where(
-        sql<SqlBool>`word_similarity(${needle}, model.normalized) >= 0.3
-        or model.normalized like ${needle} || '%'`,
+        sql<SqlBool>`(word_similarity(${needle}, model.normalized) >= 0.3
+        or model.normalized like ${needle} || '%')`,
       )
       .orderBy('score', 'desc')
       .orderBy(sql`length(model.display_name)`)
       .orderBy('model.release_year', 'desc')
+      .orderBy('model.id')
       .limit(options.limit ?? 20);
 
     if (options.category) {

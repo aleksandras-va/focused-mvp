@@ -50,8 +50,7 @@ export const modelCatalogService = {
     };
   },
 
-  // Whats the diff between these?
-  async search(
+  async searchModel(
     term: string,
     options: { category?: ModelCategory; limit?: number } = {},
   ): Promise<CatalogModel[]> {

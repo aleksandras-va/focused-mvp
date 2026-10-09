@@ -23,6 +23,12 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - The inclusion enum is `inclusion`, not `listing_inclusion` — a table and a type cannot
   share a name in Postgres.
 
+## Testing
+
+- Vitest. Services are tested against a real, seeded `focused_test` database, because
+  search quality lives in SQL and a mocked repository would test nothing.
+- No jsdom or component tests yet; add them when there is a component worth testing.
+
 ## Catalog and search
 
 - Sellers pick a curated model. When it is missing, they add the item by name instead —
@@ -44,6 +50,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   `scripts/seed.mts`.
 - The seed upserts in batches of 500 rows inside one transaction, so a remote database
   sees about twenty statements rather than one round trip per model.
+- Apertures are written without a trailing zero: `f/2`, `f/16`, but `f/1.8`. Never
+  `f/2.0`.
 - European names only: no Rebel, Kiss, IXY, PowerShot SD or Lumix ZS duplicates.
 - Sensor format is loose, bucketed from crop factor: APS-H counts as APS-C, and anything
   smaller than one inch is null.

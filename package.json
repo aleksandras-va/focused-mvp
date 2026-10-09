@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "format": "biome format --write",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
@@ -50,7 +52,8 @@
     "@types/react-dom": "^19",
     "kysely-codegen": "^0.20.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.3"
   },
   "packageManager": "pnpm@10.32.1"
 }
