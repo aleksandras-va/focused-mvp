@@ -50,11 +50,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   `scripts/seed.mts`.
 - The seed upserts in batches of 500 rows inside one transaction, so a remote database
   sees about twenty statements rather than one round trip per model.
-- Apertures are written without a trailing zero: `f/2`, `f/16`, `f/4-5.6`, but `f/1.8`.
-  Never `f/2.0`.
-- A word has one casing across the catalog: series names in title case (Nokton, Macro,
-  Fisheye), with NIKKOR and ASPH in capitals. `cleanModelName` in
-  `scripts/lens-seed-data.mts` holds the list and applies both rules in every importer.
+- Apertures are written without a trailing zero: `f/2`, `f/16`, but `f/1.8`. Never
+  `f/2.0`.
 - European names only: no Rebel, Kiss, IXY, PowerShot SD or Lumix ZS duplicates.
 - Sensor format is loose, bucketed from crop factor: APS-H counts as APS-C, and anything
   smaller than one inch is null.

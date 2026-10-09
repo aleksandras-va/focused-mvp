@@ -29,9 +29,11 @@ export const modelRepository = {
     );
 
     let query = modelQuery()
-      .select(sql<number>`${score}`.as('score'))
-      .where(sql<SqlBool>`${condition}`)
-      .orderBy(sql`model.category = 'lens' and ${mentionsLensSpec(term)}::boolean`, 'desc')
+      .select(sql<number>`word_similarity(${needle}, model.normalized)`.as('score'))
+      .where(
+        sql<SqlBool>`(word_similarity(${needle}, model.normalized) >= 0.3
+        or model.normalized like ${needle} || '%')`,
+      )
       .orderBy('score', 'desc')
       .orderBy(sql`cardinality(${NAME_TOKENS})`)
       .orderBy(sql`length(model.display_name)`)
