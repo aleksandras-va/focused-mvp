@@ -112,3 +112,7 @@ export function hasActiveFilters(filters: BrowseFilters) {
     filters.cosmeticCondition !== null
   );
 }
+
+export function isModelOnly(filters: BrowseFilters) {
+  return filters.model !== null && filters.category === null && countAdvancedFilters(filters) === 0;
+}

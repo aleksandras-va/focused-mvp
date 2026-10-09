@@ -13,13 +13,13 @@ import { Logo } from '@/components/ui/logo';
 import { cn } from '@/lib/utils';
 import type {
   BrandAndModelSearchResults,
-  CatalogModel,
+  CatalogModelWithAds,
 } from '@/services/model-catalog/model-catalog.types';
 
 type SiteHeaderProps = {
   user: { displayName: string } | null;
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
-  suggestionsAction: () => Promise<CatalogModel[]>;
+  suggestionsAction: () => Promise<CatalogModelWithAds[]>;
 };
 
 const navigation = [

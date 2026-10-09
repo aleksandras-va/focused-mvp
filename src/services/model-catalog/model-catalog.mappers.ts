@@ -1,7 +1,7 @@
 import 'server-only';
 
-import type { ModelDetailRow, ModelRow } from '@/repositories/model.repository';
-import type { CatalogModel, CatalogModelDetail } from './model-catalog.types';
+import type { ModelDetailRow, ModelRow, ModelWithAdsRow } from '@/repositories/model.repository';
+import type { CatalogModel, CatalogModelDetail, CatalogModelWithAds } from './model-catalog.types';
 
 export function mapToCatalogModel(row: ModelRow): CatalogModel {
   return {
@@ -14,6 +14,14 @@ export function mapToCatalogModel(row: ModelRow): CatalogModel {
     mount: row.mount_slug && row.mount_name ? { slug: row.mount_slug, name: row.mount_name } : null,
     releaseYear: row.release_year,
     isFilm: row.is_film ?? false,
+  };
+}
+
+export function mapToCatalogModelWithAds(row: ModelWithAdsRow): CatalogModelWithAds {
+  return {
+    ...mapToCatalogModel(row),
+    adCount: row.ad_count ?? 0,
+    minPriceCents: row.min_price_cents,
   };
 }
 

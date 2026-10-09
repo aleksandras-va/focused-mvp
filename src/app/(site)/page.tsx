@@ -1,5 +1,5 @@
 import { Browse } from '@/components/features/browse';
-import { parseBrowseFilters, parseBrowsePage } from '@/lib/browse-filters';
+import { isModelOnly, parseBrowseFilters, parseBrowsePage } from '@/lib/browse-filters';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
@@ -23,6 +23,11 @@ export default async function HomePage({ searchParams }: PageProps<'/'>) {
     filters.model ? modelCatalogService.getModel(filters.model) : null,
   ]);
 
+  const similar =
+    model && listings.length === 0 && isModelOnly(filters)
+      ? await listingService.getSimilarToModel(model, user?.id ?? null)
+      : null;
+
   return (
     <Browse
       listings={listings}
@@ -31,6 +36,7 @@ export default async function HomePage({ searchParams }: PageProps<'/'>) {
       filters={filters}
       options={options}
       modelName={model?.displayName ?? null}
+      similar={similar}
       featuredPhoto={featuredPhoto}
     />
   );

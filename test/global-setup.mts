@@ -17,7 +17,7 @@ export default async function setup(): Promise<void> {
   if (existing.rowCount === 0) await client.query(`create database ${databaseName}`);
   await client.end();
 
-  for (const script of ['scripts/migrate.mts', 'scripts/seed.mts']) {
+  for (const script of ['scripts/migrate.mts', 'scripts/seed.mts', 'scripts/seed-cities.mts']) {
     execFileSync('node', [script], {
       cwd: projectRoot,
       env: { ...process.env, DATABASE_URL: databaseUrl },

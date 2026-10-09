@@ -16,14 +16,14 @@ import { CATEGORY_LABELS } from '@/lib/listing-options';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
 import type {
   BrandAndModelSearchResults,
-  CatalogModel,
+  CatalogModelWithAds,
 } from '@/services/model-catalog/model-catalog.types';
 
 type SearchDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
-  suggestionsAction: () => Promise<CatalogModel[]>;
+  suggestionsAction: () => Promise<CatalogModelWithAds[]>;
 };
 
 export function SearchDialog({
@@ -34,7 +34,7 @@ export function SearchDialog({
 }: SearchDialogProps) {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<BrandAndModelSearchResults>({ brands: [], models: [] });
-  const [suggested, setSuggested] = useState<CatalogModel[]>([]);
+  const [suggested, setSuggested] = useState<CatalogModelWithAds[]>([]);
   const [recent, setRecent] = useState<RecentlyViewedListing[]>([]);
   const [isSearching, startSearching] = useTransition();
   const router = useRouter();
@@ -167,20 +167,34 @@ export function SearchDialog({
   );
 }
 
-function ModelItem({ model, onSelect }: { model: CatalogModel; onSelect: (href: string) => void }) {
+function ModelItem({
+  model,
+  onSelect,
+}: {
+  model: CatalogModelWithAds;
+  onSelect: (href: string) => void;
+}) {
   return (
     <CommandItem
       className="px-3 py-2.5"
       value={`model:${model.slug}`}
       onSelect={() => onSelect(`/?model=${model.slug}`)}
     >
-      <div className="flex flex-col gap-0.5">
-        <span>{model.displayName}</span>
-        <span className="text-xs text-muted-foreground">
-          {CATEGORY_LABELS[model.category]}
-          {model.mount ? ` · ${model.mount.name}` : ''}
-          {model.isFilm ? ' · Film' : ''}
-        </span>
+      <div className="flex flex-1 items-center justify-between gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span>{model.displayName}</span>
+          <span className="text-xs text-muted-foreground">
+            {CATEGORY_LABELS[model.category]}
+            {model.mount ? ` · ${model.mount.name}` : ''}
+            {model.isFilm ? ' · Film' : ''}
+          </span>
+        </div>
+        {model.adCount > 0 ? (
+          <span className="shrink-0 text-xs font-medium text-primary">
+            {model.adCount === 1 ? '1 ad' : `${model.adCount} ads`}
+            {model.minPriceCents !== null ? ` · from ${formatPrice(model.minPriceCents)}` : ''}
+          </span>
+        ) : null}
       </div>
     </CommandItem>
   );

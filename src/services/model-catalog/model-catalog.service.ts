@@ -6,11 +6,16 @@ import { brandRepository } from '@/repositories/brand.repository';
 import { modelRepository } from '@/repositories/model.repository';
 import { mountRepository } from '@/repositories/mount.repository';
 
-import { mapToCatalogModel, mapToCatalogModelDetail } from './model-catalog.mappers';
+import {
+  mapToCatalogModel,
+  mapToCatalogModelDetail,
+  mapToCatalogModelWithAds,
+} from './model-catalog.mappers';
 import type {
   BrandAndModelSearchResults,
   CatalogModel,
   CatalogModelDetail,
+  CatalogModelWithAds,
 } from './model-catalog.types';
 
 export const modelCatalogService = {
@@ -28,10 +33,10 @@ export const modelCatalogService = {
     return rows.map(mapToCatalogModel);
   },
 
-  async getSuggested(): Promise<CatalogModel[]> {
+  async getSuggested(): Promise<CatalogModelWithAds[]> {
     const rows = await modelRepository.listSuggested();
 
-    return rows.map(mapToCatalogModel);
+    return rows.map(mapToCatalogModelWithAds);
   },
 
   async getFilters(category?: ModelCategory) {
@@ -70,12 +75,12 @@ export const modelCatalogService = {
 
     const [brands, models] = await Promise.all([
       brandRepository.search(trimmed),
-      modelRepository.search(trimmed, { limit: 8 }),
+      modelRepository.search(trimmed, { limit: 8, adsFirst: true }),
     ]);
 
     return {
       brands: brands.map((brand) => ({ slug: brand.slug, name: brand.name })),
-      models: models.map(mapToCatalogModel),
+      models: models.map(mapToCatalogModelWithAds),
     };
   },
 } as const;

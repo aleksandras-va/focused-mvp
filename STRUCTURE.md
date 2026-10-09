@@ -148,7 +148,7 @@ never a repository, never `db`.
 Vitest, run with `pnpm test`. A test file sits beside what it tests
 (`model-catalog.service.test.ts`). Services are tested through the real database, not
 mocked repositories: `test/global-setup.mts` creates `focused_test` in the local
-container, then migrates and seeds it with the same scripts production uses, so a test
+container, then migrates it and seeds the catalog and cities with the same scripts production uses, so a test
 can assert on real catalog rows. `.env.test` holds its URL, and the setup refuses any
 database that is not local and named `*_test`.
 

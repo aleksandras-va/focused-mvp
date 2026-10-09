@@ -5,7 +5,13 @@ import { MAX_PHOTOS } from '@/lib/photos';
 import { type ListingItemInput, listingRepository } from '@/repositories/listing.repository';
 import { modelRepository } from '@/repositories/model.repository';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
-import { BROWSE_PAGE_SIZE, ITEM_ID_PATTERN, STORAGE_KEY_PATTERN } from './listing.constants';
+import type { CatalogModel } from '../model-catalog/model-catalog.types';
+import {
+  BROWSE_PAGE_SIZE,
+  ITEM_ID_PATTERN,
+  SIMILAR_LISTINGS_LIMIT,
+  STORAGE_KEY_PATTERN,
+} from './listing.constants';
 import { ListingError } from './listing.error';
 import { mapToDetail, mapToEditable, mapToSummary } from './listing.mappers';
 import type {
@@ -16,8 +22,14 @@ import type {
   ListingDetail,
   ListingPage,
   ListingSummary,
+  SimilarListings,
 } from './listing.types';
-import { optionalPriceCents, parsePriceCents, parseShutterCount } from './listing.utils';
+import {
+  optionalPriceCents,
+  parsePriceCents,
+  parseShutterCount,
+  similarListingsTitle,
+} from './listing.utils';
 
 export const listingService = {
   async get(id: string, viewerId: string | null): Promise<ListingDetail | null> {
@@ -47,6 +59,20 @@ export const listingService = {
     return {
       listings: rows.slice(0, limit).map((row) => mapToSummary(row, viewerId)),
       hasMore: rows.length > limit,
+    };
+  },
+
+  async getSimilarToModel(
+    model: CatalogModel,
+    viewerId: string | null,
+  ): Promise<SimilarListings | null> {
+    const similar = await listingRepository.listSimilarToModel(model.id, SIMILAR_LISTINGS_LIMIT);
+
+    if (!similar) return null;
+
+    return {
+      title: similarListingsTitle(similar.step, model),
+      listings: similar.rows.map((row) => mapToSummary(row, viewerId)),
     };
   },
 

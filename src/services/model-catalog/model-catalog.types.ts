@@ -30,7 +30,7 @@ interface CatalogBrand {
 
 export interface BrandAndModelSearchResults {
   brands: CatalogBrand[];
-  models: CatalogModel[];
+  models: CatalogModelWithAds[];
 }
 
 export interface CatalogModel {
@@ -44,3 +44,8 @@ export interface CatalogModel {
   releaseYear: number | null;
   isFilm: boolean;
 }
+
+export type CatalogModelWithAds = CatalogModel & {
+  adCount: number;
+  minPriceCents: number | null;
+};

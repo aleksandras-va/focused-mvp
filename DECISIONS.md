@@ -50,8 +50,11 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   `scripts/seed.mts`.
 - The seed upserts in batches of 500 rows inside one transaction, so a remote database
   sees about twenty statements rather than one round trip per model.
-- Apertures are written without a trailing zero: `f/2`, `f/16`, but `f/1.8`. Never
-  `f/2.0`.
+- Apertures are written without a trailing zero: `f/2`, `f/16`, `f/4-5.6`, but `f/1.8`.
+  Never `f/2.0`.
+- A word has one casing across the catalog: series names in title case (Nokton, Macro,
+  Fisheye), with NIKKOR and ASPH in capitals. `cleanModelName` in
+  `scripts/lens-seed-data.mts` holds the list and applies both rules in every importer.
 - European names only: no Rebel, Kiss, IXY, PowerShot SD or Lumix ZS duplicates.
 - Sensor format is loose, bucketed from crop factor: APS-H counts as APS-C, and anything
   smaller than one inch is null.
@@ -89,6 +92,14 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   "fuji", "m43", "FE"), so "viltrox 35 fuji" returns only the Fujifilm X versions. A
   mount match scores below a name match: "sony 85 1.8" lists Sony's own lens first, then
   other makers' lenses in Sony mounts.
+- Site search lists models that have active ads first, each with its ad count and lowest
+  item price; the rest of the catalog follows with no number. The sell form's model
+  picker keeps plain relevance order.
+- A model with no ads does not dead-end. When the model is the only filter and nothing
+  matches, browse says so and shows up to 8 similar ads from the first step that has any:
+  lenses of the same mount and a similar focal length, then the same mount and category,
+  then the same brand and category, then the newest ads. The section title names the
+  step. The ladder is one query in `listingRepository.listSimilarToModel`.
 - Slang with no source to import ("nifty fifty") is still out of scope.
 - Semantic search (pgvector) is deferred. Poor at model codes; cannot separate X-T3
   from X-T30.

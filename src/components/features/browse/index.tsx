@@ -4,6 +4,7 @@ import { AutoSubmitForm } from '@/components/features/browse/auto-submit-form';
 import { FeaturedBreak, type FeaturedPhoto } from '@/components/features/browse/featured-break';
 import { FilterPopover } from '@/components/features/browse/filter-popover';
 import { ListingFeed } from '@/components/features/browse/listing-feed';
+import { ModelUnavailable } from '@/components/features/browse/model-unavailable';
 import { SellBreak } from '@/components/features/browse/sell-break';
 import { buttonVariants } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -18,7 +19,7 @@ import {
 } from '@/lib/browse-filters';
 import { CATEGORY_PLURAL_LABELS } from '@/lib/listing-options';
 import { cn } from '@/lib/utils';
-import type { ListingSummary } from '@/services/listing/listing.types';
+import type { ListingSummary, SimilarListings } from '@/services/listing/listing.types';
 
 type BrowseProps = {
   listings: ListingSummary[];
@@ -30,6 +31,7 @@ type BrowseProps = {
     mounts: { slug: string; name: string }[];
   };
   modelName: string | null;
+  similar: SimilarListings | null;
   featuredPhoto: FeaturedPhoto;
 };
 
@@ -47,6 +49,7 @@ export function Browse({
   filters,
   options,
   modelName,
+  similar,
   featuredPhoto,
 }: BrowseProps) {
   return (
@@ -114,7 +117,9 @@ export function Browse({
         </div>
       ) : null}
 
-      {listings.length === 0 ? (
+      {modelName && similar ? (
+        <ModelUnavailable modelName={modelName} similar={similar} />
+      ) : listings.length === 0 ? (
         <EmptyState
           icon={<SearchXIcon className="text-primary" />}
           title={hasActiveFilters(filters) ? 'No listings match' : 'Nothing listed yet'}
