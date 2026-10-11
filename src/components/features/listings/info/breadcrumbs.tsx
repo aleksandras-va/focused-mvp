@@ -35,6 +35,16 @@ export function ListingBreadcrumbs({ item }: ListingBreadcrumbsProps) {
                 </BreadcrumbItem>
               </>
             ) : null}
+            {item.modelSlug ? (
+              <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink render={<Link href={`/?model=${item.modelSlug}`} />}>
+                    {item.modelName}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </>
+            ) : null}
           </>
         ) : (
           <BreadcrumbItem>

@@ -76,11 +76,11 @@ afterAll(removeSellerListings);
 
 describe('listingService.getSimilarToModel', () => {
   const cases: SimilarCase[] = [
-    ['sony-a7r-iii', 'Other Sony E cameras', ['Sony A7 III']],
-    ['sony-rx100-vii', 'Other Sony cameras', ['Sony A7 III']],
+    ['sony-a7r-iii', 'Other Sony E cameras', ['Sony a7 III']],
+    ['sony-rx100-vii', 'Other Sony cameras', ['Sony a7 III']],
     ['sony-fe-55mm-f-1-8-za-sony-e', 'Similar Sony E lenses', ['Sony FE 50mm f/1.8']],
     ['sony-fe-85mm-f-1-8-sony-e', 'Other Sony E lenses', ['Sony FE 50mm f/1.8']],
-    ['canon-eos-r5', 'Newest ads', ['Nikon D850', 'Sony A7 III', 'Sony FE 50mm f/1.8']],
+    ['canon-eos-r5', 'Newest ads', ['Nikon D850', 'Sony FE 50mm f/1.8', 'Sony a7 III']],
   ];
 
   for (const [slug, title, listed] of cases) {
@@ -98,7 +98,7 @@ describe('modelCatalogService.searchBrandAndModel with ads', () => {
     const { models } = await modelCatalogService.searchBrandAndModel('sony a7');
 
     expect(models[0]).toMatchObject({
-      displayName: 'Sony A7 III',
+      displayName: 'Sony a7 III',
       adCount: 1,
       minPriceCents: 120000,
     });

@@ -192,7 +192,7 @@ function resolveName(brand: string, camera: LensfunCamera): string {
 function brandName(brand: string, model: string, english: string): string {
   switch (brand) {
     case 'sony':
-      return english.replace(/^Alpha /, 'A').replace(/^DSC-/, 'Cyber-shot DSC-');
+      return english.replace(/^Alpha /, 'a').replace(/^DSC-/, 'Cyber-shot DSC-');
     case 'nikon':
       return english.replace(/^Z (?=\w)/, 'Z').replace(/^(Z\d+)(I+)$/, '$1 $2');
     case 'panasonic': {

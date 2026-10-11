@@ -39,6 +39,7 @@ export interface SimilarListings {
 export interface ListingItemDetail {
   id: string;
   modelName: string;
+  modelSlug: string | null;
   brand: string | null;
   brandSlug: string | null;
   mount: string | null;
@@ -49,7 +50,6 @@ export interface ListingItemDetail {
   shutterCount: number | null;
   soldSeparately: boolean;
   inclusions: string[];
-  missingInclusions: string[];
 }
 
 export interface ListingPhotoUrl {

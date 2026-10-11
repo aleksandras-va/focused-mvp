@@ -5,10 +5,13 @@ import { listingService } from '@/services/listing/listing.service';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 
 const featuredPhoto = {
-  imageUrl: '/images/hero/herox.jpg',
-  place: 'Palanga',
-  takenOn: '2025-07',
-  gear: 'Sony A7R',
+  imageUrl: '/images/hero/vilnius-3.jpg',
+  place: 'Vilnius',
+  takenOn: '2026-05',
+  gear: [
+    { name: 'Sony a6400' },
+    { name: 'Tamron 18-300mm F/3.5-6.3', modelSlug: 'tamron-18-300mm-f-3-5-6-3-sony-e' },
+  ],
 };
 
 export default async function HomePage({ searchParams }: PageProps<'/'>) {

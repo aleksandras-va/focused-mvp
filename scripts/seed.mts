@@ -289,7 +289,7 @@ const CAMERAS: CameraSeed[] = [
   },
   {
     brand: 'sony',
-    name: 'A7 III',
+    name: 'a7 III',
     mount: 'sony-e',
     releaseYear: 2018,
     bodyType: 'mirrorless',
@@ -298,7 +298,7 @@ const CAMERAS: CameraSeed[] = [
   },
   {
     brand: 'sony',
-    name: 'A7 IV',
+    name: 'a7 IV',
     mount: 'sony-e',
     releaseYear: 2021,
     bodyType: 'mirrorless',
@@ -307,7 +307,7 @@ const CAMERAS: CameraSeed[] = [
   },
   {
     brand: 'sony',
-    name: 'A7C',
+    name: 'a7C',
     mount: 'sony-e',
     releaseYear: 2020,
     bodyType: 'mirrorless',
@@ -316,7 +316,7 @@ const CAMERAS: CameraSeed[] = [
   },
   {
     brand: 'sony',
-    name: 'A6400',
+    name: 'a6400',
     mount: 'sony-e',
     releaseYear: 2019,
     bodyType: 'mirrorless',
@@ -325,7 +325,7 @@ const CAMERAS: CameraSeed[] = [
   },
   {
     brand: 'sony',
-    name: 'A6700',
+    name: 'a6700',
     mount: 'sony-e',
     releaseYear: 2023,
     bodyType: 'mirrorless',
@@ -572,7 +572,7 @@ const LENSES: LensSeed[] = [
 ];
 
 const ACCESSORIES: AccessorySeed[] = [
-  { brand: 'smallrig', name: 'Cage for Sony A6500' },
+  { brand: 'smallrig', name: 'Cage for Sony a6500' },
   { brand: 'peak-design', name: 'Slide Camera Strap' },
   { brand: 'fujifilm', name: 'VG-XT4 Battery Grip', releaseYear: 2020 },
 ];

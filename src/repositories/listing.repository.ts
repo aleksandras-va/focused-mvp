@@ -328,6 +328,9 @@ function listingCardQuery() {
             'brand.name as brand_name',
             'mount.name as mount_name',
           ])
+          .select((item) =>
+            item.fn.coalesce('model.category', 'listing_item.custom_category').as('category'),
+          )
           .whereRef('listing_item.listing_id', '=', 'listing.id')
           .orderBy('listing_item.position'),
       ).as('items'),

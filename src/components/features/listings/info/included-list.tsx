@@ -1,8 +1,8 @@
-import { CheckIcon, MinusIcon } from 'lucide-react';
+import { CheckIcon } from 'lucide-react';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
 export function IncludedList({ item }: { item: ListingItemDetail }) {
-  if (item.inclusions.length === 0 && item.missingInclusions.length === 0) return null;
+  if (item.inclusions.length === 0) return null;
 
   return (
     <section className="flex flex-col gap-4">
@@ -14,17 +14,6 @@ export function IncludedList({ item }: { item: ListingItemDetail }) {
               <CheckIcon className="size-3.5" strokeWidth={3} />
             </span>
             {label}
-          </li>
-        ))}
-        {item.missingInclusions.map((label) => (
-          <li key={label} className="flex items-center gap-2.5 text-muted-foreground">
-            <span className="flex size-5.5 items-center justify-center rounded-full bg-muted">
-              <MinusIcon className="size-3" strokeWidth={3} />
-            </span>
-            <span>
-              <span className="sr-only">Not included: </span>
-              {label}
-            </span>
           </li>
         ))}
       </ul>
