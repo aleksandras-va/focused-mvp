@@ -1,5 +1,8 @@
 import 'server-only';
 
+import { CATEGORY_PLURAL_LABELS } from '@/lib/listing-options';
+import type { SimilarityStep } from '@/repositories/listing.repository';
+import type { CatalogModel } from '../model-catalog/model-catalog.types';
 import { ListingError } from './listing.error';
 
 export function parsePriceCents(price: string) {
@@ -31,4 +34,14 @@ export function parseShutterCount(shutterCount: string | null) {
   }
 
   return value;
+}
+
+export function similarListingsTitle(step: SimilarityStep, model: CatalogModel) {
+  const gear = CATEGORY_PLURAL_LABELS[model.category].toLowerCase();
+
+  if (step === 'focalLength' && model.mount) return `Similar ${model.mount.name} lenses`;
+  if (step === 'mount' && model.mount) return `Other ${model.mount.name} ${gear}`;
+  if (step === 'brand') return `Other ${model.brand.name} ${gear}`;
+
+  return 'Newest ads';
 }

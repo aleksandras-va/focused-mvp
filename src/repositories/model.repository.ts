@@ -8,10 +8,17 @@ export type ModelRow = Awaited<ReturnType<ReturnType<typeof modelQuery>['execute
 
 export type ModelSearchRow = ModelRow & { score: number };
 
+export type ModelWithAdsRow = Awaited<
+  ReturnType<ReturnType<typeof modelWithAdsQuery>['execute']>
+>[number];
+
 export type ModelDetailRow = NonNullable<Awaited<ReturnType<typeof modelRepository.findBySlug>>>;
 
 export const modelRepository = {
-  search(term: string, options: { category?: ModelCategory; limit?: number } = {}) {
+  search(
+    term: string,
+    options: { category?: ModelCategory; limit?: number; adsFirst?: boolean } = {},
+  ) {
     const words = toSearchWords(term);
     if (words.length === 0) return Promise.resolve([]);
 
@@ -28,22 +35,27 @@ export const modelRepository = {
       sql` and `,
     );
 
-    let query = modelQuery()
+    let query = modelWithAdsQuery()
       .select(sql<number>`${score}`.as('score'))
-      .where(sql<SqlBool>`${condition}`)
+      .where(sql<SqlBool>`${condition}`);
+
+    if (options.category) {
+      query = query.where('model.category', '=', options.category);
+    }
+
+    if (options.adsFirst) {
+      query = query.orderBy(sql`model_ads.ad_count is not null`, 'desc');
+    }
+
+    return query
       .orderBy(sql`model.category = 'lens' and ${mentionsLensSpec(term)}::boolean`, 'desc')
       .orderBy('score', 'desc')
       .orderBy(sql`cardinality(${NAME_TOKENS})`)
       .orderBy(sql`length(model.display_name)`)
       .orderBy('model.release_year', 'desc')
       .orderBy('model.id')
-      .limit(options.limit ?? 20);
-
-    if (options.category) {
-      query = query.where('model.category', '=', options.category);
-    }
-
-    return query.execute();
+      .limit(options.limit ?? 20)
+      .execute();
   },
 
   findBySlug(slug: string) {
@@ -65,13 +77,8 @@ export const modelRepository = {
   },
 
   listSuggested(limit = 6) {
-    return modelQuery()
-      .orderBy(
-        sql`(select count(*) from listing_item
-        join listing on listing.id = listing_item.listing_id and listing.status = 'active'
-        where listing_item.model_id = model.id)`,
-        'desc',
-      )
+    return modelWithAdsQuery()
+      .orderBy(sql`coalesce(model_ads.ad_count, 0)`, 'desc')
       .orderBy('model.release_year', 'desc')
       .limit(limit)
       .execute();
@@ -178,4 +185,22 @@ function modelQuery() {
       'mount.slug as mount_slug',
       'camera_spec.is_film',
     ]);
+}
+
+function modelWithAdsQuery() {
+  return modelQuery()
+    .leftJoin(
+      (eb) =>
+        eb
+          .selectFrom('listing_item')
+          .innerJoin('listing', 'listing.id', 'listing_item.listing_id')
+          .where('listing.status', '=', 'active')
+          .select('listing_item.model_id')
+          .select(sql<number>`count(distinct listing.id)::int`.as('ad_count'))
+          .select((item) => item.fn.min('listing_item.price_cents').as('min_price_cents'))
+          .groupBy('listing_item.model_id')
+          .as('model_ads'),
+      (join) => join.onRef('model_ads.model_id', '=', 'model.id'),
+    )
+    .select(['model_ads.ad_count', 'model_ads.min_price_cents']);
 }

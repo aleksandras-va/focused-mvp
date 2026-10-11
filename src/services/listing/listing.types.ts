@@ -31,6 +31,11 @@ export interface ListingPage {
   hasMore: boolean;
 }
 
+export interface SimilarListings {
+  title: string;
+  listings: ListingSummary[];
+}
+
 export interface ListingItemDetail {
   id: string;
   modelName: string;

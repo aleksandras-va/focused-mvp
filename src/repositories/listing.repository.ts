@@ -19,6 +19,11 @@ export type ListingDetailRow = NonNullable<Awaited<ReturnType<typeof listingRepo
 
 export type ListingDetailItemRow = ListingDetailRow['items'][number];
 
+const SIMILARITY_STEPS = ['focalLength', 'mount', 'brand', 'newest'] as const;
+const FOCAL_LENGTH_TOLERANCE = 1.25;
+
+export type SimilarityStep = (typeof SIMILARITY_STEPS)[number];
+
 export const listingRepository = {
   insert(values: NewListing, items: ListingItemInput[], photoKeys: string[]) {
     return db.transaction().execute(async (trx) => {
@@ -148,6 +153,55 @@ export const listingRepository = {
     }
 
     return query.limit(limit).execute();
+  },
+
+  async listSimilarToModel(modelId: string, limit: number) {
+    const rows = await listingCardQuery()
+      .innerJoin(
+        (eb) =>
+          eb
+            .selectFrom('listing_item')
+            .innerJoin('model as target', (join) => join.on('target.id', '=', modelId))
+            .leftJoin('model as candidate', 'candidate.id', 'listing_item.model_id')
+            .leftJoin('lens_spec as target_lens', 'target_lens.model_id', 'target.id')
+            .leftJoin('lens_spec as candidate_lens', 'candidate_lens.model_id', 'candidate.id')
+            .select('listing_item.listing_id')
+            .select(
+              sql<number>`min(case
+                when candidate.category = target.category
+                  and candidate.mount_id = target.mount_id
+                  and candidate_lens.focal_min_mm <= target_lens.focal_max_mm * ${FOCAL_LENGTH_TOLERANCE}::numeric
+                  and candidate_lens.focal_max_mm * ${FOCAL_LENGTH_TOLERANCE}::numeric >= target_lens.focal_min_mm
+                  then 0
+                when candidate.category = target.category
+                  and candidate.mount_id = target.mount_id then 1
+                when candidate.category = target.category
+                  and candidate.brand_id = target.brand_id then 2
+                else 3
+              end)`.as('step'),
+            )
+            .select(
+              sql<number | null>`min(abs(candidate.release_year - target.release_year))`.as(
+                'year_distance',
+              ),
+            )
+            .groupBy('listing_item.listing_id')
+            .as('similarity'),
+        (join) => join.onRef('similarity.listing_id', '=', 'listing.id'),
+      )
+      .select('similarity.step')
+      .where('listing.status', '=', 'active')
+      .orderBy('similarity.step')
+      .orderBy('similarity.year_distance')
+      .orderBy('listing.published_at', 'desc')
+      .limit(limit)
+      .execute();
+
+    if (rows.length === 0) return null;
+
+    const [{ step }] = rows;
+
+    return { step: SIMILARITY_STEPS[step], rows: rows.filter((row) => row.step === step) };
   },
 
   listPublishedBySeller(sellerId: string) {
