@@ -1,11 +1,17 @@
 import { MessageCircleIcon, PhoneIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Button, buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface ContactActionsProps {
   phone: string | null;
   isSignedIn: boolean;
 }
+
+const phoneButtonClass = cn(
+  buttonVariants({ variant: 'outline', size: 'lg' }),
+  'w-full border-input',
+);
 
 export function ContactActions({ phone, isSignedIn }: ContactActionsProps) {
   return (
@@ -15,27 +21,13 @@ export function ContactActions({ phone, isSignedIn }: ContactActionsProps) {
         Message seller
       </Button>
       {phone && isSignedIn ? (
-        <a
-          href={`tel:${phone.replace(/\s+/g, '')}`}
-          className={buttonVariants({
-            variant: 'outline',
-            size: 'lg',
-            className: 'w-full border-input',
-          })}
-        >
+        <a href={`tel:${phone.replace(/\s+/g, '')}`} className={phoneButtonClass}>
           <PhoneIcon />
           {phone}
         </a>
       ) : null}
       {phone && !isSignedIn ? (
-        <Link
-          href="/login"
-          className={buttonVariants({
-            variant: 'outline',
-            size: 'lg',
-            className: 'w-full border-input',
-          })}
-        >
+        <Link href="/login" className={phoneButtonClass}>
           <PhoneIcon />
           Log in to see the phone number
         </Link>

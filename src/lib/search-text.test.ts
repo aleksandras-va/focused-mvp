@@ -8,7 +8,7 @@ function tokens(term: string): string[] {
 describe('toSearchText', () => {
   it.each([
     ['Fujifilm X-T3', 'fujifilm x t 3'],
-    ['Sony A7R III', 'sony a 7 r 3'],
+    ['Sony a7R III', 'sony a 7 r 3'],
     ['Canon EOS 5D Mark IV', 'canon eos 5 d 4'],
     ['Fujifilm X100VI', 'fujifilm x 100 6'],
     ['Olympus OM-D E-M10 Mark IV', 'olympus om d e m 10 4'],

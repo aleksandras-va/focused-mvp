@@ -1,7 +1,7 @@
 import 'server-only';
 
 import type { ModelCategory } from '@/db/types';
-import { inclusionsFor, LISTING_LABELS } from '@/lib/listing-options';
+import { LISTING_LABELS } from '@/lib/listing-options';
 import type {
   ListingCardRow,
   ListingDetailItemRow,
@@ -9,6 +9,7 @@ import type {
 } from '@/repositories/listing.repository';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
 import { photoService } from '../photo/photo.service';
+import { listingTitleResolver } from './listing.title-resolver';
 import type {
   EditableListing,
   ListingDetail,
@@ -23,7 +24,12 @@ export function mapToSummary(row: ListingCardRow, viewerId: string | null): List
 
   return {
     id: row.id,
-    title: listingTitle(row.items.map((item) => item.model_name ?? item.custom_name ?? '')),
+    title: listingTitleResolver.resolve(
+      row.items.map((item) => ({
+        name: item.model_name ?? item.custom_name ?? '',
+        category: item.category,
+      })),
+    ),
     priceCents: row.price_cents,
     city: row.city_name,
     status: row.status,
@@ -46,7 +52,9 @@ export function mapToDetail(row: ListingDetailRow, viewerId: string | null): Lis
 
   return {
     id: row.id,
-    title: listingTitle(items.map((item) => item.modelName)),
+    title: listingTitleResolver.resolve(
+      items.map((item) => ({ name: item.modelName, category: item.category })),
+    ),
     priceCents: row.price_cents,
     city: row.city_name,
     status: row.status,
@@ -112,6 +120,7 @@ function mapToItemDetail(row: ListingDetailItemRow): ListingItemDetail {
   return {
     id: row.id,
     modelName: row.model_name ?? row.custom_name ?? '',
+    modelSlug: row.model_slug,
     brand: row.brand_name,
     brandSlug: row.brand_slug,
     mount: row.mount_name,
@@ -122,19 +131,7 @@ function mapToItemDetail(row: ListingDetailItemRow): ListingItemDetail {
     shutterCount: row.shutter_count,
     soldSeparately: row.sold_separately,
     inclusions: row.inclusions.map(({ inclusion }) => LISTING_LABELS.get(inclusion) ?? inclusion),
-    missingInclusions: missingInclusions(row),
   };
-}
-
-function missingInclusions(row: ListingDetailItemRow): string[] {
-  const included = new Set(row.inclusions.map(({ inclusion }) => inclusion));
-  const offered = inclusionsFor({
-    category: itemCategory(row),
-    isFilm: row.is_film ?? false,
-    hasMount: row.model_id === null || row.mount_name !== null,
-  });
-
-  return offered.filter(({ value }) => !included.has(value)).map(({ label }) => label);
 }
 
 function itemCategory(row: ListingDetailItemRow): ModelCategory {
@@ -143,10 +140,6 @@ function itemCategory(row: ListingDetailItemRow): ModelCategory {
   if (!category) throw new Error(`Listing item ${row.id} has no category.`);
 
   return category;
-}
-
-function listingTitle(modelNames: string[]) {
-  return modelNames.length > 0 ? modelNames.join(' + ') : 'Untitled draft';
 }
 
 function mapToPhotos(row: ListingDetailRow): ListingPhotoUrl[] {

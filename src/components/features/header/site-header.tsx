@@ -37,6 +37,9 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
   const [searchOpen, setSearchOpen] = useState(false);
   const expanded = pathname === '/' && !scrolled;
   const openSearch = () => setSearchOpen(true);
+  const scrollToTopOnHomepage = () => {
+    if (pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <header
@@ -47,7 +50,7 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
       <div className="mx-auto max-w-nav rounded-[1.75rem] border-b border-transparent bg-background/50 pr-2 pl-4 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.25)] ring-1 ring-foreground/10 backdrop-blur-sm transition-[max-width,border-radius,box-shadow,border-color,background-color,padding] duration-300 ease-out group-data-expanded/header:max-w-full group-data-expanded/header:rounded-none group-data-expanded/header:border-border group-data-expanded/header:bg-background group-data-expanded/header:pr-5 group-data-expanded/header:pl-7 group-data-expanded/header:pt-2 group-data-expanded/header:shadow-none group-data-expanded/header:ring-0 sm:pl-5 sm:group-data-expanded/header:pr-6 sm:group-data-expanded/header:pl-9">
         <div className="mx-auto max-w-[calc(var(--container-nav)-1.75rem)]">
           <div className="relative flex h-14 items-center gap-1">
-            <Link href="/" className="mr-3 flex items-center">
+            <Link href="/" className="mr-3 flex items-center" onClick={scrollToTopOnHomepage}>
               <Logo className="fill-primary" />
             </Link>
 

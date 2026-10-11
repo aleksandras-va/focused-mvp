@@ -1,19 +1,28 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { Fragment } from 'react';
 import { formatMonth } from '@/lib/format';
 
 export type FeaturedPhoto = {
   imageUrl: string;
   place: string;
   takenOn: string;
-  gear: string;
+  gear: FeaturedGear[];
+};
+
+type FeaturedGear = {
+  name: string;
+  modelSlug?: string;
 };
 
 export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
+  const gearNames = photo.gear.map((gear) => gear.name).join(' + ');
+
   return (
     <figure className="relative h-72 overflow-hidden rounded-3xl bg-foreground text-white sm:h-96">
       <Image
         src={photo.imageUrl}
-        alt={`Taken with ${photo.gear} in ${photo.place}`}
+        alt={`Taken with ${gearNames} in ${photo.place}`}
         fill
         sizes="(min-width: 1160px) 1112px, 100vw"
         className="object-cover"
@@ -26,7 +35,22 @@ export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
             Featured photo
           </span>
           <span>
-            Shot on <span className="text-white">{photo.gear}</span>
+            Shot on{' '}
+            {photo.gear.map((gear, index) => (
+              <Fragment key={gear.name}>
+                {index > 0 ? ' + ' : null}
+                {gear.modelSlug ? (
+                  <Link
+                    href={`/?model=${gear.modelSlug}`}
+                    className="text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+                  >
+                    {gear.name}
+                  </Link>
+                ) : (
+                  <span className="text-white">{gear.name}</span>
+                )}
+              </Fragment>
+            ))}
           </span>
         </span>
         <span>
