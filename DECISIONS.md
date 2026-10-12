@@ -95,6 +95,10 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Site search lists models that have active ads first, each with its ad count and lowest
   item price; the rest of the catalog follows with no number. The sell form's model
   picker keeps plain relevance order.
+- The sell form's model picker knows the mounts of the other items in the ad. Among
+  equally relevant matches the model in one of those mounts lists first, and its row says
+  "Same mount as your Sony A7 III". It is a tiebreaker below the score, never a filter, so
+  a Helios in M42 is not buried under a Sony body's lenses.
 - A model with no ads does not dead-end. When the model is the only filter and nothing
   matches, browse says so and shows up to 8 similar ads from the first step that has any:
   lenses of the same mount and a similar focal length, then the same mount and category,

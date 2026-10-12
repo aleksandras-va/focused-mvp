@@ -14,17 +14,31 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
 type ModelPickerProps = {
-  searchAction: (term: string) => Promise<CatalogModel[]>;
+  siblingModels: CatalogModel[];
+  searchAction: (term: string, preferredMountSlugs: string[]) => Promise<CatalogModel[]>;
   selected: CatalogModel | null;
   onSelect: (model: CatalogModel) => void;
   onAddByName: (name: string) => void;
 };
 
-export function ModelPicker({ searchAction, selected, onSelect, onAddByName }: ModelPickerProps) {
+export function ModelPicker({
+  siblingModels,
+  searchAction,
+  selected,
+  onSelect,
+  onAddByName,
+}: ModelPickerProps) {
   const [open, setOpen] = useState(false);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<CatalogModel[]>([]);
   const [isSearching, startSearching] = useTransition();
+  const siblingMountSlugs = [
+    ...new Set(siblingModels.flatMap((sibling) => (sibling.mount ? [sibling.mount.slug] : []))),
+  ]
+    .sort()
+    .join(',');
+  const siblingSharingMount = (model: CatalogModel) =>
+    siblingModels.find((sibling) => sibling.mount && sibling.mount.slug === model.mount?.slug);
 
   useEffect(() => {
     if (!term.trim()) {
@@ -34,12 +48,12 @@ export function ModelPicker({ searchAction, selected, onSelect, onAddByName }: M
 
     const timer = setTimeout(() => {
       startSearching(async () => {
-        setResults(await searchAction(term));
+        setResults(await searchAction(term, siblingMountSlugs.split(',').filter(Boolean)));
       });
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [term, searchAction]);
+  }, [term, siblingMountSlugs, searchAction]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -87,25 +101,34 @@ export function ModelPicker({ searchAction, selected, onSelect, onAddByName }: M
                 'Start typing.'
               )}
             </CommandEmpty>
-            {results.map((model) => (
-              <CommandItem
-                key={model.id}
-                value={model.id}
-                onSelect={() => {
-                  onSelect(model);
-                  setOpen(false);
-                }}
-              >
-                <div className="flex flex-col">
-                  <span>{model.displayName}</span>
-                  <span className="text-xs text-muted-foreground">
-                    {model.mount ? model.mount.name : 'Fixed lens'}
-                    {model.releaseYear ? ` · ${model.releaseYear}` : ''}
-                  </span>
-                </div>
-                {selected?.id === model.id ? <CheckIcon className="ml-auto" /> : null}
-              </CommandItem>
-            ))}
+            {results.map((model) => {
+              const sibling = siblingSharingMount(model);
+
+              return (
+                <CommandItem
+                  key={model.id}
+                  value={model.id}
+                  onSelect={() => {
+                    onSelect(model);
+                    setOpen(false);
+                  }}
+                >
+                  <div className="flex flex-col">
+                    <span>{model.displayName}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {model.mount ? model.mount.name : 'Fixed lens'}
+                      {model.releaseYear ? ` · ${model.releaseYear}` : ''}
+                    </span>
+                    {sibling ? (
+                      <span className="text-xs font-medium text-primary-ink">
+                        Same mount as your {sibling.displayName}
+                      </span>
+                    ) : null}
+                  </div>
+                  {selected?.id === model.id ? <CheckIcon className="ml-auto" /> : null}
+                </CommandItem>
+              );
+            })}
           </CommandList>
         </Command>
       </PopoverContent>

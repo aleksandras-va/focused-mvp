@@ -57,7 +57,7 @@ export const modelCatalogService = {
 
   async searchModel(
     term: string,
-    options: { category?: ModelCategory; limit?: number } = {},
+    options: { category?: ModelCategory; limit?: number; preferredMountSlugs?: string[] } = {},
   ): Promise<CatalogModel[]> {
     const trimmed = term.trim();
 

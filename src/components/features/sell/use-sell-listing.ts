@@ -22,6 +22,12 @@ export interface SellItem {
   inclusions: Inclusion[];
 }
 
+export interface SellStep {
+  label: string;
+  done: boolean;
+  optional?: boolean;
+}
+
 export type DraftState = 'idle' | 'saving' | 'saved' | 'error';
 
 type SavedDraft = { id: string; itemIds: string[]; error: null } | { error: string };
@@ -47,9 +53,19 @@ function emptyItem(): SellItem {
     cosmeticCondition: 'good',
     functionalCondition: 'fully_working',
     shutterCount: '',
-    soldSeparately: true,
+    soldSeparately: false,
     inclusions: [],
   };
+}
+
+function isDescribed(item: SellItem) {
+  return item.custom
+    ? item.custom.name.trim() !== '' && item.custom.category !== null
+    : item.model !== null;
+}
+
+function isPrice(value: string) {
+  return value.trim() !== '' && Number.isFinite(Number(value));
 }
 
 function initialItems(listing: EditableListing | null): SellItem[] {
@@ -104,6 +120,21 @@ export function useSellListing({
     contactPhone: contactPhone || null,
     publish: false,
   };
+
+  const isEveryItemDescribed = items.every(isDescribed);
+  const steps: SellStep[] = [
+    { label: isBundle ? 'Model for every item' : 'Model', done: isEveryItemDescribed },
+    { label: 'Condition', done: isEveryItemDescribed },
+    {
+      label: isBundle ? 'Price for every item' : 'Price',
+      done: items.every((item) => isPrice(item.price)),
+    },
+    ...(isBundle ? [{ label: 'Bundle price', done: isPrice(bundlePrice) }] : []),
+    { label: 'City', done: cityId !== '' },
+    { label: 'Photos', done: photoKeys.length > 0, optional: true },
+    { label: 'Description', done: description.trim() !== '', optional: true },
+  ];
+  const missingSteps = steps.filter((step) => !step.optional && !step.done);
 
   const isEditingPublished = listing !== null && listing.status !== 'draft';
   const hasContent =
@@ -173,13 +204,14 @@ export function useSellListing({
     items,
     isBundle,
     suggestLens,
+    steps,
+    missingStepLabels: missingSteps.map((step) => step.label),
     addItem,
     removeItem,
     updateItem,
     bundlePrice,
     setBundlePrice,
     setPhotoKeys,
-    photoCount: photoKeys.length,
     cityId,
     setCityId,
     description,

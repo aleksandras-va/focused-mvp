@@ -12,8 +12,8 @@ import { PhotoStorageError } from '@/services/photo/photo.error';
 import { photoService } from '@/services/photo/photo.service';
 import type { PhotoUpload } from '@/services/photo/photo.types';
 
-export async function searchModelsAction(term: string) {
-  return modelCatalogService.searchModel(term, { limit: 8 });
+export async function searchModelsAction(term: string, preferredMountSlugs: string[]) {
+  return modelCatalogService.searchModel(term, { limit: 8, preferredMountSlugs });
 }
 
 export async function createPhotoUploadAction(): Promise<PhotoUpload | { error: string }> {

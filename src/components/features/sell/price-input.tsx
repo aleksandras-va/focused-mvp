@@ -1,6 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
+import { keepDecimal } from '@/lib/numeric-input';
 
 interface PriceInputProps {
   id: string;
@@ -17,13 +18,11 @@ export function PriceInput({ id, value, onChange, large }: PriceInputProps) {
       </span>
       <Input
         id={id}
-        type="number"
-        min="0"
-        step="1"
+        type="text"
         inputMode="decimal"
         placeholder="0"
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange(keepDecimal(event.target.value))}
         className={
           large
             ? 'h-13 rounded-xl bg-background pl-9 text-lg font-bold'

@@ -28,6 +28,7 @@ const buttonVariantNames = [
   'default',
   'dark',
   'secondary',
+  'tertiary',
   'outline',
   'ghost',
   'destructive',

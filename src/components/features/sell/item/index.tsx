@@ -16,7 +16,8 @@ interface ItemFieldsProps {
   item: SellItem;
   index: number;
   isBundle: boolean;
-  searchAction: (term: string) => Promise<CatalogModel[]>;
+  siblingModels: CatalogModel[];
+  searchAction: (term: string, preferredMountSlugs: string[]) => Promise<CatalogModel[]>;
   onChange: (patch: Partial<SellItem>) => void;
   onRemove: (() => void) | null;
 }
@@ -50,6 +51,7 @@ export function ItemFields({
   item,
   index,
   isBundle,
+  siblingModels,
   searchAction,
   onChange,
   onRemove,
@@ -95,12 +97,13 @@ export function ItemFields({
       <ModelField
         model={item.model}
         custom={item.custom}
+        siblingModels={siblingModels}
         searchAction={searchAction}
         onSelect={selectModel}
         onCustomChange={changeCustom}
         onClear={clearModel}
       />
-      <ConditionFields item={item} onChange={onChange} />
+      <ConditionFields item={item} isBundle={isBundle} onChange={onChange} />
       {availableInclusions.length > 0 ? (
         <InclusionFields
           options={availableInclusions}

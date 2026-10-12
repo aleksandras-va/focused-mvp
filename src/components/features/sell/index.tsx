@@ -12,6 +12,7 @@ import { ItemSummaryRow } from '@/components/features/sell/item/summary-row';
 import { PhotoUploader } from '@/components/features/sell/photo-uploader';
 import { SellPreview } from '@/components/features/sell/sell-preview';
 import { SubmitBar } from '@/components/features/sell/submit-bar';
+import { useOpenItem } from '@/components/features/sell/use-open-item';
 import { useSellListing } from '@/components/features/sell/use-sell-listing';
 import type { City } from '@/services/city/city.types';
 import type { CreateListingPayload, EditableListing } from '@/services/listing/listing.types';
@@ -26,7 +27,7 @@ interface SellListingProps {
     payload: CreateListingPayload,
   ) => Promise<{ error: string }>;
   saveDraftAction: (listingId: string | null, payload: CreateListingPayload) => Promise<SavedDraft>;
-  searchAction: (term: string) => Promise<CatalogModel[]>;
+  searchAction: (term: string, preferredMountSlugs: string[]) => Promise<CatalogModel[]>;
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   cities: City[];
   defaults: { email: string; phone: string; cityId: string };
@@ -43,19 +44,16 @@ export function SellListing({
   listing,
 }: SellListingProps) {
   const sell = useSellListing({ submitAction, saveDraftAction, defaults, listing });
-  const [openItemId, setOpenItemId] = useState<string | null>(null);
+  const openItem = useOpenItem(sell.items);
   const [coverUrl, setCoverUrl] = useState<string | null>(null);
   const previewHref = sell.draftId
     ? sell.draftItemIds.length === 1
       ? `/items/${sell.draftItemIds[0]}`
       : `/bundles/${sell.draftId}`
     : null;
-  const lastItemId = sell.items[sell.items.length - 1]?.id ?? null;
-  const activeItemId =
-    openItemId && sell.items.some((item) => item.id === openItemId) ? openItemId : lastItemId;
 
   const addItem = () => {
-    setOpenItemId(null);
+    openItem.openLastItem();
     sell.addItem();
   };
 
@@ -89,26 +87,33 @@ export function SellListing({
               ) : null
             }
           >
-            {sell.items.map((item, index) =>
-              sell.isBundle && item.id !== activeItemId ? (
-                <ItemSummaryRow
-                  key={item.id}
-                  item={item}
-                  index={index}
-                  onEdit={() => setOpenItemId(item.id)}
-                />
-              ) : (
-                <ItemFields
-                  key={item.id}
-                  item={item}
-                  index={index}
-                  isBundle={sell.isBundle}
-                  searchAction={searchAction}
-                  onChange={(patch) => sell.updateItem(item.id, patch)}
-                  onRemove={sell.isBundle ? () => sell.removeItem(item.id) : null}
-                />
-              ),
-            )}
+            {sell.items.map((item, index) => (
+              <div
+                key={item.id}
+                ref={item.id === openItem.scrollTargetId ? openItem.scrollTargetRef : null}
+                className="scroll-mt-[calc(var(--spacing-header)+1rem)]"
+              >
+                {sell.isBundle && item.id !== openItem.activeItemId ? (
+                  <ItemSummaryRow
+                    item={item}
+                    index={index}
+                    onEdit={() => openItem.openItem(item.id)}
+                  />
+                ) : (
+                  <ItemFields
+                    item={item}
+                    index={index}
+                    isBundle={sell.isBundle}
+                    siblingModels={sell.items.flatMap((sibling) =>
+                      sibling.id !== item.id && sibling.model ? [sibling.model] : [],
+                    )}
+                    searchAction={searchAction}
+                    onChange={(patch) => sell.updateItem(item.id, patch)}
+                    onRemove={sell.isBundle ? () => sell.removeItem(item.id) : null}
+                  />
+                )}
+              </div>
+            ))}
 
             <AddItemPrompt
               isBundle={sell.isBundle}
@@ -157,8 +162,8 @@ export function SellListing({
           isBundle={sell.isBundle}
           bundlePrice={sell.bundlePrice}
           coverUrl={coverUrl}
-          photoCount={sell.photoCount}
-          description={sell.description}
+          steps={sell.steps}
+          missingStepLabels={sell.missingStepLabels}
           draftState={sell.draftState}
           previewHref={previewHref}
           isPending={sell.isPending}
@@ -176,6 +181,7 @@ export function SellListing({
         <SubmitBar
           isPending={sell.isPending}
           isPublished={sell.isEditingPublished}
+          missingStepLabels={sell.missingStepLabels}
           onSubmit={sell.submit}
         />
       </div>

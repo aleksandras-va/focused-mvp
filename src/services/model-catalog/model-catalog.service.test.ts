@@ -291,6 +291,27 @@ describe('modelCatalogService.searchModel', () => {
     expect(new Set(nameAndMount).size).toBe(nameAndMount.length);
   });
 
+  it('lists a preferred mount first among equal matches', async () => {
+    for (const mount of ['sony-e', 'canon-ef', 'nikon-f']) {
+      const [first] = await modelCatalogService.searchModel('sigma 35 1.4', {
+        limit: RESULT_COUNT,
+        preferredMountSlugs: [mount],
+      });
+
+      expectMatch(first, /Sigma 35mm f\/1\.4/);
+      expect(first?.mount?.slug).toBe(mount);
+    }
+  });
+
+  it('keeps a better match above a preferred mount', async () => {
+    const [first] = await modelCatalogService.searchModel('helios 44-2', {
+      limit: RESULT_COUNT,
+      preferredMountSlugs: ['sony-e'],
+    });
+
+    expect(first?.displayName).toBe('Helios 44-2 58mm f/2');
+  });
+
   describeFirstResult("lists the maker's own lens before another maker's in that mount", [
     ['sony 85 1.8', /^Sony FE 85mm f\/1\.8/],
     ['canon 50 1.8', /^Canon .*50mm f\/1\.8/],
