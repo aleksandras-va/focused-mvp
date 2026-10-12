@@ -1,5 +1,6 @@
 'use client';
 
+import { ChevronDownIcon } from 'lucide-react';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
 import { Button } from '@/components/ui/button';
 import { formatCount } from '@/lib/format';
@@ -13,9 +14,10 @@ interface ItemSummaryRowProps {
 
 export function ItemSummaryRow({ item, index, onEdit }: ItemSummaryRowProps) {
   const name = item.model?.displayName ?? (item.custom?.name || 'Unnamed item');
+  const isItemChosen = item.model !== null || item.custom !== null;
   const details = [
-    LISTING_LABELS.get(item.cosmeticCondition),
-    LISTING_LABELS.get(item.functionalCondition),
+    isItemChosen ? LISTING_LABELS.get(item.cosmeticCondition) : null,
+    isItemChosen ? LISTING_LABELS.get(item.functionalCondition) : null,
     item.shutterCount ? `${formatCount(Number(item.shutterCount))} shots` : null,
     item.inclusions.length > 0 ? `${item.inclusions.length} included` : null,
   ].filter(Boolean);
@@ -39,6 +41,7 @@ export function ItemSummaryRow({ item, index, onEdit }: ItemSummaryRowProps) {
       </span>
       <Button type="button" variant="outline" size="sm" onClick={onEdit}>
         Edit
+        <ChevronDownIcon />
       </Button>
     </div>
   );

@@ -22,7 +22,7 @@ export function FormSection({
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-baseline gap-3.5">
           {step ? (
-            <span className="font-heading text-[1.625rem] leading-none font-extrabold text-primary">
+            <span className="font-heading text-[1.375rem] leading-tight font-bold text-primary">
               {step}
             </span>
           ) : null}

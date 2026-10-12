@@ -9,6 +9,7 @@ interface ChoiceGroupProps<Value extends string> {
   value: Value;
   onChange: (value: Value) => void;
   minWidth: string;
+  disabled?: boolean;
 }
 
 export function ChoiceGroup<Value extends string>({
@@ -18,9 +19,12 @@ export function ChoiceGroup<Value extends string>({
   value,
   onChange,
   minWidth,
+  disabled = false,
 }: ChoiceGroupProps<Value>) {
+  const selectedValue = disabled ? null : value;
+
   return (
-    <fieldset className="flex flex-col gap-2.5">
+    <fieldset disabled={disabled} className="flex flex-col gap-2.5 disabled:opacity-50">
       <legend className="mb-2.5 text-sm font-semibold">{legend}</legend>
       <div
         className="grid gap-2"
@@ -30,17 +34,19 @@ export function ChoiceGroup<Value extends string>({
           <label
             key={option.value}
             className={cn(
-              'flex min-h-12 cursor-pointer flex-col justify-center gap-0.5 rounded-xl border px-3.5 py-2.5 transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50',
-              option.value === value
+              'flex min-h-12 flex-col justify-center gap-0.5 rounded-xl border px-3.5 py-2.5 transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50',
+              disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+              option.value === selectedValue
                 ? 'border-foreground bg-muted/70 shadow-[inset_0_0_0_1px_var(--color-foreground)]'
-                : 'border-input hover:border-foreground/40',
+                : 'border-input',
+              option.value !== selectedValue && !disabled && 'hover:border-foreground/40',
             )}
           >
             <input
               type="radio"
               name={name}
               value={option.value}
-              checked={option.value === value}
+              checked={option.value === selectedValue}
               onChange={() => onChange(option.value)}
               className="sr-only"
             />

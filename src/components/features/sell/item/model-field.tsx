@@ -11,7 +11,8 @@ import type { CatalogModel } from '@/services/model-catalog/model-catalog.types'
 interface ModelFieldProps {
   model: CatalogModel | null;
   custom: CustomItem | null;
-  searchAction: (term: string) => Promise<CatalogModel[]>;
+  siblingModels: CatalogModel[];
+  searchAction: (term: string, preferredMountSlugs: string[]) => Promise<CatalogModel[]>;
   onSelect: (model: CatalogModel) => void;
   onCustomChange: (custom: CustomItem | null) => void;
   onClear: () => void;
@@ -20,6 +21,7 @@ interface ModelFieldProps {
 export function ModelField({
   model,
   custom,
+  siblingModels,
   searchAction,
   onSelect,
   onCustomChange,
@@ -41,6 +43,7 @@ export function ModelField({
     <Field>
       <FieldLabel>Model</FieldLabel>
       <ModelPicker
+        siblingModels={siblingModels}
         searchAction={searchAction}
         selected={model}
         onSelect={onSelect}
@@ -56,7 +59,7 @@ export function ModelField({
           </Button>
         </FieldDescription>
       ) : (
-        <FieldDescription className="text-center">
+        <FieldDescription className="text-left">
           <Button
             type="button"
             variant="link"

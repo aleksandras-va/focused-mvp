@@ -25,7 +25,8 @@ server, no client-side data layer.
 - Ad details: shutter count where applicable, separate cosmetic and functional
   condition, and a fixed checklist of what is included.
 
-Out of scope: lens/body compatibility recommendations.
+Out of scope: adapter and cross-mount compatibility advice. Matching gear by the same
+mount is in scope.
 
 ## Rules
 

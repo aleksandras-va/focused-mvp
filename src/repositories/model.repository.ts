@@ -17,7 +17,12 @@ export type ModelDetailRow = NonNullable<Awaited<ReturnType<typeof modelReposito
 export const modelRepository = {
   search(
     term: string,
-    options: { category?: ModelCategory; limit?: number; adsFirst?: boolean } = {},
+    options: {
+      category?: ModelCategory;
+      limit?: number;
+      adsFirst?: boolean;
+      preferredMountSlugs?: string[];
+    } = {},
   ) {
     const words = toSearchWords(term);
     if (words.length === 0) return Promise.resolve([]);
@@ -50,6 +55,10 @@ export const modelRepository = {
     return query
       .orderBy(sql`model.category = 'lens' and ${mentionsLensSpec(term)}::boolean`, 'desc')
       .orderBy('score', 'desc')
+      .orderBy(
+        sql`coalesce(mount.slug = any(${options.preferredMountSlugs ?? []}::text[]), false)`,
+        'desc',
+      )
       .orderBy(sql`cardinality(${NAME_TOKENS})`)
       .orderBy(sql`length(model.display_name)`)
       .orderBy('model.release_year', 'desc')
