@@ -208,6 +208,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Visitors are told apart by `focused_visitor`, an httpOnly first-party cookie holding a
   uuid, sent as `$device_id`; a signed-in user's id goes as `$user_id`, and Mixpanel
   joins the two.
+- A user profile (name and email) is sent on sign-up and on every sign-in, which is what
+  fills Mixpanel's Users page. Anonymous visitors have no profile.
 - Events: Signed Up, Draft Started, Listing Published, Listing Viewed, Message Clicked,
   Marked Sold, Searched. A seller's views of their own ad are not counted. Searched is
   sent once per search, when a result is picked or the dialog closes, never per keystroke.

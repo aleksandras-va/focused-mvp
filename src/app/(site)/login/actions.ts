@@ -7,10 +7,12 @@ import { authService } from '@/services/auth/auth.service';
 
 export async function signInAction(formData: FormData) {
   try {
-    await authService.signIn({
+    const user = await authService.signIn({
       email: String(formData.get('email') ?? ''),
       password: String(formData.get('password') ?? ''),
     });
+
+    analyticsService.identify(user);
   } catch (error) {
     if (error instanceof AuthError) {
       redirect(`/login?form=signin&error=${encodeURIComponent(error.message)}`);
@@ -30,6 +32,7 @@ export async function signUpAction(formData: FormData) {
       displayName: String(formData.get('displayName') ?? ''),
     });
 
+    analyticsService.identify(user);
     await analyticsService.track(user.id, 'Signed Up', {});
   } catch (error) {
     if (error instanceof AuthError) {

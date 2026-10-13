@@ -3,9 +3,14 @@ import 'server-only';
 import { randomUUID } from 'node:crypto';
 import { cookies } from 'next/headers';
 import { after } from 'next/server';
-import { MIXPANEL_TRACK_URL, VISITOR_COOKIE, VISITOR_DAYS } from './analytics.constants';
+import {
+  MIXPANEL_PROFILE_URL,
+  MIXPANEL_TRACK_URL,
+  VISITOR_COOKIE,
+  VISITOR_DAYS,
+} from './analytics.constants';
 import { AnalyticsError } from './analytics.error';
-import type { AnalyticsEventName, AnalyticsEvents } from './analytics.types';
+import type { AnalyticsEventName, AnalyticsEvents, AnalyticsProfile } from './analytics.types';
 import { toMixpanelProperties } from './analytics.utils';
 
 export const analyticsService = {
@@ -31,8 +36,27 @@ export const analyticsService = {
     };
 
     after(() =>
-      send(payload).catch((error) => {
+      send(MIXPANEL_TRACK_URL, payload).catch((error) => {
         console.error(`Analytics event "${event}" failed`, error);
+      }),
+    );
+  },
+
+  identify(profile: AnalyticsProfile) {
+    const token = process.env.MIXPANEL_TOKEN;
+
+    if (!token) return;
+
+    const payload = {
+      $token: token,
+      $distinct_id: profile.id,
+      // TODO: stop sending the email to Mixpanel once the pilot is over.
+      $set: { $name: profile.displayName, $email: profile.email },
+    };
+
+    after(() =>
+      send(MIXPANEL_PROFILE_URL, payload).catch((error) => {
+        console.error('Analytics profile failed', error);
       }),
     );
   },
@@ -57,8 +81,8 @@ async function readOrCreateVisitorId() {
   return visitorId;
 }
 
-async function send(payload: { event: string; properties: Record<string, unknown> }) {
-  const response = await fetch(MIXPANEL_TRACK_URL, {
+async function send(url: string, payload: Record<string, unknown>) {
+  const response = await fetch(url, {
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify([payload]),
@@ -66,6 +90,6 @@ async function send(payload: { event: string; properties: Record<string, unknown
   const result = (await response.json()) as { status?: number; error?: string };
 
   if (!response.ok || result.status !== 1) {
-    throw new AnalyticsError(`Mixpanel rejected the event: ${response.status} ${result.error}`);
+    throw new AnalyticsError(`Mixpanel rejected the request: ${response.status} ${result.error}`);
   }
 }
