@@ -64,7 +64,7 @@ export function ModelField({
             type="button"
             variant="link"
             size="sm"
-            className="h-auto p-0"
+            className="h-auto p-0 text-muted-foreground hover:text-foreground"
             onClick={() => addByName('')}
           >
             Can't find it? Add it by name

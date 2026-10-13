@@ -14,9 +14,15 @@ interface ListingInfoProps {
   listing: ListingDetail;
   focusedItem: ListingItemDetail | null;
   isSignedIn: boolean;
+  trackMessageClickAction: () => Promise<void>;
 }
 
-export function ListingInfo({ listing, focusedItem, isSignedIn }: ListingInfoProps) {
+export function ListingInfo({
+  listing,
+  focusedItem,
+  isSignedIn,
+  trackMessageClickAction,
+}: ListingInfoProps) {
   const isBundleOverview = listing.isBundle && !focusedItem;
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
   const title = item?.modelName ?? listing.title;
@@ -69,7 +75,11 @@ export function ListingInfo({ listing, focusedItem, isSignedIn }: ListingInfoPro
         />
       ) : null}
 
-      <ContactActions phone={listing.contact.phone} isSignedIn={isSignedIn} />
+      <ContactActions
+        phone={listing.contact.phone}
+        isSignedIn={isSignedIn}
+        trackMessageClickAction={trackMessageClickAction}
+      />
       <SellerCard seller={listing.seller} city={listing.city} />
       <SafetyNote />
     </div>

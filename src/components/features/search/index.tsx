@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
+import { ModelItem } from '@/components/features/search/model-item';
 import {
   Command,
   CommandDialog,
@@ -12,8 +13,8 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { formatPrice } from '@/lib/format';
-import { CATEGORY_LABELS } from '@/lib/listing-options';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
+import type { SearchOutcome } from '@/services/analytics/analytics.types';
 import type {
   BrandAndModelSearchResults,
   CatalogModelWithAds,
@@ -24,13 +25,17 @@ type SearchDialogProps = {
   onOpenChange: (open: boolean) => void;
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
   suggestionsAction: () => Promise<CatalogModelWithAds[]>;
+  trackSearchAction: (search: SearchOutcome) => Promise<void>;
 };
+
+type SearchSelection = { kind: 'brand' | 'model'; slug: string };
 
 export function SearchDialog({
   open,
   onOpenChange,
   searchAction,
   suggestionsAction,
+  trackSearchAction,
 }: SearchDialogProps) {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<BrandAndModelSearchResults>({ brands: [], models: [] });
@@ -77,16 +82,38 @@ export function SearchDialog({
     return () => clearTimeout(timer);
   }, [term, browsing, searchAction]);
 
-  function go(href: string) {
+  function reportSearch(selection: SearchSelection | null) {
+    if (browsing) return;
+
+    trackSearchAction({
+      term: term.trim(),
+      resultCount: results.brands.length + results.models.length,
+      selectedKind: selection?.kind ?? null,
+      selectedSlug: selection?.slug ?? null,
+    });
+  }
+
+  function go(href: string, selection: SearchSelection | null = null) {
+    reportSearch(selection);
     onOpenChange(false);
     setTerm('');
     router.push(href);
   }
 
+  function goToModel(model: CatalogModelWithAds) {
+    go(`/?model=${model.slug}`, { kind: 'model', slug: model.slug });
+  }
+
+  function changeOpen(next: boolean) {
+    if (!next) reportSearch(null);
+
+    onOpenChange(next);
+  }
+
   return (
     <CommandDialog
       open={open}
-      onOpenChange={onOpenChange}
+      onOpenChange={changeOpen}
       title="Search"
       description="Search cameras, lenses and brands"
       className="top-24 sm:max-w-2xl"
@@ -122,7 +149,7 @@ export function SearchDialog({
               {suggested.length > 0 ? (
                 <CommandGroup className="p-2" heading="Suggested">
                   {suggested.map((model) => (
-                    <ModelItem key={model.id} model={model} onSelect={go} />
+                    <ModelItem key={model.id} model={model} onSelect={goToModel} />
                   ))}
                 </CommandGroup>
               ) : null}
@@ -139,7 +166,9 @@ export function SearchDialog({
                       className="px-3 py-2.5"
                       key={brand.slug}
                       value={`brand:${brand.slug}`}
-                      onSelect={() => go(`/?brand=${brand.slug}`)}
+                      onSelect={() =>
+                        go(`/?brand=${brand.slug}`, { kind: 'brand', slug: brand.slug })
+                      }
                     >
                       <div className="flex flex-1 items-center justify-between gap-4">
                         <span>{brand.name}</span>
@@ -152,7 +181,7 @@ export function SearchDialog({
               {results.models.length > 0 ? (
                 <CommandGroup className="p-2" heading="Models">
                   {results.models.map((model) => (
-                    <ModelItem key={model.id} model={model} onSelect={go} />
+                    <ModelItem key={model.id} model={model} onSelect={goToModel} />
                   ))}
                 </CommandGroup>
               ) : null}
@@ -164,38 +193,5 @@ export function SearchDialog({
         </CommandList>
       </Command>
     </CommandDialog>
-  );
-}
-
-function ModelItem({
-  model,
-  onSelect,
-}: {
-  model: CatalogModelWithAds;
-  onSelect: (href: string) => void;
-}) {
-  return (
-    <CommandItem
-      className="px-3 py-2.5"
-      value={`model:${model.slug}`}
-      onSelect={() => onSelect(`/?model=${model.slug}`)}
-    >
-      <div className="flex flex-1 items-center justify-between gap-4">
-        <div className="flex flex-col gap-0.5">
-          <span>{model.displayName}</span>
-          <span className="text-xs text-muted-foreground">
-            {CATEGORY_LABELS[model.category]}
-            {model.mount ? ` · ${model.mount.name}` : ''}
-            {model.isFilm ? ' · Film' : ''}
-          </span>
-        </div>
-        {model.adCount > 0 ? (
-          <span className="shrink-0 text-xs font-medium text-primary">
-            {model.adCount === 1 ? '1 ad' : `${model.adCount} ads`}
-            {model.minPriceCents !== null ? ` · from ${formatPrice(model.minPriceCents)}` : ''}
-          </span>
-        ) : null}
-      </div>
-    </CommandItem>
   );
 }

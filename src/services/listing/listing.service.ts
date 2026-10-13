@@ -108,10 +108,11 @@ export const listingService = {
   ): Promise<CreatedListing> {
     const existing = listingId ? await requireOwned(listingId, sellerId) : null;
     const publish = input.publish || existing?.status === 'active';
+    const publishedNow = publish && existing?.status !== 'active';
     const content = await buildContent(input, publish);
 
     if (!existing) {
-      return listingRepository.insert(
+      const created = await listingRepository.insert(
         {
           ...content.values,
           seller_id: sellerId,
@@ -121,9 +122,11 @@ export const listingService = {
         content.items,
         content.photoKeys,
       );
+
+      return { ...created, publishedNow };
     }
 
-    return listingRepository.update(
+    const updated = await listingRepository.update(
       existing.id,
       {
         ...content.values,
@@ -133,6 +136,8 @@ export const listingService = {
       content.items,
       content.photoKeys,
     );
+
+    return { ...updated, publishedNow };
   },
 
   async markSold(listingId: string, sellerId: string): Promise<void> {

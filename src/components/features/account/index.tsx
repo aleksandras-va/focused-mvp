@@ -34,7 +34,7 @@ export function Account({
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex flex-wrap items-center justify-between gap-5">
+      <div className="flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-accent/50 p-4 border border-accent sm:p-6">
         <div className="flex min-w-0 items-center gap-4">
           <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary-soft font-heading text-2xl font-extrabold text-primary-ink">
             {name.charAt(0).toUpperCase()}
@@ -55,7 +55,11 @@ export function Account({
             See public profile
           </Link>
           <form action={signOutAction}>
-            <Button type="submit" variant="ghost" className="text-muted-foreground">
+            <Button
+              type="submit"
+              variant="ghost"
+              className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+            >
               Sign out
             </Button>
           </form>

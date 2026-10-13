@@ -6,6 +6,7 @@ import { RecordListingView } from '@/components/features/listings/record-view';
 import { bundleMetadata } from '@/lib/listing-metadata';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
+import { trackListingViewAction, trackMessageClickAction } from '../../../actions';
 import {
   deleteListingAction,
   hideListingAction,
@@ -33,6 +34,16 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
   if (!listing.isBundle && listing.items[0]) redirect(`/items/${listing.items[0].id}`);
 
   const viewer = await authService.getCurrentUserCached();
+  const reference = {
+    listingId: listing.id,
+    itemId: null,
+    title: listing.title,
+    priceCents: listing.priceCents,
+    isBundle: true,
+    brand: null,
+    category: null,
+    sellerId: listing.seller.id,
+  };
 
   return (
     <>
@@ -43,6 +54,7 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
             title: listing.title,
             priceCents: listing.priceCents,
           }}
+          trackViewAction={listing.isOwner ? null : trackListingViewAction.bind(null, reference)}
         />
       ) : null}
       {listing.isOwner ? (
@@ -56,7 +68,12 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
           deleteAction={deleteListingAction}
         />
       ) : null}
-      <ListingDetail listing={listing} focusedItem={null} isSignedIn={viewer !== null} />
+      <ListingDetail
+        listing={listing}
+        focusedItem={null}
+        isSignedIn={viewer !== null}
+        trackMessageClickAction={trackMessageClickAction.bind(null, reference)}
+      />
     </>
   );
 }
