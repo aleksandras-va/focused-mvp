@@ -196,6 +196,23 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Sign-up sends a welcome email only, no verification. It is sent with `after()` so a
   failed send never blocks sign-up.
 
+## Analytics
+
+- Mixpanel, called over its REST API with `fetch` from the server; no SDK and no browser
+  script. `analyticsService.track` is the only module that knows the provider.
+- Events are sent with `after()`, so a failed send never blocks the user. With no
+  `MIXPANEL_TOKEN` tracking is off.
+- Tracking is called from Server Actions only, never from a service or a Server
+  Component: a page render also runs for prefetches and crawlers, and only an action can
+  set the visitor cookie. A view is an action the listing page calls from an effect.
+- Visitors are told apart by `focused_visitor`, an httpOnly first-party cookie holding a
+  uuid, sent as `$device_id`; a signed-in user's id goes as `$user_id`, and Mixpanel
+  joins the two.
+- Events: Signed Up, Draft Started, Listing Published, Listing Viewed, Message Clicked,
+  Marked Sold, Searched. A seller's views of their own ad are not counted. Searched is
+  sent once per search, when a result is picked or the dialog closes, never per keystroke.
+- The Mixpanel MCP connector is a work account and is never used for this project.
+
 ## Photos
 
 - Compress in the browser to WebP before upload. Large camera files must never pass

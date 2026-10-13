@@ -70,11 +70,13 @@ browse reads a lean card row, the listing page a full detail row.
 
 Current: `model-catalog` (the curated gear reference: brands, mounts, models, specs —
 not what is for sale), `city`, `auth`, `account` (profile and opening a store),
-`seller` (the public profile behind `/sellers/[id]`), `listing`, `photo`, `email`.
+`seller` (the public profile behind `/sellers/[id]`), `listing`, `photo`, `email`,
+`analytics`.
 
 `auth.service.ts` reads and writes the session cookie directly. `photo.service.ts`
 talks to R2 (presigned uploads, public URLs) and is the only module that knows the
-storage provider. `email.service.ts` is the same for Resend.
+storage provider. `email.service.ts` is the same for Resend, and `analytics.service.ts`
+for Mixpanel; it also reads and writes the visitor cookie.
 
 ### `src/components/` — presentation
 

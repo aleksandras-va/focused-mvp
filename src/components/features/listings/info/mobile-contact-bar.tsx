@@ -1,14 +1,18 @@
-import { MessageCircleIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { MessageSellerButton } from '@/components/features/listings/info/message-seller-button';
 import { formatOptionalPrice } from '@/lib/format';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
 interface MobileContactBarProps {
   listing: ListingDetail;
   focusedItem: ListingItemDetail | null;
+  trackMessageClickAction: () => Promise<void>;
 }
 
-export function MobileContactBar({ listing, focusedItem }: MobileContactBarProps) {
+export function MobileContactBar({
+  listing,
+  focusedItem,
+  trackMessageClickAction,
+}: MobileContactBarProps) {
   const isBundleOverview = listing.isBundle && !focusedItem;
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
   const priceCents = item?.priceCents ?? listing.priceCents;
@@ -22,10 +26,7 @@ export function MobileContactBar({ listing, focusedItem }: MobileContactBarProps
         <span className="text-lg font-bold">{formatOptionalPrice(priceCents)}</span>
         <span className="truncate text-xs text-muted-foreground">{caption}</span>
       </span>
-      <Button size="lg" className="shrink-0">
-        <MessageCircleIcon />
-        Message seller
-      </Button>
+      <MessageSellerButton className="shrink-0" trackClickAction={trackMessageClickAction} />
     </div>
   );
 }

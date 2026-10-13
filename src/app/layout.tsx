@@ -3,7 +3,7 @@ import { Geist, Inter } from 'next/font/google';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
-import { getSearchSuggestionsAction, searchSiteAction } from './actions';
+import { getSearchSuggestionsAction, searchSiteAction, trackSearchAction } from './actions';
 import './globals.css';
 import { cn } from '@/lib/utils';
 
@@ -38,6 +38,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
           user={user}
           searchAction={searchSiteAction}
           suggestionsAction={getSearchSuggestionsAction}
+          trackSearchAction={trackSearchAction}
         />
         <main className="flex-1">{children}</main>
         <SiteFooter />

@@ -6,6 +6,7 @@ import { RecordListingView } from '@/components/features/listings/record-view';
 import { itemMetadata } from '@/lib/listing-metadata';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
+import { trackListingViewAction, trackMessageClickAction } from '../../../actions';
 import {
   deleteListingAction,
   hideListingAction,
@@ -34,6 +35,16 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
   if (!listing || !item) notFound();
 
   const viewer = await authService.getCurrentUserCached();
+  const reference = {
+    listingId: listing.id,
+    itemId: item.id,
+    title: item.modelName,
+    priceCents: item.priceCents,
+    isBundle: listing.isBundle,
+    brand: item.brand,
+    category: item.category,
+    sellerId: listing.seller.id,
+  };
 
   return (
     <>
@@ -44,6 +55,7 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
             title: item.modelName,
             priceCents: item.priceCents,
           }}
+          trackViewAction={listing.isOwner ? null : trackListingViewAction.bind(null, reference)}
         />
       ) : null}
       {listing.isOwner ? (
@@ -57,7 +69,12 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
           deleteAction={deleteListingAction}
         />
       ) : null}
-      <ListingDetail listing={listing} focusedItem={item} isSignedIn={viewer !== null} />
+      <ListingDetail
+        listing={listing}
+        focusedItem={item}
+        isSignedIn={viewer !== null}
+        trackMessageClickAction={trackMessageClickAction.bind(null, reference)}
+      />
     </>
   );
 }

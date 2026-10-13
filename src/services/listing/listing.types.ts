@@ -134,6 +134,7 @@ export interface CreateListingInput {
 export interface CreatedListing {
   id: string;
   itemIds: string[];
+  publishedNow: boolean;
 }
 
 export type CreateListingPayload = Omit<CreateListingInput, 'sellerId'>;

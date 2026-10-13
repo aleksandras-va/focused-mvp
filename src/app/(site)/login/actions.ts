@@ -1,6 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { analyticsService } from '@/services/analytics/analytics.service';
 import { AuthError } from '@/services/auth/auth.error';
 import { authService } from '@/services/auth/auth.service';
 
@@ -23,11 +24,13 @@ export async function signInAction(formData: FormData) {
 
 export async function signUpAction(formData: FormData) {
   try {
-    await authService.signUp({
+    const user = await authService.signUp({
       email: String(formData.get('email') ?? ''),
       password: String(formData.get('password') ?? ''),
       displayName: String(formData.get('displayName') ?? ''),
     });
+
+    await analyticsService.track(user.id, 'Signed Up', {});
   } catch (error) {
     if (error instanceof AuthError) {
       redirect(`/login?form=signup&error=${encodeURIComponent(error.message)}`);

@@ -23,7 +23,12 @@ export function StoreSection({ store, action }: StoreSectionProps) {
   ];
 
   return (
-    <SettingsCard title="Selling as" description="How buyers see you." className="flex-[1_1_22rem]">
+    <SettingsCard
+      title="Selling as"
+      description="How buyers see you."
+      className="flex-[1_1_22rem]"
+      comingSoon
+    >
       <div className="grid grid-cols-2 gap-2">
         {options.map((option) => (
           <div

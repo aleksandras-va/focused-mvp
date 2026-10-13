@@ -11,6 +11,7 @@ import { SearchTrigger } from '@/components/features/search/search-trigger';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Logo } from '@/components/ui/logo';
 import { cn } from '@/lib/utils';
+import type { SearchOutcome } from '@/services/analytics/analytics.types';
 import type {
   BrandAndModelSearchResults,
   CatalogModelWithAds,
@@ -20,18 +21,24 @@ type SiteHeaderProps = {
   user: { displayName: string } | null;
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
   suggestionsAction: () => Promise<CatalogModelWithAds[]>;
+  trackSearchAction: (search: SearchOutcome) => Promise<void>;
 };
 
 const navigation = [
   { href: '/?category=camera', label: 'Cameras' },
   { href: '/?category=lens', label: 'Lenses' },
   { href: '/?category=accessory', label: 'Accessories' },
-  { href: '/stores', label: 'Stores' },
+  // { href: '/stores', label: 'Stores' },
 ];
 
 const centerSlotClass = 'absolute transition-[opacity,visibility] duration-200';
 
-export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeaderProps) {
+export function SiteHeader({
+  user,
+  searchAction,
+  suggestionsAction,
+  trackSearchAction,
+}: SiteHeaderProps) {
   const pathname = usePathname();
   const scrolled = useScrolled(24);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -132,6 +139,7 @@ export function SiteHeader({ user, searchAction, suggestionsAction }: SiteHeader
         onOpenChange={setSearchOpen}
         searchAction={searchAction}
         suggestionsAction={suggestionsAction}
+        trackSearchAction={trackSearchAction}
       />
     </header>
   );

@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { analyticsService } from '@/services/analytics/analytics.service';
 import { AuthError } from '@/services/auth/auth.error';
 import { authService } from '@/services/auth/auth.service';
 import { ListingError } from '@/services/listing/listing.error';
@@ -39,6 +40,9 @@ export async function saveListingDraftAction(
     const user = await authService.requireUser();
     const listing = await listingService.save(listingId, user.id, { ...payload, publish: false });
 
+    if (!listingId)
+      await analyticsService.track(user.id, 'Draft Started', { listingId: listing.id });
+
     revalidatePath('/user');
 
     return { id: listing.id, itemIds: listing.itemIds, error: null };
@@ -60,6 +64,13 @@ export async function submitListingAction(
     const user = await authService.requireUser();
 
     listing = await listingService.save(listingId, user.id, payload);
+
+    if (listing.publishedNow) {
+      await analyticsService.track(user.id, 'Listing Published', {
+        listingId: listing.id,
+        itemCount: listing.itemIds.length,
+      });
+    }
   } catch (error) {
     if (error instanceof AuthError) return { error: 'Sign in to save your ad.' };
     if (error instanceof ListingError) return { error: error.message };
@@ -74,7 +85,10 @@ export async function submitListingAction(
 export type OwnerActionResult = { error: string | null };
 
 export async function markListingSoldAction(listingId: string) {
-  return runOwnerAction(listingId, (userId) => listingService.markSold(listingId, userId));
+  return runOwnerAction(listingId, async (userId) => {
+    await listingService.markSold(listingId, userId);
+    await analyticsService.track(userId, 'Marked Sold', { listingId });
+  });
 }
 
 export async function hideListingAction(listingId: string) {
