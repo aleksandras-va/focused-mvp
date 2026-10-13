@@ -20,6 +20,12 @@ export interface SearchOutcome {
   selectedSlug: string | null;
 }
 
+export interface AnalyticsProfile {
+  id: string;
+  displayName: string;
+  email: string;
+}
+
 export interface AnalyticsEvents {
   'Signed Up': Record<string, never>;
   'Draft Started': { listingId: string };
