@@ -1,5 +1,15 @@
 import 'server-only';
 
+export type AuthErrorCode =
+  | 'unauthenticated'
+  | 'invalid_email'
+  | 'email_taken'
+  | 'invalid_credentials'
+  | 'password_too_short'
+  | 'password_only_numbers'
+  | 'password_repetitive'
+  | 'password_contains_email';
+
 export interface AuthUser {
   id: string;
   email: string;

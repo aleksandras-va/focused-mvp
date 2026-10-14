@@ -11,6 +11,8 @@ src/
   services/       use cases; the only layer app/ may import
   repositories/   every database query
   db/             connection, generated types
+  i18n/           next-intl request config and the typed message keys
+messages/         the message catalogs, lt.json and en.json
 scripts/          operational scripts run with plain node (.mts): migrate, seeds
 test/             Vitest setup: the test database
 ```

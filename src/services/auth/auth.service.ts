@@ -30,21 +30,21 @@ export const authService = {
   async requireUser(): Promise<AuthUser> {
     const user = await this.getCurrentUserCached();
 
-    if (!user) throw new AuthError('Authentication required.');
+    if (!user) throw new AuthError('unauthenticated');
 
     return user;
   },
 
   async signUp(input: SignUpInput): Promise<AuthUser> {
     const email = input.email.trim().toLowerCase();
-    if (!email.includes('@')) throw new AuthError('Invalid email address.');
+    if (!email.includes('@')) throw new AuthError('invalid_email');
 
     const displayName = input.displayName?.trim() || email.split('@')[0];
 
     assertStrongPassword(input.password, email);
 
     if (await userRepository.findByEmail(email)) {
-      throw new AuthError('This email is already registered — sign in instead.');
+      throw new AuthError('email_taken');
     }
 
     const user = await userRepository.insert({
@@ -69,7 +69,7 @@ export const authService = {
     const user = await userRepository.findByEmail(email);
     const valid = user !== undefined && (await bcrypt.compare(input.password, user.password_hash));
 
-    if (!valid || user === undefined) throw new AuthError('Invalid email or password.');
+    if (!valid || user === undefined) throw new AuthError('invalid_credentials');
 
     await this.startSession(user.id);
 

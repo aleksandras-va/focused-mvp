@@ -1,0 +1,32 @@
+{
+  "login": {
+    "metaTitle": "Prisijungti",
+    "title": "Sveiki atvykę į exposé",
+    "subtitle": "Prisijunkite, kad galėtumėte susisiekti su pardavėjais arba įkelti savo skelbimus.",
+    "switchLabel": "Prisijungti arba registruotis",
+    "or": "arba",
+    "email": "El. paštas",
+    "emailPlaceholder": "jus@pavyzdys.lt",
+    "password": "Slaptažodis",
+    "signIn": {
+      "title": "Prisijungti",
+      "subtitle": "Sveiki sugrįžę!",
+      "submit": "Prisijungti"
+    },
+    "signUp": {
+      "title": "Sukurti paskyrą",
+      "passwordHint": "Bent {min} simbolių.",
+      "submit": "Sukurti paskyrą"
+    }
+  },
+  "authErrors": {
+    "unauthenticated": "Pirmiausia prisijunkite.",
+    "invalid_email": "Neteisingas el. pašto adresas.",
+    "email_taken": "Šis el. paštas jau užregistruotas — prisijunkite.",
+    "invalid_credentials": "Neteisingas el. paštas arba slaptažodis.",
+    "password_too_short": "Slaptažodis turi būti bent {min} simbolių.",
+    "password_only_numbers": "Slaptažodis negali būti vien iš skaičių.",
+    "password_repetitive": "Slaptažodis per daug pasikartojantis — naudokite įvairesnių simbolių.",
+    "password_contains_email": "Slaptažodyje negali būti jūsų el. pašto adreso."
+  }
+}

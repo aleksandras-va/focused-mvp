@@ -1,0 +1,34 @@
+{
+  "login": {
+    "metaTitle": "Log in",
+    "title": "Welcome to exposé",
+    "subtitle": "Log in to message sellers and manage your ads. New here? It takes a minute.",
+    "switchLabel": "Log in or sign up",
+    "or": "or",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "signIn": {
+      "title": "Log in",
+      "subtitle": "Good to see you again.",
+      "submit": "Log in"
+    },
+    "signUp": {
+      "title": "Create an account",
+      "subtitle": "Free. Just an email and a password.",
+      "passwordHint": "At least {min} characters, not only numbers.",
+      "submit": "Create account",
+      "next": "Next you will add your name, phone and city."
+    }
+  },
+  "authErrors": {
+    "unauthenticated": "Log in first.",
+    "invalid_email": "Invalid email address.",
+    "email_taken": "This email is already registered — log in instead.",
+    "invalid_credentials": "Invalid email or password.",
+    "password_too_short": "Password must be at least {min} characters.",
+    "password_only_numbers": "Password cannot be only numbers.",
+    "password_repetitive": "Password is too repetitive — mix in more different characters.",
+    "password_contains_email": "Password cannot contain your email address."
+  }
+}
