@@ -2,11 +2,15 @@ import 'server-only';
 
 import { RESEND_EMAILS_URL } from './email.constants';
 import { EmailError } from './email.error';
-import { welcomeEmail } from './email.utils';
+import { type NewMessageEmailInput, newMessageEmail, welcomeEmail } from './email.utils';
 
 export const emailService = {
   async sendWelcome(to: string, displayName: string) {
     await send(to, welcomeEmail(displayName));
+  },
+
+  async sendNewMessage(to: string, input: NewMessageEmailInput) {
+    await send(to, newMessageEmail(input));
   },
 } as const;
 

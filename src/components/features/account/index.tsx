@@ -1,5 +1,6 @@
-import { CircleAlertIcon, CircleCheckIcon, EyeIcon } from 'lucide-react';
+import { CircleAlertIcon, CircleCheckIcon, EyeIcon, MessageCircleIcon } from 'lucide-react';
 import Link from 'next/link';
+import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button, buttonVariants } from '@/components/ui/button';
 import type { AuthUser } from '@/services/auth/auth.types';
@@ -13,6 +14,7 @@ interface AccountProps {
   user: AuthUser;
   cities: City[];
   listings: ListingSummary[];
+  unreadMessages: number;
   notice: { kind: 'error' | 'saved'; message: string } | null;
   updateProfileAction: (formData: FormData) => Promise<void>;
   openStoreAction: (formData: FormData) => Promise<void>;
@@ -23,6 +25,7 @@ export function Account({
   user,
   cities,
   listings,
+  unreadMessages,
   notice,
   updateProfileAction,
   openStoreAction,
@@ -47,6 +50,14 @@ export function Account({
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href="/messages"
+            className={buttonVariants({ variant: 'outline', className: 'border-input' })}
+          >
+            <MessageCircleIcon />
+            Messages
+            <UnreadBadge count={unreadMessages} />
+          </Link>
           <Link
             href={`/sellers/${user.id}`}
             className={buttonVariants({ variant: 'outline', className: 'border-input' })}

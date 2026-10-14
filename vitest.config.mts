@@ -11,6 +11,7 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
+    fileParallelism: false,
     include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'],
     globalSetup: ['./test/global-setup.mts'],
     env: { DATABASE_URL: testDatabaseUrl() },

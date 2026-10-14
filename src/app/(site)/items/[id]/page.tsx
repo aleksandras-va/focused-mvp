@@ -7,6 +7,7 @@ import { itemMetadata } from '@/lib/listing-metadata';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
 import { trackListingViewAction, trackMessageClickAction } from '../../../actions';
+import { startConversationAction } from '../../messages/actions';
 import {
   deleteListingAction,
   hideListingAction,
@@ -73,7 +74,15 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
         listing={listing}
         focusedItem={item}
         isSignedIn={viewer !== null}
-        trackMessageClickAction={trackMessageClickAction.bind(null, reference)}
+        messaging={
+          listing.isOwner
+            ? null
+            : {
+                isSignedIn: viewer !== null,
+                startAction: startConversationAction.bind(null, listing.id),
+                trackClickAction: trackMessageClickAction.bind(null, reference),
+              }
+        }
       />
     </>
   );

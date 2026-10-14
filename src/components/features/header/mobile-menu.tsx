@@ -1,8 +1,9 @@
 'use client';
 
-import { MenuIcon, UserIcon } from 'lucide-react';
+import { MenuIcon, MessageCircleIcon, UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Logo } from '@/components/ui/logo';
 import {
@@ -15,8 +16,13 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
+export interface HeaderUser {
+  displayName: string;
+  unreadMessages: number;
+}
+
 interface MobileMenuProps {
-  user: { displayName: string } | null;
+  user: HeaderUser | null;
   navigation: { href: string; label: string }[];
 }
 
@@ -55,10 +61,21 @@ export function MobileMenu({ user, navigation }: MobileMenuProps) {
 
         <SheetFooter>
           {user ? (
-            <Link href="/user" onClick={close} className={buttonVariants({ variant: 'outline' })}>
-              <UserIcon />
-              <span className="truncate">{user.displayName}</span>
-            </Link>
+            <>
+              <Link
+                href="/messages"
+                onClick={close}
+                className={buttonVariants({ variant: 'outline' })}
+              >
+                <MessageCircleIcon />
+                Messages
+                <UnreadBadge count={user.unreadMessages} />
+              </Link>
+              <Link href="/user" onClick={close} className={buttonVariants({ variant: 'outline' })}>
+                <UserIcon />
+                <span className="truncate">{user.displayName}</span>
+              </Link>
+            </>
           ) : (
             <Link href="/login" onClick={close} className={buttonVariants({ variant: 'outline' })}>
               Log in

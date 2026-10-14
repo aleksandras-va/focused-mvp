@@ -211,7 +211,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - A user profile (name and email) is sent on sign-up and on every sign-in, which is what
   fills Mixpanel's Users page. Anonymous visitors have no profile.
 - Events: Signed Up, Draft Started, Listing Published, Listing Viewed, Message Clicked,
-  Marked Sold, Searched. A seller's views of their own ad are not counted. Searched is
+  Message Sent, Marked Sold, Searched. Message Sent carries the conversation, the listing,
+  the sender's role (buyer or seller) and whether it opened the thread. A seller's views of their own ad are not counted. Searched is
   sent once per search, when a result is picked or the dialog closes, never per keystroke.
 - The Mixpanel MCP connector is a work account and is never used for this project.
 

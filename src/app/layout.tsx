@@ -3,6 +3,7 @@ import { Geist, Inter } from 'next/font/google';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
+import { conversationService } from '@/services/conversation/conversation.service';
 import { getSearchSuggestionsAction, searchSiteAction, trackSearchAction } from './actions';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -30,12 +31,13 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const user = await authService.getCurrentUserCached();
+  const unreadMessages = user ? await conversationService.countUnread(user.id) : 0;
 
   return (
     <html lang="en" className={cn(inter.variable, geist.variable, 'h-full', 'antialiased')}>
       <body className="flex min-h-full flex-col">
         <SiteHeader
-          user={user}
+          user={user ? { displayName: user.displayName, unreadMessages } : null}
           searchAction={searchSiteAction}
           suggestionsAction={getSearchSuggestionsAction}
           trackSearchAction={trackSearchAction}

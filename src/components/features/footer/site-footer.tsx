@@ -8,6 +8,8 @@ const links = [
   { href: '/sell', label: 'Sell gear' },
 ];
 
+const contactEmail = 'info@expose.lt';
+
 export function SiteFooter() {
   return (
     <footer className="border-t">
@@ -32,7 +34,10 @@ export function SiteFooter() {
         </nav>
       </div>
       <div className="mx-auto max-w-content px-4 pb-8 text-xs text-muted-foreground sm:px-6">
-        © {new Date().getFullYear()} exposé · Lithuania
+        © {new Date().getFullYear()} exposé · Lithuania ·{' '}
+        <a href={`mailto:${contactEmail}`} className="transition-colors hover:text-foreground">
+          {contactEmail}
+        </a>
       </div>
     </footer>
   );
