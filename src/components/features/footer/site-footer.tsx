@@ -6,6 +6,7 @@ const links = [
   { href: '/?category=lens', label: 'Lenses' },
   { href: '/?category=accessory', label: 'Accessories' },
   { href: '/sell', label: 'Sell gear' },
+  { href: '/about', label: 'About' },
 ];
 
 const contactEmail = 'info@expose.lt';
