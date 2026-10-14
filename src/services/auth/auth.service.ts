@@ -37,10 +37,9 @@ export const authService = {
 
   async signUp(input: SignUpInput): Promise<AuthUser> {
     const email = input.email.trim().toLowerCase();
-    const displayName = input.displayName.trim();
-
     if (!email.includes('@')) throw new AuthError('Invalid email address.');
-    if (!displayName) throw new AuthError('Enter your name.');
+
+    const displayName = input.displayName?.trim() || email.split('@')[0];
 
     assertStrongPassword(input.password, email);
 

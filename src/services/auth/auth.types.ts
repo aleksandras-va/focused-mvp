@@ -12,7 +12,7 @@ export interface AuthUser {
 export interface SignUpInput {
   email: string;
   password: string;
-  displayName: string;
+  displayName?: string;
 }
 
 export interface SignInInput {
