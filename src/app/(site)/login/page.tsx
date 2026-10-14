@@ -13,13 +13,12 @@ export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
 
   if (user) redirect('/user');
 
+  const activeForm = form === 'signup' ? 'signup' : 'signin';
+
   return (
     <Login
-      error={
-        typeof error === 'string'
-          ? { form: form === 'signup' ? 'signup' : 'signin', message: error }
-          : null
-      }
+      activeForm={activeForm}
+      error={typeof error === 'string' ? { form: activeForm, message: error } : null}
       minPasswordLength={MIN_PASSWORD_LENGTH}
       signInAction={signInAction}
       signUpAction={signUpAction}

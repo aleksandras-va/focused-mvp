@@ -2,18 +2,20 @@ import { FormError } from '@/components/features/login/form-error';
 import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 interface SignUpFormProps {
   action: (formData: FormData) => Promise<void>;
   error: string | null;
+  className?: string;
   minPasswordLength: number;
 }
 
-export function SignUpForm({ action, error, minPasswordLength }: SignUpFormProps) {
+export function SignUpForm({ action, error, minPasswordLength, className }: SignUpFormProps) {
   return (
     <form
       action={action}
-      className="flex flex-col gap-5 rounded-[1.75rem] bg-primary-soft p-6 sm:p-9"
+      className={cn('flex flex-col gap-5 rounded-[1.75rem] bg-primary-soft p-6 sm:p-9', className)}
     >
       <div className="flex flex-col gap-1">
         <h2 className="font-heading text-2xl font-bold">Create an account</h2>
