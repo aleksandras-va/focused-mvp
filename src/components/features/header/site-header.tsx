@@ -1,10 +1,11 @@
 'use client';
 
-import { SearchIcon, UserIcon } from 'lucide-react';
+import { MessageCircleIcon, SearchIcon, UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { MobileMenu } from '@/components/features/header/mobile-menu';
+import { type HeaderUser, MobileMenu } from '@/components/features/header/mobile-menu';
+import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { useScrolled } from '@/components/features/header/use-scrolled';
 import { SearchDialog } from '@/components/features/search';
 import { SearchTrigger } from '@/components/features/search/search-trigger';
@@ -18,7 +19,7 @@ import type {
 } from '@/services/model-catalog/model-catalog.types';
 
 type SiteHeaderProps = {
-  user: { displayName: string } | null;
+  user: HeaderUser | null;
   searchAction: (term: string) => Promise<BrandAndModelSearchResults>;
   suggestionsAction: () => Promise<CatalogModelWithAds[]>;
   trackSearchAction: (search: SearchOutcome) => Promise<void>;
@@ -100,13 +101,32 @@ export function SiteHeader({
               </Button>
 
               {user ? (
-                <Link
-                  href="/user"
-                  className={cn(buttonVariants({ variant: 'ghost' }), 'hidden px-2 md:inline-flex')}
-                >
-                  <UserIcon />
-                  <span className="hidden max-w-32 truncate lg:inline">{user.displayName}</span>
-                </Link>
+                <>
+                  <Link
+                    href="/messages"
+                    aria-label="Messages"
+                    className={cn(
+                      buttonVariants({ variant: 'ghost', size: 'icon' }),
+                      'relative -mr-2 hidden md:inline-flex',
+                    )}
+                  >
+                    <MessageCircleIcon />
+                    <UnreadBadge
+                      count={user.unreadMessages}
+                      className="absolute top-1 right-1 h-4 min-w-4 px-1 text-[10px] ring-2 ring-background"
+                    />
+                  </Link>
+                  <Link
+                    href="/user"
+                    className={cn(
+                      buttonVariants({ variant: 'ghost' }),
+                      'hidden px-2 md:inline-flex',
+                    )}
+                  >
+                    <UserIcon />
+                    <span className="hidden max-w-32 truncate lg:inline">{user.displayName}</span>
+                  </Link>
+                </>
               ) : (
                 <Link
                   href="/login"

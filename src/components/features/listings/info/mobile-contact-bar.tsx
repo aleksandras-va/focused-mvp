@@ -1,18 +1,19 @@
-import { MessageSellerButton } from '@/components/features/listings/info/message-seller-button';
+import {
+  MessageSellerDialog,
+  type MessageSellerProps,
+} from '@/components/features/listings/info/message-seller-dialog';
 import { formatOptionalPrice } from '@/lib/format';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
 interface MobileContactBarProps {
   listing: ListingDetail;
   focusedItem: ListingItemDetail | null;
-  trackMessageClickAction: () => Promise<void>;
+  messaging: MessageSellerProps | null;
 }
 
-export function MobileContactBar({
-  listing,
-  focusedItem,
-  trackMessageClickAction,
-}: MobileContactBarProps) {
+export function MobileContactBar({ listing, focusedItem, messaging }: MobileContactBarProps) {
+  if (!messaging) return null;
+
   const isBundleOverview = listing.isBundle && !focusedItem;
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
   const priceCents = item?.priceCents ?? listing.priceCents;
@@ -26,7 +27,7 @@ export function MobileContactBar({
         <span className="text-lg font-bold">{formatOptionalPrice(priceCents)}</span>
         <span className="truncate text-xs text-muted-foreground">{caption}</span>
       </span>
-      <MessageSellerButton className="shrink-0" trackClickAction={trackMessageClickAction} />
+      <MessageSellerDialog className="shrink-0" {...messaging} />
     </div>
   );
 }

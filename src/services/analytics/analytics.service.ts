@@ -87,6 +87,7 @@ async function send(url: string, payload: Record<string, unknown>) {
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify([payload]),
   });
+
   const result = (await response.json()) as { status?: number; error?: string };
 
   if (!response.ok || result.status !== 1) {

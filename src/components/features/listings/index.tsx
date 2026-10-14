@@ -1,6 +1,7 @@
 import { Gallery } from '@/components/features/listings/images';
 import { ListingInfo } from '@/components/features/listings/info';
 import { ListingBody } from '@/components/features/listings/info/body';
+import type { MessageSellerProps } from '@/components/features/listings/info/message-seller-dialog';
 import { MobileContactBar } from '@/components/features/listings/info/mobile-contact-bar';
 import type { ListingDetail as Listing, ListingItemDetail } from '@/services/listing/listing.types';
 
@@ -8,15 +9,10 @@ interface ListingDetailProps {
   listing: Listing;
   focusedItem: ListingItemDetail | null;
   isSignedIn: boolean;
-  trackMessageClickAction: () => Promise<void>;
+  messaging: MessageSellerProps | null;
 }
 
-export function ListingDetail({
-  listing,
-  focusedItem,
-  isSignedIn,
-  trackMessageClickAction,
-}: ListingDetailProps) {
+export function ListingDetail({ listing, focusedItem, isSignedIn, messaging }: ListingDetailProps) {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 [grid-template-areas:'gallery'_'info'_'body'] lg:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)] lg:gap-x-10 lg:gap-y-10 lg:[grid-template-areas:'gallery_info'_'body_info']">
@@ -28,18 +24,14 @@ export function ListingDetail({
             listing={listing}
             focusedItem={focusedItem}
             isSignedIn={isSignedIn}
-            trackMessageClickAction={trackMessageClickAction}
+            messaging={messaging}
           />
         </div>
         <div className="min-w-0 [grid-area:body]">
           <ListingBody listing={listing} focusedItem={focusedItem} />
         </div>
       </div>
-      <MobileContactBar
-        listing={listing}
-        focusedItem={focusedItem}
-        trackMessageClickAction={trackMessageClickAction}
-      />
+      <MobileContactBar listing={listing} focusedItem={focusedItem} messaging={messaging} />
     </>
   );
 }

@@ -56,6 +56,15 @@ export interface City {
   slug: string;
 }
 
+export interface Conversation {
+  buyer_id: string;
+  created_at: Generated<Timestamp>;
+  id: Generated<string>;
+  last_message_at: Generated<Timestamp>;
+  listing_id: string | null;
+  seller_id: string;
+}
+
 export interface LensSpec {
   diameter_mm: number | null;
   filter_thread_mm: number | null;
@@ -111,6 +120,15 @@ export interface ListingPhoto {
   storage_key: string;
 }
 
+export interface Message {
+  body: string;
+  conversation_id: string;
+  created_at: Generated<Timestamp>;
+  id: Generated<string>;
+  read_at: Timestamp | null;
+  sender_id: string;
+}
+
 export interface Model {
   brand_id: string;
   category: ModelCategory;
@@ -164,11 +182,13 @@ export interface DB {
   brand: Brand;
   camera_spec: CameraSpec;
   city: City;
+  conversation: Conversation;
   lens_spec: LensSpec;
   listing: Listing;
   listing_inclusion: ListingInclusion;
   listing_item: ListingItem;
   listing_photo: ListingPhoto;
+  message: Message;
   model: Model;
   mount: Mount;
   session: Session;

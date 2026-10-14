@@ -3,6 +3,7 @@ import { BundleNotice } from '@/components/features/listings/info/bundle-notice'
 import { BundlePriceList } from '@/components/features/listings/info/bundle-price-list';
 import { ContactActions } from '@/components/features/listings/info/contact-actions';
 import { FactTiles } from '@/components/features/listings/info/fact-tiles';
+import type { MessageSellerProps } from '@/components/features/listings/info/message-seller-dialog';
 import { SafetyNote } from '@/components/features/listings/info/safety-note';
 import { SellerCard } from '@/components/features/listings/info/seller-card';
 import { Badge } from '@/components/ui/badge';
@@ -14,15 +15,10 @@ interface ListingInfoProps {
   listing: ListingDetail;
   focusedItem: ListingItemDetail | null;
   isSignedIn: boolean;
-  trackMessageClickAction: () => Promise<void>;
+  messaging: MessageSellerProps | null;
 }
 
-export function ListingInfo({
-  listing,
-  focusedItem,
-  isSignedIn,
-  trackMessageClickAction,
-}: ListingInfoProps) {
+export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: ListingInfoProps) {
   const isBundleOverview = listing.isBundle && !focusedItem;
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
   const title = item?.modelName ?? listing.title;
@@ -75,11 +71,7 @@ export function ListingInfo({
         />
       ) : null}
 
-      <ContactActions
-        phone={listing.contact.phone}
-        isSignedIn={isSignedIn}
-        trackMessageClickAction={trackMessageClickAction}
-      />
+      <ContactActions phone={listing.contact.phone} isSignedIn={isSignedIn} messaging={messaging} />
       <SellerCard seller={listing.seller} city={listing.city} />
       <SafetyNote />
     </div>

@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { Account } from '@/components/features/account';
 import { authService } from '@/services/auth/auth.service';
 import { cityService } from '@/services/city/city.service';
+import { conversationService } from '@/services/conversation/conversation.service';
 import { listingService } from '@/services/listing/listing.service';
 import { openStoreAction, signOutAction, updateProfileAction } from './actions';
 
@@ -18,6 +19,7 @@ export default async function UserPage({ searchParams }: PageProps<'/user'>) {
   const { error, saved } = await searchParams;
   const listings = await listingService.getSellerListings(user.id);
   const cities = await cityService.getAll();
+  const unreadMessages = await conversationService.countUnread(user.id);
 
   const pageMessage =
     typeof error === 'string'
@@ -31,6 +33,7 @@ export default async function UserPage({ searchParams }: PageProps<'/user'>) {
       user={user}
       cities={cities}
       listings={listings}
+      unreadMessages={unreadMessages}
       notice={pageMessage}
       updateProfileAction={updateProfileAction}
       openStoreAction={openStoreAction}

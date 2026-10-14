@@ -11,11 +11,13 @@ import type { Insertable, Selectable, Updateable } from 'kysely';
 import type {
   Brand as BrandTable,
   CameraSpec as CameraSpecTable,
+  Conversation as ConversationTable,
   LensSpec as LensSpecTable,
   ListingInclusion as ListingInclusionTable,
   ListingItem as ListingItemTable,
   ListingPhoto as ListingPhotoTable,
   Listing as ListingTable,
+  Message as MessageTable,
   Model as ModelTable,
   Mount as MountTable,
   Session as SessionTable,
@@ -65,3 +67,9 @@ export type ListingPhoto = Selectable<ListingPhotoTable>;
 export type NewListingPhoto = Insertable<ListingPhotoTable>;
 
 export type ListingInclusionRow = Selectable<ListingInclusionTable>;
+
+export type Conversation = Selectable<ConversationTable>;
+export type NewConversation = Insertable<ConversationTable>;
+
+export type Message = Selectable<MessageTable>;
+export type NewMessage = Insertable<MessageTable>;

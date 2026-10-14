@@ -46,6 +46,44 @@ export function welcomeEmail(displayName: string) {
   };
 }
 
+export interface NewMessageEmailInput {
+  recipientName: string;
+  senderName: string;
+  listingTitle: string | null;
+  body: string;
+  conversationId: string;
+}
+
+export function newMessageEmail(input: NewMessageEmailInput) {
+  const conversationUrl = `${SITE_URL}/messages/${input.conversationId}`;
+  const about = input.listingTitle ? ` about ${input.listingTitle}` : '';
+  const subject = `${input.senderName} sent you a message${about}`;
+
+  return {
+    subject,
+    text: [
+      `Hi ${input.recipientName},`,
+      '',
+      `${subject}:`,
+      '',
+      input.body,
+      '',
+      `Reply: ${conversationUrl}`,
+      '',
+      'exposé',
+      SITE_URL,
+    ].join('\n'),
+    html: layout(
+      [
+        `<h1 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:700;color:${EMAIL_COLORS.foreground};">${escapeHtml(subject)}</h1>`,
+        `<div style="margin:0 0 24px;padding:16px 20px;border-radius:12px;background-color:${EMAIL_COLORS.muted};font-size:16px;line-height:24px;color:${EMAIL_COLORS.foreground};white-space:pre-wrap;">${escapeHtml(input.body)}</div>`,
+        `<a href="${conversationUrl}" style="display:inline-block;padding:10px 24px;border-radius:999px;background-color:${EMAIL_COLORS.primary};font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;">Reply</a>`,
+        `<p style="margin:24px 0 0;font-size:13px;line-height:20px;color:${EMAIL_COLORS.mutedForeground};">You get one email per unread conversation. Reading it on exposé lets the next message reach you again.</p>`,
+      ].join(''),
+    ),
+  };
+}
+
 const separator = `<span style="color:${EMAIL_COLORS.border};">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`;
 
 function inlineLink(link: { href: string; label: string }) {

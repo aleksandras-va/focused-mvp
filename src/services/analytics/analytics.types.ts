@@ -32,6 +32,12 @@ export interface AnalyticsEvents {
   'Listing Published': { listingId: string; itemCount: number };
   'Listing Viewed': ListingReference;
   'Message Clicked': ListingReference;
+  'Message Sent': {
+    conversationId: string;
+    listingId: string | null;
+    role: 'buyer' | 'seller';
+    isFirst: boolean;
+  };
   'Marked Sold': { listingId: string };
   Searched: SearchOutcome;
 }
