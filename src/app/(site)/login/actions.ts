@@ -29,7 +29,6 @@ export async function signUpAction(formData: FormData) {
     const user = await authService.signUp({
       email: String(formData.get('email') ?? ''),
       password: String(formData.get('password') ?? ''),
-      displayName: String(formData.get('displayName') ?? ''),
     });
 
     analyticsService.identify(user);

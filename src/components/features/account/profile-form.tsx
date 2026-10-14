@@ -19,7 +19,11 @@ export function ProfileForm({ user, cities, action }: ProfileFormProps) {
       description="Prefilled on every new ad. You can still change it per ad."
       className="flex-[1_1_26rem]"
     >
-      <form action={action} className="flex flex-col gap-5">
+      <form
+        key={`${user.displayName}|${user.phone}|${user.cityId}`}
+        action={action}
+        className="flex flex-col gap-5"
+      >
         <Field>
           <FieldLabel htmlFor="profile-name">Name</FieldLabel>
           <Input id="profile-name" name="displayName" defaultValue={user.displayName} required />
