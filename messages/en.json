@@ -30,5 +30,139 @@
     "password_only_numbers": "Password cannot be only numbers.",
     "password_repetitive": "Password is too repetitive — mix in more different characters.",
     "password_contains_email": "Password cannot contain your email address."
+  },
+  "common": {
+    "sellGear": "Sell gear",
+    "logIn": "Log in",
+    "messages": "Messages",
+    "about": "About"
+  },
+  "enums": {
+    "category": {
+      "camera": "Camera",
+      "lens": "Lens",
+      "accessory": "Accessory"
+    },
+    "categoryPlural": {
+      "camera": "Cameras",
+      "lens": "Lenses",
+      "accessory": "Accessories"
+    },
+    "listingStatus": {
+      "draft": "Draft",
+      "active": "Active",
+      "sold": "Sold",
+      "removed": "Removed"
+    },
+    "cosmeticCondition": {
+      "mint": "Mint",
+      "excellent": "Excellent",
+      "good": "Good",
+      "well_used": "Well used",
+      "damaged": "Damaged"
+    }
+  },
+  "header": {
+    "menu": "Menu",
+    "siteNavigation": "Site navigation",
+    "search": "Search"
+  },
+  "footer": {
+    "tagline": "Used cameras and lenses, listed against a real catalog so search works.",
+    "country": "Lithuania"
+  },
+  "search": {
+    "title": "Search",
+    "description": "Search cameras, lenses and brands",
+    "placeholder": "Try “fuji xt3”, “helios” or “sony”",
+    "trigger": "Search cameras, lenses and brands",
+    "recentlyViewed": "Recently viewed",
+    "suggested": "Suggested",
+    "brands": "Brands",
+    "models": "Models",
+    "brand": "Brand",
+    "film": "Film",
+    "loading": "Loading…",
+    "startTyping": "Start typing.",
+    "searching": "Searching…",
+    "nothingFound": "Nothing found.",
+    "adCount": "{count, plural, one {# ad} other {# ads}}",
+    "fromPrice": "from {price}"
+  },
+  "browse": {
+    "title": "Second-hand camera gear",
+    "subtitle": "From people who actually shot with it.",
+    "all": "All",
+    "sort": "Sort",
+    "sorts": {
+      "newest": "Newest first",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low"
+    },
+    "noMatches": "No listings match",
+    "noMatchesHint": "Try fewer filters, or check back later.",
+    "empty": "Nothing listed yet",
+    "emptyHint": "Be the first to list something.",
+    "clearFilters": "Clear filters",
+    "loadMore": "Load more",
+    "filters": {
+      "button": "Filters",
+      "brand": "Brand",
+      "allBrands": "All brands",
+      "mount": "Mount",
+      "allMounts": "All mounts",
+      "condition": "Condition",
+      "anyCondition": "Any condition",
+      "price": "Price (EUR)",
+      "min": "Min",
+      "max": "Max",
+      "minPrice": "Minimum price",
+      "maxPrice": "Maximum price",
+      "clear": "Clear",
+      "showResults": "Show results"
+    },
+    "featured": {
+      "title": "Featured photo",
+      "shotOn": "Shot on",
+      "alt": "Taken with {gear} in {place}"
+    },
+    "sellBreak": {
+      "eyebrow": "Selling",
+      "title": "Got a camera gathering dust?",
+      "description": "Your ad is built from the catalog, so there is no title to invent and buyers find it by model.",
+      "steps": {
+        "pick": {
+          "title": "Pick your model",
+          "description": "Choose it from the catalog instead of typing a title."
+        },
+        "answer": {
+          "title": "Answer what buyers ask",
+          "description": "Shutter count, condition, what is in the box."
+        },
+        "publish": {
+          "title": "Add photos and publish",
+          "description": "Up to 12 per ad, of the actual item."
+        }
+      }
+    },
+    "modelUnavailable": {
+      "title": "No {model} for sale right now",
+      "description": "Here is the closest gear listed at the moment.",
+      "sellYours": "Sell yours",
+      "browseAll": "Browse all ads"
+    },
+    "similar": {
+      "similarLenses": "Similar {name} lenses",
+      "sameMount": "Other {name} {category, select, camera {cameras} lens {lenses} other {accessories}}",
+      "sameBrand": "Other {name} {category, select, camera {cameras} lens {lenses} other {accessories}}",
+      "newest": "Newest ads"
+    }
+  },
+  "listingCard": {
+    "edit": "Edit this ad",
+    "bundle": "Bundle",
+    "noPrice": "No price yet",
+    "itemCount": "{count, plural, one {# item} other {# items}}",
+    "shutterCount": "{count, plural, one {# shutter actuation} other {# shutter actuations}}"
   }
 }

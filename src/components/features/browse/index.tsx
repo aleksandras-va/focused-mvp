@@ -1,5 +1,6 @@
 import { SearchXIcon, XIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { AutoSubmitForm } from '@/components/features/browse/auto-submit-form';
 import { FeaturedBreak, type FeaturedPhoto } from '@/components/features/browse/featured-break';
 import { FilterPopover } from '@/components/features/browse/filter-popover';
@@ -17,7 +18,6 @@ import {
   browseParams,
   hasActiveFilters,
 } from '@/lib/browse-filters';
-import { CATEGORY_PLURAL_LABELS } from '@/lib/listing-options';
 import { cn } from '@/lib/utils';
 import type { ListingSummary, SimilarListings } from '@/services/listing/listing.types';
 
@@ -35,12 +35,7 @@ type BrowseProps = {
   featuredPhoto: FeaturedPhoto;
 };
 
-const categories: ModelCategory[] = ['camera', 'lens', 'accessory'];
-
-const categoryLinks: { category: ModelCategory | null; label: string }[] = [
-  { category: null, label: 'All' },
-  ...categories.map((category) => ({ category, label: CATEGORY_PLURAL_LABELS[category] })),
-];
+const categories: (ModelCategory | null)[] = [null, 'camera', 'lens', 'accessory'];
 
 export function Browse({
   listings,
@@ -52,20 +47,23 @@ export function Browse({
   similar,
   featuredPhoto,
 }: BrowseProps) {
+  const t = useTranslations('browse');
+  const tEnums = useTranslations('enums');
+  const tCommon = useTranslations('common');
+  const filtered = hasActiveFilters(filters);
+
   return (
     <div className="flex flex-col gap-6 pt-header-expansion">
       <div className="flex flex-col gap-1">
-        <h1 className="font-heading text-3xl font-extrabold sm:text-4xl">
-          Second-hand camera gear
-        </h1>
-        <p className="text-muted-foreground">From people who actually shot with it.</p>
+        <h1 className="font-heading text-3xl font-extrabold sm:text-4xl">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <nav className="-mx-4 flex gap-1 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          {categoryLinks.map(({ category, label }) => (
+          {categories.map((category) => (
             <Link
-              key={label}
+              key={category ?? 'all'}
               href={browseHref(filters, { category })}
               aria-current={filters.category === category ? 'page' : undefined}
               className={cn(
@@ -75,7 +73,7 @@ export function Browse({
                   : 'text-foreground/75 hover:bg-muted hover:text-foreground',
               )}
             >
-              {label}
+              {category ? tEnums(`categoryPlural.${category}`) : t('all')}
             </Link>
           ))}
         </nav>
@@ -91,13 +89,13 @@ export function Browse({
               ))}
             <NativeSelect
               name="sort"
-              aria-label="Sort"
+              aria-label={t('sort')}
               defaultValue={filters.sort}
               className="[&>select]:rounded-full [&>select]:border-border [&>select]:hover:bg-muted"
             >
               {BROWSE_SORTS.map((sort) => (
-                <NativeSelectOption key={sort.value} value={sort.value}>
-                  {sort.label}
+                <NativeSelectOption key={sort} value={sort}>
+                  {t(`sorts.${sort}`)}
                 </NativeSelectOption>
               ))}
             </NativeSelect>
@@ -122,20 +120,16 @@ export function Browse({
       ) : listings.length === 0 ? (
         <EmptyState
           icon={<SearchXIcon className="text-primary" />}
-          title={hasActiveFilters(filters) ? 'No listings match' : 'Nothing listed yet'}
-          description={
-            hasActiveFilters(filters)
-              ? 'Try fewer filters, or check back later.'
-              : 'Be the first to list something.'
-          }
+          title={filtered ? t('noMatches') : t('empty')}
+          description={filtered ? t('noMatchesHint') : t('emptyHint')}
         >
-          {hasActiveFilters(filters) ? (
+          {filtered ? (
             <Link href="/" className={buttonVariants({ variant: 'outline' })}>
-              Clear filters
+              {t('clearFilters')}
             </Link>
           ) : (
             <Link href="/sell" className={buttonVariants({ variant: 'outline' })}>
-              Sell gear
+              {tCommon('sellGear')}
             </Link>
           )}
         </EmptyState>
@@ -156,7 +150,7 @@ export function Browse({
             scroll={false}
             className={buttonVariants({ variant: 'outline', size: 'lg' })}
           >
-            Load more
+            {t('loadMore')}
           </Link>
         </div>
       ) : null}

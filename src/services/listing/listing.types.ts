@@ -20,7 +20,7 @@ export interface ListingSummary {
   firstItemId: string | null;
   brand: string | null;
   mount: string | null;
-  cosmeticCondition: string | null;
+  cosmeticCondition: CosmeticCondition | null;
   shutterCount: number | null;
   coverUrl: string | null;
   isOwner: boolean;
@@ -31,8 +31,12 @@ export interface ListingPage {
   hasMore: boolean;
 }
 
+export type SimilarListingsBasis = 'similarLenses' | 'sameMount' | 'sameBrand' | 'newest';
+
 export interface SimilarListings {
-  title: string;
+  basis: SimilarListingsBasis;
+  basisName: string | null;
+  category: ModelCategory;
   listings: ListingSummary[];
 }
 

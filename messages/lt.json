@@ -28,5 +28,139 @@
     "password_only_numbers": "Slaptažodis negali būti vien iš skaičių.",
     "password_repetitive": "Slaptažodis per daug pasikartojantis — naudokite įvairesnių simbolių.",
     "password_contains_email": "Slaptažodyje negali būti jūsų el. pašto adreso."
+  },
+  "common": {
+    "sellGear": "Parduoti",
+    "logIn": "Prisijungti",
+    "messages": "Žinutės",
+    "about": "Apie"
+  },
+  "enums": {
+    "category": {
+      "camera": "Fotoaparatas",
+      "lens": "Objektyvas",
+      "accessory": "Priedas"
+    },
+    "categoryPlural": {
+      "camera": "Fotoaparatai",
+      "lens": "Objektyvai",
+      "accessory": "Priedai"
+    },
+    "listingStatus": {
+      "draft": "Juodraštis",
+      "active": "Aktyvus",
+      "sold": "Parduota",
+      "removed": "Paslėpta"
+    },
+    "cosmeticCondition": {
+      "mint": "Kaip nauja",
+      "excellent": "Puiki",
+      "good": "Gera",
+      "well_used": "Gerokai naudota",
+      "damaged": "Pažeista"
+    }
+  },
+  "header": {
+    "menu": "Meniu",
+    "siteNavigation": "Svetainės navigacija",
+    "search": "Paieška"
+  },
+  "footer": {
+    "tagline": "Naudoti fotoaparatai ir objektyvai, susieti su tikru katalogu, todėl paieška veikia.",
+    "country": "Lietuva"
+  },
+  "search": {
+    "title": "Paieška",
+    "description": "Ieškokite fotoaparatų, objektyvų ir gamintojų",
+    "placeholder": "Pabandykite „fuji xt3“, „helios“ arba „sony“",
+    "trigger": "Ieškoti fotoaparatų, objektyvų ir gamintojų",
+    "recentlyViewed": "Neseniai žiūrėti",
+    "suggested": "Siūlomi",
+    "brands": "Gamintojai",
+    "models": "Modeliai",
+    "brand": "Gamintojas",
+    "film": "Juostinis",
+    "loading": "Įkeliama…",
+    "startTyping": "Pradėkite rašyti.",
+    "searching": "Ieškoma…",
+    "nothingFound": "Nieko nerasta.",
+    "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
+    "fromPrice": "nuo {price}"
+  },
+  "browse": {
+    "title": "Naudota foto technika",
+    "subtitle": "Iš žmonių, kurie ja tikrai fotografavo.",
+    "all": "Viskas",
+    "sort": "Rikiavimas",
+    "sorts": {
+      "newest": "Naujausi",
+      "price_asc": "Pigiausi",
+      "price_desc": "Brangiausi"
+    },
+    "noMatches": "Skelbimų nerasta",
+    "noMatchesHint": "Pabandykite mažiau filtrų arba užsukite vėliau.",
+    "empty": "Kol kas nieko nėra",
+    "emptyHint": "Būkite pirmas, įkėlęs skelbimą.",
+    "clearFilters": "Išvalyti filtrus",
+    "loadMore": "Rodyti daugiau",
+    "filters": {
+      "button": "Filtrai",
+      "brand": "Gamintojas",
+      "allBrands": "Visi gamintojai",
+      "mount": "Jungtis",
+      "allMounts": "Visos jungtys",
+      "condition": "Būklė",
+      "anyCondition": "Bet kokia būklė",
+      "price": "Kaina (EUR)",
+      "min": "Nuo",
+      "max": "Iki",
+      "minPrice": "Mažiausia kaina",
+      "maxPrice": "Didžiausia kaina",
+      "clear": "Išvalyti",
+      "showResults": "Rodyti rezultatus"
+    },
+    "featured": {
+      "title": "Rinktinė nuotrauka",
+      "shotOn": "Nufotografuota su",
+      "alt": "Nufotografuota su {gear}, {place}"
+    },
+    "sellBreak": {
+      "eyebrow": "Pardavimas",
+      "title": "Fotoaparatas dulka stalčiuje?",
+      "description": "Skelbimas kuriamas iš katalogo, tad nereikia sugalvoti pavadinimo, o pirkėjai jį randa pagal modelį.",
+      "steps": {
+        "pick": {
+          "title": "Pasirinkite modelį",
+          "description": "Išsirinkite jį iš katalogo, užuot rašę pavadinimą."
+        },
+        "answer": {
+          "title": "Atsakykite, ko klausia pirkėjai",
+          "description": "Kadrų skaičius, būklė, kas yra dėžutėje."
+        },
+        "publish": {
+          "title": "Įkelkite nuotraukas ir paskelbkite",
+          "description": "Iki 12 tikro daikto nuotraukų skelbime."
+        }
+      }
+    },
+    "modelUnavailable": {
+      "title": "Šiuo metu {model} niekas neparduoda",
+      "description": "Štai artimiausia šiuo metu siūloma technika.",
+      "sellYours": "Parduokite savo",
+      "browseAll": "Visi skelbimai"
+    },
+    "similar": {
+      "similarLenses": "Panašūs {name} objektyvai",
+      "sameMount": "Kiti {name} {category, select, camera {fotoaparatai} lens {objektyvai} other {priedai}}",
+      "sameBrand": "Kiti {name} {category, select, camera {fotoaparatai} lens {objektyvai} other {priedai}}",
+      "newest": "Naujausi skelbimai"
+    }
+  },
+  "listingCard": {
+    "edit": "Redaguoti skelbimą",
+    "bundle": "Rinkinys",
+    "noPrice": "Kaina dar nenurodyta",
+    "itemCount": "{count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
+    "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}"
   }
 }

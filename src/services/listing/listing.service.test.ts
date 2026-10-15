@@ -4,6 +4,7 @@ import { userRepository } from '@/repositories/user.repository';
 import { cityService } from '../city/city.service';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
 import { listingService } from './listing.service';
+import type { SimilarListingsBasis } from './listing.types';
 
 const SELLER_EMAIL = 'listing-service-test@example.com';
 
@@ -13,7 +14,12 @@ const ADS: [slug: string, price: string][] = [
   ['sony-fe-50mm-f-1-8-sony-e', '150'],
 ];
 
-type SimilarCase = [slug: string, title: string, listed: string[]];
+type SimilarCase = [
+  slug: string,
+  basis: SimilarListingsBasis,
+  basisName: string | null,
+  listed: string[],
+];
 
 let sellerId: string;
 
@@ -76,18 +82,18 @@ afterAll(removeSellerListings);
 
 describe('listingService.getSimilarToModel', () => {
   const cases: SimilarCase[] = [
-    ['sony-a7r-iii', 'Other Sony E cameras', ['Sony a7 III']],
-    ['sony-rx100-vii', 'Other Sony cameras', ['Sony a7 III']],
-    ['sony-fe-55mm-f-1-8-za-sony-e', 'Similar Sony E lenses', ['Sony FE 50mm f/1.8']],
-    ['sony-fe-85mm-f-1-8-sony-e', 'Other Sony E lenses', ['Sony FE 50mm f/1.8']],
-    ['canon-eos-r5', 'Newest ads', ['Nikon D850', 'Sony FE 50mm f/1.8', 'Sony a7 III']],
+    ['sony-a7r-iii', 'sameMount', 'Sony E', ['Sony a7 III']],
+    ['sony-rx100-vii', 'sameBrand', 'Sony', ['Sony a7 III']],
+    ['sony-fe-55mm-f-1-8-za-sony-e', 'similarLenses', 'Sony E', ['Sony FE 50mm f/1.8']],
+    ['sony-fe-85mm-f-1-8-sony-e', 'sameMount', 'Sony E', ['Sony FE 50mm f/1.8']],
+    ['canon-eos-r5', 'newest', null, ['Nikon D850', 'Sony FE 50mm f/1.8', 'Sony a7 III']],
   ];
 
-  for (const [slug, title, listed] of cases) {
-    it(`${slug} → ${title}`, async () => {
+  for (const [slug, basis, basisName, listed] of cases) {
+    it(`${slug} → ${basis}`, async () => {
       const similar = await listingService.getSimilarToModel(await requireModel(slug), null);
 
-      expect(similar?.title).toBe(title);
+      expect(similar).toMatchObject({ basis, basisName });
       expect(similar?.listings.map((listing) => listing.title).sort()).toEqual(listed);
     });
   }

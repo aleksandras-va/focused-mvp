@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 import { formatMonth } from '@/lib/format';
 
@@ -16,13 +17,14 @@ type FeaturedGear = {
 };
 
 export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
+  const t = useTranslations('browse.featured');
   const gearNames = photo.gear.map((gear) => gear.name).join(' + ');
 
   return (
     <figure className="relative h-72 overflow-hidden rounded-3xl bg-foreground text-white sm:h-96">
       <Image
         src={photo.imageUrl}
-        alt={`Taken with ${gearNames} in ${photo.place}`}
+        alt={t('alt', { gear: gearNames, place: photo.place })}
         fill
         sizes="(min-width: 1160px) 1112px, 100vw"
         className="object-cover"
@@ -32,10 +34,10 @@ export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
       <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-x-6 gap-y-1 p-6 text-sm text-white/70 sm:p-8">
         <span className="flex flex-col gap-1">
           <span className="font-heading text-xl font-bold text-white sm:text-2xl">
-            Featured photo
+            {t('title')}
           </span>
           <span>
-            Shot on{' '}
+            {t('shotOn')}{' '}
             {photo.gear.map((gear, index) => (
               <Fragment key={gear.name}>
                 {index > 0 ? ' + ' : null}

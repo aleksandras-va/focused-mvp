@@ -5,8 +5,6 @@ import { DraftBar } from '@/components/features/sell/draft-bar';
 import { SellProgress } from '@/components/features/sell/sell-progress';
 import { SubmitBar } from '@/components/features/sell/submit-bar';
 import type { DraftState, SellItem, SellStep } from '@/components/features/sell/use-sell-listing';
-import { formatCount } from '@/lib/format';
-import { LISTING_LABELS } from '@/lib/listing-options';
 
 interface SellPreviewProps {
   items: SellItem[];
@@ -50,15 +48,15 @@ export function SellPreview({
   const card: ListingCardItem = {
     href: previewHref ?? '#',
     title: names.length > 0 ? names.join(' + ') : 'Your item',
-    subtitle: isBundle ? `${items.length} items` : (first.model?.brand.name ?? ''),
-    detail: first.shutterCount
-      ? `${formatCount(Number(first.shutterCount))} shutter actuations`
-      : (first.model?.mount?.name ?? ''),
+    brand: first.model?.brand.name ?? null,
+    itemCount: items.length,
+    place: first.model?.mount?.name ?? null,
+    shutterCount: first.shutterCount ? Number(first.shutterCount) : null,
     priceCents: toCents(isBundle ? bundlePrice : first.price),
-    condition: itemName(first) ? (LISTING_LABELS.get(first.cosmeticCondition) ?? '') : '',
+    condition: itemName(first) ? first.cosmeticCondition : null,
     imageUrl: coverUrl,
     isBundle,
-    statusLabel: null,
+    status: 'active',
     editHref: null,
   };
   return (

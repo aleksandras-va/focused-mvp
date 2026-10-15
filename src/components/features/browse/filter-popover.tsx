@@ -3,6 +3,7 @@
 import { SlidersHorizontalIcon } from 'lucide-react';
 import Form from 'next/form';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Field, FieldLabel } from '@/components/ui/field';
@@ -39,6 +40,8 @@ function skipEmptyFields(form: HTMLFormElement) {
 }
 
 export function FilterPopover({ filters, options }: FilterPopoverProps) {
+  const t = useTranslations('browse.filters');
+  const tEnums = useTranslations('enums');
   const [open, setOpen] = useState(false);
   const activeCount = countAdvancedFilters(filters);
   const euros = (value: number | null) => (value === null ? '' : String(value / 100));
@@ -47,7 +50,7 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger render={<Button variant="outline" />}>
         <SlidersHorizontalIcon />
-        Filters
+        {t('button')}
         {activeCount > 0 ? (
           <span className="flex size-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
             {activeCount}
@@ -75,14 +78,14 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
           ) : null}
 
           <Field>
-            <FieldLabel htmlFor="filter-brand">Brand</FieldLabel>
+            <FieldLabel htmlFor="filter-brand">{t('brand')}</FieldLabel>
             <NativeSelect
               id="filter-brand"
               name="brand"
               defaultValue={filters.brand ?? ''}
               className="w-full"
             >
-              <NativeSelectOption value="">All brands</NativeSelectOption>
+              <NativeSelectOption value="">{t('allBrands')}</NativeSelectOption>
               {options.brands.map((brand) => (
                 <NativeSelectOption key={brand.slug} value={brand.slug}>
                   {brand.name}
@@ -92,14 +95,14 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="filter-mount">Mount</FieldLabel>
+            <FieldLabel htmlFor="filter-mount">{t('mount')}</FieldLabel>
             <NativeSelect
               id="filter-mount"
               name="mount"
               defaultValue={filters.mount ?? ''}
               className="w-full"
             >
-              <NativeSelectOption value="">All mounts</NativeSelectOption>
+              <NativeSelectOption value="">{t('allMounts')}</NativeSelectOption>
               {options.mounts.map((mount) => (
                 <NativeSelectOption key={mount.slug} value={mount.slug}>
                   {mount.name}
@@ -109,24 +112,24 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="filter-condition">Condition</FieldLabel>
+            <FieldLabel htmlFor="filter-condition">{t('condition')}</FieldLabel>
             <NativeSelect
               id="filter-condition"
               name="condition"
               defaultValue={filters.cosmeticCondition ?? ''}
               className="w-full"
             >
-              <NativeSelectOption value="">Any condition</NativeSelectOption>
-              {COSMETIC_CONDITIONS.map((condition) => (
-                <NativeSelectOption key={condition.value} value={condition.value}>
-                  {condition.label}
+              <NativeSelectOption value="">{t('anyCondition')}</NativeSelectOption>
+              {COSMETIC_CONDITIONS.map(({ value }) => (
+                <NativeSelectOption key={value} value={value}>
+                  {tEnums(`cosmeticCondition.${value}`)}
                 </NativeSelectOption>
               ))}
             </NativeSelect>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="filter-min">Price (EUR)</FieldLabel>
+            <FieldLabel htmlFor="filter-min">{t('price')}</FieldLabel>
             <div className="flex items-center gap-2">
               <Input
                 id="filter-min"
@@ -134,8 +137,8 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
                 type="number"
                 min="0"
                 step="1"
-                placeholder="Min"
-                aria-label="Minimum price"
+                placeholder={t('min')}
+                aria-label={t('minPrice')}
                 defaultValue={euros(filters.minPriceCents)}
               />
               <span className="text-muted-foreground">–</span>
@@ -144,8 +147,8 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
                 type="number"
                 min="0"
                 step="1"
-                placeholder="Max"
-                aria-label="Maximum price"
+                placeholder={t('max')}
+                aria-label={t('maxPrice')}
                 defaultValue={euros(filters.maxPriceCents)}
               />
             </div>
@@ -158,9 +161,9 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
               onClick={() => setOpen(false)}
               className={buttonVariants({ variant: 'ghost' })}
             >
-              Clear
+              {t('clear')}
             </Link>
-            <Button type="submit">Show results</Button>
+            <Button type="submit">{t('showResults')}</Button>
           </div>
         </Form>
       </PopoverContent>

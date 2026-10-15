@@ -202,7 +202,12 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Services never return display text. They throw an error with a code
   (`AuthError('email_taken')`); `app/` translates it from the area's error namespace
   (`authErrors.email_taken`). A redirect carries the code, not the message.
-- Converted area by area. Login is done; the rest of the site is still English inline.
+- Enum labels live in the catalog under `enums.*`, keyed by the enum value; DTOs carry the
+  raw value (`cosmeticCondition: 'good'`), never a label. `src/lib/format.ts` formats
+  numbers, prices and dates as `lt-LT`.
+- Converted area by area. Done: login, the homepage (browse, listing card, header, footer,
+  search). The `*_LABELS` lists in `src/lib/listing-options.ts` go once their last English
+  consumer is converted.
 
 ## Email
 
