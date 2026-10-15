@@ -268,5 +268,53 @@
     "empty_message": "Pirma parašyk žinutę.",
     "message_too_long": "Žinutė gali būti ne ilgesnė nei {max} simbolių.",
     "not_found": "Pokalbis nerastas."
+  },
+  "sellerProfile": {
+    "store": "Parduotuvė",
+    "joined": "Prisijungė: {month}",
+    "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
+    "empty": "Šiuo metu nieko neparduoda",
+    "emptyHint": "Užsuk vėliau – pardavėjai naujos technikos įkelia nuolat."
+  },
+  "errorPage": {
+    "title": "Kažkas nepavyko",
+    "description": "Puslapio nepavyko įkelti. Pabandyk dar kartą arba grįžk į pradžią.",
+    "home": "Į pradžią",
+    "retry": "Bandyti dar kartą"
+  },
+  "notFound": {
+    "title": "Čia nieko nėra",
+    "description": "Skelbimas galėjo būti parduotas ar pašalintas, arba nuoroda neteisinga.",
+    "browse": "Žiūrėti skelbimus"
+  },
+  "citySelect": {
+    "placeholder": "Pasirink miestą"
+  },
+  "site": {
+    "description": "Naudotų fotoaparatų, objektyvų ir priedų skelbimai Lietuvoje."
+  },
+  "email": {
+    "greeting": "Labas, {name},",
+    "tagline": "Naudoti fotoaparatai, objektyvai ir jų priedai.",
+    "account": "Tavo paskyra",
+    "welcome": {
+      "subject": "Sveiki atvykę į exposé",
+      "heading": "Labas, {name}",
+      "intro": "Tavo exposé paskyra paruošta. Dabar gali parduoti savo fotoaparatus, objektyvus ir priedus.",
+      "sell": "Parduok savo techniką",
+      "tipLabel": "Patarimas:",
+      "tip": "parduodamas pasirink tikslų modelį – taip tavo skelbimą ras jo ieškantys pirkėjai.",
+      "browse": "Pažiūrėk, kas parduodama"
+    },
+    "newMessage": {
+      "subject": "{sender} parašė tau žinutę",
+      "subjectAbout": "{sender} parašė tau dėl {listing}",
+      "reply": "Atsakyti",
+      "notice": "Už kiekvieną neperskaitytą pokalbį gauni vieną laišką. Kai jį perskaitysi exposé, apie kitą žinutę vėl pranešime."
+    }
+  },
+  "listingTitle": {
+    "untitled": "Juodraštis be pavadinimo",
+    "count": "{category, select, camera {{count, plural, one {# fotoaparatas} few {# fotoaparatai} other {# fotoaparatų}}} lens {{count, plural, one {# objektyvas} few {# objektyvai} other {# objektyvų}}} other {{count, plural, one {# priedas} few {# priedai} other {# priedų}}}}"
   }
 }

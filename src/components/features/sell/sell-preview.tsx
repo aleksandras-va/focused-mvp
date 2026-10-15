@@ -47,7 +47,7 @@ export function SellPreview({
   const names = items.map(itemName).filter(Boolean);
   const card: ListingCardItem = {
     href: previewHref ?? '#',
-    title: names.length > 0 ? names.join(' + ') : 'Your item',
+    title: { names, counts: [] },
     brand: first.model?.brand.name ?? null,
     itemCount: items.length,
     place: first.model?.mount?.name ?? null,

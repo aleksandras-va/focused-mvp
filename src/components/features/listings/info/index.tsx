@@ -9,6 +9,7 @@ import { SafetyNote } from '@/components/features/listings/info/safety-note';
 import { SellerCard } from '@/components/features/listings/info/seller-card';
 import { Badge } from '@/components/ui/badge';
 import { formatOptionalPrice } from '@/lib/format';
+import { formatListingTitle } from '@/lib/listing-title';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
 interface ListingInfoProps {
@@ -21,9 +22,11 @@ interface ListingInfoProps {
 export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: ListingInfoProps) {
   const t = useTranslations('listing');
   const tEnums = useTranslations('enums');
+  const tTitle = useTranslations('listingTitle');
+  const bundleTitle = formatListingTitle(listing.title, tTitle);
   const isBundleOverview = listing.isBundle && !focusedItem;
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
-  const title = item?.modelName ?? listing.title;
+  const title = item?.modelName ?? bundleTitle;
   const priceCents = item?.priceCents ?? listing.priceCents;
 
   return (
@@ -72,7 +75,7 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
       {focusedItem && listing.isBundle ? (
         <BundleNotice
           bundleId={listing.id}
-          bundleTitle={listing.title}
+          bundleTitle={bundleTitle}
           soldSeparately={focusedItem.soldSeparately}
         />
       ) : null}

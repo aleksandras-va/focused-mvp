@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import type { getTranslations } from 'next-intl/server';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 import { formatPrice } from './format';
+import { formatListingTitle } from './listing-title';
 
 const SITE_NAME = 'exposé';
 
 type Translate = Awaited<ReturnType<typeof getTranslations<never>>>;
+type TranslateTitle = Awaited<ReturnType<typeof getTranslations<'listingTitle'>>>;
 
 function joinParts(parts: (string | null)[]) {
   return parts.filter(Boolean).join(' · ');
@@ -50,9 +52,13 @@ export function itemMetadata(
   return listingMetadata(title, description, `/items/${item.id}`, listing.photos[0]?.largeUrl);
 }
 
-export function bundleMetadata(listing: ListingDetail, t: Translate): Metadata {
+export function bundleMetadata(
+  listing: ListingDetail,
+  t: Translate,
+  tTitle: TranslateTitle,
+): Metadata {
   const title = joinParts([
-    listing.title,
+    formatListingTitle(listing.title, tTitle),
     listing.priceCents === null ? null : formatPrice(listing.priceCents),
   ]);
   const description = joinParts([

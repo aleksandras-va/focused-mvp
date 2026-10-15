@@ -272,5 +272,53 @@
     "empty_message": "Write a message first.",
     "message_too_long": "A message can be at most {max} characters.",
     "not_found": "Conversation not found."
+  },
+  "sellerProfile": {
+    "store": "Store",
+    "joined": "Member since {month}",
+    "adCount": "{count, plural, one {# ad} other {# ads}}",
+    "empty": "Nothing for sale right now",
+    "emptyHint": "Check back later — sellers list new gear all the time."
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "The page could not be loaded. Try again, or head back to the front page.",
+    "home": "Home",
+    "retry": "Try again"
+  },
+  "notFound": {
+    "title": "Nothing here",
+    "description": "The ad may have been sold or removed, or the link is wrong.",
+    "browse": "Browse gear"
+  },
+  "citySelect": {
+    "placeholder": "Pick a city"
+  },
+  "site": {
+    "description": "Marketplace for used cameras and lenses"
+  },
+  "email": {
+    "greeting": "Hi {name},",
+    "tagline": "Used cameras, lenses and accessories.",
+    "account": "Your account",
+    "welcome": {
+      "subject": "Welcome to exposé",
+      "heading": "Welcome, {name}",
+      "intro": "Your exposé account is ready. You can now list your cameras, lenses and accessories.",
+      "sell": "Sell your gear",
+      "tipLabel": "Tip:",
+      "tip": "pick the exact model when you sell, so buyers searching for it find your ad.",
+      "browse": "Browse what is for sale"
+    },
+    "newMessage": {
+      "subject": "{sender} sent you a message",
+      "subjectAbout": "{sender} sent you a message about {listing}",
+      "reply": "Reply",
+      "notice": "You get one email per unread conversation. Reading it on exposé lets the next message reach you again."
+    }
+  },
+  "listingTitle": {
+    "untitled": "Untitled draft",
+    "count": "{category, select, camera {{count, plural, one {# camera} other {# cameras}}} lens {{count, plural, one {# lens} other {# lenses}}} other {{count, plural, one {# accessory} other {# accessories}}}}"
   }
 }

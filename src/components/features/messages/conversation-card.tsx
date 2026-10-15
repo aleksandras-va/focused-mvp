@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { formatMessageTime } from '@/lib/format';
+import { formatListingTitle } from '@/lib/listing-title';
 import { cn } from '@/lib/utils';
 import type { ConversationSummary } from '@/services/conversation/conversation.types';
 
@@ -12,6 +13,7 @@ interface ConversationCardProps {
 
 export function ConversationCard({ conversation }: ConversationCardProps) {
   const t = useTranslations('messages');
+  const tTitle = useTranslations('listingTitle');
   const unread = conversation.unreadCount > 0;
 
   return (
@@ -45,7 +47,9 @@ export function ConversationCard({ conversation }: ConversationCardProps) {
           </span>
         </span>
         <span className="truncate text-sm text-muted-foreground">
-          {conversation.listing?.title ?? t('deletedAd')}
+          {conversation.listing
+            ? formatListingTitle(conversation.listing.title, tTitle)
+            : t('deletedAd')}
         </span>
         <span className="flex items-center justify-between gap-3">
           <span

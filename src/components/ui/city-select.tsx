@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import {
   Select,
   SelectContent,
@@ -26,6 +27,8 @@ export function CitySelect({
   defaultValue,
   onValueChange,
 }: CitySelectProps) {
+  const t = useTranslations('citySelect');
+
   return (
     <Select
       id={id}
@@ -37,7 +40,7 @@ export function CitySelect({
       <SelectTrigger className="w-full">
         <SelectValue>
           {(selected: string | null) =>
-            cities.find((city) => city.id === selected)?.name ?? 'Pick a city'
+            cities.find((city) => city.id === selected)?.name ?? t('placeholder')
           }
         </SelectValue>
       </SelectTrigger>

@@ -91,7 +91,7 @@ describe('conversationService', () => {
 
     const detail = await conversationService.get(first.conversationId, buyerId);
 
-    expect(detail?.listing?.title).toBe('Sony a7 III');
+    expect(detail?.listing?.title).toEqual({ names: ['Sony a7 III'], counts: [] });
     expect(detail?.counterpartName).toBe('Conversation test seller');
     expect(detail?.messages.map((message) => [message.body, message.isMine])).toEqual([
       ['Is it still available?', true],

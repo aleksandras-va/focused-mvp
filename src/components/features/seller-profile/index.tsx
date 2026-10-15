@@ -1,4 +1,5 @@
 import { PackageOpenIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { ListingCard, toListingCardItem } from '@/components/features/browse/listing-card';
 import { Badge } from '@/components/ui/badge';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -13,7 +14,10 @@ interface SellerProfileProps {
 }
 
 export function SellerProfile({ seller, listings }: SellerProfileProps) {
-  const facts = [seller.city, `Member since ${formatMonth(seller.memberSince)}`].filter(Boolean);
+  const t = useTranslations('sellerProfile');
+  const facts = [seller.city, t('joined', { month: formatMonth(seller.memberSince) })].filter(
+    Boolean,
+  );
 
   return (
     <div className="flex flex-col gap-8">
@@ -25,7 +29,7 @@ export function SellerProfile({ seller, listings }: SellerProfileProps) {
         <div className="flex min-w-0 flex-col gap-1">
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="text-3xl font-semibold tracking-tight">{seller.name}</h1>
-            {seller.isStore ? <Badge variant="secondary">Store</Badge> : null}
+            {seller.isStore ? <Badge variant="secondary">{t('store')}</Badge> : null}
           </div>
           <p className="text-muted-foreground">{facts.join(' · ')}</p>
         </div>
@@ -33,15 +37,11 @@ export function SellerProfile({ seller, listings }: SellerProfileProps) {
 
       <section className="flex flex-col gap-4">
         <h2 className="font-heading text-2xl font-semibold">
-          {listings.length === 1 ? '1 ad' : `${listings.length} ads`}
+          {t('adCount', { count: listings.length })}
         </h2>
 
         {listings.length === 0 ? (
-          <EmptyState
-            icon={<PackageOpenIcon />}
-            title="Nothing for sale right now"
-            description="Check back later — sellers list new gear all the time."
-          />
+          <EmptyState icon={<PackageOpenIcon />} title={t('empty')} description={t('emptyHint')} />
         ) : (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
             {listings.map((listing) => (

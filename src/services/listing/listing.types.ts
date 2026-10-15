@@ -7,11 +7,12 @@ import type {
   ListingStatus,
   ModelCategory,
 } from '@/db/types';
+import type { ListingTitle } from '@/lib/listing-title';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
 
 export interface ListingSummary {
   id: string;
-  title: string;
+  title: ListingTitle;
   priceCents: number | null;
   city: string | null;
   status: ListingStatus;
@@ -63,7 +64,7 @@ export interface ListingPhotoUrl {
 
 export interface ListingDetail {
   id: string;
-  title: string;
+  title: ListingTitle;
   priceCents: number | null;
   city: string | null;
   status: ListingStatus;

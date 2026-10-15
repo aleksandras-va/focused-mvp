@@ -1,5 +1,8 @@
+import { createTranslator } from 'next-intl';
 import { describe, expect, it } from 'vitest';
 import type { ModelCategory } from '@/db/types';
+import { formatListingTitle } from '@/lib/listing-title';
+import messages from '../../../messages/lt.json';
 import { listingTitleResolver } from './listing.title-resolver';
 
 type TitleCase = [items: [name: string, category: ModelCategory][], title: string];
@@ -10,8 +13,10 @@ const zoom = 'Tamron 28-75mm f/2.8 Di III VXD G2';
 const prime = 'Sigma 30mm f/1.4 DC DN';
 const strap = 'Peak Design Slide';
 
+const t = createTranslator({ locale: 'lt', messages, namespace: 'listingTitle' });
+
 const cases: TitleCase[] = [
-  [[], 'Untitled draft'],
+  [[], 'Juodraštis be pavadinimo'],
   [[[camera, 'camera']], camera],
   [
     [
@@ -26,7 +31,7 @@ const cases: TitleCase[] = [
       [kitLens, 'lens'],
       [zoom, 'lens'],
     ],
-    `${camera} + 2 lenses`,
+    `${camera} + 2 objektyvai`,
   ],
   [
     [
@@ -34,7 +39,7 @@ const cases: TitleCase[] = [
       [camera, 'camera'],
       [strap, 'accessory'],
     ],
-    `${camera} + 1 lens + 1 accessory`,
+    `${camera} + 1 objektyvas + 1 priedas`,
   ],
   [
     [
@@ -42,7 +47,7 @@ const cases: TitleCase[] = [
       [kitLens, 'lens'],
       [prime, 'lens'],
     ],
-    `${zoom} + 2 lenses`,
+    `${zoom} + 2 objektyvai`,
   ],
   [
     [
@@ -51,16 +56,18 @@ const cases: TitleCase[] = [
       [strap, 'accessory'],
       [strap, 'accessory'],
     ],
-    `${camera} + 1 camera + 2 accessories`,
+    `${camera} + 1 fotoaparatas + 2 priedai`,
   ],
 ];
 
 describe('listingTitleResolver', () => {
   for (const [items, title] of cases) {
     it(`${items.length} items → ${title}`, () => {
-      expect(
-        listingTitleResolver.resolve(items.map(([name, category]) => ({ name, category }))),
-      ).toBe(title);
+      const resolved = listingTitleResolver.resolve(
+        items.map(([name, category]) => ({ name, category })),
+      );
+
+      expect(formatListingTitle(resolved, t)).toBe(title);
     });
   }
 });
