@@ -9,6 +9,7 @@ export type BrowseFilters = {
   brand: string | null;
   mount: string | null;
   model: string | null;
+  city: string | null;
   minPriceCents: number | null;
   maxPriceCents: number | null;
   cosmeticCondition: CosmeticCondition | null;
@@ -43,6 +44,7 @@ export function parseBrowseFilters(params: SearchParams): BrowseFilters {
     brand: single(params, 'brand'),
     mount: single(params, 'mount'),
     model: single(params, 'model'),
+    city: single(params, 'city'),
     minPriceCents: euros(params, 'min'),
     maxPriceCents: euros(params, 'max'),
     cosmeticCondition: CONDITIONS.find((c) => c === condition) ?? null,
@@ -65,6 +67,7 @@ export function browseParams(filters: BrowseFilters): [name: string, value: stri
   if (filters.brand) params.push(['brand', filters.brand]);
   if (filters.mount) params.push(['mount', filters.mount]);
   if (filters.model) params.push(['model', filters.model]);
+  if (filters.city) params.push(['city', filters.city]);
   if (filters.minPriceCents !== null) params.push(['min', String(filters.minPriceCents / 100)]);
   if (filters.maxPriceCents !== null) params.push(['max', String(filters.maxPriceCents / 100)]);
   if (filters.cosmeticCondition) params.push(['condition', filters.cosmeticCondition]);
@@ -91,6 +94,7 @@ export function countAdvancedFilters(filters: BrowseFilters) {
   return [
     filters.brand,
     filters.mount,
+    filters.city,
     filters.cosmeticCondition,
     filters.minPriceCents,
     filters.maxPriceCents,
@@ -103,6 +107,7 @@ export function hasActiveFilters(filters: BrowseFilters) {
     filters.brand !== null ||
     filters.mount !== null ||
     filters.model !== null ||
+    filters.city !== null ||
     filters.minPriceCents !== null ||
     filters.maxPriceCents !== null ||
     filters.cosmeticCondition !== null

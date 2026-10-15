@@ -29,6 +29,7 @@ type BrowseProps = {
   options: {
     brands: { slug: string; name: string }[];
     mounts: { slug: string; name: string }[];
+    cities: { slug: string; name: string }[];
   };
   modelName: string | null;
   similar: SimilarListings | null;
@@ -54,7 +55,7 @@ export function Browse({
 
   return (
     <div className="flex flex-col gap-6 pt-header-expansion">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 my-5">
         <h1 className="font-heading text-3xl font-semibold sm:text-4xl">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
