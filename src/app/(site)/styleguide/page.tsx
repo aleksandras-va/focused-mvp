@@ -56,7 +56,7 @@ export default function StyleguidePage() {
   return (
     <div className="flex flex-col gap-16">
       <div className="flex flex-col gap-2">
-        <h1 className="font-heading font-bold text-4xl">Styleguide</h1>
+        <h1 className="font-heading font-semibold text-4xl">Styleguide</h1>
         <p className="text-muted-foreground">Every primitive in one place. Development only.</p>
       </div>
 
@@ -75,9 +75,9 @@ export default function StyleguidePage() {
 
       <Section title="Type">
         <div className="flex flex-col gap-4">
-          <p className="font-heading font-bold text-5xl">Heading one, Geist</p>
-          <p className="font-heading font-bold text-4xl">Heading two, Geist</p>
-          <p className="font-heading font-bold text-2xl">Heading three, Geist</p>
+          <p className="font-heading font-semibold text-5xl">Heading one, Bricolage Grotesque</p>
+          <p className="font-heading font-semibold text-4xl">Heading two, Bricolage Grotesque</p>
+          <p className="font-heading font-semibold text-2xl">Heading three, Bricolage Grotesque</p>
           <p className="text-xl font-medium">Fujifilm X-T3 — a model name stays in Inter</p>
           <p className="max-w-prose text-base">
             Body text in Inter. Every ad is tied to a real model, so specs and search actually work.
@@ -181,7 +181,7 @@ export default function StyleguidePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="border-b pb-3 font-heading font-bold text-2xl">{title}</h2>
+      <h2 className="border-b pb-3 font-heading font-semibold text-2xl">{title}</h2>
       {children}
     </section>
   );

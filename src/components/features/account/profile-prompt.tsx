@@ -36,7 +36,7 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
       >
         <form action={formAction} className="flex flex-col gap-5.5">
           <div className="flex flex-col gap-2.5">
-            <DialogTitle className="font-heading text-[1.75rem] leading-tight font-extrabold">
+            <DialogTitle className="font-heading text-[1.75rem] leading-tight font-semibold">
               Finish your profile
             </DialogTitle>
             <DialogDescription className="text-[0.9375rem] leading-relaxed">

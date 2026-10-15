@@ -28,7 +28,7 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
   return (
     <section className="flex flex-col gap-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-heading text-2xl font-extrabold">Your ads</h2>
+        <h2 className="font-heading text-2xl font-semibold">Your ads</h2>
         <Link href="/sell" className={cn(buttonVariants())}>
           <PlusIcon />
           New ad

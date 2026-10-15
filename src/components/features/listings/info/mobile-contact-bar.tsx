@@ -24,7 +24,9 @@ export function MobileContactBar({ listing, focusedItem, messaging }: MobileCont
   return (
     <div className="sticky bottom-0 z-10 -mx-4 mt-8 flex items-center justify-between gap-3 bg-background/95 px-4 py-3 shadow-[0_-1px_0_var(--color-border),0_-8px_24px_-12px_rgb(0_0_0/0.2)] backdrop-blur-sm sm:-mx-6 sm:px-6 lg:hidden">
       <span className="flex min-w-0 flex-col">
-        <span className="text-lg font-bold">{formatOptionalPrice(priceCents)}</span>
+        <span className="font-heading text-lg font-semibold">
+          {formatOptionalPrice(priceCents)}
+        </span>
         <span className="truncate text-xs text-muted-foreground">{caption}</span>
       </span>
       <MessageSellerDialog className="shrink-0" {...messaging} />

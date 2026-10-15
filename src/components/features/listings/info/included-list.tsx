@@ -6,7 +6,7 @@ export function IncludedList({ item }: { item: ListingItemDetail }) {
 
   return (
     <section className="flex flex-col gap-4">
-      <h2 className="font-heading text-[1.375rem] font-bold">What is in the box</h2>
+      <h2 className="font-heading text-[1.375rem] font-semibold">What is in the box</h2>
       <ul className="grid grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-x-6 gap-y-2.5">
         {item.inclusions.map((label) => (
           <li key={label} className="flex items-center gap-2.5">

@@ -33,7 +33,7 @@ export function ModelUnavailable({ modelName, similar }: ModelUnavailableProps) 
       </EmptyState>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-heading text-xl font-bold">
+        <h2 className="font-heading text-xl font-semibold">
           {t(`similar.${similar.basis}`, {
             name: similar.basisName ?? '',
             category: similar.category,

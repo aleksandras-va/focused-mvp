@@ -20,7 +20,7 @@ export function SignInForm({ action, error, className }: SignInFormProps) {
       className={cn('flex flex-col gap-5 rounded-[1.75rem] border p-6 sm:p-9', className)}
     >
       <div className="flex flex-col gap-1">
-        <h2 className="font-heading text-2xl font-bold">{t('signIn.title')}</h2>
+        <h2 className="font-heading text-2xl font-semibold">{t('signIn.title')}</h2>
         <p className="text-sm text-muted-foreground">{t('signIn.subtitle')}</p>
       </div>
       {error ? <FormError message={error} /> : null}

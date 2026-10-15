@@ -16,7 +16,7 @@ export function ListingBody({ listing, focusedItem }: ListingBodyProps) {
       {isBundleOverview ? (
         <section className="flex flex-col gap-4">
           <div className="flex items-baseline justify-between gap-3">
-            <h2 className="font-heading text-[1.375rem] font-bold">In this bundle</h2>
+            <h2 className="font-heading text-[1.375rem] font-semibold">In this bundle</h2>
             <span className="text-sm text-muted-foreground">{listing.items.length} items</span>
           </div>
           {listing.items.map((bundleItem) => (
@@ -27,7 +27,7 @@ export function ListingBody({ listing, focusedItem }: ListingBodyProps) {
 
       {listing.description ? (
         <section className="flex flex-col gap-3">
-          <h2 className="font-heading text-[1.375rem] font-bold">From the seller</h2>
+          <h2 className="font-heading text-[1.375rem] font-semibold">From the seller</h2>
           <p className="max-w-2xl text-base leading-relaxed whitespace-pre-line text-foreground/85">
             {listing.description}
           </p>

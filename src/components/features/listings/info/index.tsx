@@ -36,8 +36,8 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
         <h1
           className={
             isBundleOverview
-              ? 'font-heading text-3xl leading-tight font-extrabold text-balance'
-              : 'font-heading text-3xl leading-tight font-extrabold text-balance sm:text-4xl'
+              ? 'font-heading text-3xl leading-tight font-semibold text-balance'
+              : 'font-heading text-3xl leading-tight font-semibold text-balance sm:text-4xl'
           }
         >
           {title}
@@ -50,7 +50,9 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
       </div>
 
       <div className="flex flex-col gap-0.5">
-        <p className="text-3xl font-bold tracking-tight">{formatOptionalPrice(priceCents)}</p>
+        <p className="font-heading text-3xl font-semibold tracking-tight">
+          {formatOptionalPrice(priceCents)}
+        </p>
         {isBundleOverview ? (
           <p className="text-sm text-muted-foreground">for all {listing.items.length}</p>
         ) : null}

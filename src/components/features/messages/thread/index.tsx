@@ -24,7 +24,7 @@ export function Thread({ conversation, error, sendAction }: ThreadProps) {
         >
           <ArrowLeftIcon />
         </Link>
-        <h1 className="truncate font-heading text-2xl leading-tight font-extrabold sm:text-3xl">
+        <h1 className="truncate font-heading text-2xl leading-tight font-semibold sm:text-3xl">
           {conversation.counterpartName}
         </h1>
       </div>

@@ -21,7 +21,7 @@ export function SignUpForm({ action, error, minPasswordLength, className }: Sign
       className={cn('flex flex-col gap-5 rounded-[1.75rem] bg-primary-soft p-6 sm:p-9', className)}
     >
       <div className="flex flex-col gap-1">
-        <h2 className="font-heading text-2xl font-bold">{t('signUp.title')}</h2>
+        <h2 className="font-heading text-2xl font-semibold">{t('signUp.title')}</h2>
       </div>
       {error ? <FormError message={error} /> : null}
       <Field>

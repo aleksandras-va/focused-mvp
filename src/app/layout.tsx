@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Inter } from 'next/font/google';
+import { Bricolage_Grotesque, Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import { SiteFooter } from '@/components/features/footer/site-footer';
@@ -15,8 +15,8 @@ const inter = Inter({
   subsets: ['latin', 'latin-ext'],
 });
 
-const geist = Geist({
-  variable: '--font-geist',
+const bricolage = Bricolage_Grotesque({
+  variable: '--font-bricolage',
   subsets: ['latin', 'latin-ext'],
 });
 
@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang={await getLocale()}
-      className={cn(inter.variable, geist.variable, 'h-full', 'antialiased')}
+      className={cn(inter.variable, bricolage.variable, 'h-full', 'antialiased')}
     >
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>

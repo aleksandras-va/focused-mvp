@@ -14,7 +14,7 @@ export function SellBreak() {
         <p className="text-[0.8125rem] font-semibold tracking-[0.08em] text-primary-ink uppercase">
           {t('eyebrow')}
         </p>
-        <h2 className="mt-3 font-heading text-3xl leading-tight font-extrabold text-balance sm:text-4xl">
+        <h2 className="mt-3 font-heading text-3xl leading-tight font-semibold text-balance sm:text-4xl">
           {t('title')}
         </h2>
         <p className="mt-4 max-w-md text-base text-foreground/75 sm:text-lg">{t('description')}</p>
@@ -32,7 +32,7 @@ export function SellBreak() {
             key={step}
             className="flex items-start gap-4 rounded-2xl border border-primary/15 bg-background p-5"
           >
-            <span className="w-7 shrink-0 font-heading text-[1.75rem] leading-none font-extrabold text-primary">
+            <span className="w-7 shrink-0 font-heading text-[1.75rem] leading-none font-semibold text-primary">
               {index + 1}
             </span>
             <span className="flex flex-col gap-0.5">
