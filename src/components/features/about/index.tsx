@@ -30,7 +30,7 @@ const differences = [
 function TextBlock({ title, text }: { title: string; text: string }) {
   return (
     <div className="flex flex-col gap-2.5">
-      <h3 className="font-heading text-xl font-bold">{title}</h3>
+      <h3 className="font-heading text-xl font-semibold">{title}</h3>
       <p className="text-[1.0625rem] leading-relaxed text-foreground/75">{text}</p>
     </div>
   );
@@ -39,7 +39,7 @@ function TextBlock({ title, text }: { title: string; text: string }) {
 function SectionHeading({ title, lead }: { title: string; lead: string }) {
   return (
     <div className="flex flex-col gap-3.5">
-      <h2 className="font-heading text-3xl leading-tight font-extrabold sm:text-4xl">{title}</h2>
+      <h2 className="font-heading text-3xl leading-tight font-semibold sm:text-4xl">{title}</h2>
       <p className="text-lg leading-relaxed text-foreground/75">{lead}</p>
     </div>
   );
@@ -53,7 +53,7 @@ export function About() {
       <section className="flex flex-wrap items-center gap-x-18 gap-y-12">
         <div className="flex min-w-0 flex-[1_1_32rem] flex-col gap-6">
           <p className={eyebrowClass}>Apie mus</p>
-          <h1 className="font-heading text-[2.5rem] leading-[1.02] font-extrabold tracking-tight text-balance sm:text-[4rem]">
+          <h1 className="font-heading text-[2.5rem] leading-[1.02] font-semibold tracking-tight text-balance sm:text-[4rem]">
             Naudota foto technika be spėlionių.
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-foreground/75 sm:text-xl">
@@ -102,7 +102,7 @@ export function About() {
       <section className="flex flex-wrap gap-x-14 gap-y-8 rounded-[2rem] border p-6 sm:p-12">
         <div className="flex min-w-0 flex-[1_1_20rem] flex-col gap-3">
           <p className={eyebrowClass}>Kur esame dabar</p>
-          <h2 className="font-heading text-[1.75rem] leading-tight font-extrabold sm:text-[2rem]">
+          <h2 className="font-heading text-[1.75rem] leading-tight font-semibold sm:text-[2rem]">
             Mažas projektas, didelis noras
           </h2>
         </div>
@@ -121,7 +121,7 @@ export function About() {
 
       <section className="flex flex-wrap items-center justify-between gap-6 rounded-[2rem] bg-foreground p-6 text-background sm:p-12">
         <div className="flex max-w-xl flex-col gap-2">
-          <h2 className="font-heading text-[1.75rem] leading-tight font-extrabold sm:text-[2.125rem]">
+          <h2 className="font-heading text-[1.75rem] leading-tight font-semibold sm:text-[2.125rem]">
             Turite technikos, kuri dulka spintoje?
           </h2>
           <p className="text-[1.0625rem] text-background/70">

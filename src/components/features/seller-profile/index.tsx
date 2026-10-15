@@ -32,7 +32,7 @@ export function SellerProfile({ seller, listings }: SellerProfileProps) {
       </div>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-heading text-2xl font-bold">
+        <h2 className="font-heading text-2xl font-semibold">
           {listings.length === 1 ? '1 ad' : `${listings.length} ads`}
         </h2>
 

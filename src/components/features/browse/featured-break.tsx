@@ -33,7 +33,7 @@ export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
 
       <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-x-6 gap-y-1 p-6 text-sm text-white/70 sm:p-8">
         <span className="flex flex-col gap-1">
-          <span className="font-heading text-xl font-bold text-white sm:text-2xl">
+          <span className="font-heading text-xl font-semibold text-white sm:text-2xl">
             {t('title')}
           </span>
           <span>

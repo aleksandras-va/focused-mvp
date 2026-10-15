@@ -39,11 +39,11 @@ export function Account({
     <div className="flex flex-col gap-10">
       <div className="flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-accent/50 p-4 border border-accent sm:p-6">
         <div className="flex min-w-0 items-center gap-4">
-          <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary-soft font-heading text-2xl font-extrabold text-primary-ink">
+          <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary-soft font-heading text-2xl font-semibold text-primary-ink">
             {name.charAt(0).toUpperCase()}
           </span>
           <div className="flex min-w-0 flex-col gap-1">
-            <h1 className="truncate font-heading text-3xl leading-tight font-extrabold sm:text-4xl">
+            <h1 className="truncate font-heading text-3xl leading-tight font-semibold sm:text-4xl">
               {name}
             </h1>
             <p className="truncate text-sm text-muted-foreground">{meta.join(' · ')}</p>
@@ -87,7 +87,7 @@ export function Account({
       <SellerListings listings={listings} />
 
       <section className="flex flex-col gap-5">
-        <h2 className="font-heading text-2xl font-extrabold">Settings</h2>
+        <h2 className="font-heading text-2xl font-semibold">Settings</h2>
         <div className="flex flex-wrap items-start gap-5">
           <ProfileForm user={user} cities={cities} action={updateProfileAction} />
           <StoreSection store={user.store} action={openStoreAction} />

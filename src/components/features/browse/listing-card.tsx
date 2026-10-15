@@ -116,7 +116,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
       </div>
 
       <div className="flex items-center justify-between gap-2 border-t bg-muted/60 px-4 py-3">
-        <span className="text-lg font-semibold">
+        <span className="font-heading text-lg font-semibold">
           {item.priceCents === null ? t('noPrice') : formatPrice(item.priceCents)}
         </span>
         {item.condition ? (

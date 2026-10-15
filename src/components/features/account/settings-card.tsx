@@ -31,7 +31,7 @@ export function SettingsCard({
         className={cn('flex flex-col gap-5', comingSoon && 'opacity-50 grayscale select-none')}
       >
         <div className="flex flex-col gap-1">
-          <h3 className="font-heading text-xl font-bold">{title}</h3>
+          <h3 className="font-heading text-xl font-semibold">{title}</h3>
           <p className="text-sm text-muted-foreground">{description}</p>
         </div>
         {children}

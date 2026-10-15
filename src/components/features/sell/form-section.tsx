@@ -22,12 +22,12 @@ export function FormSection({
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-baseline gap-3.5">
           {step ? (
-            <span className="font-heading text-[1.375rem] leading-tight font-bold text-primary">
+            <span className="font-heading text-[1.375rem] leading-tight font-semibold text-primary">
               {step}
             </span>
           ) : null}
           <div className="flex flex-col gap-1">
-            <h2 className="font-heading text-[1.375rem] leading-tight font-bold">{title}</h2>
+            <h2 className="font-heading text-[1.375rem] leading-tight font-semibold">{title}</h2>
             {description ? <p className="text-sm text-muted-foreground">{description}</p> : null}
           </div>
         </div>

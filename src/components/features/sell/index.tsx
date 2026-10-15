@@ -60,7 +60,7 @@ export function SellListing({
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-1.5">
-        <h1 className="font-heading text-3xl leading-tight font-extrabold sm:text-4xl">
+        <h1 className="font-heading text-3xl leading-tight font-semibold sm:text-4xl">
           {sell.isEditingPublished ? 'Edit ad' : 'Sell gear'}
         </h1>
         <p className="text-muted-foreground sm:text-lg">

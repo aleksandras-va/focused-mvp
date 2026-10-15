@@ -24,7 +24,7 @@ export function Login({
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 py-4 sm:py-10">
       <div className="flex flex-col items-center gap-2.5 text-center">
-        <h1 className="font-heading text-[2rem] leading-tight font-extrabold sm:text-[2.75rem]">
+        <h1 className="font-heading text-[2rem] leading-tight font-semibold sm:text-[2.75rem]">
           {t('title')}
         </h1>
         <p className="max-w-md text-muted-foreground max-md:hidden sm:text-lg">{t('subtitle')}</p>

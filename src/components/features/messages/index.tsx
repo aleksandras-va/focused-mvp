@@ -12,7 +12,7 @@ interface InboxProps {
 export function Inbox({ conversations }: InboxProps) {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-      <h1 className="font-heading text-3xl leading-tight font-extrabold sm:text-4xl">Messages</h1>
+      <h1 className="font-heading text-3xl leading-tight font-semibold sm:text-4xl">Messages</h1>
 
       {conversations.length === 0 ? (
         <EmptyState
