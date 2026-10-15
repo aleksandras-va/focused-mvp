@@ -22,8 +22,19 @@ export interface SellItem {
   inclusions: Inclusion[];
 }
 
+export type SellStepKey =
+  | 'model'
+  | 'modelEach'
+  | 'condition'
+  | 'price'
+  | 'priceEach'
+  | 'bundlePrice'
+  | 'city'
+  | 'photos'
+  | 'description';
+
 export interface SellStep {
-  label: string;
+  key: SellStepKey;
   done: boolean;
   optional?: boolean;
 }
@@ -123,16 +134,13 @@ export function useSellListing({
 
   const isEveryItemDescribed = items.every(isDescribed);
   const steps: SellStep[] = [
-    { label: isBundle ? 'Model for every item' : 'Model', done: isEveryItemDescribed },
-    { label: 'Condition', done: isEveryItemDescribed },
-    {
-      label: isBundle ? 'Price for every item' : 'Price',
-      done: items.every((item) => isPrice(item.price)),
-    },
-    ...(isBundle ? [{ label: 'Bundle price', done: isPrice(bundlePrice) }] : []),
-    { label: 'City', done: cityId !== '' },
-    { label: 'Photos', done: photoKeys.length > 0, optional: true },
-    { label: 'Description', done: description.trim() !== '', optional: true },
+    { key: isBundle ? 'modelEach' : 'model', done: isEveryItemDescribed },
+    { key: 'condition', done: isEveryItemDescribed },
+    { key: isBundle ? 'priceEach' : 'price', done: items.every((item) => isPrice(item.price)) },
+    ...(isBundle ? [{ key: 'bundlePrice' as const, done: isPrice(bundlePrice) }] : []),
+    { key: 'city', done: cityId !== '' },
+    { key: 'photos', done: photoKeys.length > 0, optional: true },
+    { key: 'description', done: description.trim() !== '', optional: true },
   ];
   const missingSteps = steps.filter((step) => !step.optional && !step.done);
 
@@ -205,7 +213,7 @@ export function useSellListing({
     isBundle,
     suggestLens,
     steps,
-    missingStepLabels: missingSteps.map((step) => step.label),
+    missingSteps: missingSteps.map((step) => step.key),
     addItem,
     removeItem,
     updateItem,

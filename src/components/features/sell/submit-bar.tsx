@@ -1,12 +1,14 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+import type { SellStepKey } from '@/components/features/sell/use-sell-listing';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface SubmitBarProps {
   isPending: boolean;
   isPublished: boolean;
-  missingStepLabels: string[];
+  missingSteps: SellStepKey[];
   onSubmit: (publish: boolean) => void;
   stacked?: boolean;
 }
@@ -14,10 +16,12 @@ interface SubmitBarProps {
 export function SubmitBar({
   isPending,
   isPublished,
-  missingStepLabels,
+  missingSteps,
   onSubmit,
   stacked,
 }: SubmitBarProps) {
+  const t = useTranslations('sell');
+
   if (isPublished) {
     return (
       <Button
@@ -27,12 +31,12 @@ export function SubmitBar({
         disabled={isPending}
         onClick={() => onSubmit(false)}
       >
-        Save changes
+        {t('submit.saveChanges')}
       </Button>
     );
   }
 
-  const isIncomplete = missingStepLabels.length > 0;
+  const isIncomplete = missingSteps.length > 0;
 
   return (
     <div className="flex flex-col gap-2">
@@ -45,7 +49,7 @@ export function SubmitBar({
           disabled={isPending}
           onClick={() => onSubmit(false)}
         >
-          Save draft
+          {t('submit.saveDraft')}
         </Button>
         <Button
           variant="tertiary"
@@ -55,12 +59,14 @@ export function SubmitBar({
           disabled={isPending || isIncomplete}
           onClick={() => onSubmit(true)}
         >
-          Publish ad
+          {t('submit.publish')}
         </Button>
       </div>
       {isIncomplete ? (
         <p className="text-center text-xs text-muted-foreground">
-          Still needed: {missingStepLabels.join(', ')}
+          {t('submit.stillNeeded', {
+            steps: missingSteps.map((step) => t(`steps.${step}`)).join(', '),
+          })}
         </p>
       ) : null}
     </div>

@@ -180,14 +180,14 @@
   "listingCard": {
     "edit": "Redaguoti skelbimą",
     "bundle": "Rinkinys",
-    "noPrice": "Kaina dar nenurodyta",
-    "itemCount": "{count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
+    "noPrice": "Trūksta kainos",
+    "itemCount": "{count, plural, one {# prekė} few {# prekės} other {# prekių}}",
     "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}"
   },
   "listing": {
     "bundle": "Rinkinys",
-    "bundleBadge": "Rinkinys · {count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
-    "forAll": "už visus {count, plural, one {# daiktą} few {# daiktus} other {# daiktų}}",
+    "bundleBadge": "Rinkinys · {count, plural, one {# prekė} few {# prekės} other {# prekių}}",
+    "forAll": "už visas {count, plural, one {# prekę} few {# prekes} other {# prekių}}",
     "facts": {
       "cosmetic": "Išvaizda",
       "functional": "Techninė būklė",
@@ -195,7 +195,7 @@
       "shutterCount": "Kadrų skaičius"
     },
     "inThisBundle": "Šiame rinkinyje",
-    "itemCount": "{count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
+    "itemCount": "{count, plural, one {# prekė} few {# prekės} other {# prekių}}",
     "fromSeller": "Aprašymas",
     "inTheBox": "Komplekte",
     "included": "Komplekte:",
@@ -234,7 +234,7 @@
       "delete": {
         "button": "Ištrinti",
         "title": "Ištrinti šį skelbimą?",
-        "description": "Skelbimas, jo daiktai ir nuotraukos bus pašalinti visam laikui. Jei nori jį tik laikinai išimti iš svetainės, geriau paslėpk.",
+        "description": "Skelbimas, jo prekės ir nuotraukos bus pašalinti visam laikui. Jei nori jį tik laikinai išimti iš svetainės, geriau paslėpk.",
         "keep": "Palikti",
         "confirm": "Ištrinti"
       }
@@ -242,7 +242,7 @@
     "metadata": {
       "condition": "Būklė: {condition}",
       "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}",
-      "bundleOf": "Rinkinys iš {count, plural, one {# daikto} other {# daiktų}}"
+      "bundleOf": "Rinkinys iš {count, plural, one {# prekės} other {# prekių}}"
     },
     "noPrice": "Kaina dar nenurodyta"
   },
@@ -278,7 +278,7 @@
   },
   "errorPage": {
     "title": "Kažkas nepavyko",
-    "description": "Puslapio nepavyko įkelti. Pabandyk dar kartą arba grįžk į pradžią.",
+    "description": "Puslapio atvaizdavimas nepavyko. Pabandyk dar kartą arba grįžk į pradžią.",
     "home": "Į pradžią",
     "retry": "Bandyti dar kartą"
   },
@@ -316,5 +316,161 @@
   "listingTitle": {
     "untitled": "Juodraštis be pavadinimo",
     "count": "{category, select, camera {{count, plural, one {# fotoaparatas} few {# fotoaparatai} other {# fotoaparatų}}} lens {{count, plural, one {# objektyvas} few {# objektyvai} other {# objektyvų}}} other {{count, plural, one {# priedas} few {# priedai} other {# priedų}}}}"
+  },
+  "sell": {
+    "title": "Parduok techniką",
+    "editTitle": "Redaguoti skelbimą",
+    "subtitle": "Pasirink modelį, užpildyk ko trūksta ir viskas.",
+    "whatSelling": "Ką parduodi?",
+    "photos": {
+      "title": "Nuotraukos",
+      "description": "Pirmoji nuotrauka bus viršelis."
+    },
+    "changesGoLive": "Pakeitimai bus matomi, kai juos išsaugosi.",
+    "preview": "Peržiūra",
+    "description": {
+      "title": "Aprašymas",
+      "hint": "Neprivaloma. Istorija, žymės, kodėl parduodi.",
+      "placeholder": "Viskas, ką pirkėjui verta žinoti: istorija, žymės, kodėl parduodi."
+    },
+    "addItem": {
+      "bundle": "Dar kas nors keliauja kartu?",
+      "lensTitle": "Kartu parduodi ir objektyvą ar priedą?",
+      "lensHint": "Pridėk jį kaip atskirą prekę - tavo skelbimą ras ir objektyvo ar priedo ieškantys pirkėjai.",
+      "moreTitle": "Parduodi daugiau nei vieną prekę?",
+      "moreHint": "Pridėk dar vieną prekę, ir skelbimas taps rinkiniu.",
+      "button": "Pridėti dar vieną prekę"
+    },
+    "bundlePrice": {
+      "label": "Rinkinio kaina",
+      "itemsTotal": "Prekės atskirai",
+      "buyersSave": "Pirkėjai sutaupo",
+      "hint": "Jei kaina mažesnė nei prekių suma, skelbimas gaus nuolaidos žymą."
+    },
+    "contact": {
+      "title": "Kontaktai",
+      "edit": "Redaguoti",
+      "email": "El. paštas",
+      "phone": "Telefonas",
+      "city": "Miestas",
+      "noEmail": "El. paštas nenurodytas",
+      "noPhone": "Telefonas nenurodytas",
+      "noCity": "Miestas nenurodytas",
+      "hint": "Užpildyta iš tavo profilio. Pakeitimai čia galioja tik šiam skelbimui."
+    },
+    "draft": {
+      "idle": "Juodraštis išsaugomas automatiškai.",
+      "saving": "Saugomas juodraštis…",
+      "saved": "Juodraštis išsaugotas.",
+      "error": "Nepavyko išsaugoti juodraščio. Paskutinis pakeitimas neišsaugotas.",
+      "preview": "Peržiūrėti"
+    },
+    "progress": {
+      "incomplete": "Pridėk daugiau informacijos",
+      "ready": "Galima skelbti",
+      "excellent": "Puiku! Pirkėjai turi viską, ko reikia"
+    },
+    "submit": {
+      "saveChanges": "Išsaugoti pakeitimus",
+      "saveDraft": "Išsaugoti juodraštį",
+      "publish": "Paskelbti",
+      "stillNeeded": "Neužpildyta: {steps}"
+    },
+    "steps": {
+      "model": "modelis",
+      "modelEach": "kiekvienos prekės modelis",
+      "condition": "būklė",
+      "price": "kaina",
+      "priceEach": "kiekvienos prekės kaina",
+      "bundlePrice": "rinkinio kaina",
+      "city": "miestas",
+      "photos": "nuotraukos",
+      "description": "aprašymas"
+    },
+    "item": {
+      "number": "Prekė {number}",
+      "model": "Modelis",
+      "clear": "Išvalyti",
+      "cantFind": "Nerandi? Pridėk pagal pavadinimą",
+      "film": "Juostinis"
+    },
+    "picker": {
+      "trigger": "Ieškok fotoaparato, objektyvo ar priedo",
+      "placeholder": "Pabandyk „fuji xt3“ arba „helios 44“",
+      "searching": "Ieškoma…",
+      "nothingFound": "Nieko nerasta.",
+      "addByName": "Pridėti „{name}“ pagal pavadinimą",
+      "startTyping": "Pradėk rašyti.",
+      "fixedLens": "Fiksuotas objektyvas",
+      "sameMount": "Ta pati jungtis kaip tavo {model}"
+    },
+    "custom": {
+      "label": "Ką parduodi?",
+      "back": "Grįžti į sąrašą",
+      "placeholder": "Gamintojas ir modelis, pvz., DJI RS 3 Mini",
+      "hint": "Netrukus įtrauksime šį modelį į katalogą. Tavo skelbimas bus paskelbtas jau dabar."
+    },
+    "condition": {
+      "cosmetic": "Išvaizda",
+      "functional": "Ar viskas veikia?",
+      "bundleHint": "Daugiau apie šios prekės būklę gali parašyti skelbimo aprašyme žemiau.",
+      "shutterCount": "Kadrų skaičius",
+      "shutterHint": "Palik tuščią, jei tavo fotoaparatas jo nerodo.",
+      "hints": {
+        "mint": "Atrodo kaip naujas",
+        "excellent": "Vos keli naudojimo požymiai",
+        "good": "Lengvi naudojimo ženklai",
+        "well_used": "Matomi naudojimo ženklai",
+        "damaged": "Įlenkimai ar įtrūkimai"
+      }
+    },
+    "inclusions": "Kas komplekte",
+    "price": {
+      "label": "Kaina",
+      "labelOnItsOwn": "Kaina atskirai",
+      "hint": "Kiek kainuotų vien ši prekė.",
+      "separately": "Parduočiau ir atskirai",
+      "separatelyHint": "Ją ras ir tik šios prekės ieškantys pirkėjai."
+    },
+    "remove": {
+      "ariaLabel": "Pašalinti prekę {number}",
+      "title": "Pašalinti prekę {number} iš rinkinio?",
+      "description": "Viskas, ką užpildei apie šią prekę, bus ištrinta. Kitos prekės liks.",
+      "keep": "Palikti",
+      "confirm": "Pašalinti"
+    },
+    "summary": {
+      "unnamed": "Prekė be pavadinimo",
+      "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}",
+      "included": "{count} komplekte",
+      "alsoOnItsOwn": "Ir atskirai",
+      "bundleOnly": "Tik rinkinyje",
+      "edit": "Redaguoti"
+    },
+    "photoUploader": {
+      "drop": "Nutempk nuotraukas čia arba spustelk ir pasirink (iki {max})",
+      "unsupported": "Tinka tik JPEG, PNG, WebP ir HEIC nuotraukos – RAW failai netinka.",
+      "tooMany": "Gali pridėti iki {max} nuotraukų – išsirink geriausias.",
+      "cover": "Viršelis",
+      "failed": "Nepavyko",
+      "remove": "Pašalinti nuotrauką"
+    }
+  },
+  "listingErrors": {
+    "not_found": "Šio skelbimo nebėra.",
+    "not_owner": "Tai ne tavo skelbimas.",
+    "no_items": "Pridėk bent vieną prekę.",
+    "no_city": "Pasirink miestą.",
+    "missing_price": "Nurodyk kiekvienos prekės kainą.",
+    "missing_bundle_price": "Nurodyk viso rinkinio kainą.",
+    "too_many_photos": "Skelbime gali būti iki {max} nuotraukų.",
+    "invalid_item": "Kažkas nutiko su preke – perkrauk puslapį ir bandyk dar kartą.",
+    "photo_failed": "Nepavyko įkelti vienos nuotraukos – pašalink ją ir bandyk dar kartą.",
+    "missing_model": "Kiekvienai prekei pasirink modelį iš katalogo.",
+    "missing_custom_name": "Įrašyk kiekvienos ranka pridėtos prekės pavadinimą.",
+    "missing_custom_category": "Kiekvienai ranka pridėtai prekei pasirink: fotoaparatas, objektyvas ar priedas.",
+    "invalid_price": "Įvesk tinkamą kainą.",
+    "invalid_shutter_count": "Kadrų skaičius turi būti sveikasis skaičius.",
+    "photo_storage_unavailable": "Nuotraukų įkėlimas šiuo metu neveikia."
   }
 }

@@ -1,10 +1,10 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { CustomItemFields } from '@/components/features/sell/item/custom-item-fields';
 import { ModelPicker } from '@/components/features/sell/item/model-picker';
 import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
-import { CATEGORY_LABELS } from '@/lib/listing-options';
 import type { CustomItem } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
@@ -27,6 +27,9 @@ export function ModelField({
   onCustomChange,
   onClear,
 }: ModelFieldProps) {
+  const t = useTranslations('sell.item');
+  const tEnums = useTranslations('enums');
+
   if (custom) {
     return (
       <CustomItemFields
@@ -41,7 +44,7 @@ export function ModelField({
 
   return (
     <Field>
-      <FieldLabel>Model</FieldLabel>
+      <FieldLabel>{t('model')}</FieldLabel>
       <ModelPicker
         siblingModels={siblingModels}
         searchAction={searchAction}
@@ -52,10 +55,10 @@ export function ModelField({
       {model ? (
         <FieldDescription className="flex flex-wrap items-center justify-between gap-2">
           <span>
-            {`${model.brand.name} - ${CATEGORY_LABELS[model.category]}${model.isFilm ? ' · Film' : ''}`}
+            {`${model.brand.name} - ${tEnums(`category.${model.category}`)}${model.isFilm ? ` · ${t('film')}` : ''}`}
           </span>
           <Button type="button" variant="link" size="sm" className="h-auto p-0" onClick={onClear}>
-            Clear
+            {t('clear')}
           </Button>
         </FieldDescription>
       ) : (
@@ -67,7 +70,7 @@ export function ModelField({
             className="h-auto p-0 text-muted-foreground hover:text-foreground"
             onClick={() => addByName('')}
           >
-            Can't find it? Add it by name
+            {t('cantFind')}
           </Button>
         </FieldDescription>
       )}

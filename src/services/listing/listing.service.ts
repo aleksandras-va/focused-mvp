@@ -20,6 +20,7 @@ import type {
   CreateListingPayload,
   EditableListing,
   ListingDetail,
+  ListingErrorCode,
   ListingPage,
   ListingSummary,
   SimilarListings,
@@ -92,8 +93,8 @@ export const listingService = {
   async getForEdit(listingId: string, sellerId: string): Promise<EditableListing> {
     const row = await listingRepository.findById(listingId);
 
-    if (!row) throw new ListingError('That ad no longer exists.');
-    if (row.seller_id !== sellerId) throw new ListingError('That ad is not yours.');
+    if (!row) throw new ListingError('not_found');
+    if (row.seller_id !== sellerId) throw new ListingError('not_owner');
 
     const models = await modelCatalogService.getByIds(
       row.items.flatMap((item) => (item.model_id ? [item.model_id] : [])),
@@ -175,8 +176,8 @@ function isVisibleTo(status: string, sellerId: string, viewerId: string | null) 
 async function requireOwned(listingId: string, sellerId: string) {
   const listing = await listingRepository.findSeller(listingId);
 
-  if (!listing) throw new ListingError('That ad no longer exists.');
-  if (listing.seller_id !== sellerId) throw new ListingError('That ad is not yours.');
+  if (!listing) throw new ListingError('not_found');
+  if (listing.seller_id !== sellerId) throw new ListingError('not_owner');
 
   return listing;
 }
@@ -184,12 +185,12 @@ async function requireOwned(listingId: string, sellerId: string) {
 async function assertPublishable(listingId: string) {
   const row = await listingRepository.findById(listingId);
 
-  if (!row) throw new ListingError('That ad no longer exists.');
-  if (row.items.length === 0) throw new ListingError('Add an item before publishing.');
-  if (!row.city_id) throw new ListingError('Pick a city before publishing.');
+  if (!row) throw new ListingError('not_found');
+  if (row.items.length === 0) throw new ListingError('no_items');
+  if (!row.city_id) throw new ListingError('no_city');
 
   if (row.price_cents === null || row.items.some((item) => item.price_cents === null)) {
-    throw new ListingError('Give every item a price before publishing.');
+    throw new ListingError('missing_price');
   }
 }
 
@@ -199,38 +200,38 @@ function isDescribed(item: CreateListingItemInput) {
     : item.modelId !== '';
 }
 
-function undescribedItemMessage(items: CreateListingItemInput[]) {
+function undescribedItemError(items: CreateListingItemInput[]): ListingErrorCode {
   const custom = items.find((item) => item.custom && !isDescribed(item))?.custom;
 
-  if (!custom) return 'Pick a model from the catalog for every item.';
-  if (!custom.name.trim()) return 'Name every item you add by hand.';
+  if (!custom) return 'missing_model';
+  if (!custom.name.trim()) return 'missing_custom_name';
 
-  return 'Choose camera, lens or accessory for every item you add by hand.';
+  return 'missing_custom_category';
 }
 
 async function buildContent(input: CreateListingPayload, publish: boolean) {
   if (input.photoKeys.length > MAX_PHOTOS) {
-    throw new ListingError(`A listing can have up to ${MAX_PHOTOS} photos.`);
+    throw new ListingError('too_many_photos');
   }
 
   const photoKeys = input.photoKeys.filter((key) => STORAGE_KEY_PATTERN.test(key));
 
   if (input.items.some((item) => !ITEM_ID_PATTERN.test(item.id))) {
-    throw new ListingError('Something went wrong with an item — reload the page and try again.');
+    throw new ListingError('invalid_item');
   }
 
   if (publish && photoKeys.length !== input.photoKeys.length) {
-    throw new ListingError('One of the photos failed to upload — remove it and try again.');
+    throw new ListingError('photo_failed');
   }
 
   const described = input.items.filter(isDescribed);
 
   if (publish) {
-    if (described.length === 0) throw new ListingError('Add at least one item.');
+    if (described.length === 0) throw new ListingError('no_items');
     if (described.length !== input.items.length) {
-      throw new ListingError(undescribedItemMessage(input.items));
+      throw new ListingError(undescribedItemError(input.items));
     }
-    if (!input.cityId) throw new ListingError('Pick a city.');
+    if (!input.cityId) throw new ListingError('no_city');
   }
 
   const models = await modelRepository.findForListing(
@@ -245,7 +246,7 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
       ? { name: item.custom.name.trim(), category: item.custom.category }
       : null;
 
-    if (!model && !custom) throw new ListingError('Pick a model from the catalog for every item.');
+    if (!model && !custom) throw new ListingError('missing_model');
 
     const asksShutterCount = model
       ? model.category === 'camera' && !model.is_film
@@ -271,7 +272,7 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
   const isBundle = items.length > 1;
 
   if (publish && isBundle && !input.bundlePrice?.trim()) {
-    throw new ListingError('Enter a price for the whole bundle.');
+    throw new ListingError('missing_bundle_price');
   }
 
   return {

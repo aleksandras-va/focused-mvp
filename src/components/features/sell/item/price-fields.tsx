@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useId } from 'react';
 import { PriceInput } from '@/components/features/sell/price-input';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
@@ -13,14 +14,15 @@ interface PriceFieldsProps {
 }
 
 export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
+  const t = useTranslations('sell.price');
   const priceId = useId();
 
   return (
     <div className="flex flex-wrap items-start gap-x-6 gap-y-4 border-t pt-6">
       <Field className="w-full max-w-56">
-        <FieldLabel htmlFor={priceId}>{isBundle ? 'Price on its own' : 'Price'}</FieldLabel>
+        <FieldLabel htmlFor={priceId}>{isBundle ? t('labelOnItsOwn') : t('label')}</FieldLabel>
         <PriceInput id={priceId} value={item.price} onChange={(price) => onChange({ price })} />
-        {isBundle ? <FieldDescription>What this item alone would cost.</FieldDescription> : null}
+        {isBundle ? <FieldDescription>{t('hint')}</FieldDescription> : null}
       </Field>
 
       {isBundle ? (
@@ -37,10 +39,8 @@ export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
             className="mt-0.5 size-4.5 accent-(--color-success)"
           />
           <span className="flex flex-col gap-0.5">
-            <span className="text-sm font-semibold">Would sell this item separately</span>
-            <span className="text-xs text-muted-foreground">
-              Buyers looking for just this item can find it too.
-            </span>
+            <span className="text-sm font-semibold">{t('separately')}</span>
+            <span className="text-xs text-muted-foreground">{t('separatelyHint')}</span>
           </span>
         </label>
       ) : null}

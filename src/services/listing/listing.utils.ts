@@ -10,7 +10,7 @@ export function parsePriceCents(price: string) {
   const value = Number(normalized);
 
   if (!normalized || Number.isNaN(value) || value < 0) {
-    throw new ListingError('Enter a valid price.');
+    throw new ListingError('invalid_price');
   }
 
   return Math.round(value * 100);
@@ -30,7 +30,7 @@ export function parseShutterCount(shutterCount: string | null) {
   const value = Number(shutterCount.trim());
 
   if (!Number.isInteger(value) || value < 0) {
-    throw new ListingError('Shutter count must be a whole number.');
+    throw new ListingError('invalid_shutter_count');
   }
 
   return value;

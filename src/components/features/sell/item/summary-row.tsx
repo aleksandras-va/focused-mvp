@@ -1,10 +1,10 @@
 'use client';
 
 import { ChevronDownIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
 import { Button } from '@/components/ui/button';
-import { formatCount } from '@/lib/format';
-import { LISTING_LABELS } from '@/lib/listing-options';
+import { formatPrice } from '@/lib/format';
 
 interface ItemSummaryRowProps {
   item: SellItem;
@@ -13,13 +13,16 @@ interface ItemSummaryRowProps {
 }
 
 export function ItemSummaryRow({ item, index, onEdit }: ItemSummaryRowProps) {
-  const name = item.model?.displayName ?? (item.custom?.name || 'Unnamed item');
+  const t = useTranslations('sell.summary');
+  const tEnums = useTranslations('enums');
+  const name = item.model?.displayName ?? (item.custom?.name || t('unnamed'));
   const isItemChosen = item.model !== null || item.custom !== null;
+  const priceCents = Math.round(Number(item.price) * 100);
   const details = [
-    isItemChosen ? LISTING_LABELS.get(item.cosmeticCondition) : null,
-    isItemChosen ? LISTING_LABELS.get(item.functionalCondition) : null,
-    item.shutterCount ? `${formatCount(Number(item.shutterCount))} shots` : null,
-    item.inclusions.length > 0 ? `${item.inclusions.length} included` : null,
+    isItemChosen ? tEnums(`cosmeticCondition.${item.cosmeticCondition}`) : null,
+    isItemChosen ? tEnums(`functionalCondition.${item.functionalCondition}`) : null,
+    item.shutterCount ? t('shutterCount', { count: Number(item.shutterCount) }) : null,
+    item.inclusions.length > 0 ? t('included', { count: item.inclusions.length }) : null,
   ].filter(Boolean);
 
   return (
@@ -34,13 +37,15 @@ export function ItemSummaryRow({ item, index, onEdit }: ItemSummaryRowProps) {
         </span>
       </span>
       <span className="hidden shrink-0 flex-col items-end gap-0.5 sm:flex">
-        <span className="font-semibold">{item.price ? `€${item.price}` : '—'}</span>
+        <span className="font-semibold">
+          {item.price && Number.isFinite(priceCents) ? formatPrice(priceCents) : '—'}
+        </span>
         <span className="text-xs text-muted-foreground">
-          {item.soldSeparately ? 'Also on its own' : 'Bundle only'}
+          {item.soldSeparately ? t('alsoOnItsOwn') : t('bundleOnly')}
         </span>
       </span>
       <Button type="button" variant="outline" size="sm" onClick={onEdit}>
-        Edit
+        {t('edit')}
         <ChevronDownIcon />
       </Button>
     </div>

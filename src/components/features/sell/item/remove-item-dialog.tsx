@@ -1,6 +1,7 @@
 'use client';
 
 import { XIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,33 +16,36 @@ import {
 import { Button } from '@/components/ui/button';
 
 interface RemoveItemDialogProps {
-  itemTitle: string;
+  itemNumber: number;
   onConfirm: () => void;
 }
 
-export function RemoveItemDialog({ itemTitle, onConfirm }: RemoveItemDialogProps) {
-  const itemLabel = itemTitle.toLowerCase();
+export function RemoveItemDialog({ itemNumber, onConfirm }: RemoveItemDialogProps) {
+  const t = useTranslations('sell.remove');
 
   return (
     <AlertDialog>
       <AlertDialogTrigger
         render={
-          <Button type="button" variant="ghost" size="icon-sm" aria-label={`Remove ${itemLabel}`}>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
+            aria-label={t('ariaLabel', { number: itemNumber })}
+          >
             <XIcon />
           </Button>
         }
       />
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Remove {itemLabel} from the bundle?</AlertDialogTitle>
-          <AlertDialogDescription>
-            Everything you filled in for this item is discarded. The other items stay as they are.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t('title', { number: itemNumber })}</AlertDialogTitle>
+          <AlertDialogDescription>{t('description')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Keep it</AlertDialogCancel>
+          <AlertDialogCancel>{t('keep')}</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={onConfirm}>
-            Remove
+            {t('confirm')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

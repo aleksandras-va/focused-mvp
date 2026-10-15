@@ -195,7 +195,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - next-intl, Lithuanian only, no locale in the URL. The locale is fixed in
   `src/i18n/request.ts`; adding a language later means locale routing and another file.
 - Lithuanian copy speaks informally, in the singular "tu": "Pasirink modelį", "Atrask",
-  "Būk tarp pirmųjų", never "Pasirinkite" or "jūsų".
+  "Būk tarp pirmųjų", never "Pasirinkite" or "jūsų". An item for sale is "prekė", never
+  "daiktas".
 - Every user-facing string lives in `messages/lt.json`, keyed by area (`login.title`).
   `messages/en.json` is kept alongside with the same keys. `lt.json` types the keys, so
   a missing or misspelled key fails the type check.
@@ -208,8 +209,13 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   raw value (`cosmeticCondition: 'good'`), never a label. `src/lib/format.ts` formats
   numbers, prices and dates as `lt-LT`.
 - Converted area by area. Done: login, the homepage (browse, listing card, header, footer,
-  search). The `*_LABELS` lists in `src/lib/listing-options.ts` go once their last English
-  consumer is converted.
+  search), item and bundle pages, messages, seller profile, sell flow, error pages, emails.
+  Left: the account page, the about page (Lithuanian but inline), and
+  `LISTING_STATUS_LABELS`, which goes with the account page.
+- Every service error is a code (`AuthError`, `ListingError`, `ConversationError`), and
+  `app/` translates it from `<area>Errors` in the catalog.
+- A bundle title is data (`ListingTitle`: names plus per-category counts); `formatListingTitle`
+  in `src/lib/` turns it into text, so the counts are translated like any other string.
 
 ## Email
 
