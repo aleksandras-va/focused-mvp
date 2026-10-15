@@ -49,10 +49,10 @@
   --card-foreground: var(--foreground);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.148 0.004 228.8);
-  --primary: oklch(0.535 0.1605 269.88);
+  --primary: oklch(0.3442 0.0607 184.84);
   --primary-foreground: var(--background);
-  --primary-soft: oklch(0.962 0.011 274.9);
-  --primary-ink: oklch(0.424 0.141 270.8);
+  --primary-soft: oklch(0.955 0.0153 145.5);
+  --primary-ink: oklch(0.3442 0.0607 184.84);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.963 0.002 197.1);
@@ -64,7 +64,7 @@
   --warning: oklch(0.66 0.14 72);
   --border: oklch(0.915 0.01 70);
   --input: oklch(0.88 0.012 70);
-  --ring: oklch(0.76 0.075 240);
+  --ring: oklch(0.62 0.07 180);
   --radius: 1rem;
 }
 
@@ -77,5 +77,8 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .font-heading {
+    color: var(--primary);
   }
 }
