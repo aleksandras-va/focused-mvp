@@ -59,7 +59,7 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
                   className={cn(
                     'flex h-9 shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3.5 text-sm font-medium transition-colors',
                     status === tab.value
-                      ? 'bg-foreground text-background'
+                      ? 'bg-primary text-primary-foreground'
                       : 'text-foreground/75 hover:bg-muted hover:text-foreground',
                   )}
                 >

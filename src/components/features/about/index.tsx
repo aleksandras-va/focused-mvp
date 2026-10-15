@@ -119,7 +119,7 @@ export function About() {
         </div>
       </section>
 
-      <section className="flex flex-wrap items-center justify-between gap-6 rounded-[2rem] bg-foreground p-6 text-background sm:p-12">
+      <section className="flex flex-wrap items-center justify-between gap-6 rounded-[2rem] bg-primary p-6 text-background sm:p-12 [&_.font-heading]:text-background">
         <div className="flex max-w-xl flex-col gap-2">
           <h2 className="font-heading text-[1.75rem] leading-tight font-semibold sm:text-[2.125rem]">
             Turite technikos, kuri dulka spintoje?

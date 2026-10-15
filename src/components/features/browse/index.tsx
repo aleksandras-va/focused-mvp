@@ -69,7 +69,7 @@ export function Browse({
               className={cn(
                 'flex h-9 shrink-0 items-center rounded-full px-4 text-sm font-medium transition-colors',
                 filters.category === category
-                  ? 'bg-foreground text-background'
+                  ? 'bg-primary text-primary-foreground'
                   : 'text-foreground/75 hover:bg-muted hover:text-foreground',
               )}
             >
