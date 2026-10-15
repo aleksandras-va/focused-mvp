@@ -18,12 +18,14 @@ interface FilterPopoverProps {
   options: {
     brands: { slug: string; name: string }[];
     mounts: { slug: string; name: string }[];
+    cities: { slug: string; name: string }[];
   };
 }
 
 const withoutAdvancedFilters = {
   brand: null,
   mount: null,
+  city: null,
   cosmeticCondition: null,
   minPriceCents: null,
   maxPriceCents: null,
@@ -106,6 +108,23 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
               {options.mounts.map((mount) => (
                 <NativeSelectOption key={mount.slug} value={mount.slug}>
                   {mount.name}
+                </NativeSelectOption>
+              ))}
+            </NativeSelect>
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor="filter-city">{t('city')}</FieldLabel>
+            <NativeSelect
+              id="filter-city"
+              name="city"
+              defaultValue={filters.city ?? ''}
+              className="w-full"
+            >
+              <NativeSelectOption value="">{t('allCities')}</NativeSelectOption>
+              {options.cities.map((city) => (
+                <NativeSelectOption key={city.slug} value={city.slug}>
+                  {city.name}
                 </NativeSelectOption>
               ))}
             </NativeSelect>

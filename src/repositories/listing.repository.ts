@@ -133,6 +133,8 @@ export const listingRepository = {
       });
     }
 
+    if (filters.city) query = query.where('city.slug', '=', filters.city);
+
     if (filters.minPriceCents !== null) {
       query = query.where('listing.price_cents', '>=', filters.minPriceCents);
     }

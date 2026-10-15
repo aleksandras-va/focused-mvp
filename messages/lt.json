@@ -54,7 +54,7 @@
     },
     "cosmeticCondition": {
       "mint": "Kaip nauja",
-      "excellent": "Puiki",
+      "excellent": "Labai gera",
       "good": "Gera",
       "well_used": "Gerokai naudota",
       "damaged": "Pažeista"
@@ -66,7 +66,7 @@
     "search": "Paieška"
   },
   "footer": {
-    "tagline": "Naudoti fotoaparatai ir objektyvai, susieti su tikru katalogu, todėl paieška veikia.",
+    "tagline": "Naudoti fotoaparatai, objektyvai ir jų priedai.",
     "country": "Lietuva"
   },
   "search": {
@@ -88,8 +88,8 @@
     "fromPrice": "nuo {price}"
   },
   "browse": {
-    "title": "Surask naujus namus savo foto technikai",
-    "subtitle": "Ir nesijaudink, tavo skelbimai nepasimes tarp drabužių ar padangų, ",
+    "title": "Atrask naujus namus savo foto technikai",
+    "subtitle": "Ir nesijaudink, čia, tavo skelbimai nepasimes tarp drabužių ar padangų.",
     "all": "Viskas",
     "sort": "Rikiavimas",
     "sorts": {
@@ -109,6 +109,8 @@
       "allBrands": "Visi gamintojai",
       "mount": "Jungtis",
       "allMounts": "Visos jungtys",
+      "city": "Miestas",
+      "allCities": "Visi miestai",
       "condition": "Būklė",
       "anyCondition": "Bet kokia būklė",
       "price": "Kaina (EUR)",
@@ -120,9 +122,8 @@
       "showResults": "Rodyti rezultatus"
     },
     "featured": {
-      "title": "Rinktinė nuotrauka",
-      "shotOn": "Nufotografuota su",
-      "alt": "Nufotografuota su {gear}, {place}"
+      "shotOn": "Fotografuota su",
+      "alt": "Fotografuota su {gear}, {place}"
     },
     "sellBreak": {
       "eyebrow": "Pardavimas",

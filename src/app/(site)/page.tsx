@@ -1,6 +1,7 @@
 import { Browse } from '@/components/features/browse';
 import { isModelOnly, parseBrowseFilters, parseBrowsePage } from '@/lib/browse-filters';
 import { authService } from '@/services/auth/auth.service';
+import { cityService } from '@/services/city/city.service';
 import { listingService } from '@/services/listing/listing.service';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 
@@ -20,9 +21,10 @@ export default async function HomePage({ searchParams }: PageProps<'/'>) {
   const page = parseBrowsePage(params);
   const user = await authService.getCurrentUserCached();
 
-  const [{ listings, hasMore }, options, model] = await Promise.all([
+  const [{ listings, hasMore }, catalogFilters, cities, model] = await Promise.all([
     listingService.getPublishedPage(filters, user?.id ?? null, page),
     modelCatalogService.getFilters(filters.category ?? undefined),
+    cityService.getAll(),
     filters.model ? modelCatalogService.getModel(filters.model) : null,
   ]);
 
@@ -37,7 +39,7 @@ export default async function HomePage({ searchParams }: PageProps<'/'>) {
       hasMore={hasMore}
       page={page}
       filters={filters}
-      options={options}
+      options={{ ...catalogFilters, cities }}
       modelName={model?.displayName ?? null}
       similar={similar}
       featuredPhoto={featuredPhoto}

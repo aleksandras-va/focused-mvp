@@ -111,6 +111,8 @@
       "allBrands": "All brands",
       "mount": "Mount",
       "allMounts": "All mounts",
+      "city": "City",
+      "allCities": "All cities",
       "condition": "Condition",
       "anyCondition": "Any condition",
       "price": "Price (EUR)",
