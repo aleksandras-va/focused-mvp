@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
@@ -26,7 +27,7 @@ const loadItem = cache(async (id: string) => {
 export async function generateMetadata({ params }: PageProps<'/items/[id]'>) {
   const { listing, item } = await loadItem((await params).id);
 
-  return listing && item ? itemMetadata(listing, item) : {};
+  return listing && item ? itemMetadata(listing, item, await getTranslations()) : {};
 }
 
 export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {

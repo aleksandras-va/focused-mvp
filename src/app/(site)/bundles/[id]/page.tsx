@@ -1,4 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
@@ -24,7 +25,7 @@ const loadListing = cache(async (id: string) => {
 export async function generateMetadata({ params }: PageProps<'/bundles/[id]'>) {
   const listing = await loadListing((await params).id);
 
-  return listing ? bundleMetadata(listing) : {};
+  return listing ? bundleMetadata(listing, await getTranslations()) : {};
 }
 
 export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>) {

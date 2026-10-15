@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import type { ListingDetail } from '@/services/listing/listing.types';
 
@@ -9,6 +10,7 @@ interface SellerCardProps {
 }
 
 export function SellerCard({ seller, city }: SellerCardProps) {
+  const t = useTranslations('listing.seller');
   const name = seller.storeName ?? seller.name;
 
   return (
@@ -22,10 +24,10 @@ export function SellerCard({ seller, city }: SellerCardProps) {
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="flex items-center gap-2 font-semibold">
           <span className="truncate">{name}</span>
-          {seller.isStore ? <Badge variant="secondary">Store</Badge> : null}
+          {seller.isStore ? <Badge variant="secondary">{t('store')}</Badge> : null}
         </span>
         <span className="text-[0.8125rem] text-muted-foreground">
-          {seller.isStore ? 'Store' : 'Private seller'} · {city ?? 'City not set'}
+          {seller.isStore ? t('store') : t('private')} · {city ?? t('noCity')}
         </span>
       </span>
       <ChevronRightIcon className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />

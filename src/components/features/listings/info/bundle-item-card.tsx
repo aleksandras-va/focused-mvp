@@ -1,16 +1,24 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { SoldSeparatelyLip } from '@/components/features/listings/info/sold-separately-lip';
 import { formatCount, formatOptionalPrice } from '@/lib/format';
-import { CATEGORY_LABELS } from '@/lib/listing-options';
 import { cn } from '@/lib/utils';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
 export function BundleItemCard({ item }: { item: ListingItemDetail }) {
+  const t = useTranslations('listing');
+  const tEnums = useTranslations('enums');
   const facts = [
-    { label: 'Cosmetic', value: item.cosmeticCondition },
-    { label: 'Function', value: item.functionalCondition },
+    {
+      label: t('facts.cosmetic'),
+      value: tEnums(`cosmeticCondition.${item.cosmeticCondition}`),
+    },
+    {
+      label: t('facts.functional'),
+      value: tEnums(`functionalCondition.${item.functionalCondition}`),
+    },
     ...(item.shutterCount !== null
-      ? [{ label: 'Shutter', value: formatCount(item.shutterCount) }]
+      ? [{ label: t('facts.shutter'), value: formatCount(item.shutterCount) }]
       : []),
   ];
 
@@ -22,12 +30,12 @@ export function BundleItemCard({ item }: { item: ListingItemDetail }) {
       )}
     >
       {item.soldSeparately ? (
-        <SoldSeparatelyLip price={formatOptionalPrice(item.priceCents)} />
+        <SoldSeparatelyLip price={formatOptionalPrice(item.priceCents, t('noPrice'))} />
       ) : null}
       <div className="flex flex-col gap-2.5 p-4 sm:px-5">
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-muted-foreground">
-            {[CATEGORY_LABELS[item.category], item.mount].filter(Boolean).join(' · ')}
+            {[tEnums(`category.${item.category}`), item.mount].filter(Boolean).join(' · ')}
           </span>
           <h3 className="leading-snug font-semibold">
             <Link href={`/items/${item.id}`} className="hover:underline">
@@ -48,8 +56,8 @@ export function BundleItemCard({ item }: { item: ListingItemDetail }) {
         </div>
         {item.inclusions.length > 0 ? (
           <p className="text-[0.8125rem] text-foreground/80">
-            <span className="text-muted-foreground">Included: </span>
-            {item.inclusions.join(', ')}
+            <span className="text-muted-foreground">{t('included')} </span>
+            {item.inclusions.map((inclusion) => tEnums(`inclusion.${inclusion}`)).join(', ')}
           </p>
         ) : null}
       </div>

@@ -194,6 +194,8 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 
 - next-intl, Lithuanian only, no locale in the URL. The locale is fixed in
   `src/i18n/request.ts`; adding a language later means locale routing and another file.
+- Lithuanian copy speaks informally, in the singular "tu": "Pasirink modelį", "Atrask",
+  "Būk tarp pirmųjų", never "Pasirinkite" or "jūsų".
 - Every user-facing string lives in `messages/lt.json`, keyed by area (`login.title`).
   `messages/en.json` is kept alongside with the same keys. `lt.json` types the keys, so
   a missing or misspelled key fails the type check.

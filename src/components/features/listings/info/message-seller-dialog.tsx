@@ -3,12 +3,12 @@
 import { MessageCircleIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -35,6 +35,7 @@ export function MessageSellerDialog({
   startAction,
   trackClickAction,
 }: MessageSellerDialogProps) {
+  const t = useTranslations('listing.message');
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState('');
@@ -49,7 +50,7 @@ export function MessageSellerDialog({
         className={cn(buttonVariants({ size: 'lg' }), className)}
       >
         <MessageCircleIcon />
-        Message seller
+        {t('button')}
       </Link>
     );
   }
@@ -76,21 +77,18 @@ export function MessageSellerDialog({
         render={<Button size="lg" className={className} onClick={() => trackClickAction()} />}
       >
         <MessageCircleIcon />
-        Message seller
+        {t('button')}
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={submit} className="flex flex-col gap-4">
-          <DialogHeader>
-            <DialogTitle>Message the seller</DialogTitle>
-            <DialogDescription>
-              Ask about the item or arrange a meeting. The seller gets an email and can reply here.
-            </DialogDescription>
+          <DialogHeader className="py-2">
+            <DialogTitle>{t('title')}</DialogTitle>
           </DialogHeader>
           <Textarea
             name="body"
             value={body}
             onChange={(event) => setBody(event.target.value)}
-            placeholder="Hi, is this still available?"
+            placeholder={t('placeholder')}
             rows={5}
             maxLength={2000}
             autoFocus
@@ -99,7 +97,7 @@ export function MessageSellerDialog({
           {error ? <p className="text-sm text-destructive">{error}</p> : null}
           <DialogFooter>
             <Button type="submit" disabled={pending || body.trim() === ''}>
-              {pending ? 'Sending…' : 'Send'}
+              {pending ? t('sending') : t('send')}
             </Button>
           </DialogFooter>
         </form>

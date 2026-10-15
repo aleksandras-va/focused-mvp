@@ -1,5 +1,6 @@
 import { ImageIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { formatMessageTime } from '@/lib/format';
 import { cn } from '@/lib/utils';
@@ -10,6 +11,7 @@ interface ConversationCardProps {
 }
 
 export function ConversationCard({ conversation }: ConversationCardProps) {
+  const t = useTranslations('messages');
   const unread = conversation.unreadCount > 0;
 
   return (
@@ -43,7 +45,7 @@ export function ConversationCard({ conversation }: ConversationCardProps) {
           </span>
         </span>
         <span className="truncate text-sm text-muted-foreground">
-          {conversation.listing?.title ?? 'Deleted ad'}
+          {conversation.listing?.title ?? t('deletedAd')}
         </span>
         <span className="flex items-center justify-between gap-3">
           <span

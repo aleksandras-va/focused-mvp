@@ -1,12 +1,15 @@
+import { useTranslations } from 'next-intl';
 import { formatCount } from '@/lib/format';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
 export function FactTiles({ item }: { item: ListingItemDetail }) {
+  const t = useTranslations('listing.facts');
+  const tEnums = useTranslations('enums');
   const facts = [
-    { label: 'Cosmetic', value: item.cosmeticCondition },
-    { label: 'Function', value: item.functionalCondition },
+    { label: t('cosmetic'), value: tEnums(`cosmeticCondition.${item.cosmeticCondition}`) },
+    { label: t('functional'), value: tEnums(`functionalCondition.${item.functionalCondition}`) },
     ...(item.shutterCount !== null
-      ? [{ label: 'Shutter count', value: formatCount(item.shutterCount) }]
+      ? [{ label: t('shutterCount'), value: formatCount(item.shutterCount) }]
       : []),
   ];
 

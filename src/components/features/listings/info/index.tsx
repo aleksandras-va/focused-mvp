@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { ListingBreadcrumbs } from '@/components/features/listings/info/breadcrumbs';
 import { BundleNotice } from '@/components/features/listings/info/bundle-notice';
 import { BundlePriceList } from '@/components/features/listings/info/bundle-price-list';
@@ -8,7 +9,6 @@ import { SafetyNote } from '@/components/features/listings/info/safety-note';
 import { SellerCard } from '@/components/features/listings/info/seller-card';
 import { Badge } from '@/components/ui/badge';
 import { formatOptionalPrice } from '@/lib/format';
-import { CATEGORY_LABELS } from '@/lib/listing-options';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
 interface ListingInfoProps {
@@ -19,6 +19,8 @@ interface ListingInfoProps {
 }
 
 export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: ListingInfoProps) {
+  const t = useTranslations('listing');
+  const tEnums = useTranslations('enums');
   const isBundleOverview = listing.isBundle && !focusedItem;
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
   const title = item?.modelName ?? listing.title;
@@ -27,10 +29,10 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <ListingBreadcrumbs item={item} />
+        {!isBundleOverview && <ListingBreadcrumbs item={item} />}
         {isBundleOverview ? (
           <span className="w-fit rounded-full bg-primary-soft px-2.5 py-1 text-xs font-semibold text-primary-ink">
-            Bundle · {listing.items.length} items
+            {t('bundleBadge', { count: listing.items.length })}
           </span>
         ) : null}
         <h1
@@ -44,21 +46,23 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
         </h1>
         {item ? (
           <p className="text-muted-foreground">
-            {[CATEGORY_LABELS[item.category], item.mount].filter(Boolean).join(' · ')}
+            {[tEnums(`category.${item.category}`), item.mount].filter(Boolean).join(' · ')}
           </p>
         ) : null}
       </div>
 
       <div className="flex flex-col gap-0.5">
         <p className="font-heading text-3xl font-semibold tracking-tight">
-          {formatOptionalPrice(priceCents)}
+          {formatOptionalPrice(priceCents, t('noPrice'))}
         </p>
         {isBundleOverview ? (
-          <p className="text-sm text-muted-foreground">for all {listing.items.length}</p>
+          <p className="text-sm text-muted-foreground">
+            {t('forAll', { count: listing.items.length })}
+          </p>
         ) : null}
         {listing.status !== 'active' ? (
-          <Badge variant="outline" className="mt-2 w-fit capitalize">
-            {listing.status}
+          <Badge variant="outline" className="mt-2 w-fit">
+            {tEnums(`listingStatus.${listing.status}`)}
           </Badge>
         ) : null}
       </div>

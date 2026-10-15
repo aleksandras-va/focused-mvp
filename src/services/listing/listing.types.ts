@@ -49,11 +49,11 @@ export interface ListingItemDetail {
   mount: string | null;
   category: ModelCategory;
   priceCents: number | null;
-  cosmeticCondition: string;
-  functionalCondition: string;
+  cosmeticCondition: CosmeticCondition;
+  functionalCondition: FunctionalCondition;
   shutterCount: number | null;
   soldSeparately: boolean;
-  inclusions: string[];
+  inclusions: Inclusion[];
 }
 
 export interface ListingPhotoUrl {

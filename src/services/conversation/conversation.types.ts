@@ -1,5 +1,12 @@
 import 'server-only';
 
+export type ConversationErrorCode =
+  | 'listing_unavailable'
+  | 'own_listing'
+  | 'empty_message'
+  | 'message_too_long'
+  | 'not_found';
+
 export interface ConversationListing {
   id: string;
   title: string;

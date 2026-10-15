@@ -1,3 +1,9 @@
 import 'server-only';
 
-export class ConversationError extends Error {}
+import type { ConversationErrorCode } from './conversation.types';
+
+export class ConversationError extends Error {
+  constructor(readonly code: ConversationErrorCode) {
+    super(code);
+  }
+}

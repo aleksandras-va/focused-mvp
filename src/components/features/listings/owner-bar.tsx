@@ -2,21 +2,14 @@
 
 import { EyeOffIcon, PencilIcon, TagIcon, UploadIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
 import { DeleteListingDialog } from '@/components/features/listings/delete-listing-dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import type { ListingStatus } from '@/db/tables';
-import { LISTING_STATUS_LABELS } from '@/lib/listing-options';
 
 type OwnerAction = (listingId: string) => Promise<{ error: string | null }>;
-
-const NOT_PUBLIC_NOTICES: Record<ListingStatus, string> = {
-  draft: 'Not published yet — only you can see this page.',
-  active: '',
-  sold: 'Marked as sold, so buyers no longer see this page.',
-  removed: 'Hidden, so buyers no longer see this page. Publish it to bring it back.',
-};
 
 interface OwnerBarProps {
   listingId: string;
@@ -37,6 +30,8 @@ export function OwnerBar({
   restoreAction,
   deleteAction,
 }: OwnerBarProps) {
+  const t = useTranslations('listing.owner');
+  const tEnums = useTranslations('enums');
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -55,40 +50,40 @@ export function OwnerBar({
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
-            <span className="font-medium">Your ad</span>
+            <span className="font-medium">{t('yourAd')}</span>
             <Badge variant={status === 'active' ? 'outline' : 'default'} className="bg-background">
-              {LISTING_STATUS_LABELS[status]}
+              {tEnums(`listingStatus.${status}`)}
             </Badge>
           </div>
           {status === 'active' ? null : (
-            <p className="text-sm text-muted-foreground">{NOT_PUBLIC_NOTICES[status]}</p>
+            <p className="text-sm text-muted-foreground">{t(`notices.${status}`)}</p>
           )}
         </div>
 
         <div className="flex flex-wrap gap-2">
           <Link href={editHref} className={buttonVariants({ variant: 'outline' })}>
             <PencilIcon />
-            {status === 'draft' ? 'Continue editing' : 'Edit'}
+            {status === 'draft' ? t('continueEditing') : t('edit')}
           </Link>
 
           {status === 'active' ? (
             <Button variant="outline" disabled={isPending} onClick={() => run(markSoldAction)}>
               <TagIcon />
-              Mark as sold
+              {t('markSold')}
             </Button>
           ) : null}
 
           {status === 'active' || status === 'sold' ? (
             <Button variant="ghost" disabled={isPending} onClick={() => run(hideAction)}>
               <EyeOffIcon />
-              Hide
+              {t('hide')}
             </Button>
           ) : null}
 
           {status !== 'active' ? (
             <Button disabled={isPending} onClick={() => run(restoreAction)}>
               <UploadIcon />
-              {status === 'sold' ? 'Relist' : 'Publish'}
+              {status === 'sold' ? t('relist') : t('publish')}
             </Button>
           ) : null}
 

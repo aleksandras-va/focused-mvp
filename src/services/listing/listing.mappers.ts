@@ -1,7 +1,6 @@
 import 'server-only';
 
 import type { ModelCategory } from '@/db/types';
-import { LISTING_LABELS } from '@/lib/listing-options';
 import type {
   ListingCardRow,
   ListingDetailItemRow,
@@ -124,11 +123,11 @@ function mapToItemDetail(row: ListingDetailItemRow): ListingItemDetail {
     mount: row.mount_name,
     category: itemCategory(row),
     priceCents: row.price_cents,
-    cosmeticCondition: LISTING_LABELS.get(row.cosmetic_condition) ?? row.cosmetic_condition,
-    functionalCondition: LISTING_LABELS.get(row.functional_condition) ?? row.functional_condition,
+    cosmeticCondition: row.cosmetic_condition,
+    functionalCondition: row.functional_condition,
     shutterCount: row.shutter_count,
     soldSeparately: row.sold_separately,
-    inclusions: row.inclusions.map(({ inclusion }) => LISTING_LABELS.get(inclusion) ?? inclusion),
+    inclusions: row.inclusions.map(({ inclusion }) => inclusion),
   };
 }
 

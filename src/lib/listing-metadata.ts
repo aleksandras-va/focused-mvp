@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
+import type { getTranslations } from 'next-intl/server';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
-import { formatCount, formatPrice } from './format';
+import { formatPrice } from './format';
 
 const SITE_NAME = 'exposé';
+
+type Translate = Awaited<ReturnType<typeof getTranslations<never>>>;
 
 function joinParts(parts: (string | null)[]) {
   return parts.filter(Boolean).join(' · ');
@@ -25,26 +28,37 @@ function listingMetadata(
   };
 }
 
-export function itemMetadata(listing: ListingDetail, item: ListingItemDetail): Metadata {
+export function itemMetadata(
+  listing: ListingDetail,
+  item: ListingItemDetail,
+  t: Translate,
+): Metadata {
   const title = joinParts([
     item.modelName,
     item.priceCents === null ? null : formatPrice(item.priceCents),
   ]);
   const description = joinParts([
-    `${item.cosmeticCondition} condition`,
-    item.shutterCount === null ? null : `${formatCount(item.shutterCount)} shutter count`,
+    t('listing.metadata.condition', {
+      condition: t(`enums.cosmeticCondition.${item.cosmeticCondition}`),
+    }),
+    item.shutterCount === null
+      ? null
+      : t('listing.metadata.shutterCount', { count: item.shutterCount }),
     listing.city,
   ]);
 
   return listingMetadata(title, description, `/items/${item.id}`, listing.photos[0]?.largeUrl);
 }
 
-export function bundleMetadata(listing: ListingDetail): Metadata {
+export function bundleMetadata(listing: ListingDetail, t: Translate): Metadata {
   const title = joinParts([
     listing.title,
     listing.priceCents === null ? null : formatPrice(listing.priceCents),
   ]);
-  const description = joinParts([`Bundle of ${listing.items.length} items`, listing.city]);
+  const description = joinParts([
+    t('listing.metadata.bundleOf', { count: listing.items.length }),
+    listing.city,
+  ]);
 
   return listingMetadata(title, description, `/bundles/${listing.id}`, listing.photos[0]?.largeUrl);
 }

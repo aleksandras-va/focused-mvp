@@ -2,11 +2,11 @@
   "login": {
     "metaTitle": "Prisijungti",
     "title": "Sveiki atvykę į exposé",
-    "subtitle": "Prisijunkite, kad galėtumėte susisiekti su pardavėjais arba įkelti savo skelbimus.",
+    "subtitle": "Prisijunk, kad galėtum susisiekti su pardavėjais arba įkelti savo skelbimus.",
     "switchLabel": "Prisijungti arba registruotis",
     "or": "arba",
     "email": "El. paštas",
-    "emailPlaceholder": "jus@pavyzdys.lt",
+    "emailPlaceholder": "vardas@pavyzdys.lt",
     "password": "Slaptažodis",
     "signIn": {
       "title": "Prisijungti",
@@ -20,20 +20,21 @@
     }
   },
   "authErrors": {
-    "unauthenticated": "Pirmiausia prisijunkite.",
+    "unauthenticated": "Pirmiausia prisijunk.",
     "invalid_email": "Neteisingas el. pašto adresas.",
-    "email_taken": "Šis el. paštas jau užregistruotas — prisijunkite.",
+    "email_taken": "Šis el. paštas jau užregistruotas — prisijunk.",
     "invalid_credentials": "Neteisingas el. paštas arba slaptažodis.",
     "password_too_short": "Slaptažodis turi būti bent {min} simbolių.",
     "password_only_numbers": "Slaptažodis negali būti vien iš skaičių.",
-    "password_repetitive": "Slaptažodis per daug pasikartojantis — naudokite įvairesnių simbolių.",
-    "password_contains_email": "Slaptažodyje negali būti jūsų el. pašto adreso."
+    "password_repetitive": "Slaptažodis per daug pasikartojantis — naudok įvairesnių simbolių.",
+    "password_contains_email": "Slaptažodyje negali būti tavo el. pašto adreso."
   },
   "common": {
     "sellGear": "Parduoti",
     "logIn": "Prisijungti",
     "messages": "Žinutės",
-    "about": "Apie"
+    "about": "Apie",
+    "back": "Atgal"
   },
   "enums": {
     "category": {
@@ -58,6 +59,25 @@
       "good": "Gera",
       "well_used": "Gerokai naudota",
       "damaged": "Pažeista"
+    },
+    "functionalCondition": {
+      "fully_working": "Veikia puikiai",
+      "minor_issues": "Smulkūs trūkumai",
+      "faulty": "Neveikia"
+    },
+    "inclusion": {
+      "original_box": "Originali dėžutė",
+      "charger": "Kroviklis",
+      "oem_battery": "Originali baterija",
+      "third_party_battery": "Neoriginali baterija",
+      "body_cap": "Korpuso dangtelis",
+      "rear_cap": "Galinis dangtelis",
+      "lens_hood": "Blenda",
+      "strap": "Dirželis",
+      "memory_card": "Atminties kortelė",
+      "case": "Dėklas arba krepšys",
+      "manual": "Instrukcija",
+      "receipt": "Pirkimo čekis"
     }
   },
   "header": {
@@ -71,8 +91,8 @@
   },
   "search": {
     "title": "Paieška",
-    "description": "Ieškokite fotoaparatų, objektyvų ir gamintojų",
-    "placeholder": "Pabandykite „fuji xt3“, „helios“ arba „sony“",
+    "description": "Ieškok fotoaparatų, objektyvų ir gamintojų",
+    "placeholder": "Pabandyk „fuji xt3“, „helios“ arba „sony“",
     "trigger": "Ieškoti fotoaparatų, objektyvų ir gamintojų",
     "recentlyViewed": "Neseniai žiūrėti",
     "suggested": "Siūlomi",
@@ -81,7 +101,7 @@
     "brand": "Gamintojas",
     "film": "Juostinis",
     "loading": "Įkeliama…",
-    "startTyping": "Pradėkite rašyti.",
+    "startTyping": "Pradėk rašyti.",
     "searching": "Ieškoma…",
     "nothingFound": "Nieko nerasta.",
     "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
@@ -98,9 +118,9 @@
       "price_desc": "Brangiausi"
     },
     "noMatches": "Skelbimų nerasta",
-    "noMatchesHint": "Pabandykite mažiau filtrų arba užsukite vėliau.",
+    "noMatchesHint": "Pabandyk mažiau filtrų arba užsuk vėliau.",
     "empty": "Kol kas nieko nėra",
-    "emptyHint": "Būkite pirmas, įkėlęs skelbimą.",
+    "emptyHint": "Būk tarp pirmųjų – įkelk skelbimą.",
     "clearFilters": "Išvalyti filtrus",
     "loadMore": "Rodyti daugiau",
     "filters": {
@@ -126,28 +146,28 @@
       "alt": "Fotografuota su {gear}, {place}"
     },
     "sellBreak": {
-      "eyebrow": "Pardavimas",
+      "eyebrow": "Parduok",
       "title": "Fotoaparatas dulka stalčiuje?",
-      "description": "Skelbimas kuriamas iš katalogo, tad nereikia sugalvoti pavadinimo, o pirkėjai jį randa pagal modelį.",
+      "description": "Skelbimas kuriamas iš katalogo, o pirkėjai jį randa pagal modelį.",
       "steps": {
         "pick": {
-          "title": "Pasirinkite modelį",
-          "description": "Išsirinkite jį iš katalogo, užuot rašę pavadinimą."
+          "title": "Pasirink modelį",
+          "description": "Išsirink jį iš katalogo."
         },
         "answer": {
-          "title": "Atsakykite, ko klausia pirkėjai",
+          "title": "Atsakyk, ko klausia pirkėjai",
           "description": "Kadrų skaičius, būklė, kas yra dėžutėje."
         },
         "publish": {
-          "title": "Įkelkite nuotraukas ir paskelbkite",
-          "description": "Iki 12 tikro daikto nuotraukų skelbime."
+          "title": "Įkelk nuotraukas ir paskelbk",
+          "description": ""
         }
       }
     },
     "modelUnavailable": {
       "title": "Šiuo metu {model} niekas neparduoda",
       "description": "Štai artimiausia šiuo metu siūloma technika.",
-      "sellYours": "Parduokite savo",
+      "sellYours": "Parduok savo",
       "browseAll": "Visi skelbimai"
     },
     "similar": {
@@ -163,5 +183,90 @@
     "noPrice": "Kaina dar nenurodyta",
     "itemCount": "{count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
     "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}"
+  },
+  "listing": {
+    "bundle": "Rinkinys",
+    "bundleBadge": "Rinkinys · {count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
+    "forAll": "už visus {count, plural, one {# daiktą} few {# daiktus} other {# daiktų}}",
+    "facts": {
+      "cosmetic": "Išvaizda",
+      "functional": "Techninė būklė",
+      "shutter": "Kadrai",
+      "shutterCount": "Kadrų skaičius"
+    },
+    "inThisBundle": "Šiame rinkinyje",
+    "itemCount": "{count, plural, one {# daiktas} few {# daiktai} other {# daiktų}}",
+    "fromSeller": "Aprašymas",
+    "inTheBox": "Komplekte",
+    "included": "Komplekte:",
+    "soldOnItsOwn": "Parduodama ir atskirai · {price}",
+    "priceOnItsOwn": "{price} atskirai",
+    "bundleOnly": "Tik rinkinyje",
+    "alsoInBundle": "Taip pat parduodama rinkinyje:",
+    "onlyInBundle": "Parduodama tik rinkinyje:",
+    "logInForPhone": "Prisijunk, kad matytum telefono numerį",
+    "safety": "Susitik viešoje vietoje ir patikrink techniką prieš mokant. Niekada nesiųsk pinigų iš anksto.",
+    "seller": {
+      "store": "Parduotuvė",
+      "private": "Privatus pardavėjas",
+      "noCity": "Miestas nenurodytas"
+    },
+    "message": {
+      "button": "Rašyti pardavėjui",
+      "title": "Žinutė pardavėjui",
+      "placeholder": "Sveiki, norėčiau pasiteirauti dėl...",
+      "send": "Siųsti",
+      "sending": "Siunčiama…"
+    },
+    "owner": {
+      "yourAd": "Tavo skelbimas",
+      "notices": {
+        "draft": "Dar nepaskelbtas — šį puslapį matai tik tu.",
+        "sold": "Pažymėtas kaip parduotas, todėl pirkėjai šio puslapio nebemato.",
+        "removed": "Paslėptas, todėl pirkėjai šio puslapio nebemato. Paskelbk, kad jis vėl būtų matomas."
+      },
+      "edit": "Redaguoti",
+      "continueEditing": "Tęsti redagavimą",
+      "markSold": "Pažymėti kaip parduotą",
+      "hide": "Paslėpti",
+      "publish": "Paskelbti",
+      "relist": "Paskelbti iš naujo",
+      "delete": {
+        "button": "Ištrinti",
+        "title": "Ištrinti šį skelbimą?",
+        "description": "Skelbimas, jo daiktai ir nuotraukos bus pašalinti visam laikui. Jei nori jį tik laikinai išimti iš svetainės, geriau paslėpk.",
+        "keep": "Palikti",
+        "confirm": "Ištrinti"
+      }
+    },
+    "metadata": {
+      "condition": "Būklė: {condition}",
+      "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}",
+      "bundleOf": "Rinkinys iš {count, plural, one {# daikto} other {# daiktų}}"
+    },
+    "noPrice": "Kaina dar nenurodyta"
+  },
+  "messages": {
+    "title": "Žinutės",
+    "empty": "Žinučių dar nėra",
+    "emptyHint": "Pokalbiai dėl skelbimų atsiras čia.",
+    "browseAds": "Žiūrėti skelbimus",
+    "deletedAd": "Ištrintas skelbimas",
+    "adRemoved": "Pardavėjas ištrynė šį skelbimą.",
+    "aboutAd": "Dėl šio skelbimo",
+    "adNotPublic": "Šis skelbimas nebėra viešas.",
+    "viewAd": "Žiūrėti skelbimą",
+    "backToMessages": "Atgal į žinutes",
+    "replyPlaceholder": "Rašyk atsakymą…",
+    "emailNotice": "Jei pašnekovas dar neperskaitė ankstesnių žinučių, jis gaus el. laišką.",
+    "send": "Siųsti",
+    "sending": "Siunčiama…"
+  },
+  "conversationErrors": {
+    "listing_unavailable": "Šis skelbimas nebegalioja.",
+    "own_listing": "Negali rašyti sau dėl savo paties skelbimo.",
+    "empty_message": "Pirma parašyk žinutę.",
+    "message_too_long": "Žinutė gali būti ne ilgesnė nei {max} simbolių.",
+    "not_found": "Pokalbis nerastas."
   }
 }
