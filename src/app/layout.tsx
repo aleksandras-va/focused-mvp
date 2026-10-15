@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Inter } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
@@ -34,16 +36,21 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const unreadMessages = user ? await conversationService.countUnread(user.id) : 0;
 
   return (
-    <html lang="en" className={cn(inter.variable, geist.variable, 'h-full', 'antialiased')}>
+    <html
+      lang={await getLocale()}
+      className={cn(inter.variable, geist.variable, 'h-full', 'antialiased')}
+    >
       <body className="flex min-h-full flex-col">
-        <SiteHeader
-          user={user ? { displayName: user.displayName, unreadMessages } : null}
-          searchAction={searchSiteAction}
-          suggestionsAction={getSearchSuggestionsAction}
-          trackSearchAction={trackSearchAction}
-        />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <NextIntlClientProvider>
+          <SiteHeader
+            user={user ? { displayName: user.displayName, unreadMessages } : null}
+            searchAction={searchSiteAction}
+            suggestionsAction={getSearchSuggestionsAction}
+            trackSearchAction={trackSearchAction}
+          />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

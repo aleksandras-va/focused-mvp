@@ -54,8 +54,9 @@ mount is in scope.
   file, Aleksandras runs `pnpm db:migrate` — locally and against production — then
   `pnpm db:codegen`, then Claude reads the schema. No ad-hoc `ALTER` in psql.
 - Money is stored as EUR cents, never floats.
-- Everything is English: routes, copy, identifiers, errors. Model names stay canonical
-  ("X-T3"). Lithuanian comes later as i18n.
+- Code is English: routes, identifiers, error codes. User-facing text is Lithuanian,
+  from `messages/lt.json` through next-intl — never inline. Model names stay canonical
+  ("X-T3").
 - Prefer invariants the database enforces over checks duplicated in application code.
 - `pnpm lint` (Biome) must pass.
 - Verify database work by reading the live database, not by assuming.

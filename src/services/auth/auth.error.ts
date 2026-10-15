@@ -1,3 +1,9 @@
 import 'server-only';
 
-export class AuthError extends Error {}
+import type { AuthErrorCode } from './auth.types';
+
+export class AuthError extends Error {
+  constructor(readonly code: AuthErrorCode) {
+    super(code);
+  }
+}

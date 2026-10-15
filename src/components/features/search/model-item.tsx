@@ -1,6 +1,6 @@
+import { useTranslations } from 'next-intl';
 import { CommandItem } from '@/components/ui/command';
 import { formatPrice } from '@/lib/format';
-import { CATEGORY_LABELS } from '@/lib/listing-options';
 import type { CatalogModelWithAds } from '@/services/model-catalog/model-catalog.types';
 
 interface ModelItemProps {
@@ -9,6 +9,8 @@ interface ModelItemProps {
 }
 
 export function ModelItem({ model, onSelect }: ModelItemProps) {
+  const t = useTranslations();
+
   return (
     <CommandItem
       className="px-3 py-2.5"
@@ -19,15 +21,17 @@ export function ModelItem({ model, onSelect }: ModelItemProps) {
         <div className="flex flex-col gap-0.5">
           <span>{model.displayName}</span>
           <span className="text-xs text-muted-foreground">
-            {CATEGORY_LABELS[model.category]}
+            {t(`enums.category.${model.category}`)}
             {model.mount ? ` · ${model.mount.name}` : ''}
-            {model.isFilm ? ' · Film' : ''}
+            {model.isFilm ? ` · ${t('search.film')}` : ''}
           </span>
         </div>
         {model.adCount > 0 ? (
           <span className="shrink-0 text-xs font-medium text-primary">
-            {model.adCount === 1 ? '1 ad' : `${model.adCount} ads`}
-            {model.minPriceCents !== null ? ` · from ${formatPrice(model.minPriceCents)}` : ''}
+            {t('search.adCount', { count: model.adCount })}
+            {model.minPriceCents !== null
+              ? ` · ${t('search.fromPrice', { price: formatPrice(model.minPriceCents) })}`
+              : ''}
           </span>
         ) : null}
       </div>

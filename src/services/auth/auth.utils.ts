@@ -26,20 +26,20 @@ export async function toAuthUser(row: {
 
 export function assertStrongPassword(password: string, email: string) {
   if (password.length < MIN_PASSWORD_LENGTH) {
-    throw new AuthError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
+    throw new AuthError('password_too_short');
   }
 
   if (/^\d+$/.test(password)) {
-    throw new AuthError('Password cannot be only numbers.');
+    throw new AuthError('password_only_numbers');
   }
 
   if (new Set(password).size < MIN_PASSWORD_DISTINCT_CHARACTERS) {
-    throw new AuthError('Password is too repetitive — mix in more different characters.');
+    throw new AuthError('password_repetitive');
   }
 
   const emailName = email.split('@')[0];
 
   if (emailName.length >= 3 && password.toLowerCase().includes(emailName)) {
-    throw new AuthError('Password cannot contain your email address.');
+    throw new AuthError('password_contains_email');
   }
 }

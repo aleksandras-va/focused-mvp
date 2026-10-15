@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState, useTransition } from 'react';
 import { ModelItem } from '@/components/features/search/model-item';
 import {
@@ -37,6 +38,7 @@ export function SearchDialog({
   suggestionsAction,
   trackSearchAction,
 }: SearchDialogProps) {
+  const t = useTranslations('search');
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<BrandAndModelSearchResults>({ brands: [], models: [] });
   const [suggested, setSuggested] = useState<CatalogModelWithAds[]>([]);
@@ -114,21 +116,17 @@ export function SearchDialog({
     <CommandDialog
       open={open}
       onOpenChange={changeOpen}
-      title="Search"
-      description="Search cameras, lenses and brands"
+      title={t('title')}
+      description={t('description')}
       className="top-24 sm:max-w-2xl"
     >
       <Command shouldFilter={false} className="p-2">
-        <CommandInput
-          placeholder="Try “fuji xt3”, “helios” or “sony”"
-          value={term}
-          onValueChange={setTerm}
-        />
+        <CommandInput placeholder={t('placeholder')} value={term} onValueChange={setTerm} />
         <CommandList className="mt-2 max-h-[min(28rem,60vh)]">
           {browsing ? (
             <>
               {recent.length > 0 ? (
-                <CommandGroup className="p-2" heading="Recently viewed">
+                <CommandGroup className="p-2" heading={t('recentlyViewed')}>
                   {recent.map((listing) => (
                     <CommandItem
                       className="px-3 py-2.5"
@@ -147,20 +145,20 @@ export function SearchDialog({
                 </CommandGroup>
               ) : null}
               {suggested.length > 0 ? (
-                <CommandGroup className="p-2" heading="Suggested">
+                <CommandGroup className="p-2" heading={t('suggested')}>
                   {suggested.map((model) => (
                     <ModelItem key={model.id} model={model} onSelect={goToModel} />
                   ))}
                 </CommandGroup>
               ) : null}
               {recent.length === 0 && suggested.length === 0 ? (
-                <CommandEmpty>{isSearching ? 'Loading…' : 'Start typing.'}</CommandEmpty>
+                <CommandEmpty>{isSearching ? t('loading') : t('startTyping')}</CommandEmpty>
               ) : null}
             </>
           ) : (
             <>
               {results.brands.length > 0 ? (
-                <CommandGroup className="p-2" heading="Brands">
+                <CommandGroup className="p-2" heading={t('brands')}>
                   {results.brands.map((brand) => (
                     <CommandItem
                       className="px-3 py-2.5"
@@ -172,21 +170,21 @@ export function SearchDialog({
                     >
                       <div className="flex flex-1 items-center justify-between gap-4">
                         <span>{brand.name}</span>
-                        <span className="text-xs text-muted-foreground">Brand</span>
+                        <span className="text-xs text-muted-foreground">{t('brand')}</span>
                       </div>
                     </CommandItem>
                   ))}
                 </CommandGroup>
               ) : null}
               {results.models.length > 0 ? (
-                <CommandGroup className="p-2" heading="Models">
+                <CommandGroup className="p-2" heading={t('models')}>
                   {results.models.map((model) => (
                     <ModelItem key={model.id} model={model} onSelect={goToModel} />
                   ))}
                 </CommandGroup>
               ) : null}
               {results.brands.length === 0 && results.models.length === 0 ? (
-                <CommandEmpty>{isSearching ? 'Searching…' : 'Nothing found.'}</CommandEmpty>
+                <CommandEmpty>{isSearching ? t('searching') : t('nothingFound')}</CommandEmpty>
               ) : null}
             </>
           )}

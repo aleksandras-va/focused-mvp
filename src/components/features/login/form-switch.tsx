@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface FormSwitchProps {
@@ -7,13 +8,15 @@ interface FormSwitchProps {
 }
 
 const OPTIONS = [
-  { form: 'signin', label: 'Log in' },
-  { form: 'signup', label: 'Create account' },
+  { form: 'signin', label: 'signIn.submit' },
+  { form: 'signup', label: 'signUp.submit' },
 ] as const;
 
 export function FormSwitch({ activeForm, className }: FormSwitchProps) {
+  const t = useTranslations('login');
+
   return (
-    <nav aria-label="Log in or sign up" className={cn('flex rounded-full bg-muted p-1', className)}>
+    <nav aria-label={t('switchLabel')} className={cn('flex rounded-full bg-muted p-1', className)}>
       {OPTIONS.map(({ form, label }) => (
         <Link
           key={form}
@@ -26,7 +29,7 @@ export function FormSwitch({ activeForm, className }: FormSwitchProps) {
             form === activeForm && 'bg-background text-foreground shadow-sm',
           )}
         >
-          {label}
+          {t(label)}
         </Link>
       ))}
     </nav>

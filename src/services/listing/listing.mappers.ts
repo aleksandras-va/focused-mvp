@@ -38,9 +38,7 @@ export function mapToSummary(row: ListingCardRow, viewerId: string | null): List
     firstItemId: first?.id ?? null,
     brand: first?.brand_name ?? null,
     mount: first?.mount_name ?? null,
-    cosmeticCondition: first
-      ? (LISTING_LABELS.get(first.cosmetic_condition) ?? first.cosmetic_condition)
-      : null,
+    cosmeticCondition: first?.cosmetic_condition ?? null,
     shutterCount: first?.shutter_count ?? null,
     coverUrl: row.cover_key ? photoService.getPublicUrl(row.cover_key, 'card') : null,
     isOwner: row.seller_id === viewerId,

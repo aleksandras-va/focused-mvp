@@ -1,12 +1,8 @@
 import type { CosmeticCondition, ModelCategory } from '@/db/tables';
 
-export const BROWSE_SORTS = [
-  { value: 'newest', label: 'Newest first' },
-  { value: 'price_asc', label: 'Price: low to high' },
-  { value: 'price_desc', label: 'Price: high to low' },
-] as const;
+export const BROWSE_SORTS = ['newest', 'price_asc', 'price_desc'] as const;
 
-export type BrowseSort = (typeof BROWSE_SORTS)[number]['value'];
+export type BrowseSort = (typeof BROWSE_SORTS)[number];
 
 export type BrowseFilters = {
   category: ModelCategory | null;
@@ -50,7 +46,7 @@ export function parseBrowseFilters(params: SearchParams): BrowseFilters {
     minPriceCents: euros(params, 'min'),
     maxPriceCents: euros(params, 'max'),
     cosmeticCondition: CONDITIONS.find((c) => c === condition) ?? null,
-    sort: BROWSE_SORTS.find((s) => s.value === sort)?.value ?? 'newest',
+    sort: BROWSE_SORTS.find((s) => s === sort) ?? 'newest',
   };
 }
 

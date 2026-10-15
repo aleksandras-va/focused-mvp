@@ -1,6 +1,6 @@
 import { CameraIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { ListingCard } from '@/components/features/browse/listing-card';
+import { ListingCard, type ListingCardItem } from '@/components/features/browse/listing-card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -35,16 +35,18 @@ const buttonVariantNames = [
   'link',
 ] as const;
 
-const sampleCard = {
+const sampleCard: ListingCardItem = {
   href: '#',
   title: 'Sony FE 24-70mm F2.8 GM II',
-  subtitle: 'Sony',
-  detail: 'Sony E',
+  brand: 'Sony',
+  itemCount: 1,
+  place: 'Sony E',
+  shutterCount: null,
   priceCents: 189000,
-  condition: 'Excellent',
+  condition: 'excellent',
   imageUrl: null,
   isBundle: false,
-  statusLabel: null,
+  status: 'active',
   editHref: null,
 };
 
@@ -162,14 +164,14 @@ export default function StyleguidePage() {
             item={{
               ...sampleCard,
               title: 'Canon EOS R6 Mark II + RF 24-105mm F4 L IS USM',
-              subtitle: '2 items',
-              detail: '12,400 shutter actuations',
+              itemCount: 2,
+              shutterCount: 12400,
               priceCents: 265000,
               isBundle: true,
             }}
           />
-          <ListingCard item={{ ...sampleCard, statusLabel: 'Draft', editHref: '#' }} />
-          <ListingCard item={{ ...sampleCard, priceCents: null, condition: '' }} />
+          <ListingCard item={{ ...sampleCard, status: 'draft', editHref: '#' }} />
+          <ListingCard item={{ ...sampleCard, priceCents: null, condition: null }} />
         </div>
       </Section>
     </div>

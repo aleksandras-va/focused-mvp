@@ -3,6 +3,7 @@
 import { MessageCircleIcon, SearchIcon, UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type HeaderUser, MobileMenu } from '@/components/features/header/mobile-menu';
 import { UnreadBadge } from '@/components/features/header/unread-badge';
@@ -25,12 +26,7 @@ type SiteHeaderProps = {
   trackSearchAction: (search: SearchOutcome) => Promise<void>;
 };
 
-const navigation = [
-  { href: '/?category=camera', label: 'Cameras' },
-  { href: '/?category=lens', label: 'Lenses' },
-  { href: '/?category=accessory', label: 'Accessories' },
-  // { href: '/stores', label: 'Stores' },
-];
+const navigationCategories = ['camera', 'lens', 'accessory'] as const;
 
 const centerSlotClass = 'absolute transition-[opacity,visibility] duration-200';
 
@@ -40,6 +36,11 @@ export function SiteHeader({
   suggestionsAction,
   trackSearchAction,
 }: SiteHeaderProps) {
+  const t = useTranslations();
+  const navigation = navigationCategories.map((category) => ({
+    href: `/?category=${category}`,
+    label: t(`enums.categoryPlural.${category}`),
+  }));
   const pathname = usePathname();
   const scrolled = useScrolled(24);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -93,7 +94,7 @@ export function SiteHeader({
               <Button
                 variant="ghost"
                 size="icon"
-                aria-label="Search"
+                aria-label={t('header.search')}
                 className="group-data-expanded/header:hidden md:hidden"
                 onClick={openSearch}
               >
@@ -104,7 +105,7 @@ export function SiteHeader({
                 <>
                   <Link
                     href="/messages"
-                    aria-label="Messages"
+                    aria-label={t('common.messages')}
                     className={cn(
                       buttonVariants({ variant: 'ghost', size: 'icon' }),
                       'relative -mr-2 hidden md:inline-flex',
@@ -132,12 +133,12 @@ export function SiteHeader({
                   href="/login"
                   className={cn(buttonVariants({ variant: 'ghost' }), 'hidden md:inline-flex')}
                 >
-                  Log in
+                  {t('common.logIn')}
                 </Link>
               )}
 
               <Link href="/sell" className={buttonVariants()}>
-                Sell gear
+                {t('common.sellGear')}
               </Link>
 
               <MobileMenu user={user} navigation={navigation} />

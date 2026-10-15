@@ -15,7 +15,7 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Components split into `ui/` (atomic: shadcn plus our own small controls) and
   `features/<name>/` (significant composed areas).
 - No comments in code.
-- Everything in English. Lithuanian later, as i18n.
+- Code, routes and identifiers in English. User-facing text comes from the message catalog.
 - Money is integer EUR cents.
 - Table names are singular: `model`, `brand`, `user`, `listing`. Constraints and indexes
   follow (`model_pkey`, `listing_seller_id_idx`). Kysely quotes identifiers, so the
@@ -189,6 +189,25 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - One `listing_item` table for all item types. Specs describe the product and live in
   the catalog; items store only sale facts, so nullable `shutter_count` is the only
   type-specific column. No per-type listing tables.
+
+## Language
+
+- next-intl, Lithuanian only, no locale in the URL. The locale is fixed in
+  `src/i18n/request.ts`; adding a language later means locale routing and another file.
+- Every user-facing string lives in `messages/lt.json`, keyed by area (`login.title`).
+  `messages/en.json` is kept alongside with the same keys. `lt.json` types the keys, so
+  a missing or misspelled key fails the type check.
+- Server Components read text with `useTranslations` (or `getTranslations` when async),
+  client components with `useTranslations` under the provider in the root layout.
+- Services never return display text. They throw an error with a code
+  (`AuthError('email_taken')`); `app/` translates it from the area's error namespace
+  (`authErrors.email_taken`). A redirect carries the code, not the message.
+- Enum labels live in the catalog under `enums.*`, keyed by the enum value; DTOs carry the
+  raw value (`cosmeticCondition: 'good'`), never a label. `src/lib/format.ts` formats
+  numbers, prices and dates as `lt-LT`.
+- Converted area by area. Done: login, the homepage (browse, listing card, header, footer,
+  search). The `*_LABELS` lists in `src/lib/listing-options.ts` go once their last English
+  consumer is converted.
 
 ## Email
 

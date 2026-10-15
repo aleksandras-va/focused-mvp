@@ -28,7 +28,7 @@ import {
   optionalPriceCents,
   parsePriceCents,
   parseShutterCount,
-  similarListingsTitle,
+  similarListingsBasis,
 } from './listing.utils';
 
 export const listingService = {
@@ -71,7 +71,8 @@ export const listingService = {
     if (!similar) return null;
 
     return {
-      title: similarListingsTitle(similar.step, model),
+      ...similarListingsBasis(similar.step, model),
+      category: model.category,
       listings: similar.rows.map((row) => mapToSummary(row, viewerId)),
     };
   },

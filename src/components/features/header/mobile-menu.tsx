@@ -2,6 +2,7 @@
 
 import { MenuIcon, MessageCircleIcon, UserIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -27,13 +28,16 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ user, navigation }: MobileMenuProps) {
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        render={<Button variant="ghost" size="icon" aria-label="Menu" className="md:hidden" />}
+        render={
+          <Button variant="ghost" size="icon" aria-label={t('header.menu')} className="md:hidden" />
+        }
       >
         <MenuIcon className="size-5" />
       </SheetTrigger>
@@ -43,7 +47,7 @@ export function MobileMenu({ user, navigation }: MobileMenuProps) {
           <SheetTitle>
             <Logo />
           </SheetTitle>
-          <SheetDescription className="sr-only">Site navigation</SheetDescription>
+          <SheetDescription className="sr-only">{t('header.siteNavigation')}</SheetDescription>
         </SheetHeader>
 
         <nav className="flex flex-col gap-1 px-2">
@@ -68,7 +72,7 @@ export function MobileMenu({ user, navigation }: MobileMenuProps) {
                 className={buttonVariants({ variant: 'outline' })}
               >
                 <MessageCircleIcon />
-                Messages
+                {t('common.messages')}
                 <UnreadBadge count={user.unreadMessages} />
               </Link>
               <Link href="/user" onClick={close} className={buttonVariants({ variant: 'outline' })}>
@@ -78,11 +82,11 @@ export function MobileMenu({ user, navigation }: MobileMenuProps) {
             </>
           ) : (
             <Link href="/login" onClick={close} className={buttonVariants({ variant: 'outline' })}>
-              Log in
+              {t('common.logIn')}
             </Link>
           )}
           <Link href="/sell" onClick={close} className={buttonVariants()}>
-            Sell gear
+            {t('common.sellGear')}
           </Link>
         </SheetFooter>
       </SheetContent>

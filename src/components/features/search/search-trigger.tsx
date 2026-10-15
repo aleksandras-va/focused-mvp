@@ -1,4 +1,5 @@
 import { SearchIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface SearchTriggerProps {
@@ -7,6 +8,8 @@ interface SearchTriggerProps {
 }
 
 export function SearchTrigger({ onClick, className }: SearchTriggerProps) {
+  const t = useTranslations('search');
+
   return (
     <button
       type="button"
@@ -17,7 +20,7 @@ export function SearchTrigger({ onClick, className }: SearchTriggerProps) {
       )}
     >
       <SearchIcon className="absolute left-4 size-4 transition-colors group-hover/search:text-primary" />
-      <span className="truncate">Search cameras, lenses and brands</span>
+      <span className="truncate">{t('trigger')}</span>
       <kbd className="absolute right-4 hidden rounded-md border border-current/20 px-1.5 font-sans text-xs lg:inline">
         ⌘K
       </kbd>

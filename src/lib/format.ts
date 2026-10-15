@@ -1,18 +1,18 @@
-const priceFormatter = new Intl.NumberFormat('en-IE', {
+const priceFormatter = new Intl.NumberFormat('lt-LT', {
   style: 'currency',
   currency: 'EUR',
   maximumFractionDigits: 0,
 });
 
-const countFormatter = new Intl.NumberFormat('en-IE');
+const countFormatter = new Intl.NumberFormat('lt-LT');
 
-const monthFormatter = new Intl.DateTimeFormat('en-IE', { month: 'long', year: 'numeric' });
+const monthFormatter = new Intl.DateTimeFormat('lt-LT', { month: 'long', year: 'numeric' });
 
-const timeFormatter = new Intl.DateTimeFormat('en-IE', { hour: '2-digit', minute: '2-digit' });
+const timeFormatter = new Intl.DateTimeFormat('lt-LT', { hour: '2-digit', minute: '2-digit' });
 
-const dayFormatter = new Intl.DateTimeFormat('en-IE', { day: 'numeric', month: 'short' });
+const dayFormatter = new Intl.DateTimeFormat('lt-LT', { day: 'numeric', month: 'short' });
 
-const dateFormatter = new Intl.DateTimeFormat('en-IE', {
+const dateFormatter = new Intl.DateTimeFormat('lt-LT', {
   day: 'numeric',
   month: 'short',
   year: 'numeric',

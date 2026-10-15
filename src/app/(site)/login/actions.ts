@@ -15,7 +15,7 @@ export async function signInAction(formData: FormData) {
     analyticsService.identify(user);
   } catch (error) {
     if (error instanceof AuthError) {
-      redirect(`/login?form=signin&error=${encodeURIComponent(error.message)}`);
+      redirect(`/login?form=signin&error=${error.code}`);
     }
 
     throw error;
@@ -35,7 +35,7 @@ export async function signUpAction(formData: FormData) {
     await analyticsService.track(user.id, 'Signed Up', {});
   } catch (error) {
     if (error instanceof AuthError) {
-      redirect(`/login?form=signup&error=${encodeURIComponent(error.message)}`);
+      redirect(`/login?form=signup&error=${error.code}`);
     }
 
     throw error;
