@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { About } from '@/components/features/about';
 
-export const metadata: Metadata = {
-  title: 'Apie mus',
-  description: 'Kodėl atsirado exposé ir kuo jis skiriasi nuo bendrų skelbimų portalų.',
-};
+export async function generateMetadata() {
+  const t = await getTranslations('about');
+
+  return { title: t('eyebrow'), description: t('metaDescription') };
+}
 
 export default function AboutPage() {
   return <About />;

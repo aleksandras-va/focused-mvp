@@ -209,11 +209,10 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   raw value (`cosmeticCondition: 'good'`), never a label. `src/lib/format.ts` formats
   numbers, prices and dates as `lt-LT`.
 - Converted area by area. Done: login, the homepage (browse, listing card, header, footer,
-  search), item and bundle pages, messages, seller profile, sell flow, error pages, emails.
-  Left: the account page, the about page (Lithuanian but inline), and
-  `LISTING_STATUS_LABELS`, which goes with the account page.
-- Every service error is a code (`AuthError`, `ListingError`, `ConversationError`), and
-  `app/` translates it from `<area>Errors` in the catalog.
+  search), item and bundle pages, messages, seller profile, sell flow, account, about,
+  error pages, emails. `/styleguide` stays English; it 404s in production.
+- Every service error is a code (`AuthError`, `AccountError`, `ListingError`,
+  `ConversationError`), and `app/` translates it from `<area>Errors` in the catalog.
 - A bundle title is data (`ListingTitle`: names plus per-category counts); `formatListingTitle`
   in `src/lib/` turns it into text, so the counts are translated like any other string.
 

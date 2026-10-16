@@ -1,17 +1,4 @@
-import type {
-  CosmeticCondition,
-  FunctionalCondition,
-  Inclusion,
-  ListingStatus,
-  ModelCategory,
-} from '@/db/tables';
-
-export const LISTING_STATUS_LABELS: Record<ListingStatus, string> = {
-  draft: 'Draft',
-  active: 'Active',
-  sold: 'Sold',
-  removed: 'Removed',
-};
+import type { CosmeticCondition, FunctionalCondition, Inclusion, ModelCategory } from '@/db/tables';
 
 export const COSMETIC_CONDITIONS: CosmeticCondition[] = [
   'mint',

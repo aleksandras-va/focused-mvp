@@ -476,5 +476,115 @@
     "invalid_price": "Enter a valid price.",
     "invalid_shutter_count": "Shutter count must be a whole number.",
     "photo_storage_unavailable": "Photo uploads are not available right now."
+  },
+  "account": {
+    "metaTitle": "Account",
+    "store": {
+      "title": "Selling as",
+      "description": "How buyers see you.",
+      "private": "Private person",
+      "privateHint": "Your name on your ads.",
+      "store": "Store",
+      "storeHint": "A storefront and a store badge on your ads.",
+      "name": "Store name",
+      "nameHint": "Shown on your ads and storefront.",
+      "open": "Open a store"
+    },
+    "privateSeller": "Private seller",
+    "messages": "Messages",
+    "publicProfile": "See public profile",
+    "signOut": "Sign out",
+    "settings": "Settings",
+    "comingSoon": "Coming soon",
+    "saved": {
+      "profile": "Profile saved.",
+      "store": "Your store is open."
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Prefilled on every new ad. You can still change it per ad.",
+      "name": "Name",
+      "phone": "Phone",
+      "city": "City",
+      "save": "Save profile"
+    },
+    "prompt": {
+      "title": "Finish your profile",
+      "description": "We fill this in on every ad you post, so you only type it once.",
+      "name": "Name",
+      "namePlaceholder": "How buyers will see you",
+      "phone": "Phone",
+      "optional": "Optional",
+      "phoneHint": "You can leave your number off any ad and let buyers message you instead.",
+      "city": "City",
+      "cityHint": "Shown on your ads, so buyers know where the gear is.",
+      "save": "Save and continue",
+      "skip": "Skip for now"
+    },
+    "listings": {
+      "title": "Your ads",
+      "newAd": "New ad",
+      "empty": "No ads yet",
+      "emptyHint": "List a camera, lens or accessory in a few minutes.",
+      "all": "All",
+      "statusLabel": "Ad status"
+    }
+  },
+  "accountErrors": {
+    "missing_name": "Enter your name.",
+    "missing_store_name": "Enter a store name.",
+    "store_exists": "You already have a store.",
+    "invalid_store_name": "Store name needs at least one letter or number."
+  },
+  "about": {
+    "eyebrow": "About",
+    "metaDescription": "Why exposé exists and how it differs from general classifieds.",
+    "title": "Used camera gear without the guesswork.",
+    "intro": "exposé is a place in Lithuania to buy and sell used cameras, lenses and accessories. We built it because finding the right camera among thousands of ads for everything else was too hard.",
+    "photoAlt": "A mirror photo with a camera",
+    "why": {
+      "title": "Why we exist",
+      "lead": "In Lithuania, used gear is sold on general classifieds, where a camera sits next to a bike and a sofa. The same two problems keep coming up there.",
+      "problems": {
+        "names": {
+          "title": "One model, ten names",
+          "text": "Every seller writes the model their own way: “fuji xt3”, “Fujifilm XT-3”, “X T3 camera”. Search does not connect them, so searching for “X-T3” misses half the ads."
+        },
+        "details": {
+          "title": "The important part is missing",
+          "text": "Most ads have only a photo and a price. Shutter count, whether everything works, whether the charger and box are included — you have to ask in messages."
+        }
+      }
+    },
+    "different": {
+      "title": "What we do differently",
+      "lead": "An ad here is built from a clear structure, not free text. So every ad answers the same questions.",
+      "points": {
+        "catalog": {
+          "title": "A model from the catalog",
+          "text": "Sellers pick the model from a list instead of typing a name. Every ad for the same camera ends up in one place."
+        },
+        "questions": {
+          "title": "The questions buyers ask",
+          "text": "Shutter count, cosmetic and functional condition separately, a clear list of what is included — all visible at once."
+        },
+        "gearOnly": {
+          "title": "Camera gear only",
+          "text": "No sofas or bikes. Cameras, lenses and accessories — from people who actually shot with them."
+        }
+      }
+    },
+    "now": {
+      "eyebrow": "Where we are now",
+      "title": "A small project with big plans",
+      "early": "exposé is an early pilot. There is no big company behind it: it is built by a photography fan in Vilnius, in their spare time.",
+      "catalog": "We fill the catalog gradually. Can't find your model? Add it by name — we will review it and add it. Later we want to build a community here too: forums, chats, photo sharing."
+    },
+    "cta": {
+      "title": "Got gear gathering dust?",
+      "description": "You create an ad in a few minutes — no title to come up with.",
+      "sell": "Sell gear",
+      "browse": "Browse ads"
+    }
   }
 }

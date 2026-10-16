@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
@@ -16,6 +17,8 @@ export function SettingsCard({
   comingSoon = false,
   children,
 }: SettingsCardProps) {
+  const t = useTranslations('account');
+
   return (
     <section className={cn('relative min-w-0 rounded-3xl border p-5 sm:p-7', className)}>
       {comingSoon ? (
@@ -23,7 +26,7 @@ export function SettingsCard({
           variant="secondary"
           className="absolute top-5 right-5 bg-success/10 text-success sm:top-7 sm:right-7"
         >
-          Coming soon
+          {t('comingSoon')}
         </Badge>
       ) : null}
       <div

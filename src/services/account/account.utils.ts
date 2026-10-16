@@ -6,7 +6,7 @@ import { AccountError } from './account.error';
 export async function reserveStoreSlug(storeName: string) {
   const base = slugify(storeName);
 
-  if (!base) throw new AccountError('Store name needs at least one letter or number.');
+  if (!base) throw new AccountError('invalid_store_name');
 
   let candidate = base;
   let suffix = 2;

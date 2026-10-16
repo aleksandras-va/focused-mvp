@@ -274,7 +274,7 @@
     "joined": "Prisijungė: {month}",
     "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
     "empty": "Šiuo metu nieko neparduoda",
-    "emptyHint": "Užsuk vėliau – pardavėjai naujos technikos įkelia nuolat."
+    "emptyHint": "Užsuk vėliau - pardavėjai naujos technikos įkelia nuolat."
   },
   "errorPage": {
     "title": "Kažkas nepavyko",
@@ -430,7 +430,7 @@
       "labelOnItsOwn": "Kaina atskirai",
       "hint": "Kiek kainuotų vien ši prekė.",
       "separately": "Parduočiau ir atskirai",
-      "separatelyHint": "Ją ras ir tik šios prekės ieškantys pirkėjai."
+      "separatelyHint": "Parodyk pirkėjam, kad gali šią prekę iškomplektuoti ir parduoti atskirai."
     },
     "remove": {
       "ariaLabel": "Pašalinti prekę {number}",
@@ -472,5 +472,115 @@
     "invalid_price": "Įvesk tinkamą kainą.",
     "invalid_shutter_count": "Kadrų skaičius turi būti sveikasis skaičius.",
     "photo_storage_unavailable": "Nuotraukų įkėlimas šiuo metu neveikia."
+  },
+  "account": {
+    "metaTitle": "Paskyra",
+    "store": {
+      "title": "Parduodu kaip",
+      "description": "Kaip tave mato pirkėjai.",
+      "private": "Privatus asmuo",
+      "privateHint": "Skelbimuose rodomas tavo vardas.",
+      "store": "Parduotuvė",
+      "storeHint": "Parduotuvės puslapis ir ženklelis skelbimuose.",
+      "name": "Parduotuvės pavadinimas",
+      "nameHint": "Rodomas skelbimuose ir parduotuvės puslapyje.",
+      "open": "Atidaryti parduotuvę"
+    },
+    "privateSeller": "Privatus pardavėjas",
+    "messages": "Žinutės",
+    "publicProfile": "Viešas profilis",
+    "signOut": "Atsijungti",
+    "settings": "Nustatymai",
+    "comingSoon": "Netrukus",
+    "saved": {
+      "profile": "Profilis išsaugotas.",
+      "store": "Tavo parduotuvė atidaryta."
+    },
+    "profile": {
+      "title": "Profilis",
+      "description": "Įrašoma į kiekvieną naują skelbimą. Skelbime gali šią informaciją.",
+      "name": "Vardas",
+      "phone": "Telefonas",
+      "city": "Miestas",
+      "save": "Išsaugoti profilį"
+    },
+    "prompt": {
+      "title": "Užbaik savo profilį",
+      "description": "Šiuos duomenis įrašysime į kiekvieną tavo skelbimą, tad juos įvesi tik kartą.",
+      "name": "Vardas",
+      "namePlaceholder": "Kaip tave matys pirkėjai",
+      "phone": "Telefonas",
+      "optional": "Neprivaloma",
+      "phoneHint": "Bet kuriame skelbime numerio gali nerodyti – tada pirkėjai tau parašys žinutę.",
+      "city": "Miestas",
+      "cityHint": "Rodomas tavo skelbimuose, kad pirkėjai žinotų, kur yra technika.",
+      "save": "Išsaugoti ir tęsti",
+      "skip": "Kol kas praleisti"
+    },
+    "listings": {
+      "title": "Tavo skelbimai",
+      "newAd": "Naujas skelbimas",
+      "empty": "Skelbimų dar nėra",
+      "emptyHint": "Fotoaparatą, objektyvą ar priedą įkelsi per kelias minutes.",
+      "all": "Visi",
+      "statusLabel": "Skelbimo būsena"
+    }
+  },
+  "accountErrors": {
+    "missing_name": "Įrašyk savo vardą.",
+    "missing_store_name": "Įrašyk parduotuvės pavadinimą.",
+    "store_exists": "Parduotuvę jau turi.",
+    "invalid_store_name": "Parduotuvės pavadinime turi būti bent viena raidė ar skaičius."
+  },
+  "about": {
+    "eyebrow": "Apie mus",
+    "metaDescription": "Kodėl atsirado exposé ir kuo jis skiriasi nuo bendrų skelbimų portalų.",
+    "title": "Naudota foto technika be spėlionių.",
+    "intro": "exposé – tai vieta Lietuvoje pirkti ir parduoti naudotus fotoaparatus, objektyvus ir priedus. Sukūrėme ją, nes ieškoti tinkamo fotoaparato tarp tūkstančių skelbimų apie viską iš eilės buvo per sunku.",
+    "photoAlt": "Nuotrauka veidrodyje su fotoaparatu",
+    "why": {
+      "title": "Kodėl atsiradome",
+      "lead": "Lietuvoje naudotą techniką žmonės parduoda bendruose skelbimų portaluose – ten, kur šalia fotoaparato stovi dviratis ir sofa. Tokiose vietose kartojasi tos pačios dvi problemos.",
+      "problems": {
+        "names": {
+          "title": "Vienas modelis – dešimt pavadinimų",
+          "text": "Kiekvienas pardavėjas modelį užrašo savaip: „fuji xt3“, „Fujifilm XT-3“, „X T3 kamera“. Paieška šių variantų nesusieja, todėl ieškodamas „X-T3“ nerandi pusės skelbimų."
+        },
+        "details": {
+          "title": "Trūksta to, kas svarbiausia",
+          "text": "Skelbime dažniausiai tik nuotrauka ir kaina. Kiek kadrų, ar viskas veikia, ar yra kroviklis ir dėžutė – apie tai tenka klausinėti žinutėmis."
+        }
+      }
+    },
+    "different": {
+      "title": "Ką darome kitaip",
+      "lead": "Skelbimas čia kuriamas ne iš laisvo teksto, o iš aiškios struktūros. Todėl kiekvienas skelbimas atsako į tuos pačius klausimus.",
+      "points": {
+        "catalog": {
+          "title": "Modelis iš katalogo",
+          "text": "Pardavėjas pasirenka modelį iš sąrašo, o ne rašo pavadinimą. Visi to paties fotoaparato skelbimai atsiduria vienoje vietoje."
+        },
+        "questions": {
+          "title": "Klausimai, kuriuos užduoda pirkėjai",
+          "text": "Kadrų skaičius, išvaizda ir veikimas atskirai, aiškus komplektacijos sąrašas – viskas matyti iš karto, be papildomų klausimų."
+        },
+        "gearOnly": {
+          "title": "Tik foto technika",
+          "text": "Jokių sofų ir dviračių. Fotoaparatai, objektyvai ir priedai – iš žmonių, kurie jais tikrai fotografavo."
+        }
+      }
+    },
+    "now": {
+      "eyebrow": "Kur esame dabar",
+      "title": "Mažas projektas, didelis noras",
+      "early": "exposé kol kas – ankstyvas bandomasis projektas. Už jo nestovi didelė įmonė: jį kuria fotografiją mėgstantis žmogus Vilniuje, laisvalaikiu.",
+      "catalog": "Katalogą pildome palaipsniui. Neradai savo modelio? Pridėk jį pavadinimu – peržiūrėsime ir įtrauksime. Vėliau norime čia sukurti ir bendruomenę: forumus, pokalbius, pasidalinimą nuotraukomis."
+    },
+    "cta": {
+      "title": "Turi technikos, kuri dulka spintoje?",
+      "description": "Skelbimą sukursi per kelias minutes – nereikės sugalvoti pavadinimo.",
+      "sell": "Parduoti techniką",
+      "browse": "Naršyti skelbimus"
+    }
   }
 }

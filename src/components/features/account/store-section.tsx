@@ -1,4 +1,5 @@
 import { CheckIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
@@ -13,19 +14,16 @@ type StoreSectionProps = {
 };
 
 export function StoreSection({ store, action }: StoreSectionProps) {
+  const t = useTranslations('account.store');
   const options = [
-    { label: 'Private person', hint: 'Your name on your ads.', selected: !store },
-    {
-      label: 'Store',
-      hint: 'A storefront and a store badge on your ads.',
-      selected: Boolean(store),
-    },
+    { label: t('private'), hint: t('privateHint'), selected: !store },
+    { label: t('store'), hint: t('storeHint'), selected: Boolean(store) },
   ];
 
   return (
     <SettingsCard
-      title="Selling as"
-      description="How buyers see you."
+      title={t('title')}
+      description={t('description')}
       className="flex-[1_1_22rem]"
       comingSoon
     >
@@ -56,17 +54,17 @@ export function StoreSection({ store, action }: StoreSectionProps) {
       {store ? (
         <div className="flex items-center gap-2">
           <span className="font-medium">{store.name}</span>
-          <Badge variant="secondary">Store</Badge>
+          <Badge variant="secondary">{t('store')}</Badge>
         </div>
       ) : (
         <form action={action} className="flex flex-col gap-4">
           <Field>
-            <FieldLabel htmlFor="store-name">Store name</FieldLabel>
+            <FieldLabel htmlFor="store-name">{t('name')}</FieldLabel>
             <Input id="store-name" name="storeName" required />
-            <FieldDescription>Shown on your ads and storefront.</FieldDescription>
+            <FieldDescription>{t('nameHint')}</FieldDescription>
           </Field>
           <Button type="submit" variant="outline" className="self-start border-input">
-            Open a store
+            {t('open')}
           </Button>
         </form>
       )}
