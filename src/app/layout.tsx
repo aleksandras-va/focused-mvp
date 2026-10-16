@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Bricolage_Grotesque, Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getLocale } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { authService } from '@/services/auth/auth.service';
@@ -24,12 +24,16 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: { default: 'exposé', template: '%s | exposé' },
-  description: 'Marketplace for used cameras and lenses',
-  openGraph: { type: 'website', siteName: 'exposé' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('site');
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: { default: 'exposé', template: '%s | exposé' },
+    description: t('description'),
+    openGraph: { type: 'website', siteName: 'exposé' },
+  };
+}
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const user = await authService.getCurrentUserCached();

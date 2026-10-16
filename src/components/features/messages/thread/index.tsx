@@ -1,5 +1,6 @@
 import { ArrowLeftIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { ListingBanner } from '@/components/features/messages/thread/listing-banner';
 import { MessageList } from '@/components/features/messages/thread/message-list';
 import { ReplyForm } from '@/components/features/messages/thread/reply-form';
@@ -14,12 +15,14 @@ interface ThreadProps {
 }
 
 export function Thread({ conversation, error, sendAction }: ThreadProps) {
+  const t = useTranslations('messages');
+
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
       <div className="flex items-center gap-2">
         <Link
           href="/messages"
-          aria-label="Back to messages"
+          aria-label={t('backToMessages')}
           className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), '-ml-2')}
         >
           <ArrowLeftIcon />

@@ -35,7 +35,8 @@
     "sellGear": "Sell gear",
     "logIn": "Log in",
     "messages": "Messages",
-    "about": "About"
+    "about": "About",
+    "back": "Back"
   },
   "enums": {
     "category": {
@@ -60,6 +61,25 @@
       "good": "Good",
       "well_used": "Well used",
       "damaged": "Damaged"
+    },
+    "functionalCondition": {
+      "fully_working": "Fully working",
+      "minor_issues": "Minor issues",
+      "faulty": "Faulty"
+    },
+    "inclusion": {
+      "original_box": "Original box",
+      "charger": "Charger",
+      "oem_battery": "OEM battery",
+      "third_party_battery": "Third-party battery",
+      "body_cap": "Body cap",
+      "rear_cap": "Rear cap",
+      "lens_hood": "Lens hood",
+      "strap": "Strap",
+      "memory_card": "Memory card",
+      "case": "Case or bag",
+      "manual": "Manual",
+      "receipt": "Receipt"
     }
   },
   "header": {
@@ -166,5 +186,405 @@
     "noPrice": "No price yet",
     "itemCount": "{count, plural, one {# item} other {# items}}",
     "shutterCount": "{count, plural, one {# shutter actuation} other {# shutter actuations}}"
+  },
+  "listing": {
+    "bundle": "Bundle",
+    "bundleBadge": "Bundle · {count, plural, one {# item} other {# items}}",
+    "forAll": "for all {count}",
+    "facts": {
+      "cosmetic": "Cosmetic",
+      "functional": "Function",
+      "shutter": "Shutter",
+      "shutterCount": "Shutter count"
+    },
+    "inThisBundle": "In this bundle",
+    "itemCount": "{count, plural, one {# item} other {# items}}",
+    "fromSeller": "From the seller",
+    "inTheBox": "What is in the box",
+    "included": "Included:",
+    "soldOnItsOwn": "Also sold on its own · {price}",
+    "priceOnItsOwn": "{price} on its own",
+    "bundleOnly": "Bundle only",
+    "alsoInBundle": "Also sold as part of a bundle:",
+    "onlyInBundle": "Only sold as part of a bundle:",
+    "logInForPhone": "Log in to see the phone number",
+    "safety": "Meet somewhere public and check the gear before you pay. Never send money in advance.",
+    "seller": {
+      "store": "Store",
+      "private": "Private seller",
+      "noCity": "City not set"
+    },
+    "message": {
+      "button": "Message seller",
+      "title": "Message the seller",
+      "description": "Ask about the item or arrange a meeting. The seller gets an email and can reply here.",
+      "placeholder": "Hi, is this still available?",
+      "send": "Send",
+      "sending": "Sending…"
+    },
+    "owner": {
+      "yourAd": "Your ad",
+      "notices": {
+        "draft": "Not published yet — only you can see this page.",
+        "sold": "Marked as sold, so buyers no longer see this page.",
+        "removed": "Hidden, so buyers no longer see this page. Publish it to bring it back."
+      },
+      "edit": "Edit",
+      "continueEditing": "Continue editing",
+      "markSold": "Mark as sold",
+      "hide": "Hide",
+      "publish": "Publish",
+      "relist": "Relist",
+      "delete": {
+        "button": "Delete",
+        "title": "Delete this ad?",
+        "description": "The ad, its items and its photos are removed for good. Hide it instead if you only want it off the site for now.",
+        "keep": "Keep it",
+        "confirm": "Delete"
+      }
+    },
+    "metadata": {
+      "condition": "{condition} condition",
+      "shutterCount": "{count, plural, one {# shutter actuation} other {# shutter actuations}}",
+      "bundleOf": "Bundle of {count, plural, one {# item} other {# items}}"
+    },
+    "noPrice": "No price yet"
+  },
+  "messages": {
+    "title": "Messages",
+    "empty": "No messages yet",
+    "emptyHint": "Message a seller from an ad and the conversation shows up here.",
+    "browseAds": "Browse ads",
+    "deletedAd": "Deleted ad",
+    "adRemoved": "The seller removed this ad.",
+    "aboutAd": "About this ad",
+    "adNotPublic": "This ad is no longer public.",
+    "viewAd": "View ad",
+    "backToMessages": "Back to messages",
+    "replyPlaceholder": "Write a reply…",
+    "emailNotice": "The other side gets an email if they have not read your earlier messages.",
+    "send": "Send",
+    "sending": "Sending…"
+  },
+  "conversationErrors": {
+    "listing_unavailable": "This ad is no longer available.",
+    "own_listing": "You cannot message yourself about your own ad.",
+    "empty_message": "Write a message first.",
+    "message_too_long": "A message can be at most {max} characters.",
+    "not_found": "Conversation not found."
+  },
+  "sellerProfile": {
+    "store": "Store",
+    "joined": "Member since {month}",
+    "adCount": "{count, plural, one {# ad} other {# ads}}",
+    "empty": "Nothing for sale right now",
+    "emptyHint": "Check back later — sellers list new gear all the time."
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "The page could not be loaded. Try again, or head back to the front page.",
+    "home": "Home",
+    "retry": "Try again"
+  },
+  "notFound": {
+    "title": "Nothing here",
+    "description": "The ad may have been sold or removed, or the link is wrong.",
+    "browse": "Browse gear"
+  },
+  "citySelect": {
+    "placeholder": "Pick a city"
+  },
+  "site": {
+    "description": "Marketplace for used cameras and lenses"
+  },
+  "email": {
+    "greeting": "Hi {name},",
+    "tagline": "Used cameras, lenses and accessories.",
+    "account": "Your account",
+    "welcome": {
+      "subject": "Welcome to exposé",
+      "heading": "Welcome, {name}",
+      "intro": "Your exposé account is ready. You can now list your cameras, lenses and accessories.",
+      "sell": "Sell your gear",
+      "tipLabel": "Tip:",
+      "tip": "pick the exact model when you sell, so buyers searching for it find your ad.",
+      "browse": "Browse what is for sale"
+    },
+    "newMessage": {
+      "subject": "{sender} sent you a message",
+      "subjectAbout": "{sender} sent you a message about {listing}",
+      "reply": "Reply",
+      "notice": "You get one email per unread conversation. Reading it on exposé lets the next message reach you again."
+    }
+  },
+  "listingTitle": {
+    "untitled": "Untitled draft",
+    "count": "{category, select, camera {{count, plural, one {# camera} other {# cameras}}} lens {{count, plural, one {# lens} other {# lenses}}} other {{count, plural, one {# accessory} other {# accessories}}}}"
+  },
+  "sell": {
+    "title": "Sell gear",
+    "editTitle": "Edit ad",
+    "subtitle": "Pick the model, answer what buyers ask, and you are done.",
+    "whatSelling": "What are you selling?",
+    "photos": {
+      "title": "Photos",
+      "description": "The first photo is the cover."
+    },
+    "changesGoLive": "Changes go live when you save.",
+    "preview": "Preview",
+    "description": {
+      "title": "Description",
+      "hint": "Optional. History, marks, why you are selling.",
+      "placeholder": "Anything a buyer should know: history, marks, why you are selling."
+    },
+    "addItem": {
+      "bundle": "Anything else going with it?",
+      "lensTitle": "Selling a lens with it?",
+      "lensHint": "Add it as its own item — buyers searching for the lens will find your ad too.",
+      "moreTitle": "Selling more than one item?",
+      "moreHint": "Add another item and this ad becomes a bundle.",
+      "button": "Add another item"
+    },
+    "bundlePrice": {
+      "label": "Bundle price",
+      "itemsTotal": "Items on their own",
+      "buyersSave": "Buyers save",
+      "hint": "Below the items combined, and the ad gets a discount label."
+    },
+    "contact": {
+      "title": "Contact",
+      "edit": "Edit",
+      "email": "Email",
+      "phone": "Phone",
+      "city": "City",
+      "noEmail": "No email",
+      "noPhone": "No phone",
+      "noCity": "No city",
+      "hint": "Prefilled from your profile. Changes here apply to this ad only."
+    },
+    "draft": {
+      "idle": "Saves itself as a draft as you go.",
+      "saving": "Saving draft…",
+      "saved": "Draft saved — only you can see it.",
+      "error": "Could not save the draft. Your last change is not stored.",
+      "preview": "Preview"
+    },
+    "progress": {
+      "incomplete": "Keep adding info",
+      "ready": "Good to go",
+      "excellent": "Excellent! Buyers have everything they need"
+    },
+    "submit": {
+      "saveChanges": "Save changes",
+      "saveDraft": "Save draft",
+      "publish": "Publish ad",
+      "stillNeeded": "Still needed: {steps}"
+    },
+    "steps": {
+      "model": "model",
+      "modelEach": "model for every item",
+      "condition": "condition",
+      "price": "price",
+      "priceEach": "price for every item",
+      "bundlePrice": "bundle price",
+      "city": "city",
+      "photos": "photos",
+      "description": "description"
+    },
+    "item": {
+      "number": "Item {number}",
+      "model": "Model",
+      "clear": "Clear",
+      "cantFind": "Can't find it? Add it by name",
+      "film": "Film"
+    },
+    "picker": {
+      "trigger": "Search for a camera, lens or accessory",
+      "placeholder": "Try “fuji xt3” or “helios 44”",
+      "searching": "Searching…",
+      "nothingFound": "Nothing found.",
+      "addByName": "Add “{name}” by name",
+      "startTyping": "Start typing.",
+      "fixedLens": "Fixed lens",
+      "sameMount": "Same mount as your {model}"
+    },
+    "custom": {
+      "label": "What are you selling?",
+      "back": "Back to the list",
+      "placeholder": "Brand and model, e.g. DJI RS 3 Mini",
+      "hint": "We'll add this model to the catalog soon. Your ad goes live now."
+    },
+    "condition": {
+      "cosmetic": "Cosmetic condition",
+      "functional": "Does everything work?",
+      "bundleHint": "You can say more about this item's condition in the ad description below.",
+      "shutterCount": "Shutter count",
+      "shutterHint": "Leave empty if your camera does not report it.",
+      "hints": {
+        "mint": "Looks new",
+        "excellent": "Barely any marks",
+        "good": "Light wear",
+        "well_used": "Visible wear",
+        "damaged": "Dents or cracks"
+      }
+    },
+    "inclusions": "What is included",
+    "price": {
+      "label": "Price",
+      "labelOnItsOwn": "Price on its own",
+      "hint": "What this item alone would cost.",
+      "separately": "Would sell this item separately",
+      "separatelyHint": "Buyers looking for just this item can find it too."
+    },
+    "remove": {
+      "ariaLabel": "Remove item {number}",
+      "title": "Remove item {number} from the bundle?",
+      "description": "Everything you filled in for this item is discarded. The other items stay as they are.",
+      "keep": "Keep it",
+      "confirm": "Remove"
+    },
+    "summary": {
+      "unnamed": "Unnamed item",
+      "shutterCount": "{count, plural, one {# shot} other {# shots}}",
+      "included": "{count} included",
+      "alsoOnItsOwn": "Also on its own",
+      "bundleOnly": "Bundle only",
+      "edit": "Edit"
+    },
+    "photoUploader": {
+      "drop": "Drag photos here or click to choose (up to {max})",
+      "unsupported": "Only JPEG, PNG, WebP and HEIC photos are supported — RAW files are not.",
+      "tooMany": "You can add up to {max} photos — pick your best ones.",
+      "cover": "Cover",
+      "failed": "Failed",
+      "remove": "Remove photo"
+    }
+  },
+  "listingErrors": {
+    "not_found": "That ad no longer exists.",
+    "not_owner": "That ad is not yours.",
+    "no_items": "Add at least one item.",
+    "no_city": "Pick a city.",
+    "missing_price": "Give every item a price.",
+    "missing_bundle_price": "Enter a price for the whole bundle.",
+    "too_many_photos": "A listing can have up to {max} photos.",
+    "invalid_item": "Something went wrong with an item — reload the page and try again.",
+    "photo_failed": "One of the photos failed to upload — remove it and try again.",
+    "missing_model": "Pick a model from the catalog for every item.",
+    "missing_custom_name": "Name every item you add by hand.",
+    "missing_custom_category": "Choose camera, lens or accessory for every item you add by hand.",
+    "invalid_price": "Enter a valid price.",
+    "invalid_shutter_count": "Shutter count must be a whole number.",
+    "photo_storage_unavailable": "Photo uploads are not available right now."
+  },
+  "account": {
+    "metaTitle": "Account",
+    "store": {
+      "title": "Selling as",
+      "description": "How buyers see you.",
+      "private": "Private person",
+      "privateHint": "Your name on your ads.",
+      "store": "Store",
+      "storeHint": "A storefront and a store badge on your ads.",
+      "name": "Store name",
+      "nameHint": "Shown on your ads and storefront.",
+      "open": "Open a store"
+    },
+    "privateSeller": "Private seller",
+    "messages": "Messages",
+    "publicProfile": "See public profile",
+    "signOut": "Sign out",
+    "settings": "Settings",
+    "comingSoon": "Coming soon",
+    "saved": {
+      "profile": "Profile saved.",
+      "store": "Your store is open."
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Prefilled on every new ad. You can still change it per ad.",
+      "name": "Name",
+      "phone": "Phone",
+      "city": "City",
+      "save": "Save profile"
+    },
+    "prompt": {
+      "title": "Finish your profile",
+      "description": "We fill this in on every ad you post, so you only type it once.",
+      "name": "Name",
+      "namePlaceholder": "How buyers will see you",
+      "phone": "Phone",
+      "optional": "Optional",
+      "phoneHint": "You can leave your number off any ad and let buyers message you instead.",
+      "city": "City",
+      "cityHint": "Shown on your ads, so buyers know where the gear is.",
+      "save": "Save and continue",
+      "skip": "Skip for now"
+    },
+    "listings": {
+      "title": "Your ads",
+      "newAd": "New ad",
+      "empty": "No ads yet",
+      "emptyHint": "List a camera, lens or accessory in a few minutes.",
+      "all": "All",
+      "statusLabel": "Ad status"
+    }
+  },
+  "accountErrors": {
+    "missing_name": "Enter your name.",
+    "missing_store_name": "Enter a store name.",
+    "store_exists": "You already have a store.",
+    "invalid_store_name": "Store name needs at least one letter or number."
+  },
+  "about": {
+    "eyebrow": "About",
+    "metaDescription": "Why exposé exists and how it differs from general classifieds.",
+    "title": "Used camera gear without the guesswork.",
+    "intro": "exposé is a place in Lithuania to buy and sell used cameras, lenses and accessories. We built it because finding the right camera among thousands of ads for everything else was too hard.",
+    "photoAlt": "A mirror photo with a camera",
+    "why": {
+      "title": "Why we exist",
+      "lead": "In Lithuania, used gear is sold on general classifieds, where a camera sits next to a bike and a sofa. The same two problems keep coming up there.",
+      "problems": {
+        "names": {
+          "title": "One model, ten names",
+          "text": "Every seller writes the model their own way: “fuji xt3”, “Fujifilm XT-3”, “X T3 camera”. Search does not connect them, so searching for “X-T3” misses half the ads."
+        },
+        "details": {
+          "title": "The important part is missing",
+          "text": "Most ads have only a photo and a price. Shutter count, whether everything works, whether the charger and box are included — you have to ask in messages."
+        }
+      }
+    },
+    "different": {
+      "title": "What we do differently",
+      "lead": "An ad here is built from a clear structure, not free text. So every ad answers the same questions.",
+      "points": {
+        "catalog": {
+          "title": "A model from the catalog",
+          "text": "Sellers pick the model from a list instead of typing a name. Every ad for the same camera ends up in one place."
+        },
+        "questions": {
+          "title": "The questions buyers ask",
+          "text": "Shutter count, cosmetic and functional condition separately, a clear list of what is included — all visible at once."
+        },
+        "gearOnly": {
+          "title": "Camera gear only",
+          "text": "No sofas or bikes. Cameras, lenses and accessories — from people who actually shot with them."
+        }
+      }
+    },
+    "now": {
+      "eyebrow": "Where we are now",
+      "title": "A small project with big plans",
+      "early": "exposé is an early pilot. There is no big company behind it: it is built by a photography fan in Vilnius, in their spare time.",
+      "catalog": "We fill the catalog gradually. Can't find your model? Add it by name — we will review it and add it. Later we want to build a community here too: forums, chats, photo sharing."
+    },
+    "cta": {
+      "title": "Got gear gathering dust?",
+      "description": "You create an ad in a few minutes — no title to come up with.",
+      "sell": "Sell gear",
+      "browse": "Browse ads"
+    }
   }
 }

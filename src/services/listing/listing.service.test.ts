@@ -94,7 +94,7 @@ describe('listingService.getSimilarToModel', () => {
       const similar = await listingService.getSimilarToModel(await requireModel(slug), null);
 
       expect(similar).toMatchObject({ basis, basisName });
-      expect(similar?.listings.map((listing) => listing.title).sort()).toEqual(listed);
+      expect(similar?.listings.flatMap((listing) => listing.title.names).sort()).toEqual(listed);
     });
   }
 });

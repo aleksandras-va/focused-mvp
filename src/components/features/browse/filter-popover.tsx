@@ -139,9 +139,9 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
               className="w-full"
             >
               <NativeSelectOption value="">{t('anyCondition')}</NativeSelectOption>
-              {COSMETIC_CONDITIONS.map(({ value }) => (
-                <NativeSelectOption key={value} value={value}>
-                  {tEnums(`cosmeticCondition.${value}`)}
+              {COSMETIC_CONDITIONS.map((condition) => (
+                <NativeSelectOption key={condition} value={condition}>
+                  {tEnums(`cosmeticCondition.${condition}`)}
                 </NativeSelectOption>
               ))}
             </NativeSelect>

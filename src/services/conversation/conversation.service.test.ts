@@ -91,7 +91,7 @@ describe('conversationService', () => {
 
     const detail = await conversationService.get(first.conversationId, buyerId);
 
-    expect(detail?.listing?.title).toBe('Sony a7 III');
+    expect(detail?.listing?.title).toEqual({ names: ['Sony a7 III'], counts: [] });
     expect(detail?.counterpartName).toBe('Conversation test seller');
     expect(detail?.messages.map((message) => [message.body, message.isMine])).toEqual([
       ['Is it still available?', true],
@@ -101,13 +101,13 @@ describe('conversationService', () => {
 
   it('refuses the seller messaging their own ad', async () => {
     await expect(conversationService.start(listingId, sellerId, 'hi')).rejects.toThrow(
-      'You cannot message yourself about your own ad.',
+      'own_listing',
     );
   });
 
   it('refuses an empty message', async () => {
     await expect(conversationService.start(listingId, buyerId, '   ')).rejects.toThrow(
-      'Write a message first.',
+      'empty_message',
     );
   });
 
@@ -130,7 +130,7 @@ describe('conversationService', () => {
 
     expect(await conversationService.get(summary.id, stranger)).toBeNull();
     await expect(conversationService.send(summary.id, stranger, 'hello')).rejects.toThrow(
-      'Conversation not found.',
+      'not_found',
     );
   });
 

@@ -4,12 +4,13 @@ import { useTranslations } from 'next-intl';
 import { buttonVariants } from '@/components/ui/button';
 import type { CosmeticCondition, ListingStatus } from '@/db/tables';
 import { formatPrice } from '@/lib/format';
+import { formatListingTitle, type ListingTitle } from '@/lib/listing-title';
 import { cn } from '@/lib/utils';
 import type { ListingSummary } from '@/services/listing/listing.types';
 
 export type ListingCardItem = {
   href: string;
-  title: string;
+  title: ListingTitle;
   brand: string | null;
   itemCount: number;
   place: string | null;
@@ -48,6 +49,7 @@ const overlayBadgeClass =
 export function ListingCard({ item }: { item: ListingCardItem }) {
   const t = useTranslations('listingCard');
   const tEnums = useTranslations('enums');
+  const tTitle = useTranslations('listingTitle');
   const { href } = item;
   const subtitle = item.isBundle ? t('itemCount', { count: item.itemCount }) : item.brand;
   const detail =
@@ -109,7 +111,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
         <p className="truncate text-xs text-muted-foreground">{subtitle || ' '}</p>
         <h3 className="line-clamp-2 font-medium leading-snug">
           <Link href={href} className="after:absolute after:inset-0">
-            {item.title}
+            {formatListingTitle(item.title, tTitle)}
           </Link>
         </h3>
         {detail ? <p className="text-xs text-muted-foreground">{detail}</p> : null}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Trash2Icon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,6 +21,8 @@ interface DeleteListingDialogProps {
 }
 
 export function DeleteListingDialog({ disabled, onConfirm }: DeleteListingDialogProps) {
+  const t = useTranslations('listing.owner.delete');
+
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -27,22 +30,19 @@ export function DeleteListingDialog({ disabled, onConfirm }: DeleteListingDialog
         render={
           <Button variant="ghost" className="text-destructive hover:text-destructive">
             <Trash2Icon />
-            Delete
+            {t('button')}
           </Button>
         }
       />
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete this ad?</AlertDialogTitle>
-          <AlertDialogDescription>
-            The ad, its items and its photos are removed for good. Hide it instead if you only want
-            it off the site for now.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t('title')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('description')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Keep it</AlertDialogCancel>
+          <AlertDialogCancel>{t('keep')}</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={onConfirm}>
-            Delete
+            {t('confirm')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

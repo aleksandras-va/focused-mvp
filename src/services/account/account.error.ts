@@ -1,3 +1,9 @@
 import 'server-only';
 
-export class AccountError extends Error {}
+import type { AccountErrorCode } from './account.types';
+
+export class AccountError extends Error {
+  constructor(readonly code: AccountErrorCode) {
+    super(code);
+  }
+}

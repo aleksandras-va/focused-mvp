@@ -15,10 +15,10 @@ export const conversationService = {
     const listing = await listingRepository.findSeller(listingId);
 
     if (!listing || listing.status !== 'active') {
-      throw new ConversationError('This ad is no longer available.');
+      throw new ConversationError('listing_unavailable');
     }
     if (listing.seller_id === buyerId) {
-      throw new ConversationError('You cannot message yourself about your own ad.');
+      throw new ConversationError('own_listing');
     }
 
     const existing = await conversationRepository.findByListingAndBuyer(listingId, buyerId);
@@ -40,9 +40,9 @@ export const conversationService = {
   async send(conversationId: string, senderId: string, body: string): Promise<SentMessage> {
     const text = body.trim();
 
-    if (!text) throw new ConversationError('Write a message first.');
+    if (!text) throw new ConversationError('empty_message');
     if (text.length > MESSAGE_MAX_LENGTH) {
-      throw new ConversationError(`A message can be at most ${MESSAGE_MAX_LENGTH} characters.`);
+      throw new ConversationError('message_too_long');
     }
 
     const conversation = await requireParticipant(conversationId, senderId);
@@ -118,7 +118,7 @@ async function requireParticipant(conversationId: string, userId: string) {
     : undefined;
 
   if (!row || !isParticipant(row, userId)) {
-    throw new ConversationError('Conversation not found.');
+    throw new ConversationError('not_found');
   }
 
   return row;

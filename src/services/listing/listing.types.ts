@@ -7,11 +7,28 @@ import type {
   ListingStatus,
   ModelCategory,
 } from '@/db/types';
+import type { ListingTitle } from '@/lib/listing-title';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
+
+export type ListingErrorCode =
+  | 'not_found'
+  | 'not_owner'
+  | 'no_items'
+  | 'no_city'
+  | 'missing_price'
+  | 'missing_bundle_price'
+  | 'too_many_photos'
+  | 'invalid_item'
+  | 'photo_failed'
+  | 'missing_model'
+  | 'missing_custom_name'
+  | 'missing_custom_category'
+  | 'invalid_price'
+  | 'invalid_shutter_count';
 
 export interface ListingSummary {
   id: string;
-  title: string;
+  title: ListingTitle;
   priceCents: number | null;
   city: string | null;
   status: ListingStatus;
@@ -49,11 +66,11 @@ export interface ListingItemDetail {
   mount: string | null;
   category: ModelCategory;
   priceCents: number | null;
-  cosmeticCondition: string;
-  functionalCondition: string;
+  cosmeticCondition: CosmeticCondition;
+  functionalCondition: FunctionalCondition;
   shutterCount: number | null;
   soldSeparately: boolean;
-  inclusions: string[];
+  inclusions: Inclusion[];
 }
 
 export interface ListingPhotoUrl {
@@ -63,7 +80,7 @@ export interface ListingPhotoUrl {
 
 export interface ListingDetail {
   id: string;
-  title: string;
+  title: ListingTitle;
   priceCents: number | null;
   city: string | null;
   status: ListingStatus;

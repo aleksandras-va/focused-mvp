@@ -1,8 +1,11 @@
+import { useTranslations } from 'next-intl';
 import { formatOptionalPrice } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
 export function BundlePriceList({ items }: { items: ListingItemDetail[] }) {
+  const t = useTranslations('listing');
+
   return (
     <ul className="flex flex-col border-t">
       {items.map((item) => (
@@ -15,8 +18,8 @@ export function BundlePriceList({ items }: { items: ListingItemDetail[] }) {
             )}
           >
             {item.soldSeparately
-              ? `${formatOptionalPrice(item.priceCents)} on its own`
-              : 'Bundle only'}
+              ? t('priceOnItsOwn', { price: formatOptionalPrice(item.priceCents, t('noPrice')) })
+              : t('bundleOnly')}
           </span>
         </li>
       ))}

@@ -1,5 +1,6 @@
 'use server';
 
+import { getTranslations } from 'next-intl/server';
 import { AccountError } from '@/services/account/account.error';
 import { accountService } from '@/services/account/account.service';
 import { analyticsService } from '@/services/analytics/analytics.service';
@@ -37,7 +38,11 @@ export async function completeProfileAction(
 ): Promise<{ error: string | null }> {
   const user = await authService.getCurrentUserCached();
 
-  if (!user) return { error: 'Log in first.' };
+  if (!user) {
+    const t = await getTranslations('authErrors');
+
+    return { error: t('unauthenticated') };
+  }
 
   try {
     await accountService.updateProfile(user.id, {
@@ -46,7 +51,11 @@ export async function completeProfileAction(
       cityId: String(formData.get('cityId') ?? ''),
     });
   } catch (error) {
-    if (error instanceof AccountError) return { error: error.message };
+    if (error instanceof AccountError) {
+      const t = await getTranslations('accountErrors');
+
+      return { error: t(error.code) };
+    }
 
     throw error;
   }

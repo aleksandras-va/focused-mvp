@@ -41,9 +41,7 @@ function itemInclusionOptions(item: SellItem) {
   return [];
 }
 
-function keepOffered(inclusions: Inclusion[], options: { value: Inclusion }[]) {
-  const offered = options.map(({ value }) => value);
-
+function keepOffered(inclusions: Inclusion[], offered: Inclusion[]) {
   return inclusions.filter((inclusion) => offered.includes(inclusion));
 }
 
@@ -93,7 +91,7 @@ export function ItemFields({
         isBundle && 'rounded-2xl border-2 border-foreground p-4 sm:p-5',
       )}
     >
-      {isBundle ? <ItemHeader title={`Item ${index + 1}`} onRemove={onRemove} /> : null}
+      {isBundle ? <ItemHeader number={index + 1} onRemove={onRemove} /> : null}
       <ModelField
         model={item.model}
         custom={item.custom}

@@ -1,6 +1,7 @@
 'use client';
 
 import { SendIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -12,11 +13,13 @@ interface ReplyFormProps {
 }
 
 export function ReplyForm({ action, error }: ReplyFormProps) {
+  const t = useTranslations('messages');
+
   return (
     <form action={action} className="flex flex-col gap-2 border-t pt-4">
       <Textarea
         name="body"
-        placeholder="Write a reply…"
+        placeholder={t('replyPlaceholder')}
         rows={3}
         maxLength={2000}
         required
@@ -28,7 +31,7 @@ export function ReplyForm({ action, error }: ReplyFormProps) {
       />
       <div className="flex items-center justify-between gap-3">
         <p className={cn('text-xs', error ? 'text-destructive' : 'text-muted-foreground')}>
-          {error ?? 'The other side gets an email if they have not read your earlier messages.'}
+          {error ?? t('emailNotice')}
         </p>
         <SendButton />
       </div>
@@ -37,12 +40,13 @@ export function ReplyForm({ action, error }: ReplyFormProps) {
 }
 
 function SendButton() {
+  const t = useTranslations('messages');
   const { pending } = useFormStatus();
 
   return (
     <Button type="submit" disabled={pending}>
       <SendIcon />
-      {pending ? 'Sending…' : 'Send'}
+      {pending ? t('sending') : t('send')}
     </Button>
   );
 }

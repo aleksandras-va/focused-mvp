@@ -1,26 +1,30 @@
 'use client';
 
 import { CheckIcon, PlusIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import type { Inclusion } from '@/db/tables';
 import { cn } from '@/lib/utils';
 
 interface InclusionFieldsProps {
-  options: { value: Inclusion; label: string }[];
+  options: Inclusion[];
   selected: Inclusion[];
   onToggle: (inclusion: Inclusion, checked: boolean) => void;
 }
 
 export function InclusionFields({ options, selected, onToggle }: InclusionFieldsProps) {
+  const t = useTranslations('sell');
+  const tEnums = useTranslations('enums');
+
   return (
     <fieldset>
-      <legend className="mb-2.5 text-sm font-semibold">What is included</legend>
+      <legend className="mb-2.5 text-sm font-semibold">{t('inclusions')}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((inclusion) => {
-          const checked = selected.includes(inclusion.value);
+          const checked = selected.includes(inclusion);
 
           return (
             <label
-              key={inclusion.value}
+              key={inclusion}
               className={cn(
                 'inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-full border px-3.5 text-sm font-medium transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50',
                 checked
@@ -31,7 +35,7 @@ export function InclusionFields({ options, selected, onToggle }: InclusionFields
               <input
                 type="checkbox"
                 checked={checked}
-                onChange={(event) => onToggle(inclusion.value, event.target.checked)}
+                onChange={(event) => onToggle(inclusion, event.target.checked)}
                 className="sr-only"
               />
               {checked ? (
@@ -39,7 +43,7 @@ export function InclusionFields({ options, selected, onToggle }: InclusionFields
               ) : (
                 <PlusIcon className="size-3.5" />
               )}
-              {inclusion.label}
+              {tEnums(`inclusion.${inclusion}`)}
             </label>
           );
         })}

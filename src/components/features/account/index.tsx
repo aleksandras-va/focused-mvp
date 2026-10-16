@@ -1,5 +1,6 @@
 import { CircleAlertIcon, CircleCheckIcon, EyeIcon, MessageCircleIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -31,9 +32,12 @@ export function Account({
   openStoreAction,
   signOutAction,
 }: AccountProps) {
+  const t = useTranslations('account');
   const name = user.store?.name ?? user.displayName;
   const cityName = cities.find((city) => city.id === user.cityId)?.name ?? null;
-  const meta = [user.store ? 'Store' : 'Private seller', cityName, user.email].filter(Boolean);
+  const meta = [user.store ? t('store.store') : t('privateSeller'), cityName, user.email].filter(
+    Boolean,
+  );
 
   return (
     <div className="flex flex-col gap-10">
@@ -55,7 +59,7 @@ export function Account({
             className={buttonVariants({ variant: 'outline', className: 'border-input' })}
           >
             <MessageCircleIcon />
-            Messages
+            {t('messages')}
             <UnreadBadge count={unreadMessages} />
           </Link>
           <Link
@@ -63,7 +67,7 @@ export function Account({
             className={buttonVariants({ variant: 'outline', className: 'border-input' })}
           >
             <EyeIcon />
-            See public profile
+            {t('publicProfile')}
           </Link>
           <form action={signOutAction}>
             <Button
@@ -71,7 +75,7 @@ export function Account({
               variant="ghost"
               className="text-destructive hover:bg-destructive/10 hover:text-destructive"
             >
-              Sign out
+              {t('signOut')}
             </Button>
           </form>
         </div>
@@ -87,7 +91,7 @@ export function Account({
       <SellerListings listings={listings} />
 
       <section className="flex flex-col gap-5">
-        <h2 className="font-heading text-2xl font-semibold">Settings</h2>
+        <h2 className="font-heading text-2xl font-semibold">{t('settings')}</h2>
         <div className="flex flex-wrap items-start gap-5">
           <ProfileForm user={user} cities={cities} action={updateProfileAction} />
           <StoreSection store={user.store} action={openStoreAction} />

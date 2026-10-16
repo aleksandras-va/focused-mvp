@@ -2,6 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { MAX_PHOTOS } from '@/lib/photos';
 import { analyticsService } from '@/services/analytics/analytics.service';
 import { AuthError } from '@/services/auth/auth.error';
 import { authService } from '@/services/auth/auth.service';
@@ -23,10 +25,7 @@ export async function createPhotoUploadAction(): Promise<PhotoUpload | { error: 
 
     return await photoService.createUpload();
   } catch (error) {
-    if (error instanceof AuthError) return { error: 'Sign in to upload photos.' };
-    if (error instanceof PhotoStorageError) return { error: error.message };
-
-    throw error;
+    return { error: await errorMessage(error) };
   }
 }
 
@@ -47,10 +46,7 @@ export async function saveListingDraftAction(
 
     return { id: listing.id, itemIds: listing.itemIds, error: null };
   } catch (error) {
-    if (error instanceof AuthError) return { error: 'Sign in to save a draft.' };
-    if (error instanceof ListingError) return { error: error.message };
-
-    throw error;
+    return { error: await errorMessage(error) };
   }
 }
 
@@ -72,10 +68,7 @@ export async function submitListingAction(
       });
     }
   } catch (error) {
-    if (error instanceof AuthError) return { error: 'Sign in to save your ad.' };
-    if (error instanceof ListingError) return { error: error.message };
-
-    throw error;
+    return { error: await errorMessage(error) };
   }
 
   revalidatePath('/user');
@@ -118,10 +111,7 @@ async function runOwnerAction(
 
     await run(user.id);
   } catch (error) {
-    if (error instanceof AuthError) return { error: 'Sign in to manage your ads.' };
-    if (error instanceof ListingError) return { error: error.message };
-
-    throw error;
+    return { error: await errorMessage(error) };
   }
 
   revalidatePath('/user');
@@ -129,4 +119,24 @@ async function runOwnerAction(
   revalidatePath('/items/[id]', 'page');
 
   return { error: null };
+}
+
+async function errorMessage(error: unknown) {
+  if (error instanceof AuthError) {
+    const t = await getTranslations('authErrors');
+
+    return t(error.code);
+  }
+  if (error instanceof ListingError) {
+    const t = await getTranslations('listingErrors');
+
+    return t(error.code, { max: MAX_PHOTOS });
+  }
+  if (error instanceof PhotoStorageError) {
+    const t = await getTranslations('listingErrors');
+
+    return t('photo_storage_unavailable');
+  }
+
+  throw error;
 }

@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { CitySelect } from '@/components/ui/city-select';
 import { Field, FieldLabel } from '@/components/ui/field';
@@ -13,24 +14,22 @@ type ProfileFormProps = {
 };
 
 export function ProfileForm({ user, cities, action }: ProfileFormProps) {
+  const t = useTranslations('account.profile');
+
   return (
-    <SettingsCard
-      title="Profile"
-      description="Prefilled on every new ad. You can still change it per ad."
-      className="flex-[1_1_26rem]"
-    >
+    <SettingsCard title={t('title')} description={t('description')} className="flex-[1_1_26rem]">
       <form
         key={`${user.displayName}|${user.phone}|${user.cityId}`}
         action={action}
         className="flex flex-col gap-5"
       >
         <Field>
-          <FieldLabel htmlFor="profile-name">Name</FieldLabel>
+          <FieldLabel htmlFor="profile-name">{t('name')}</FieldLabel>
           <Input id="profile-name" name="displayName" defaultValue={user.displayName} required />
         </Field>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field>
-            <FieldLabel htmlFor="profile-phone">Phone</FieldLabel>
+            <FieldLabel htmlFor="profile-phone">{t('phone')}</FieldLabel>
             <Input
               id="profile-phone"
               name="phone"
@@ -40,7 +39,7 @@ export function ProfileForm({ user, cities, action }: ProfileFormProps) {
             />
           </Field>
           <Field>
-            <FieldLabel htmlFor="profile-city">City</FieldLabel>
+            <FieldLabel htmlFor="profile-city">{t('city')}</FieldLabel>
             <CitySelect
               id="profile-city"
               name="cityId"
@@ -50,7 +49,7 @@ export function ProfileForm({ user, cities, action }: ProfileFormProps) {
           </Field>
         </div>
         <Button type="submit" className="self-start">
-          Save profile
+          {t('save')}
         </Button>
       </form>
     </SettingsCard>

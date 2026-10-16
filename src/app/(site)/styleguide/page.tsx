@@ -37,7 +37,7 @@ const buttonVariantNames = [
 
 const sampleCard: ListingCardItem = {
   href: '#',
-  title: 'Sony FE 24-70mm F2.8 GM II',
+  title: { names: ['Sony FE 24-70mm F2.8 GM II'], counts: [] },
   brand: 'Sony',
   itemCount: 1,
   place: 'Sony E',
@@ -163,7 +163,7 @@ export default function StyleguidePage() {
           <ListingCard
             item={{
               ...sampleCard,
-              title: 'Canon EOS R6 Mark II + RF 24-105mm F4 L IS USM',
+              title: { names: ['Canon EOS R6 Mark II', 'RF 24-105mm F4 L IS USM'], counts: [] },
               itemCount: 2,
               shutterCount: 12400,
               priceCents: 265000,

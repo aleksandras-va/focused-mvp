@@ -1,9 +1,11 @@
 import { notFound, redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
 import { RecordListingView } from '@/components/features/listings/record-view';
 import { bundleMetadata } from '@/lib/listing-metadata';
+import { formatListingTitle } from '@/lib/listing-title';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
 import { trackListingViewAction, trackMessageClickAction } from '../../../actions';
@@ -24,7 +26,12 @@ const loadListing = cache(async (id: string) => {
 export async function generateMetadata({ params }: PageProps<'/bundles/[id]'>) {
   const listing = await loadListing((await params).id);
 
-  return listing ? bundleMetadata(listing) : {};
+  if (!listing) return {};
+
+  const t = await getTranslations();
+  const tTitle = await getTranslations('listingTitle');
+
+  return bundleMetadata(listing, t, tTitle);
 }
 
 export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>) {
@@ -35,10 +42,11 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
   if (!listing.isBundle && listing.items[0]) redirect(`/items/${listing.items[0].id}`);
 
   const viewer = await authService.getCurrentUserCached();
+  const title = formatListingTitle(listing.title, await getTranslations('listingTitle'));
   const reference = {
     listingId: listing.id,
     itemId: null,
-    title: listing.title,
+    title,
     priceCents: listing.priceCents,
     isBundle: true,
     brand: null,
@@ -52,7 +60,7 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
         <RecordListingView
           listing={{
             href: `/bundles/${listing.id}`,
-            title: listing.title,
+            title,
             priceCents: listing.priceCents,
           }}
           trackViewAction={listing.isOwner ? null : trackListingViewAction.bind(null, reference)}

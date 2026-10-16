@@ -18,7 +18,7 @@ export async function updateProfileAction(formData: FormData) {
     });
   } catch (error) {
     if (error instanceof AccountError) {
-      redirect(`/user?error=${encodeURIComponent(error.message)}`);
+      redirect(`/user?error=${error.code}`);
     }
 
     throw error;
@@ -36,7 +36,7 @@ export async function openStoreAction(formData: FormData) {
     await accountService.openStore(user.id, String(formData.get('storeName') ?? ''));
   } catch (error) {
     if (error instanceof AccountError) {
-      redirect(`/user?error=${encodeURIComponent(error.message)}`);
+      redirect(`/user?error=${error.code}`);
     }
 
     throw error;

@@ -1,10 +1,16 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { ListingCard, type ListingCardItem } from '@/components/features/browse/listing-card';
 import { DraftBar } from '@/components/features/sell/draft-bar';
 import { SellProgress } from '@/components/features/sell/sell-progress';
 import { SubmitBar } from '@/components/features/sell/submit-bar';
-import type { DraftState, SellItem, SellStep } from '@/components/features/sell/use-sell-listing';
+import type {
+  DraftState,
+  SellItem,
+  SellStep,
+  SellStepKey,
+} from '@/components/features/sell/use-sell-listing';
 
 interface SellPreviewProps {
   items: SellItem[];
@@ -12,7 +18,7 @@ interface SellPreviewProps {
   bundlePrice: string;
   coverUrl: string | null;
   steps: SellStep[];
-  missingStepLabels: string[];
+  missingSteps: SellStepKey[];
   draftState: DraftState;
   previewHref: string | null;
   isPending: boolean;
@@ -36,18 +42,19 @@ export function SellPreview({
   bundlePrice,
   coverUrl,
   steps,
-  missingStepLabels,
+  missingSteps,
   draftState,
   previewHref,
   isPending,
   isPublished,
   onSubmit,
 }: SellPreviewProps) {
+  const t = useTranslations('sell');
   const first = items[0];
   const names = items.map(itemName).filter(Boolean);
   const card: ListingCardItem = {
     href: previewHref ?? '#',
-    title: names.length > 0 ? names.join(' + ') : 'Your item',
+    title: { names, counts: [] },
     brand: first.model?.brand.name ?? null,
     itemCount: items.length,
     place: first.model?.mount?.name ?? null,
@@ -62,7 +69,7 @@ export function SellPreview({
   return (
     <aside className="hidden flex-col gap-4 lg:sticky lg:top-[calc(var(--spacing-header)+1rem)] lg:flex">
       <span className="text-[0.8125rem] font-semibold tracking-[0.08em] text-primary-ink uppercase">
-        Preview
+        {t('preview')}
       </span>
       <div className="pointer-events-none shadow-[0_12px_32px_-16px_rgb(0_0_0/0.2)] rounded-2xl">
         <ListingCard item={card} />
@@ -73,12 +80,12 @@ export function SellPreview({
       <SubmitBar
         isPending={isPending}
         isPublished={isPublished}
-        missingStepLabels={missingStepLabels}
+        missingSteps={missingSteps}
         onSubmit={onSubmit}
         stacked
       />
       {isPublished ? (
-        <p className="text-center text-sm text-muted-foreground">Changes go live when you save.</p>
+        <p className="text-center text-sm text-muted-foreground">{t('changesGoLive')}</p>
       ) : (
         <div className="flex justify-center">
           <DraftBar state={draftState} previewHref={previewHref} />

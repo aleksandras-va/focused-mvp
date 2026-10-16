@@ -1,5 +1,6 @@
 import { PhoneIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import {
   MessageSellerDialog,
   type MessageSellerProps,
@@ -19,6 +20,8 @@ const phoneButtonClass = cn(
 );
 
 export function ContactActions({ phone, isSignedIn, messaging }: ContactActionsProps) {
+  const t = useTranslations('listing');
+
   return (
     <div className="flex flex-col gap-2.5">
       {messaging ? <MessageSellerDialog className="w-full" {...messaging} /> : null}
@@ -31,7 +34,7 @@ export function ContactActions({ phone, isSignedIn, messaging }: ContactActionsP
       {phone && !isSignedIn ? (
         <Link href="/login" className={phoneButtonClass}>
           <PhoneIcon />
-          Log in to see the phone number
+          {t('logInForPhone')}
         </Link>
       ) : null}
     </div>

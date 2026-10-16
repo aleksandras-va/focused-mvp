@@ -1,6 +1,7 @@
 'use client';
 
 import { MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { FormSection } from '@/components/features/sell/form-section';
 import { Button } from '@/components/ui/button';
@@ -30,17 +31,18 @@ export function ContactFields({
   cityId,
   onCityChange,
 }: ContactFieldsProps) {
+  const t = useTranslations('sell.contact');
   const [isEditing, setIsEditing] = useState(!email && !phone);
   const cityName = cities.find((city) => city.id === cityId)?.name ?? null;
 
   return (
     <FormSection
       step={step}
-      title="Contact"
+      title={t('title')}
       action={
         isEditing ? null : (
           <Button type="button" variant="outline" size="sm" onClick={() => setIsEditing(true)}>
-            Edit
+            {t('edit')}
           </Button>
         )
       }
@@ -48,7 +50,7 @@ export function ContactFields({
       {isEditing ? (
         <div className="grid gap-6 sm:grid-cols-2">
           <Field>
-            <FieldLabel htmlFor="contactEmail">Email</FieldLabel>
+            <FieldLabel htmlFor="contactEmail">{t('email')}</FieldLabel>
             <Input
               id="contactEmail"
               type="email"
@@ -57,7 +59,7 @@ export function ContactFields({
             />
           </Field>
           <Field>
-            <FieldLabel htmlFor="contactPhone">Phone</FieldLabel>
+            <FieldLabel htmlFor="contactPhone">{t('phone')}</FieldLabel>
             <Input
               id="contactPhone"
               type="tel"
@@ -67,7 +69,7 @@ export function ContactFields({
             />
           </Field>
           <Field>
-            <FieldLabel htmlFor="city">City</FieldLabel>
+            <FieldLabel htmlFor="city">{t('city')}</FieldLabel>
             <CitySelect
               id="city"
               cities={cities}
@@ -80,21 +82,19 @@ export function ContactFields({
         <div className="flex flex-wrap gap-x-7 gap-y-2 text-[0.9375rem]">
           <span className="flex items-center gap-2">
             <MailIcon className="size-4 text-muted-foreground" />
-            {email || 'No email'}
+            {email || t('noEmail')}
           </span>
           <span className="flex items-center gap-2">
             <PhoneIcon className="size-4 text-muted-foreground" />
-            {phone || 'No phone'}
+            {phone || t('noPhone')}
           </span>
           <span className="flex items-center gap-2">
             <MapPinIcon className="size-4 text-muted-foreground" />
-            {cityName ?? 'No city'}
+            {cityName ?? t('noCity')}
           </span>
         </div>
       )}
-      <p className="text-[0.8125rem] text-muted-foreground">
-        Prefilled from your profile. Changes here apply to this ad only.
-      </p>
+      <p className="text-[0.8125rem] text-muted-foreground">{t('hint')}</p>
     </FormSection>
   );
 }

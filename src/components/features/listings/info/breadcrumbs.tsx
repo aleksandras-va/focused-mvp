@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,7 +8,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { CATEGORY_PLURAL_LABELS } from '@/lib/listing-options';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
 interface ListingBreadcrumbsProps {
@@ -15,6 +15,9 @@ interface ListingBreadcrumbsProps {
 }
 
 export function ListingBreadcrumbs({ item }: ListingBreadcrumbsProps) {
+  const t = useTranslations('listing');
+  const tEnums = useTranslations('enums');
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -22,7 +25,7 @@ export function ListingBreadcrumbs({ item }: ListingBreadcrumbsProps) {
           <>
             <BreadcrumbItem>
               <BreadcrumbLink render={<Link href={`/?category=${item.category}`} />}>
-                {CATEGORY_PLURAL_LABELS[item.category]}
+                {tEnums(`categoryPlural.${item.category}`)}
               </BreadcrumbLink>
             </BreadcrumbItem>
             {item.brand && item.brandSlug ? (
@@ -48,7 +51,7 @@ export function ListingBreadcrumbs({ item }: ListingBreadcrumbsProps) {
           </>
         ) : (
           <BreadcrumbItem>
-            <BreadcrumbPage>Bundle</BreadcrumbPage>
+            <BreadcrumbPage>{t('bundle')}</BreadcrumbPage>
           </BreadcrumbItem>
         )}
       </BreadcrumbList>

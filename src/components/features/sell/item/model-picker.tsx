@@ -1,6 +1,7 @@
 'use client';
 
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -28,6 +29,7 @@ export function ModelPicker({
   onSelect,
   onAddByName,
 }: ModelPickerProps) {
+  const t = useTranslations('sell.picker');
   const [open, setOpen] = useState(false);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<CatalogModel[]>([]);
@@ -64,7 +66,7 @@ export function ModelPicker({
             className="w-full justify-between rounded-xl px-3.5 font-normal"
           >
             <span className={selected ? '' : 'text-muted-foreground'}>
-              {selected ? selected.displayName : 'Search for a camera, lens or accessory'}
+              {selected ? selected.displayName : t('trigger')}
             </span>
             <ChevronsUpDownIcon className="opacity-50" />
           </Button>
@@ -72,18 +74,14 @@ export function ModelPicker({
       />
       <PopoverContent className="w-(--anchor-width) p-0">
         <Command shouldFilter={false}>
-          <CommandInput
-            placeholder="Try “fuji xt3” or “nifty fifty”"
-            value={term}
-            onValueChange={setTerm}
-          />
+          <CommandInput placeholder={t('placeholder')} value={term} onValueChange={setTerm} />
           <CommandList>
             <CommandEmpty>
               {isSearching ? (
-                'Searching…'
+                t('searching')
               ) : term ? (
                 <div className="flex flex-col items-center gap-2">
-                  <span>Nothing found.</span>
+                  <span>{t('nothingFound')}</span>
 
                   <Button
                     type="button"
@@ -94,11 +92,11 @@ export function ModelPicker({
                       setOpen(false);
                     }}
                   >
-                    Add “{term.trim()}” by name
+                    {t('addByName', { name: term.trim() })}
                   </Button>
                 </div>
               ) : (
-                'Start typing.'
+                t('startTyping')
               )}
             </CommandEmpty>
             {results.map((model) => {
@@ -116,12 +114,12 @@ export function ModelPicker({
                   <div className="flex flex-col">
                     <span>{model.displayName}</span>
                     <span className="text-xs text-muted-foreground">
-                      {model.mount ? model.mount.name : 'Fixed lens'}
+                      {model.mount ? model.mount.name : t('fixedLens')}
                       {model.releaseYear ? ` · ${model.releaseYear}` : ''}
                     </span>
                     {sibling ? (
                       <span className="text-xs font-medium text-primary-ink">
-                        Same mount as your {sibling.displayName}
+                        {t('sameMount', { model: sibling.displayName })}
                       </span>
                     ) : null}
                   </div>

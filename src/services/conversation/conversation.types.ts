@@ -1,8 +1,17 @@
 import 'server-only';
 
+import type { ListingTitle } from '@/lib/listing-title';
+
+export type ConversationErrorCode =
+  | 'listing_unavailable'
+  | 'own_listing'
+  | 'empty_message'
+  | 'message_too_long'
+  | 'not_found';
+
 export interface ConversationListing {
   id: string;
-  title: string;
+  title: ListingTitle;
   coverUrl: string | null;
   firstItemId: string | null;
   isPublic: boolean;

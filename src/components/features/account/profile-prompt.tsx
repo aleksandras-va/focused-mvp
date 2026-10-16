@@ -1,6 +1,7 @@
 'use client';
 
 import { EyeOffIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useActionState, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { CitySelect } from '@/components/ui/city-select';
@@ -20,6 +21,7 @@ interface ProfilePromptProps {
 }
 
 export function ProfilePrompt({ user, cities, completeAction, skipAction }: ProfilePromptProps) {
+  const t = useTranslations('account.prompt');
   const [open, setOpen] = useState(true);
   const [state, formAction, isPending] = useActionState(completeAction, { error: null });
 
@@ -37,10 +39,10 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
         <form action={formAction} className="flex flex-col gap-5.5">
           <div className="flex flex-col gap-2.5">
             <DialogTitle className="font-heading text-[1.75rem] leading-tight font-semibold">
-              Finish your profile
+              {t('title')}
             </DialogTitle>
             <DialogDescription className="text-[0.9375rem] leading-relaxed">
-              We fill this in on every ad you post, so you only type it once.
+              {t('description')}
             </DialogDescription>
           </div>
 
@@ -51,12 +53,12 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
           ) : null}
 
           <Field>
-            <FieldLabel htmlFor="prompt-name">Name</FieldLabel>
+            <FieldLabel htmlFor="prompt-name">{t('name')}</FieldLabel>
             <Input
               id="prompt-name"
               name="displayName"
               autoComplete="name"
-              placeholder="How buyers will see you"
+              placeholder={t('namePlaceholder')}
               defaultValue={user.displayName}
               required
               className="h-12 rounded-xl text-base"
@@ -65,8 +67,8 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
 
           <Field>
             <div className="flex items-baseline justify-between gap-2">
-              <FieldLabel htmlFor="prompt-phone">Phone</FieldLabel>
-              <span className="text-xs text-muted-foreground">Optional</span>
+              <FieldLabel htmlFor="prompt-phone">{t('phone')}</FieldLabel>
+              <span className="text-xs text-muted-foreground">{t('optional')}</span>
             </div>
             <Input
               id="prompt-phone"
@@ -79,21 +81,19 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
             />
             <FieldDescription className="flex items-start gap-2 text-foreground/75">
               <EyeOffIcon className="mt-0.5 size-3.5 shrink-0 text-primary" />
-              You can leave your number off any ad and let buyers message you instead.
+              {t('phoneHint')}
             </FieldDescription>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="prompt-city">City</FieldLabel>
+            <FieldLabel htmlFor="prompt-city">{t('city')}</FieldLabel>
             <CitySelect id="prompt-city" name="cityId" cities={cities} defaultValue={user.cityId} />
-            <FieldDescription>
-              Shown on your ads, so buyers know where the gear is.
-            </FieldDescription>
+            <FieldDescription>{t('cityHint')}</FieldDescription>
           </Field>
 
           <div className="flex flex-col gap-1.5 pt-1">
             <Button type="submit" size="lg" disabled={isPending}>
-              Save and continue
+              {t('save')}
             </Button>
             <Button
               type="button"
@@ -102,7 +102,7 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
               disabled={isPending}
               onClick={skip}
             >
-              Skip for now
+              {t('skip')}
             </Button>
           </div>
         </form>

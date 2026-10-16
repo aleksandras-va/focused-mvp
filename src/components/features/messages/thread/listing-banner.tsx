@@ -1,6 +1,8 @@
 import { ImageIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { buttonVariants } from '@/components/ui/button';
+import { formatListingTitle } from '@/lib/listing-title';
 import type { ConversationListing } from '@/services/conversation/conversation.types';
 
 interface ListingBannerProps {
@@ -8,6 +10,9 @@ interface ListingBannerProps {
 }
 
 export function ListingBanner({ listing }: ListingBannerProps) {
+  const t = useTranslations('messages');
+  const tTitle = useTranslations('listingTitle');
+
   return (
     <div className="flex items-center gap-4 rounded-2xl border bg-accent/50 p-3">
       <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted text-muted-foreground">
@@ -27,13 +32,11 @@ export function ListingBanner({ listing }: ListingBannerProps) {
         )}
       </span>
       <span className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate font-semibold">{listing?.title ?? 'Deleted ad'}</span>
+        <span className="truncate font-semibold">
+          {listing ? formatListingTitle(listing.title, tTitle) : t('deletedAd')}
+        </span>
         <span className="text-sm text-muted-foreground">
-          {!listing
-            ? 'The seller removed this ad.'
-            : listing.isPublic
-              ? 'About this ad'
-              : 'This ad is no longer public.'}
+          {!listing ? t('adRemoved') : listing.isPublic ? t('aboutAd') : t('adNotPublic')}
         </span>
       </span>
       {listing?.isPublic ? (
@@ -41,7 +44,7 @@ export function ListingBanner({ listing }: ListingBannerProps) {
           href={`/bundles/${listing.id}`}
           className={buttonVariants({ variant: 'outline', size: 'sm', className: 'border-input' })}
         >
-          View ad
+          {t('viewAd')}
         </Link>
       ) : null}
     </div>

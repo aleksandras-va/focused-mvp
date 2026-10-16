@@ -28,7 +28,7 @@ export const accountService = {
   async updateProfile(userId: string, input: UpdateProfileInput) {
     const displayName = input.displayName.trim();
 
-    if (!displayName) throw new AccountError('Enter your name.');
+    if (!displayName) throw new AccountError('missing_name');
 
     await userRepository.update(userId, {
       display_name: displayName,
@@ -40,10 +40,10 @@ export const accountService = {
   async openStore(userId: string, storeName: string) {
     const name = storeName.trim();
 
-    if (!name) throw new AccountError('Enter a store name.');
+    if (!name) throw new AccountError('missing_store_name');
 
     if (await storeRepository.findByUserId(userId)) {
-      throw new AccountError('You already have a store.');
+      throw new AccountError('store_exists');
     }
 
     await storeRepository.insert({

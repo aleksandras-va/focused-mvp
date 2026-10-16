@@ -1,6 +1,7 @@
 'use client';
 
 import { ImagePlusIcon, XIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -27,6 +28,7 @@ export function PhotoUploader({
   onCoverChange,
   initialPhotos,
 }: PhotoUploaderProps) {
+  const t = useTranslations('sell.photoUploader');
   const [photos, setPhotos] = useState<UploadingPhoto[]>(() =>
     initialPhotos.map((photo, index) => ({
       localId: index,
@@ -88,10 +90,10 @@ export function PhotoUploader({
     }
 
     if (accepted.length < files.length) {
-      setMessage('Only JPEG, PNG, WebP and HEIC photos are supported — RAW files are not.');
+      setMessage(t('unsupported'));
     }
     if (photos.length + accepted.length > MAX_PHOTOS) {
-      setMessage(`You can add up to ${MAX_PHOTOS} photos — pick your best ones.`);
+      setMessage(t('tooMany', { max: MAX_PHOTOS }));
       return;
     }
 
@@ -133,7 +135,7 @@ export function PhotoUploader({
         <span className="flex size-11 items-center justify-center rounded-full bg-background shadow-sm">
           <ImagePlusIcon className="size-5 text-primary" />
         </span>
-        Drag photos here or click to choose (up to {MAX_PHOTOS})
+        {t('drop', { max: MAX_PHOTOS })}
       </button>
       <input
         ref={inputRef}
@@ -160,18 +162,20 @@ export function PhotoUploader({
                 className={`size-full rounded-xl border object-cover ${photo.status === 'uploading' ? 'opacity-50' : ''} ${photo.status === 'error' ? 'opacity-30' : ''}`}
               />
               {index === 0 && photo.status === 'done' ? (
-                <Badge className="absolute top-2 left-2 bg-white/90 text-foreground">Cover</Badge>
+                <Badge className="absolute top-2 left-2 bg-white/90 text-foreground">
+                  {t('cover')}
+                </Badge>
               ) : null}
               {photo.status === 'error' ? (
                 <span className="absolute inset-x-1 bottom-1 rounded bg-destructive px-1 text-center text-xs text-white">
-                  Failed
+                  {t('failed')}
                 </span>
               ) : null}
               <Button
                 type="button"
                 variant="outline"
                 size="icon-xs"
-                aria-label="Remove photo"
+                aria-label={t('remove')}
                 className="absolute top-1.5 right-1.5 shadow-sm"
                 onClick={() => removePhoto(photo.localId)}
               >

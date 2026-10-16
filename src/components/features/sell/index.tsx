@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { AdFields } from '@/components/features/sell/ad-fields';
 import { AddItemPrompt } from '@/components/features/sell/add-item-prompt';
@@ -43,6 +44,8 @@ export function SellListing({
   defaults,
   listing,
 }: SellListingProps) {
+  const t = useTranslations('sell');
+  const tListing = useTranslations('listing');
   const sell = useSellListing({ submitAction, saveDraftAction, defaults, listing });
   const openItem = useOpenItem(sell.items);
   const [coverUrl, setCoverUrl] = useState<string | null>(null);
@@ -61,11 +64,9 @@ export function SellListing({
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-1.5">
         <h1 className="font-heading text-3xl leading-tight font-semibold sm:text-4xl">
-          {sell.isEditingPublished ? 'Edit ad' : 'Sell gear'}
+          {sell.isEditingPublished ? t('editTitle') : t('title')}
         </h1>
-        <p className="text-muted-foreground sm:text-lg">
-          Pick the model, answer what buyers ask, and you are done.
-        </p>
+        <p className="text-muted-foreground sm:text-lg">{t('subtitle')}</p>
       </div>
 
       {sell.error ? (
@@ -78,11 +79,11 @@ export function SellListing({
         <div className="flex min-w-0 flex-col gap-5">
           <FormSection
             step={1}
-            title="What are you selling?"
+            title={t('whatSelling')}
             action={
               sell.isBundle ? (
                 <span className="shrink-0 rounded-full bg-primary-soft px-2.5 py-1 text-xs font-semibold text-primary-ink">
-                  Bundle · {sell.items.length} items
+                  {tListing('bundleBadge', { count: sell.items.length })}
                 </span>
               ) : null
             }
@@ -130,7 +131,7 @@ export function SellListing({
             ) : null}
           </FormSection>
 
-          <FormSection step={2} title="Photos" description="The first photo is the cover.">
+          <FormSection step={2} title={t('photos.title')} description={t('photos.description')}>
             <PhotoUploader
               uploadAction={uploadAction}
               onChange={sell.setPhotoKeys}
@@ -163,7 +164,7 @@ export function SellListing({
           bundlePrice={sell.bundlePrice}
           coverUrl={coverUrl}
           steps={sell.steps}
-          missingStepLabels={sell.missingStepLabels}
+          missingSteps={sell.missingSteps}
           draftState={sell.draftState}
           previewHref={previewHref}
           isPending={sell.isPending}
@@ -174,14 +175,14 @@ export function SellListing({
 
       <div className="sticky bottom-0 z-10 -mx-4 flex flex-col gap-2 bg-background/95 px-4 py-3 shadow-[0_-1px_0_var(--color-border),0_-8px_24px_-12px_rgb(0_0_0/0.2)] backdrop-blur-sm sm:-mx-6 sm:px-6 lg:hidden">
         {sell.isEditingPublished ? (
-          <p className="text-sm text-muted-foreground">Changes go live when you save.</p>
+          <p className="text-sm text-muted-foreground">{t('changesGoLive')}</p>
         ) : (
           <DraftBar state={sell.draftState} previewHref={previewHref} />
         )}
         <SubmitBar
           isPending={sell.isPending}
           isPublished={sell.isEditingPublished}
-          missingStepLabels={sell.missingStepLabels}
+          missingSteps={sell.missingSteps}
           onSubmit={sell.submit}
         />
       </div>
