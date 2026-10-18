@@ -535,50 +535,36 @@
   "about": {
     "eyebrow": "Apie mus",
     "metaDescription": "Kodėl atsirado exposé ir kuo jis skiriasi nuo bendrų skelbimų portalų.",
-    "title": "Naudota foto technika be spėlionių.",
-    "intro": "exposé – tai vieta Lietuvoje pirkti ir parduoti naudotus fotoaparatus, objektyvus ir priedus. Sukūrėme ją, nes ieškoti tinkamo fotoaparato tarp tūkstančių skelbimų apie viską iš eilės buvo per sunku.",
-    "photoAlt": "Nuotrauka veidrodyje su fotoaparatu",
+    "title": "Naudota foto technika be kliūčių.",
+    "intro": "exposé - lietuviškas skelbimų portalas naudotiems fotoaparatams, objektyvams ir priedams pirkti ir parduoti. Sukuriau jį, nes ieškoti fotoaparato tarp tūkstančių skelbimų apie viską buvo per sunku.",
+    "photoAlt": "Nuotrauka su fotoaparatu",
     "why": {
       "title": "Kodėl atsiradome",
-      "lead": "Lietuvoje naudotą techniką žmonės parduoda bendruose skelbimų portaluose – ten, kur šalia fotoaparato stovi dviratis ir sofa. Tokiose vietose kartojasi tos pačios dvi problemos.",
+      "lead": "Myli fotoaparatus ir fotografiją? Kartais susigundai nusipirkti ką nors nišinio arba tiesiog atsinaujinti, bet tai, ko ieškai, paskęsta tarp sodo technikos ar striukų? Šis skelbimų portalas sukurtas šiai problemai spręsti.",
       "problems": {
         "names": {
-          "title": "Vienas modelis – dešimt pavadinimų",
-          "text": "Kiekvienas pardavėjas modelį užrašo savaip: „fuji xt3“, „Fujifilm XT-3“, „X T3 kamera“. Paieška šių variantų nesusieja, todėl ieškodamas „X-T3“ nerandi pusės skelbimų."
+          "title": "Katalogas, ne spėlionės",
+          "text": "Kiekvienas modelį užrašo savaip: „fuji xt3“, „Fuji X T3“, „XT-3 kamera“. Paieškos šių pavadinimų nesusieja, todėl net parašęs gamintojo pavadinimą „Fujifilm X-T3“, gali nerasti pusės skelbimų. Tas pats ir atvirkščiai: įkėlęs skelbimą, nežinai, ar potencialus pirkėjas tave suras."
         },
         "details": {
-          "title": "Trūksta to, kas svarbiausia",
-          "text": "Skelbime dažniausiai tik nuotrauka ir kaina. Kiek kadrų, ar viskas veikia, ar yra kroviklis ir dėžutė – apie tai tenka klausinėti žinutėmis."
+          "title": "\"O galima daugiau info?\"",
+          "text": "Fotoaparatų skelbimuose svarbu ne tik nuotrauka ir kaina. Kiek kadrų, ar viskas veikia, ar yra kroviklis ir dėžutė - apie tai tenka klausinėti žinutėmis."
         }
       }
     },
     "different": {
       "title": "Ką darome kitaip",
-      "lead": "Skelbimas čia kuriamas ne iš laisvo teksto, o iš aiškios struktūros. Todėl kiekvienas skelbimas atsako į tuos pačius klausimus.",
-      "points": {
-        "catalog": {
-          "title": "Modelis iš katalogo",
-          "text": "Pardavėjas pasirenka modelį iš sąrašo, o ne rašo pavadinimą. Visi to paties fotoaparato skelbimai atsiduria vienoje vietoje."
-        },
-        "questions": {
-          "title": "Klausimai, kuriuos užduoda pirkėjai",
-          "text": "Kadrų skaičius, išvaizda ir veikimas atskirai, aiškus komplektacijos sąrašas – viskas matyti iš karto, be papildomų klausimų."
-        },
-        "gearOnly": {
-          "title": "Tik foto technika",
-          "text": "Jokių sofų ir dviračių. Fotoaparatai, objektyvai ir priedai – iš žmonių, kurie jais tikrai fotografavo."
-        }
-      }
+      "lead": "Rinkis modelį iš sąrašo. Jei perki, matai visus to modelio skelbimus ir nepraleisi nė vieno. Jei parduodi, tave suras visi, kas ieško šios ar panašios prekės."
     },
     "now": {
       "eyebrow": "Kur esame dabar",
-      "title": "Mažas projektas, didelis noras",
-      "early": "exposé kol kas – ankstyvas bandomasis projektas. Už jo nestovi didelė įmonė: jį kuria fotografiją mėgstantis žmogus Vilniuje, laisvalaikiu.",
-      "catalog": "Katalogą pildome palaipsniui. Neradai savo modelio? Pridėk jį pavadinimu – peržiūrėsime ir įtrauksime. Vėliau norime čia sukurti ir bendruomenę: forumus, pokalbius, pasidalinimą nuotraukomis."
+      "title": "Mažas projektas, didelės ambicijos",
+      "early": "exposé - asmeninis projektas, kurio misija - padėti fotografijos mylėtojams lengvai keistis savo įranga.",
+      "catalog": "Tikiu, kad daugybė nenaudojamų fotoaparatų gali lengvai rasti naujus namus."
     },
     "cta": {
-      "title": "Turi technikos, kuri dulka spintoje?",
-      "description": "Skelbimą sukursi per kelias minutes – nereikės sugalvoti pavadinimo.",
+      "title": "Turi technikos, kuri dulka stalčiuje?",
+      "description": "Skelbimą sukursi per kelias minutes.",
       "sell": "Parduoti techniką",
       "browse": "Naršyti skelbimus"
     }
