@@ -17,6 +17,7 @@ export type ListingErrorCode =
   | 'no_city'
   | 'missing_price'
   | 'missing_bundle_price'
+  | 'no_photos'
   | 'too_many_photos'
   | 'invalid_item'
   | 'photo_failed'
@@ -30,6 +31,7 @@ export interface ListingSummary {
   id: string;
   title: ListingTitle;
   priceCents: number | null;
+  fullPriceCents: number | null;
   city: string | null;
   status: ListingStatus;
   isBundle: boolean;
@@ -82,6 +84,7 @@ export interface ListingDetail {
   id: string;
   title: ListingTitle;
   priceCents: number | null;
+  fullPriceCents: number | null;
   city: string | null;
   status: ListingStatus;
   isBundle: boolean;

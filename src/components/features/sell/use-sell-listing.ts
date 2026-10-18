@@ -139,7 +139,7 @@ export function useSellListing({
     { key: isBundle ? 'priceEach' : 'price', done: items.every((item) => isPrice(item.price)) },
     ...(isBundle ? [{ key: 'bundlePrice' as const, done: isPrice(bundlePrice) }] : []),
     { key: 'city', done: cityId !== '' },
-    { key: 'photos', done: photoKeys.length > 0, optional: true },
+    { key: 'photos', done: photoKeys.length > 0 },
     { key: 'description', done: description.trim() !== '', optional: true },
   ];
   const missingSteps = steps.filter((step) => !step.optional && !step.done);

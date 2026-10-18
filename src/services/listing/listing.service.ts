@@ -224,6 +224,10 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
     throw new ListingError('photo_failed');
   }
 
+  if (publish && photoKeys.length === 0) {
+    throw new ListingError('no_photos');
+  }
+
   const described = input.items.filter(isDescribed);
 
   if (publish) {

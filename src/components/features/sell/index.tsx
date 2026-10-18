@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { AdFields } from '@/components/features/sell/ad-fields';
 import { AddItemPrompt } from '@/components/features/sell/add-item-prompt';
 import { BundlePriceField } from '@/components/features/sell/bundle-price-field';
+import { CompletionHint } from '@/components/features/sell/completion-hint';
 import { ContactFields } from '@/components/features/sell/contact-fields';
 import { DraftBar } from '@/components/features/sell/draft-bar';
 import { FormSection } from '@/components/features/sell/form-section';
@@ -177,14 +178,20 @@ export function SellListing({
         {sell.isEditingPublished ? (
           <p className="text-sm text-muted-foreground">{t('changesGoLive')}</p>
         ) : (
-          <DraftBar state={sell.draftState} previewHref={previewHref} />
+          <DraftBar state={sell.draftState} />
         )}
         <SubmitBar
           isPending={sell.isPending}
           isPublished={sell.isEditingPublished}
           missingSteps={sell.missingSteps}
+          previewHref={previewHref}
           onSubmit={sell.submit}
         />
+        {sell.isEditingPublished ? null : (
+          <p className="text-center text-xs text-muted-foreground">
+            <CompletionHint steps={sell.steps} />
+          </p>
+        )}
       </div>
     </div>
   );

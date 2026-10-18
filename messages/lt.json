@@ -30,6 +30,7 @@
     "password_contains_email": "Slaptažodyje negali būti tavo el. pašto adreso."
   },
   "common": {
+    "discount": "−{percent} %",
     "sellGear": "Parduoti",
     "logIn": "Prisijungti",
     "messages": "Žinutės",
@@ -366,15 +367,13 @@
       "preview": "Peržiūrėti"
     },
     "progress": {
-      "incomplete": "Pridėk daugiau informacijos",
-      "ready": "Galima skelbti",
+      "missing": "Neužpildyta: {steps}",
+      "optional": "Dar gali pridėti: {steps}",
       "excellent": "Puiku! Pirkėjai turi viską, ko reikia"
     },
     "submit": {
       "saveChanges": "Išsaugoti pakeitimus",
-      "saveDraft": "Išsaugoti juodraštį",
-      "publish": "Paskelbti",
-      "stillNeeded": "Neužpildyta: {steps}"
+      "publish": "Paskelbti"
     },
     "steps": {
       "model": "modelis",
@@ -463,6 +462,7 @@
     "no_city": "Pasirink miestą.",
     "missing_price": "Nurodyk kiekvienos prekės kainą.",
     "missing_bundle_price": "Nurodyk viso rinkinio kainą.",
+    "no_photos": "Įkelk bent vieną nuotrauką.",
     "too_many_photos": "Skelbime gali būti iki {max} nuotraukų.",
     "invalid_item": "Kažkas nutiko su preke – perkrauk puslapį ir bandyk dar kartą.",
     "photo_failed": "Nepavyko įkelti vienos nuotraukos – pašalink ją ir bandyk dar kartą.",

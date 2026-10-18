@@ -1,14 +1,17 @@
 'use client';
 
+import { ExternalLinkIcon } from 'lucide-react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { SellStepKey } from '@/components/features/sell/use-sell-listing';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface SubmitBarProps {
   isPending: boolean;
   isPublished: boolean;
   missingSteps: SellStepKey[];
+  previewHref: string | null;
   onSubmit: (publish: boolean) => void;
   stacked?: boolean;
 }
@@ -17,6 +20,7 @@ export function SubmitBar({
   isPending,
   isPublished,
   missingSteps,
+  previewHref,
   onSubmit,
   stacked,
 }: SubmitBarProps) {
@@ -37,38 +41,46 @@ export function SubmitBar({
   }
 
   const isIncomplete = missingSteps.length > 0;
+  const size = stacked ? 'lg' : 'default';
+  const previewClassName = cn('border-input', stacked ? 'w-full' : 'flex-1');
+  const previewLabel = (
+    <>
+      {t('draft.preview')}
+      <ExternalLinkIcon data-icon="inline-end" />
+    </>
+  );
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className={cn('flex gap-2', stacked && 'flex-col-reverse')}>
+    <div className={cn('flex gap-2', stacked && 'flex-col-reverse')}>
+      {previewHref ? (
+        <Link
+          href={previewHref}
+          target="_blank"
+          rel="noreferrer"
+          className={cn(buttonVariants({ variant: 'outline', size }), previewClassName)}
+        >
+          {previewLabel}
+        </Link>
+      ) : (
         <Button
           type="button"
           variant="outline"
-          size={stacked ? 'lg' : 'default'}
-          className={cn('border-input', stacked ? 'w-full' : 'flex-1')}
-          disabled={isPending}
-          onClick={() => onSubmit(false)}
+          size={size}
+          className={cn(previewClassName, 'text-muted-foreground disabled:opacity-100')}
+          disabled
         >
-          {t('submit.saveDraft')}
+          {previewLabel}
         </Button>
-        <Button
-          variant="tertiary"
-          type="button"
-          size={stacked ? 'lg' : 'default'}
-          className={cn(stacked ? 'w-full' : 'flex-[1.4]')}
-          disabled={isPending || isIncomplete}
-          onClick={() => onSubmit(true)}
-        >
-          {t('submit.publish')}
-        </Button>
-      </div>
-      {isIncomplete ? (
-        <p className="text-center text-xs text-muted-foreground">
-          {t('submit.stillNeeded', {
-            steps: missingSteps.map((step) => t(`steps.${step}`)).join(', '),
-          })}
-        </p>
-      ) : null}
+      )}
+      <Button
+        type="button"
+        size={size}
+        className={cn(stacked ? 'w-full' : 'flex-[1.4]')}
+        disabled={isPending || isIncomplete}
+        onClick={() => onSubmit(true)}
+      >
+        {t('submit.publish')}
+      </Button>
     </div>
   );
 }
