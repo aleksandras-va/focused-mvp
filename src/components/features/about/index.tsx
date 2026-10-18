@@ -29,7 +29,7 @@ export function About() {
   const t = useTranslations('about');
 
   return (
-    <div className="flex flex-col gap-16 pt-6 sm:gap-22 sm:pt-10">
+    <div className="flex flex-col gap-16 pt-6 sm:gap-header sm:pt-10">
       <section className="flex flex-wrap items-center gap-x-18 gap-y-12">
         <div className="flex min-w-0 flex-[1_1_32rem] flex-col gap-6">
           <p className={eyebrowClass}>{t('eyebrow')}</p>
@@ -40,6 +40,7 @@ export function About() {
             {t('intro')}
           </p>
         </div>
+
         <div className="mx-auto aspect-square w-full max-w-sm flex-[0_1_24rem] rounded-full bg-primary-soft p-2.5">
           <Image
             src="/images/about/founders.webp"
@@ -55,7 +56,7 @@ export function About() {
 
       <section className="flex flex-col gap-9">
         <SectionHeading title={t('why.title')} lead={t('why.lead')} />
-        <div className="flex flex-col gap-7 border-t pt-8">
+        <div className="flex flex-col gap-7">
           {PROBLEMS.map((key) => (
             <TextBlock
               key={key}
@@ -68,15 +69,6 @@ export function About() {
 
       <section className="flex flex-col gap-9">
         <SectionHeading title={t('different.title')} lead={t('different.lead')} />
-        <div className="flex flex-col gap-7">
-          {DIFFERENCES.map((key) => (
-            <TextBlock
-              key={key}
-              title={t(`different.points.${key}.title`)}
-              text={t(`different.points.${key}.text`)}
-            />
-          ))}
-        </div>
       </section>
 
       <section className="flex flex-wrap gap-x-14 gap-y-8 rounded-[2rem] border p-6 sm:p-12">
