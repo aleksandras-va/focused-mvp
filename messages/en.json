@@ -32,6 +32,7 @@
     "password_contains_email": "Password cannot contain your email address."
   },
   "common": {
+    "discount": "−{percent}%",
     "sellGear": "Sell gear",
     "logIn": "Log in",
     "messages": "Messages",
@@ -370,15 +371,13 @@
       "preview": "Preview"
     },
     "progress": {
-      "incomplete": "Keep adding info",
-      "ready": "Good to go",
+      "missing": "Still needed: {steps}",
+      "optional": "You can still add: {steps}",
       "excellent": "Excellent! Buyers have everything they need"
     },
     "submit": {
       "saveChanges": "Save changes",
-      "saveDraft": "Save draft",
-      "publish": "Publish ad",
-      "stillNeeded": "Still needed: {steps}"
+      "publish": "Publish ad"
     },
     "steps": {
       "model": "model",
@@ -467,6 +466,7 @@
     "no_city": "Pick a city.",
     "missing_price": "Give every item a price.",
     "missing_bundle_price": "Enter a price for the whole bundle.",
+    "no_photos": "Add at least one photo.",
     "too_many_photos": "A listing can have up to {max} photos.",
     "invalid_item": "Something went wrong with an item — reload the page and try again.",
     "photo_failed": "One of the photos failed to upload — remove it and try again.",

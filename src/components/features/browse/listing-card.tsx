@@ -2,6 +2,7 @@ import { ImageIcon, PencilIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { buttonVariants } from '@/components/ui/button';
+import { DiscountBadge } from '@/components/ui/discount-badge';
 import type { CosmeticCondition, ListingStatus } from '@/db/tables';
 import { formatPrice } from '@/lib/format';
 import { formatListingTitle, type ListingTitle } from '@/lib/listing-title';
@@ -16,6 +17,7 @@ export type ListingCardItem = {
   place: string | null;
   shutterCount: number | null;
   priceCents: number | null;
+  fullPriceCents: number | null;
   condition: CosmeticCondition | null;
   imageUrl: string | null;
   isBundle: boolean;
@@ -35,6 +37,7 @@ export function toListingCardItem(listing: ListingSummary): ListingCardItem {
     place: listing.mount ?? listing.city,
     shutterCount: listing.shutterCount,
     priceCents: listing.priceCents,
+    fullPriceCents: listing.fullPriceCents,
     condition: listing.cosmeticCondition,
     imageUrl: listing.coverUrl,
     isBundle: listing.isBundle,
@@ -118,10 +121,21 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
       </div>
 
       <div className="flex items-center justify-between gap-2 border-t bg-muted/60 px-4 py-3">
-        <span className="font-heading text-lg font-semibold">
-          {item.priceCents === null ? t('noPrice') : formatPrice(item.priceCents)}
-        </span>
-        {item.condition ? (
+        <p className="flex min-w-0 items-baseline gap-2">
+          <span className="font-heading text-lg font-semibold">
+            {item.priceCents === null ? t('noPrice') : formatPrice(item.priceCents)}
+          </span>
+          {item.fullPriceCents !== null ? (
+            <s className="truncate text-sm text-muted-foreground">
+              {formatPrice(item.fullPriceCents)}
+            </s>
+          ) : null}
+        </p>
+        {item.isBundle ? (
+          item.priceCents !== null && item.fullPriceCents !== null ? (
+            <DiscountBadge priceCents={item.priceCents} fullPriceCents={item.fullPriceCents} />
+          ) : null
+        ) : item.condition ? (
           <span className="rounded-full border border-input bg-background px-2.5 py-0.5 text-xs font-medium">
             {tEnums(`cosmeticCondition.${item.condition}`)}
           </span>

@@ -18,10 +18,7 @@ export function SellBreak() {
           {t('title')}
         </h2>
         <p className="mt-4 max-w-md text-base text-foreground/75 sm:text-lg">{t('description')}</p>
-        <Link
-          href="/sell"
-          className={buttonVariants({ variant: 'dark', size: 'lg', className: 'mt-7' })}
-        >
+        <Link href="/sell" className={buttonVariants({ size: 'lg', className: 'mt-7' })}>
           {tCommon('sellGear')}
         </Link>
       </div>

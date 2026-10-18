@@ -323,6 +323,7 @@ function listingCardQuery() {
           .leftJoin('mount', 'mount.id', 'model.mount_id')
           .select([
             'listing_item.id',
+            'listing_item.price_cents',
             'listing_item.cosmetic_condition',
             'listing_item.shutter_count',
             'model.display_name as model_name',

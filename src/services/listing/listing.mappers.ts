@@ -1,6 +1,7 @@
 import 'server-only';
 
 import type { ModelCategory } from '@/db/types';
+import { bundleFullPriceCents } from '@/lib/bundle-price';
 import type {
   ListingCardRow,
   ListingDetailItemRow,
@@ -30,6 +31,10 @@ export function mapToSummary(row: ListingCardRow, viewerId: string | null): List
       })),
     ),
     priceCents: row.price_cents,
+    fullPriceCents: bundleFullPriceCents(
+      row.price_cents,
+      row.items.map((item) => item.price_cents),
+    ),
     city: row.city_name,
     status: row.status,
     isBundle: row.items.length > 1,
@@ -53,6 +58,10 @@ export function mapToDetail(row: ListingDetailRow, viewerId: string | null): Lis
       items.map((item) => ({ name: item.modelName, category: item.category })),
     ),
     priceCents: row.price_cents,
+    fullPriceCents: bundleFullPriceCents(
+      row.price_cents,
+      items.map((item) => item.priceCents),
+    ),
     city: row.city_name,
     status: row.status,
     isBundle: items.length > 1,

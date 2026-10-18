@@ -8,7 +8,7 @@ import type { MessageSellerProps } from '@/components/features/listings/info/mes
 import { SafetyNote } from '@/components/features/listings/info/safety-note';
 import { SellerCard } from '@/components/features/listings/info/seller-card';
 import { Badge } from '@/components/ui/badge';
-import { formatOptionalPrice } from '@/lib/format';
+import { formatOptionalPrice, formatPrice } from '@/lib/format';
 import { formatListingTitle } from '@/lib/listing-title';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
@@ -28,6 +28,7 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
   const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
   const title = item?.modelName ?? bundleTitle;
   const priceCents = item?.priceCents ?? listing.priceCents;
+  const fullPriceCents = isBundleOverview ? listing.fullPriceCents : null;
 
   return (
     <div className="flex flex-col gap-5">
@@ -55,9 +56,14 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
       </div>
 
       <div className="flex flex-col gap-0.5">
-        <p className="font-heading text-3xl font-semibold tracking-tight">
-          {formatOptionalPrice(priceCents, t('noPrice'))}
-        </p>
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="font-heading text-3xl font-semibold tracking-tight">
+            {formatOptionalPrice(priceCents, t('noPrice'))}
+          </p>
+          {fullPriceCents !== null ? (
+            <s className="text-lg text-muted-foreground">{formatPrice(fullPriceCents)}</s>
+          ) : null}
+        </div>
         {isBundleOverview ? (
           <p className="text-sm text-muted-foreground">
             {t('forAll', { count: listing.items.length })}

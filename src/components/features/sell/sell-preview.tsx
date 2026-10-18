@@ -11,6 +11,7 @@ import type {
   SellStep,
   SellStepKey,
 } from '@/components/features/sell/use-sell-listing';
+import { bundleFullPriceCents } from '@/lib/bundle-price';
 
 interface SellPreviewProps {
   items: SellItem[];
@@ -52,6 +53,7 @@ export function SellPreview({
   const t = useTranslations('sell');
   const first = items[0];
   const names = items.map(itemName).filter(Boolean);
+  const priceCents = toCents(isBundle ? bundlePrice : first.price);
   const card: ListingCardItem = {
     href: previewHref ?? '#',
     title: { names, counts: [] },
@@ -59,7 +61,11 @@ export function SellPreview({
     itemCount: items.length,
     place: first.model?.mount?.name ?? null,
     shutterCount: first.shutterCount ? Number(first.shutterCount) : null,
-    priceCents: toCents(isBundle ? bundlePrice : first.price),
+    priceCents,
+    fullPriceCents: bundleFullPriceCents(
+      priceCents,
+      items.map((item) => toCents(item.price)),
+    ),
     condition: itemName(first) ? first.cosmeticCondition : null,
     imageUrl: coverUrl,
     isBundle,
@@ -81,6 +87,7 @@ export function SellPreview({
         isPending={isPending}
         isPublished={isPublished}
         missingSteps={missingSteps}
+        previewHref={previewHref}
         onSubmit={onSubmit}
         stacked
       />
@@ -88,7 +95,7 @@ export function SellPreview({
         <p className="text-center text-sm text-muted-foreground">{t('changesGoLive')}</p>
       ) : (
         <div className="flex justify-center">
-          <DraftBar state={draftState} previewHref={previewHref} />
+          <DraftBar state={draftState} />
         </div>
       )}
     </aside>

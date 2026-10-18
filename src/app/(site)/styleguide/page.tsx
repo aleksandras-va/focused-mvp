@@ -26,9 +26,7 @@ const colors = [
 
 const buttonVariantNames = [
   'default',
-  'dark',
   'secondary',
-  'tertiary',
   'outline',
   'ghost',
   'destructive',
@@ -43,6 +41,7 @@ const sampleCard: ListingCardItem = {
   place: 'Sony E',
   shutterCount: null,
   priceCents: 189000,
+  fullPriceCents: null,
   condition: 'excellent',
   imageUrl: null,
   isBundle: false,

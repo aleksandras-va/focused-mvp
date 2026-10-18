@@ -66,7 +66,7 @@ beforeAll(async () => {
       },
     ],
     bundlePrice: null,
-    photoKeys: [],
+    photoKeys: [`photos/${randomUUID()}`],
     cityId: city.id,
     description: null,
     contactEmail: null,
