@@ -250,6 +250,22 @@ export const CAMERAS: CameraSeed[] = [
     sensorFormat: 'aps_c',
     megapixels: 24.2,
   },
+  {
+    brand: 'nikon',
+    name: 'Coolpix S6200',
+    releaseYear: 2011,
+    bodyType: 'compact',
+    sensorFormat: null,
+    megapixels: 16,
+  },
+  {
+    brand: 'samsung',
+    name: 'PL90',
+    releaseYear: 2010,
+    bodyType: 'compact',
+    sensorFormat: null,
+    megapixels: 12.2,
+  },
   // Film bodies. 35mm film shares the full-frame capture area.
   {
     brand: 'zenit',

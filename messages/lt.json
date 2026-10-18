@@ -166,8 +166,8 @@
       }
     },
     "modelUnavailable": {
-      "title": "Šiuo metu {model} niekas neparduoda",
-      "description": "Štai artimiausia šiuo metu siūloma technika.",
+      "title": "Šiuo metu {model} niekas neparduoda :(",
+      "description": "Žemiau rasi panašius skelbimus.",
       "sellYours": "Parduok savo",
       "browseAll": "Visi skelbimai"
     },
