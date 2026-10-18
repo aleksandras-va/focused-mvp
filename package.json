@@ -20,6 +20,7 @@
     "db:import:lens-db": "node scripts/import-lens-db.mts",
     "db:import:lensfun": "node scripts/import-lensfun.mts",
     "db:seed": "node scripts/seed.mts",
+    "db:seed:prod": "node scripts/seed.mts --prod",
     "db:seed:cities": "node scripts/seed-cities.mts"
   },
   "dependencies": {
