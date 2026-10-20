@@ -55,7 +55,7 @@
       "removed": "Paslėpta"
     },
     "cosmeticCondition": {
-      "mint": "Kaip nauja",
+      "new": "Nauja",
       "excellent": "Labai gera",
       "good": "Gera",
       "well_used": "Gerokai naudota",
@@ -121,7 +121,7 @@
     "noMatches": "Skelbimų nerasta",
     "noMatchesHint": "Pabandyk mažiau filtrų arba užsuk vėliau.",
     "empty": "Kol kas nieko nėra",
-    "emptyHint": "Būk tarp pirmųjų – įkelk skelbimą.",
+    "emptyHint": "Būk tarp pirmųjų - įkelk skelbimą.",
     "clearFilters": "Išvalyti filtrus",
     "loadMore": "Rodyti daugiau",
     "filters": {
@@ -249,8 +249,8 @@
   },
   "messages": {
     "title": "Žinutės",
-    "empty": "Žinučių dar nėra",
-    "emptyHint": "Pokalbiai dėl skelbimų atsiras čia.",
+    "empty": "Žinučių nėra",
+    "emptyHint": "Pokalbiai apie skelbimus atsiras čia.",
     "browseAds": "Žiūrėti skelbimus",
     "deletedAd": "Ištrintas skelbimas",
     "adRemoved": "Pardavėjas ištrynė šį skelbimą.",
@@ -405,7 +405,7 @@
     },
     "custom": {
       "label": "Ką parduodi?",
-      "back": "Grįžti į sąrašą",
+      "back": "Grįžti prie modelių sąrašo",
       "placeholder": "Gamintojas ir modelis, pvz., DJI RS 3 Mini",
       "hint": "Netrukus įtrauksime šį modelį į katalogą. Tavo skelbimas bus paskelbtas jau dabar."
     },
@@ -416,7 +416,7 @@
       "shutterCount": "Kadrų skaičius",
       "shutterHint": "Palik tuščią, jei tavo fotoaparatas jo nerodo.",
       "hints": {
-        "mint": "Atrodo kaip naujas",
+        "new": "Nenaudota",
         "excellent": "Vos keli naudojimo požymiai",
         "good": "Lengvi naudojimo ženklai",
         "well_used": "Matomi naudojimo ženklai",

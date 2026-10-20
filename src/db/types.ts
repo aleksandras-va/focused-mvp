@@ -7,7 +7,7 @@ import type { ColumnType } from "kysely";
 
 export type CameraBodyType = "compact" | "dslr" | "mirrorless" | "rangefinder" | "slr";
 
-export type CosmeticCondition = "damaged" | "excellent" | "good" | "mint" | "well_used";
+export type CosmeticCondition = "damaged" | "excellent" | "good" | "new" | "well_used";
 
 export type FunctionalCondition = "faulty" | "fully_working" | "minor_issues";
 

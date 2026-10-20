@@ -17,7 +17,7 @@ export type BrowseFilters = {
 };
 
 const CATEGORIES: ModelCategory[] = ['camera', 'lens', 'accessory'];
-const CONDITIONS: CosmeticCondition[] = ['mint', 'excellent', 'good', 'well_used', 'damaged'];
+const CONDITIONS: CosmeticCondition[] = ['new', 'excellent', 'good', 'well_used', 'damaged'];
 
 type SearchParams = Record<string, string | string[] | undefined>;
 

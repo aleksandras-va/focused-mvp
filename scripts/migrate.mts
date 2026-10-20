@@ -10,10 +10,11 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 
 nextEnv.loadEnvConfig(projectRoot);
 
-const connectionString = process.env.DATABASE_URL;
+const databaseUrlVariable = process.argv.includes('--prod') ? 'PROD_DATABASE_URL' : 'DATABASE_URL';
+const connectionString = process.env[databaseUrlVariable];
 
 if (!connectionString) {
-  throw new Error('DATABASE_URL is not set — see .env.example');
+  throw new Error(`${databaseUrlVariable} is not set — see .env.example`);
 }
 
 const { host, pathname } = new URL(connectionString);

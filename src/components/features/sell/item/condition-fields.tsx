@@ -6,7 +6,7 @@ import { ChoiceGroup } from '@/components/features/sell/choice-group';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { COSMETIC_CONDITIONS, FUNCTIONAL_CONDITIONS } from '@/lib/listing-options';
+import { CONDITION_TONES, COSMETIC_CONDITIONS, FUNCTIONAL_CONDITIONS } from '@/lib/listing-options';
 import { keepDigits } from '@/lib/numeric-input';
 
 interface ConditionFieldsProps {
@@ -31,11 +31,11 @@ export function ConditionFields({ item, isBundle, onChange }: ConditionFieldsPro
       <ChoiceGroup
         legend={t('cosmetic')}
         name={`${groupId}-cosmetic`}
-        minWidth="7.5rem"
-        options={COSMETIC_CONDITIONS.map((condition) => ({
+        options={COSMETIC_CONDITIONS.toReversed().map((condition) => ({
           value: condition,
           label: tEnums(`cosmeticCondition.${condition}`),
           hint: t(`hints.${condition}`),
+          tone: CONDITION_TONES[condition],
         }))}
         value={item.cosmeticCondition}
         disabled={!isItemChosen}
@@ -45,10 +45,10 @@ export function ConditionFields({ item, isBundle, onChange }: ConditionFieldsPro
       <ChoiceGroup
         legend={t('functional')}
         name={`${groupId}-functional`}
-        minWidth="9.5rem"
-        options={FUNCTIONAL_CONDITIONS.map((condition) => ({
+        options={FUNCTIONAL_CONDITIONS.toReversed().map((condition) => ({
           value: condition,
           label: tEnums(`functionalCondition.${condition}`),
+          tone: CONDITION_TONES[condition],
         }))}
         value={item.functionalCondition}
         disabled={!isItemChosen}

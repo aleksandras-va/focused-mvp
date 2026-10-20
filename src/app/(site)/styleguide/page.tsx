@@ -128,7 +128,7 @@ export default function StyleguidePage() {
           <Field>
             <FieldLabel htmlFor="sg-select">Native select</FieldLabel>
             <NativeSelect id="sg-select" defaultValue="good">
-              <NativeSelectOption value="mint">Mint</NativeSelectOption>
+              <NativeSelectOption value="new">New</NativeSelectOption>
               <NativeSelectOption value="good">Good</NativeSelectOption>
             </NativeSelect>
           </Field>

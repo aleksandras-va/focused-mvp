@@ -1,11 +1,11 @@
 import 'server-only';
 
+import { resolveListingTitle } from '@/lib/listing-title';
 import type {
   ConversationInboxRow,
   ConversationRow,
   MessageRow,
 } from '@/repositories/conversation.repository';
-import { listingTitleResolver } from '../listing/listing.title-resolver';
 import { photoService } from '../photo/photo.service';
 import type {
   ConversationDetail,
@@ -48,7 +48,7 @@ export function mapToMessage(row: MessageRow, viewerId: string): ConversationMes
 }
 
 export function listingTitle(row: ConversationRow) {
-  return listingTitleResolver.resolve(
+  return resolveListingTitle(
     row.listing_items.map((item) => ({
       name: item.model_name ?? item.custom_name ?? '',
       category: item.category,

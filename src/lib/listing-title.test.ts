@@ -1,9 +1,8 @@
 import { createTranslator } from 'next-intl';
 import { describe, expect, it } from 'vitest';
 import type { ModelCategory } from '@/db/types';
-import { formatListingTitle } from '@/lib/listing-title';
-import messages from '../../../messages/lt.json';
-import { listingTitleResolver } from './listing.title-resolver';
+import { formatListingTitle, resolveListingTitle } from '@/lib/listing-title';
+import messages from '../../messages/lt.json';
 
 type TitleCase = [items: [name: string, category: ModelCategory][], title: string];
 
@@ -60,12 +59,10 @@ const cases: TitleCase[] = [
   ],
 ];
 
-describe('listingTitleResolver', () => {
+describe('resolveListingTitle', () => {
   for (const [items, title] of cases) {
     it(`${items.length} items → ${title}`, () => {
-      const resolved = listingTitleResolver.resolve(
-        items.map(([name, category]) => ({ name, category })),
-      );
+      const resolved = resolveListingTitle(items.map(([name, category]) => ({ name, category })));
 
       expect(formatListingTitle(resolved, t)).toBe(title);
     });
