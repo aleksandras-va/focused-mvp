@@ -18,6 +18,7 @@ export interface SearchOutcome {
   resultCount: number;
   selectedKind: 'brand' | 'model' | null;
   selectedSlug: string | null;
+  openedWith: 'shortcut' | 'click';
 }
 
 export interface AnalyticsProfile {

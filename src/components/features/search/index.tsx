@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useEffectEvent, useRef, useState, useTransition } from 'react';
 import { ModelItem } from '@/components/features/search/model-item';
 import {
   Command,
@@ -45,23 +45,28 @@ export function SearchDialog({
   const [recent, setRecent] = useState<RecentlyViewedListing[]>([]);
   const [isSearching, startSearching] = useTransition();
   const router = useRouter();
+  const openedWith = useRef<SearchOutcome['openedWith']>('click');
 
   const browsing = term.trim().length < 1;
 
+  const toggleWithShortcut = useEffectEvent((event: KeyboardEvent) => {
+    if (event.key !== 'k' || !(event.metaKey || event.ctrlKey)) return;
+
+    event.preventDefault();
+    if (!open) openedWith.current = 'shortcut';
+    changeOpen(!open);
+  });
+
   useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        onOpenChange(!open);
-      }
+    window.addEventListener('keydown', toggleWithShortcut);
+    return () => window.removeEventListener('keydown', toggleWithShortcut);
+  }, []);
+
+  useEffect(() => {
+    if (!open) {
+      openedWith.current = 'click';
+      return;
     }
-
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [open, onOpenChange]);
-
-  useEffect(() => {
-    if (!open) return;
 
     setRecent(readRecentlyViewed());
     startSearching(async () => {
@@ -92,6 +97,7 @@ export function SearchDialog({
       resultCount: results.brands.length + results.models.length,
       selectedKind: selection?.kind ?? null,
       selectedSlug: selection?.slug ?? null,
+      openedWith: openedWith.current,
     });
   }
 

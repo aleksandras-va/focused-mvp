@@ -222,7 +222,7 @@
     "owner": {
       "yourAd": "Tavo skelbimas",
       "notices": {
-        "draft": "Dar nepaskelbtas — šį puslapį matai tik tu.",
+        "draft": "Dar nepaskelbtas - šį puslapį matai tik tu.",
         "sold": "Pažymėtas kaip parduotas, todėl pirkėjai šio puslapio nebemato.",
         "removed": "Paslėptas, todėl pirkėjai šio puslapio nebemato. Paskelbk, kad jis vėl būtų matomas."
       },
@@ -259,7 +259,7 @@
     "viewAd": "Žiūrėti skelbimą",
     "backToMessages": "Atgal į žinutes",
     "replyPlaceholder": "Rašyk atsakymą…",
-    "emailNotice": "Jei pašnekovas dar neperskaitė ankstesnių žinučių, jis gaus el. laišką.",
+    "emailNotice": "Pašnekovas gavo laišką, kad jam parašei.",
     "send": "Siųsti",
     "sending": "Siunčiama…"
   },
@@ -284,7 +284,7 @@
     "retry": "Bandyti dar kartą"
   },
   "notFound": {
-    "title": "Čia nieko nėra",
+    "title": "Skelbimo nebėra",
     "description": "Skelbimas galėjo būti parduotas ar pašalintas, arba nuoroda neteisinga.",
     "browse": "Žiūrėti skelbimus"
   },
@@ -311,7 +311,7 @@
       "subject": "{sender} parašė tau žinutę",
       "subjectAbout": "{sender} parašė tau dėl {listing}",
       "reply": "Atsakyti",
-      "notice": "Už kiekvieną neperskaitytą pokalbį gauni vieną laišką. Kai jį perskaitysi exposé, apie kitą žinutę vėl pranešime."
+      "notice": "Šis laiškas siunčiamas nes gavai naują žinutę iš pirkėjo."
     }
   },
   "listingTitle": {
@@ -331,11 +331,10 @@
     "preview": "Peržiūra",
     "description": {
       "title": "Aprašymas",
-      "hint": "Neprivaloma. Istorija, žymės, kodėl parduodi.",
       "placeholder": "Viskas, ką pirkėjui verta žinoti: istorija, žymės, kodėl parduodi."
     },
     "addItem": {
-      "bundle": "Dar kas nors keliauja kartu?",
+      "bundle": "Dar ką nors parduodi kartu?",
       "lensTitle": "Kartu parduodi ir objektyvą ar priedą?",
       "lensHint": "Pridėk jį kaip atskirą prekę - tavo skelbimą ras ir objektyvo ar priedo ieškantys pirkėjai.",
       "moreTitle": "Parduodi daugiau nei vieną prekę?",
@@ -498,7 +497,7 @@
     },
     "profile": {
       "title": "Profilis",
-      "description": "Įrašoma į kiekvieną naują skelbimą. Skelbime gali šią informaciją.",
+      "description": "Įrašoma į kiekvieną naują skelbimą. Gali redaguoti individualiai.",
       "name": "Vardas",
       "phone": "Telefonas",
       "city": "Miestas",
@@ -511,9 +510,8 @@
       "namePlaceholder": "Kaip tave matys pirkėjai",
       "phone": "Telefonas",
       "optional": "Neprivaloma",
-      "phoneHint": "Bet kuriame skelbime numerio gali nerodyti – tada pirkėjai tau parašys žinutę.",
+      "phoneHint": "Skelbime gali pasirinkti nerodyti numerio - tada, pirkėjai su tavim susisieks žinute.",
       "city": "Miestas",
-      "cityHint": "Rodomas tavo skelbimuose, kad pirkėjai žinotų, kur yra technika.",
       "save": "Išsaugoti ir tęsti",
       "skip": "Kol kas praleisti"
     },

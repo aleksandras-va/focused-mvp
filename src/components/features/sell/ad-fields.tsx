@@ -14,7 +14,7 @@ export function AdFields({ step, description, onDescriptionChange }: AdFieldsPro
   const t = useTranslations('sell.description');
 
   return (
-    <FormSection step={step} title={t('title')} description={t('hint')}>
+    <FormSection step={step} title={t('title')}>
       <Textarea
         id="description"
         aria-label={t('title')}

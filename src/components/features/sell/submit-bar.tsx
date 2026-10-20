@@ -1,8 +1,8 @@
 'use client';
 
-import { ExternalLinkIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import type { MouseEvent } from 'react';
 import type { SellStepKey } from '@/components/features/sell/use-sell-listing';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -12,6 +12,7 @@ interface SubmitBarProps {
   isPublished: boolean;
   missingSteps: SellStepKey[];
   previewHref: string | null;
+  onPreview: (href: string) => void;
   onSubmit: (publish: boolean) => void;
   stacked?: boolean;
 }
@@ -21,6 +22,7 @@ export function SubmitBar({
   isPublished,
   missingSteps,
   previewHref,
+  onPreview,
   onSubmit,
   stacked,
 }: SubmitBarProps) {
@@ -43,20 +45,21 @@ export function SubmitBar({
   const isIncomplete = missingSteps.length > 0;
   const size = stacked ? 'lg' : 'default';
   const previewClassName = cn('border-input', stacked ? 'w-full' : 'flex-1');
-  const previewLabel = (
-    <>
-      {t('draft.preview')}
-      <ExternalLinkIcon data-icon="inline-end" />
-    </>
-  );
+  const previewLabel = t('draft.preview');
+
+  const openPreview = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+
+    event.preventDefault();
+    onPreview(href);
+  };
 
   return (
     <div className={cn('flex gap-2', stacked && 'flex-col-reverse')}>
       {previewHref ? (
         <Link
           href={previewHref}
-          target="_blank"
-          rel="noreferrer"
+          onClick={(event) => openPreview(event, previewHref)}
           className={cn(buttonVariants({ variant: 'outline', size }), previewClassName)}
         >
           {previewLabel}
