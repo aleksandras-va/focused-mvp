@@ -22,6 +22,7 @@
       "src/components/ui/scroll-to-top.tsx",
       "src/components/ui/preconnect.tsx",
       "src/components/ui/json-ld.tsx",
+      "src/components/ui/record-visit-source.tsx",
       "!src/lib/utils.ts"
     ]
   },

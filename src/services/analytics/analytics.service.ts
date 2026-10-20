@@ -6,12 +6,19 @@ import { after } from 'next/server';
 import {
   MIXPANEL_PROFILE_URL,
   MIXPANEL_TRACK_URL,
+  SOURCE_COOKIE,
+  SOURCE_DAYS,
   VISITOR_COOKIE,
   VISITOR_DAYS,
 } from './analytics.constants';
 import { AnalyticsError } from './analytics.error';
-import type { AnalyticsEventName, AnalyticsEvents, AnalyticsProfile } from './analytics.types';
-import { toMixpanelProperties } from './analytics.utils';
+import type {
+  AnalyticsEventName,
+  AnalyticsEvents,
+  AnalyticsProfile,
+  VisitLanding,
+} from './analytics.types';
+import { parseVisitSource, readStoredVisitSource, toMixpanelProperties } from './analytics.utils';
 
 export const analyticsService = {
   async track<Name extends AnalyticsEventName>(
@@ -27,6 +34,7 @@ export const analyticsService = {
       event,
       properties: {
         ...toMixpanelProperties(properties),
+        ...(await readVisitSource()),
         token,
         time: Date.now(),
         $insert_id: randomUUID(),
@@ -40,6 +48,27 @@ export const analyticsService = {
         console.error(`Analytics event "${event}" failed`, error);
       }),
     );
+  },
+
+  async rememberVisitSource(landing: VisitLanding) {
+    if (!process.env.MIXPANEL_TOKEN) return;
+
+    const source = parseVisitSource(landing);
+
+    if (!source) return;
+
+    const cookieStore = await cookies();
+    const value = JSON.stringify(source);
+
+    if (cookieStore.get(SOURCE_COOKIE)?.value === value) return;
+
+    cookieStore.set(SOURCE_COOKIE, value, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: SOURCE_DAYS * 86_400,
+    });
   },
 
   identify(profile: AnalyticsProfile) {
@@ -61,6 +90,12 @@ export const analyticsService = {
     );
   },
 } as const;
+
+async function readVisitSource() {
+  const cookieStore = await cookies();
+
+  return readStoredVisitSource(cookieStore.get(SOURCE_COOKIE)?.value);
+}
 
 async function readOrCreateVisitorId() {
   const cookieStore = await cookies();
