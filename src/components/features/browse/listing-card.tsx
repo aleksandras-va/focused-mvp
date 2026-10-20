@@ -58,6 +58,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
   const detail =
     item.shutterCount !== null ? t('shutterCount', { count: item.shutterCount }) : item.place;
   const statusLabel = item.status === 'active' ? null : tEnums(`listingStatus.${item.status}`);
+  const title = formatListingTitle(item.title, tTitle);
 
   return (
     <article className="group/card relative flex flex-col overflow-hidden rounded-2xl border bg-card transition-shadow hover:shadow-md">
@@ -84,7 +85,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
           // biome-ignore lint/performance/noImgElement: photos come from R2, not the image optimizer
           <img
             src={item.imageUrl}
-            alt=""
+            alt={title}
             className="size-full object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
             loading="lazy"
           />
@@ -114,7 +115,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
         <p className="truncate text-xs text-muted-foreground">{subtitle || ' '}</p>
         <h3 className="line-clamp-2 font-medium leading-snug">
           <Link href={href} className="after:absolute after:inset-0">
-            {formatListingTitle(item.title, tTitle)}
+            {title}
           </Link>
         </h3>
         {detail ? <p className="text-xs text-muted-foreground">{detail}</p> : null}

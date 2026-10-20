@@ -7,6 +7,7 @@ import type {
   ListingCardRow,
   ListingDetailItemRow,
   ListingDetailRow,
+  SitemapListingRow,
 } from '@/repositories/listing.repository';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
 import { photoService } from '../photo/photo.service';
@@ -16,6 +17,7 @@ import type {
   ListingItemDetail,
   ListingPhotoUrl,
   ListingSummary,
+  SitemapListing,
 } from './listing.types';
 import { centsToPriceInput } from './listing.utils';
 
@@ -159,4 +161,14 @@ function mapToPhotos(row: ListingDetailRow): ListingPhotoUrl[] {
   }
 
   return photos;
+}
+
+export function mapToSitemapListing(row: SitemapListingRow): SitemapListing {
+  return {
+    id: row.id,
+    sellerId: row.seller_id,
+    itemIds: row.items.map((item) => item.id),
+    isBundle: row.items.length > 1,
+    updatedAt: row.updated_at,
+  };
 }

@@ -20,6 +20,8 @@
       "src/components/ui/logo.tsx",
       "src/components/ui/empty-state.tsx",
       "src/components/ui/scroll-to-top.tsx",
+      "src/components/ui/preconnect.tsx",
+      "src/components/ui/json-ld.tsx",
       "!src/lib/utils.ts"
     ]
   },

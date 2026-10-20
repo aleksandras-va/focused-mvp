@@ -12,6 +12,12 @@ export const photoService = {
     return base ? `${base}/${photoObjectPath(storageKey, size)}` : null;
   },
 
+  getPublicOrigin(): string | null {
+    const base = process.env.R2_PUBLIC_BASE_URL;
+
+    return base ? new URL(base).origin : null;
+  },
+
   async createUpload(): Promise<PhotoUpload> {
     const { bucket, host, client } = storageConfig();
     const storageKey = `photos/${crypto.randomUUID()}`;

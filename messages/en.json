@@ -179,6 +179,12 @@
       "sameMount": "Other {name} {category, select, camera {cameras} lens {lenses} other {accessories}}",
       "sameBrand": "Other {name} {category, select, camera {cameras} lens {lenses} other {accessories}}",
       "newest": "Newest ads"
+    },
+    "meta": {
+      "category": "Used {category, select, camera {cameras} lens {lenses} other {camera accessories}}",
+      "brand": "Used {brand} {category, select, camera {cameras} lens {lenses} accessory {accessories} other {cameras and lenses}}",
+      "model": "{model} listings",
+      "description": "{title} in Lithuania – camera gear only, no garden tools or jackets. Find the model however it is written."
     }
   },
   "listingCard": {
@@ -279,7 +285,11 @@
     "joined": "Member since {month}",
     "adCount": "{count, plural, one {# ad} other {# ads}}",
     "empty": "Nothing for sale right now",
-    "emptyHint": "Check back later — sellers list new gear all the time."
+    "emptyHint": "Check back later — sellers list new gear all the time.",
+    "meta": {
+      "title": "{name} listings",
+      "description": "Used camera gear from {isStore, select, yes {store} other {seller}} {name} on exposé. {count, plural, =0 {No active listings right now} one {# active listing} other {# active listings}}."
+    }
   },
   "errorPage": {
     "title": "Something went wrong",
@@ -296,6 +306,7 @@
     "placeholder": "Pick a city"
   },
   "site": {
+    "title": "Used cameras, lenses and accessories in Lithuania",
     "description": "Marketplace for used cameras and lenses"
   },
   "email": {

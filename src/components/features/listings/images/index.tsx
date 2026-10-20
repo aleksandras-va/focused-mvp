@@ -28,6 +28,7 @@ export function Gallery({ photos, title }: GalleryProps) {
         <img
           src={photos[selectedIndex].largeUrl}
           alt={title}
+          fetchPriority="high"
           className="aspect-4/3 w-full object-contain"
         />
         {photos.length > 1 ? (

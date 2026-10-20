@@ -1,5 +1,7 @@
+import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { SellListing } from '@/components/features/sell';
+import { NOT_INDEXED } from '@/lib/site';
 import { authService } from '@/services/auth/auth.service';
 import { cityService } from '@/services/city/city.service';
 import { ListingError } from '@/services/listing/listing.error';
@@ -11,6 +13,8 @@ import {
   searchModelsAction,
   submitListingAction,
 } from '../actions';
+
+export const metadata: Metadata = { robots: NOT_INDEXED };
 
 export default async function EditListingPage({ params }: PageProps<'/sell/[id]'>) {
   const { id } = await params;

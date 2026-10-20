@@ -1,5 +1,7 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { SellListing } from '@/components/features/sell';
+import { NOT_INDEXED } from '@/lib/site';
 import { authService } from '@/services/auth/auth.service';
 import { cityService } from '@/services/city/city.service';
 import {
@@ -8,6 +10,8 @@ import {
   searchModelsAction,
   submitListingAction,
 } from './actions';
+
+export const metadata: Metadata = { robots: NOT_INDEXED };
 
 export default async function SellPage() {
   const user = await authService.getCurrentUserCached();

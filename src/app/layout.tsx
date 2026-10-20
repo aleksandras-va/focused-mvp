@@ -4,10 +4,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
+import { Preconnect } from '@/components/ui/preconnect';
 import { authService } from '@/services/auth/auth.service';
 import { conversationService } from '@/services/conversation/conversation.service';
+import { photoService } from '@/services/photo/photo.service';
 import { getSearchSuggestionsAction, searchSiteAction, trackSearchAction } from './actions';
 import './globals.css';
+import { OPEN_GRAPH_BASE, SITE_NAME, SITE_URL } from '@/lib/site';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -20,20 +23,17 @@ const bricolage = Bricolage_Grotesque({
   subsets: ['latin', 'latin-ext'],
 });
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : 'http://localhost:3000';
-
 const titlePrefix = process.env.NODE_ENV === 'development' ? 'dev - ' : '';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('site');
 
   return {
-    metadataBase: new URL(siteUrl),
-    title: { default: `${titlePrefix}exposé`, template: `${titlePrefix}%s | exposé` },
+    metadataBase: new URL(SITE_URL),
+    title: { default: `${titlePrefix}${SITE_NAME}`, template: `${titlePrefix}%s | ${SITE_NAME}` },
     description: t('description'),
-    openGraph: { type: 'website', siteName: 'exposé' },
+    openGraph: OPEN_GRAPH_BASE,
+    twitter: { card: 'summary_large_image' },
   };
 }
 
@@ -47,6 +47,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
       className={cn(inter.variable, bricolage.variable, 'h-full', 'antialiased')}
     >
       <body className="flex min-h-full flex-col">
+        <Preconnect origin={photoService.getPublicOrigin()} />
         <NextIntlClientProvider>
           <SiteHeader
             user={user ? { displayName: user.displayName, unreadMessages } : null}

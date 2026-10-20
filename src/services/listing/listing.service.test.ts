@@ -99,6 +99,27 @@ describe('listingService.getSimilarToModel', () => {
   }
 });
 
+describe('listingService.getSitemapListings', () => {
+  it('lists active ads with their item ids and drops hidden ones', async () => {
+    const [hidden, ...visible] = await listingService.getSellerListings(sellerId);
+
+    await listingService.hide(hidden.id, sellerId);
+
+    const sellerEntries = (await listingService.getSitemapListings()).filter(
+      (entry) => entry.sellerId === sellerId,
+    );
+
+    expect(sellerEntries.map((entry) => entry.id).sort()).toEqual(
+      visible.map((listing) => listing.id).sort(),
+    );
+    expect(sellerEntries.every((entry) => entry.itemIds.length === 1 && !entry.isBundle)).toBe(
+      true,
+    );
+
+    await listingService.restore(hidden.id, sellerId);
+  });
+});
+
 describe('modelCatalogService.searchBrandAndModel with ads', () => {
   it('lists a model with ads first, with its count and lowest price', async () => {
     const { models } = await modelCatalogService.searchBrandAndModel('sony a7');

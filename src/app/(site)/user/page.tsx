@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Account } from '@/components/features/account';
+import { NOT_INDEXED } from '@/lib/site';
 import type { AccountErrorCode } from '@/services/account/account.types';
 import { authService } from '@/services/auth/auth.service';
 import { cityService } from '@/services/city/city.service';
@@ -13,7 +14,7 @@ const SAVED_NOTICES = ['profile', 'store'] as const;
 export async function generateMetadata() {
   const t = await getTranslations('account');
 
-  return { title: t('metaTitle') };
+  return { title: t('metaTitle'), robots: NOT_INDEXED };
 }
 
 export default async function UserPage({ searchParams }: PageProps<'/user'>) {

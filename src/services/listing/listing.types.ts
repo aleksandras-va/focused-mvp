@@ -45,6 +45,14 @@ export interface ListingSummary {
   isOwner: boolean;
 }
 
+export interface SitemapListing {
+  id: string;
+  sellerId: string;
+  itemIds: string[];
+  isBundle: boolean;
+  updatedAt: Date;
+}
+
 export interface ListingPage {
   listings: ListingSummary[];
   hasMore: boolean;

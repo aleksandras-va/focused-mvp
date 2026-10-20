@@ -176,6 +176,12 @@
       "sameMount": "Kiti {name} {category, select, camera {fotoaparatai} lens {objektyvai} other {priedai}}",
       "sameBrand": "Kiti {name} {category, select, camera {fotoaparatai} lens {objektyvai} other {priedai}}",
       "newest": "Naujausi skelbimai"
+    },
+    "meta": {
+      "category": "Naudoti {category, select, camera {fotoaparatai} lens {objektyvai} other {foto priedai}}",
+      "brand": "Naudoti {brand} {category, select, camera {fotoaparatai} lens {objektyvai} accessory {priedai} other {fotoaparatai ir objektyvai}}",
+      "model": "{model} skelbimai",
+      "description": "{title} Lietuvoje – tik foto technika, be sodo įrankių ir striukų."
     }
   },
   "listingCard": {
@@ -275,7 +281,11 @@
     "joined": "Prisijungė: {month}",
     "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
     "empty": "Šiuo metu nieko neparduoda",
-    "emptyHint": "Užsuk vėliau - pardavėjai naujos technikos įkelia nuolat."
+    "emptyHint": "Užsuk vėliau - pardavėjai naujos technikos įkelia nuolat.",
+    "meta": {
+      "title": "{name} skelbimai",
+      "description": "{isStore, select, yes {Parduotuvės} other {Pardavėjo}} {name} naudota foto technika exposé. Šiuo metu {count, plural, =0 {skelbimų nėra} one {# aktyvus skelbimas} few {# aktyvūs skelbimai} other {# aktyvių skelbimų}}."
+    }
   },
   "errorPage": {
     "title": "Kažkas nepavyko",
@@ -292,6 +302,7 @@
     "placeholder": "Pasirink miestą"
   },
   "site": {
+    "title": "Naudoti fotoaparatai, objektyvai ir priedai Lietuvoje",
     "description": "Naudotų fotoaparatų, objektyvų ir priedų skelbimai Lietuvoje."
   },
   "email": {

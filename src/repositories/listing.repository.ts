@@ -19,6 +19,10 @@ export type ListingDetailRow = NonNullable<Awaited<ReturnType<typeof listingRepo
 
 export type ListingDetailItemRow = ListingDetailRow['items'][number];
 
+export type SitemapListingRow = Awaited<
+  ReturnType<typeof listingRepository.listPublishedForSitemap>
+>[number];
+
 const SIMILARITY_STEPS = ['focalLength', 'mount', 'brand', 'newest'] as const;
 const FOCAL_LENGTH_TOLERANCE = 1.25;
 
@@ -204,6 +208,26 @@ export const listingRepository = {
     const [{ step }] = rows;
 
     return { step: SIMILARITY_STEPS[step], rows: rows.filter((row) => row.step === step) };
+  },
+
+  listPublishedForSitemap() {
+    return db
+      .selectFrom('listing')
+      .select((eb) => [
+        'listing.id',
+        'listing.seller_id',
+        'listing.updated_at',
+        jsonArrayFrom(
+          eb
+            .selectFrom('listing_item')
+            .select('listing_item.id')
+            .whereRef('listing_item.listing_id', '=', 'listing.id')
+            .orderBy('listing_item.position'),
+        ).as('items'),
+      ])
+      .where('listing.status', '=', 'active')
+      .orderBy('listing.published_at', 'desc')
+      .execute();
   },
 
   listPublishedBySeller(sellerId: string) {
