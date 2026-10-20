@@ -51,7 +51,10 @@ export function OwnerBar({
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
             <span className="font-medium">{t('yourAd')}</span>
-            <Badge variant={status === 'active' ? 'outline' : 'default'} className="bg-background">
+            <Badge
+              variant={status === 'active' ? 'outline' : 'default'}
+              className={status === 'active' ? 'bg-background' : undefined}
+            >
               {tEnums(`listingStatus.${status}`)}
             </Badge>
           </div>

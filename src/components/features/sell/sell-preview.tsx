@@ -23,6 +23,7 @@ interface SellPreviewProps {
   missingSteps: SellStepKey[];
   draftState: DraftState;
   previewHref: string | null;
+  onPreview: (href: string) => void;
   isPending: boolean;
   isPublished: boolean;
   onSubmit: (publish: boolean) => void;
@@ -47,6 +48,7 @@ export function SellPreview({
   missingSteps,
   draftState,
   previewHref,
+  onPreview,
   isPending,
   isPublished,
   onSubmit,
@@ -96,6 +98,7 @@ export function SellPreview({
         isPublished={isPublished}
         missingSteps={missingSteps}
         previewHref={previewHref}
+        onPreview={onPreview}
         onSubmit={onSubmit}
         stacked
       />

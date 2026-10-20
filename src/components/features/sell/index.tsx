@@ -168,6 +168,7 @@ export function SellListing({
           missingSteps={sell.missingSteps}
           draftState={sell.draftState}
           previewHref={previewHref}
+          onPreview={sell.openPreview}
           isPending={sell.isPending}
           isPublished={sell.isEditingPublished}
           onSubmit={sell.submit}
@@ -185,6 +186,7 @@ export function SellListing({
           isPublished={sell.isEditingPublished}
           missingSteps={sell.missingSteps}
           previewHref={previewHref}
+          onPreview={sell.openPreview}
           onSubmit={sell.submit}
         />
         {sell.isEditingPublished ? null : (

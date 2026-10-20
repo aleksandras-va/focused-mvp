@@ -1,6 +1,12 @@
 import { SearchIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useSyncExternalStore } from 'react';
+import { searchShortcutLabel } from '@/lib/keyboard-shortcut';
 import { cn } from '@/lib/utils';
+
+function subscribeToNothing() {
+  return () => {};
+}
 
 interface SearchTriggerProps {
   onClick: () => void;
@@ -9,6 +15,7 @@ interface SearchTriggerProps {
 
 export function SearchTrigger({ onClick, className }: SearchTriggerProps) {
   const t = useTranslations('search');
+  const shortcut = useSyncExternalStore(subscribeToNothing, searchShortcutLabel, () => null);
 
   return (
     <button
@@ -21,9 +28,11 @@ export function SearchTrigger({ onClick, className }: SearchTriggerProps) {
     >
       <SearchIcon className="absolute left-4 size-4 transition-colors group-hover/search:text-primary" />
       <span className="truncate">{t('trigger')}</span>
-      <kbd className="absolute right-4 hidden rounded-md border border-current/20 px-1.5 font-sans text-xs lg:inline">
-        ⌘K
-      </kbd>
+      {shortcut ? (
+        <kbd className="absolute right-4 hidden rounded-md border border-current/20 px-1.5 font-sans text-xs lg:inline">
+          {shortcut}
+        </kbd>
+      ) : null}
     </button>
   );
 }

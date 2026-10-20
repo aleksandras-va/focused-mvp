@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useEffectEvent, useRef, useState, useTransition } from 'react';
 import { AUTOSAVE_DELAY_MS } from '@/components/features/sell/sell.constants';
 import type { CosmeticCondition, FunctionalCondition, Inclusion } from '@/db/tables';
 import type {
@@ -101,6 +102,7 @@ export function useSellListing({
   const [contactEmail, setContactEmail] = useState(listing ? listing.contactEmail : defaults.email);
   const [contactPhone, setContactPhone] = useState(listing ? listing.contactPhone : defaults.phone);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const [draftId, setDraftId] = useState<string | null>(listing?.id ?? null);
@@ -155,31 +157,37 @@ export function useSellListing({
 
   draftIdRef.current = draftId;
 
+  function saveDraft(snapshot: string) {
+    saveChain.current = saveChain.current.then(async () => {
+      if (snapshot === savedPayload.current) return;
+
+      setDraftState('saving');
+
+      const result = await saveDraftAction(draftIdRef.current, JSON.parse(snapshot));
+
+      if (result.error !== null) {
+        setDraftState('error');
+        return;
+      }
+
+      savedPayload.current = snapshot;
+      setDraftId(result.id);
+      setDraftItemIds(result.itemIds);
+      setDraftState('saved');
+    });
+
+    return saveChain.current;
+  }
+
+  const saveDraftLater = useEffectEvent(() => saveDraft(serialized));
+
   useEffect(() => {
     if (isEditingPublished || !hasContent || serialized === savedPayload.current) return;
 
-    const timer = setTimeout(() => {
-      saveChain.current = saveChain.current.then(async () => {
-        if (serialized === savedPayload.current) return;
-
-        setDraftState('saving');
-
-        const result = await saveDraftAction(draftIdRef.current, JSON.parse(serialized));
-
-        if (result.error !== null) {
-          setDraftState('error');
-          return;
-        }
-
-        savedPayload.current = serialized;
-        setDraftId(result.id);
-        setDraftItemIds(result.itemIds);
-        setDraftState('saved');
-      });
-    }, AUTOSAVE_DELAY_MS);
+    const timer = setTimeout(saveDraftLater, AUTOSAVE_DELAY_MS);
 
     return () => clearTimeout(timer);
-  }, [serialized, hasContent, isEditingPublished, saveDraftAction]);
+  }, [serialized, hasContent, isEditingPublished]);
 
   function addItem() {
     setItems((current) => [...current, emptyItem()]);
@@ -191,6 +199,13 @@ export function useSellListing({
 
   function updateItem(id: string, patch: Partial<SellItem>) {
     setItems((current) => current.map((item) => (item.id === id ? { ...item, ...patch } : item)));
+  }
+
+  function openPreview(href: string) {
+    startTransition(async () => {
+      await saveDraft(serialized);
+      router.push(href);
+    });
   }
 
   function submit(publish: boolean) {
@@ -231,6 +246,7 @@ export function useSellListing({
     error,
     isPending,
     submit,
+    openPreview,
     draftId,
     draftItemIds,
     draftState,

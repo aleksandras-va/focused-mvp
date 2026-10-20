@@ -34,7 +34,7 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
     <Dialog open={open} onOpenChange={(next) => (next ? setOpen(true) : skip())}>
       <DialogContent
         showCloseButton={false}
-        className="gap-0 rounded-[1.75rem] p-6 sm:max-w-[30rem] sm:p-9 max-sm:top-auto max-sm:bottom-0 max-sm:max-w-full max-sm:translate-y-0 max-sm:rounded-b-none"
+        className="gap-0 rounded-[1.75rem] p-6 sm:max-w-[30rem] sm:p-9 max-sm:inset-0 max-sm:max-w-none max-sm:translate-0 max-sm:content-start max-sm:overflow-y-auto max-sm:overscroll-contain max-sm:rounded-none max-sm:pt-10 max-sm:ring-0"
       >
         <form action={formAction} className="flex flex-col gap-5.5">
           <div className="flex flex-col gap-2.5">
@@ -88,7 +88,6 @@ export function ProfilePrompt({ user, cities, completeAction, skipAction }: Prof
           <Field>
             <FieldLabel htmlFor="prompt-city">{t('city')}</FieldLabel>
             <CitySelect id="prompt-city" name="cityId" cities={cities} defaultValue={user.cityId} />
-            <FieldDescription>{t('cityHint')}</FieldDescription>
           </Field>
 
           <div className="flex flex-col gap-1.5 pt-1">

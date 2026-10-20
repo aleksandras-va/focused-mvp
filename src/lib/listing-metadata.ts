@@ -49,7 +49,7 @@ export function itemMetadata(
     listing.city,
   ]);
 
-  return listingMetadata(title, description, `/items/${item.id}`, listing.photos[0]?.largeUrl);
+  return listingMetadata(title, description, `/items/${item.id}`, listing.photos[0]?.cardUrl);
 }
 
 export function bundleMetadata(
@@ -66,5 +66,5 @@ export function bundleMetadata(
     listing.city,
   ]);
 
-  return listingMetadata(title, description, `/bundles/${listing.id}`, listing.photos[0]?.largeUrl);
+  return listingMetadata(title, description, `/bundles/${listing.id}`, listing.photos[0]?.cardUrl);
 }
