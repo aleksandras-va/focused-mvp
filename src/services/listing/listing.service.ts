@@ -13,7 +13,7 @@ import {
   STORAGE_KEY_PATTERN,
 } from './listing.constants';
 import { ListingError } from './listing.error';
-import { mapToDetail, mapToEditable, mapToSummary } from './listing.mappers';
+import { mapToDetail, mapToEditable, mapToSitemapListing, mapToSummary } from './listing.mappers';
 import type {
   CreatedListing,
   CreateListingItemInput,
@@ -24,6 +24,7 @@ import type {
   ListingPage,
   ListingSummary,
   SimilarListings,
+  SitemapListing,
 } from './listing.types';
 import {
   optionalPriceCents,
@@ -82,6 +83,12 @@ export const listingService = {
     const rows = await listingRepository.listPublishedBySeller(sellerId);
 
     return rows.map((row) => mapToSummary(row, viewerId));
+  },
+
+  async getSitemapListings(): Promise<SitemapListing[]> {
+    const rows = await listingRepository.listPublishedForSitemap();
+
+    return rows.map(mapToSitemapListing);
   },
 
   async getSellerListings(sellerId: string): Promise<ListingSummary[]> {

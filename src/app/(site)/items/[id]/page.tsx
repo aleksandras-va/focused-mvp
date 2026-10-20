@@ -4,7 +4,9 @@ import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
 import { RecordListingView } from '@/components/features/listings/record-view';
+import { JsonLd } from '@/components/ui/json-ld';
 import { itemMetadata } from '@/lib/listing-metadata';
+import { itemStructuredData } from '@/lib/listing-structured-data';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
 import { trackListingViewAction, trackMessageClickAction } from '../../../actions';
@@ -50,6 +52,7 @@ export default async function ItemPage({ params }: PageProps<'/items/[id]'>) {
 
   return (
     <>
+      <JsonLd entries={itemStructuredData(listing, item, await getTranslations())} />
       {listing.status === 'active' && item.priceCents !== null ? (
         <RecordListingView
           listing={{

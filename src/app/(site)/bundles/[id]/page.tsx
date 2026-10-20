@@ -4,7 +4,9 @@ import { cache } from 'react';
 import { ListingDetail } from '@/components/features/listings';
 import { OwnerBar } from '@/components/features/listings/owner-bar';
 import { RecordListingView } from '@/components/features/listings/record-view';
+import { JsonLd } from '@/components/ui/json-ld';
 import { bundleMetadata } from '@/lib/listing-metadata';
+import { bundleStructuredData } from '@/lib/listing-structured-data';
 import { formatListingTitle } from '@/lib/listing-title';
 import { authService } from '@/services/auth/auth.service';
 import { listingService } from '@/services/listing/listing.service';
@@ -56,6 +58,7 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
 
   return (
     <>
+      <JsonLd entries={bundleStructuredData(listing, title)} />
       {listing.status === 'active' && listing.priceCents !== null ? (
         <RecordListingView
           listing={{

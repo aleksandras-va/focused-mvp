@@ -1,6 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Thread } from '@/components/features/messages/thread';
+import { NOT_INDEXED } from '@/lib/site';
 import { authService } from '@/services/auth/auth.service';
 import { MESSAGE_MAX_LENGTH } from '@/services/conversation/conversation.constants';
 import { conversationService } from '@/services/conversation/conversation.service';
@@ -10,7 +11,7 @@ import { sendMessageAction } from '../actions';
 export async function generateMetadata() {
   const t = await getTranslations('common');
 
-  return { title: t('messages') };
+  return { title: t('messages'), robots: NOT_INDEXED };
 }
 
 export default async function ConversationPage({

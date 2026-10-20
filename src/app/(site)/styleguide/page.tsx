@@ -1,4 +1,5 @@
 import { CameraIcon } from 'lucide-react';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ListingCard, type ListingCardItem } from '@/components/features/browse/listing-card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -10,6 +11,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
 import { Textarea } from '@/components/ui/textarea';
+import { NOT_INDEXED } from '@/lib/site';
+
+export const metadata: Metadata = { robots: NOT_INDEXED };
 
 const colors = [
   { name: 'background', className: 'bg-background' },
