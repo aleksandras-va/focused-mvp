@@ -1,6 +1,7 @@
 import 'server-only';
 
 import type { ModelCategory } from '@/db/types';
+import type { VISIT_SOURCE_KEYS } from './analytics.constants';
 
 export interface ListingReference {
   listingId: string;
@@ -20,6 +21,13 @@ export interface SearchOutcome {
   selectedSlug: string | null;
   openedWith: 'shortcut' | 'click';
 }
+
+export interface VisitLanding {
+  referrer: string;
+  landingUrl: string;
+}
+
+export type VisitSource = Partial<Record<(typeof VISIT_SOURCE_KEYS)[number], string>>;
 
 export interface AnalyticsProfile {
   id: string;

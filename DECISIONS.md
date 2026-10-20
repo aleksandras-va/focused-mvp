@@ -234,6 +234,12 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Visitors are told apart by `focused_visitor`, an httpOnly first-party cookie holding a
   uuid, sent as `$device_id`; a signed-in user's id goes as `$user_id`, and Mixpanel
   joins the two.
+- Every event carries the visit's source: the outside referrer (`$referrer`,
+  `$referring_domain`) and any `utm_*` tags on the landing URL. The root layout reports
+  `document.referrer` and the landing URL once per page load through an action, which
+  keeps them in `focused_source`, an httpOnly session cookie, only when the visit came
+  from another site or carries tags. Last touch per browser session; no first-touch
+  profile properties yet.
 - A user profile (name and email) is sent on sign-up and on every sign-in, which is what
   fills Mixpanel's Users page. Anonymous visitors have no profile.
 - Events: Signed Up, Draft Started, Listing Published, Listing Viewed, Message Clicked,

@@ -4,7 +4,11 @@ import { getTranslations } from 'next-intl/server';
 import { AccountError } from '@/services/account/account.error';
 import { accountService } from '@/services/account/account.service';
 import { analyticsService } from '@/services/analytics/analytics.service';
-import type { ListingReference, SearchOutcome } from '@/services/analytics/analytics.types';
+import type {
+  ListingReference,
+  SearchOutcome,
+  VisitLanding,
+} from '@/services/analytics/analytics.types';
 import { authService } from '@/services/auth/auth.service';
 import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 
@@ -26,6 +30,10 @@ export async function trackListingViewAction(listing: ListingReference) {
 
 export async function trackMessageClickAction(listing: ListingReference) {
   await analyticsService.track(await currentUserId(), 'Message Clicked', listing);
+}
+
+export async function recordVisitSourceAction(landing: VisitLanding) {
+  await analyticsService.rememberVisitSource(landing);
 }
 
 async function currentUserId() {

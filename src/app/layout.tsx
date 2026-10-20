@@ -5,10 +5,16 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { SiteFooter } from '@/components/features/footer/site-footer';
 import { SiteHeader } from '@/components/features/header/site-header';
 import { Preconnect } from '@/components/ui/preconnect';
+import { RecordVisitSource } from '@/components/ui/record-visit-source';
 import { authService } from '@/services/auth/auth.service';
 import { conversationService } from '@/services/conversation/conversation.service';
 import { photoService } from '@/services/photo/photo.service';
-import { getSearchSuggestionsAction, searchSiteAction, trackSearchAction } from './actions';
+import {
+  getSearchSuggestionsAction,
+  recordVisitSourceAction,
+  searchSiteAction,
+  trackSearchAction,
+} from './actions';
 import './globals.css';
 import { OPEN_GRAPH_BASE, SITE_NAME, SITE_URL } from '@/lib/site';
 import { cn } from '@/lib/utils';
@@ -48,6 +54,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="flex min-h-full flex-col">
         <Preconnect origin={photoService.getPublicOrigin()} />
+        <RecordVisitSource recordAction={recordVisitSourceAction} />
         <NextIntlClientProvider>
           <SiteHeader
             user={user ? { displayName: user.displayName, unreadMessages } : null}
