@@ -68,8 +68,8 @@ mount is in scope.
 - `pnpm test` / `pnpm test:watch` — Vitest, against the `focused_test` database in the
   local Postgres container; the run creates, migrates and seeds it
 - `pnpm db:up` / `pnpm db:down` — Postgres container, host port 5434
-- `pnpm db:migrate` — apply pending migrations to the database in `DATABASE_URL`;
-  prefix `DATABASE_URL=<production url>` to migrate production
+- `pnpm db:migrate` — apply pending migrations to the database in `DATABASE_URL`
+- `pnpm db:migrate:prod` — the same against `PROD_DATABASE_URL`
 - `pnpm db:codegen` — regenerate `src/db/types.ts` after any schema change
 - `pnpm db:codegen:check` — fails if the generated types have drifted
 - `pnpm db:seed` — load the gear catalog, idempotent

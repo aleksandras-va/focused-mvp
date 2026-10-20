@@ -57,7 +57,7 @@
       "removed": "Removed"
     },
     "cosmeticCondition": {
-      "mint": "Mint",
+      "new": "New",
       "excellent": "Excellent",
       "good": "Good",
       "well_used": "Well used",
@@ -420,7 +420,7 @@
       "shutterCount": "Shutter count",
       "shutterHint": "Leave empty if your camera does not report it.",
       "hints": {
-        "mint": "Looks new",
+        "new": "Unused",
         "excellent": "Barely any marks",
         "good": "Light wear",
         "well_used": "Visible wear",

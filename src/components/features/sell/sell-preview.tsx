@@ -12,6 +12,7 @@ import type {
   SellStepKey,
 } from '@/components/features/sell/use-sell-listing';
 import { bundleFullPriceCents } from '@/lib/bundle-price';
+import { resolveListingTitle } from '@/lib/listing-title';
 
 interface SellPreviewProps {
   items: SellItem[];
@@ -52,11 +53,18 @@ export function SellPreview({
 }: SellPreviewProps) {
   const t = useTranslations('sell');
   const first = items[0];
-  const names = items.map(itemName).filter(Boolean);
+  const title = resolveListingTitle(
+    items
+      .map((item) => ({
+        name: itemName(item),
+        category: item.model?.category ?? item.custom?.category ?? null,
+      }))
+      .filter((item) => item.name !== ''),
+  );
   const priceCents = toCents(isBundle ? bundlePrice : first.price);
   const card: ListingCardItem = {
     href: previewHref ?? '#',
-    title: { names, counts: [] },
+    title,
     brand: first.model?.brand.name ?? null,
     itemCount: items.length,
     place: first.model?.mount?.name ?? null,

@@ -2,6 +2,7 @@ import 'server-only';
 
 import type { ModelCategory } from '@/db/types';
 import { bundleFullPriceCents } from '@/lib/bundle-price';
+import { resolveListingTitle } from '@/lib/listing-title';
 import type {
   ListingCardRow,
   ListingDetailItemRow,
@@ -9,7 +10,6 @@ import type {
 } from '@/repositories/listing.repository';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
 import { photoService } from '../photo/photo.service';
-import { listingTitleResolver } from './listing.title-resolver';
 import type {
   EditableListing,
   ListingDetail,
@@ -24,7 +24,7 @@ export function mapToSummary(row: ListingCardRow, viewerId: string | null): List
 
   return {
     id: row.id,
-    title: listingTitleResolver.resolve(
+    title: resolveListingTitle(
       row.items.map((item) => ({
         name: item.model_name ?? item.custom_name ?? '',
         category: item.category,
@@ -54,7 +54,7 @@ export function mapToDetail(row: ListingDetailRow, viewerId: string | null): Lis
 
   return {
     id: row.id,
-    title: listingTitleResolver.resolve(
+    title: resolveListingTitle(
       items.map((item) => ({ name: item.modelName, category: item.category })),
     ),
     priceCents: row.price_cents,

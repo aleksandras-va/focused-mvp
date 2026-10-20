@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { CustomItemFields } from '@/components/features/sell/item/custom-item-fields';
 import { ModelPicker } from '@/components/features/sell/item/model-picker';
 import { Button } from '@/components/ui/button';
@@ -29,18 +30,26 @@ export function ModelField({
 }: ModelFieldProps) {
   const t = useTranslations('sell.item');
   const tEnums = useTranslations('enums');
+  const [parkedCustom, setParkedCustom] = useState<CustomItem | null>(null);
+
+  const backToCatalog = (current: CustomItem) => {
+    setParkedCustom(current);
+    onCustomChange(null);
+  };
 
   if (custom) {
     return (
       <CustomItemFields
         custom={custom}
         onChange={onCustomChange}
-        onBackToCatalog={() => onCustomChange(null)}
+        onBackToCatalog={() => backToCatalog(custom)}
       />
     );
   }
 
-  const addByName = (name: string) => onCustomChange({ name, category: null });
+  const addByName = (name: string) =>
+    onCustomChange({ name, category: parkedCustom?.category ?? 'camera' });
+  const reopenCustom = () => onCustomChange(parkedCustom ?? { name: '', category: 'camera' });
 
   return (
     <Field>
@@ -68,7 +77,7 @@ export function ModelField({
             variant="link"
             size="sm"
             className="h-auto p-0 text-muted-foreground hover:text-foreground"
-            onClick={() => addByName('')}
+            onClick={reopenCustom}
           >
             {t('cantFind')}
           </Button>

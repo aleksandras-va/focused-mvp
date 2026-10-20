@@ -24,12 +24,14 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000';
 
+const titlePrefix = process.env.NODE_ENV === 'development' ? 'dev - ' : '';
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('site');
 
   return {
     metadataBase: new URL(siteUrl),
-    title: { default: 'exposé', template: '%s | exposé' },
+    title: { default: `${titlePrefix}exposé`, template: `${titlePrefix}%s | exposé` },
     description: t('description'),
     openGraph: { type: 'website', siteName: 'exposé' },
   };

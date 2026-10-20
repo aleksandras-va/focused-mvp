@@ -30,7 +30,7 @@ export function CustomItemFields({ custom, onChange, onBackToCatalog }: CustomIt
           type="button"
           variant="link"
           size="sm"
-          className="h-auto p-0"
+          className="h-auto p-0 text-muted-foreground"
           onClick={onBackToCatalog}
         >
           {t('back')}
@@ -40,12 +40,17 @@ export function CustomItemFields({ custom, onChange, onBackToCatalog }: CustomIt
         variant="outline"
         spacing={0}
         value={custom.category ? [custom.category] : []}
-        onValueChange={(value) =>
-          onChange({ ...custom, category: (value[0] as ModelCategory | undefined) ?? null })
-        }
+        onValueChange={(value) => {
+          const category = value[0] as ModelCategory | undefined;
+          if (category) onChange({ ...custom, category });
+        }}
       >
         {CATEGORIES.map((category) => (
-          <ToggleGroupItem key={category} value={category}>
+          <ToggleGroupItem
+            key={category}
+            value={category}
+            className="aria-pressed:bg-primary-soft aria-pressed:text-primary-ink"
+          >
             {tEnums(`category.${category}`)}
           </ToggleGroupItem>
         ))}
@@ -56,7 +61,7 @@ export function CustomItemFields({ custom, onChange, onBackToCatalog }: CustomIt
         value={custom.name}
         onChange={(event) => onChange({ ...custom, name: event.target.value })}
       />
-      <FieldDescription>{t('hint')}</FieldDescription>
+      {custom.category === 'accessory' ? null : <FieldDescription>{t('hint')}</FieldDescription>}
     </Field>
   );
 }

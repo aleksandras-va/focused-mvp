@@ -1,14 +1,14 @@
 'use client';
 
-import { cn } from '@/lib/utils';
+import { type Choice, ChoiceOption } from '@/components/features/sell/choice-option';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 interface ChoiceGroupProps<Value extends string> {
   legend: string;
   name: string;
-  options: { value: Value; label: string; hint?: string }[];
+  options: Choice<Value>[];
   value: Value;
   onChange: (value: Value) => void;
-  minWidth: string;
   disabled?: boolean;
 }
 
@@ -18,45 +18,27 @@ export function ChoiceGroup<Value extends string>({
   options,
   value,
   onChange,
-  minWidth,
   disabled = false,
 }: ChoiceGroupProps<Value>) {
   const selectedValue = disabled ? null : value;
 
   return (
-    <fieldset disabled={disabled} className="flex flex-col gap-2.5 disabled:opacity-50">
-      <legend className="mb-2.5 text-sm font-semibold">{legend}</legend>
-      <div
-        className="grid gap-2"
-        style={{ gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}, 1fr))` }}
-      >
-        {options.map((option) => (
-          <label
-            key={option.value}
-            className={cn(
-              'flex min-h-12 flex-col justify-center gap-0.5 rounded-xl border px-3.5 py-2.5 transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50',
-              disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-              option.value === selectedValue
-                ? 'border-foreground bg-muted/70 shadow-[inset_0_0_0_1px_var(--color-foreground)]'
-                : 'border-input',
-              option.value !== selectedValue && !disabled && 'hover:border-foreground/40',
-            )}
-          >
-            <input
-              type="radio"
+    <TooltipProvider>
+      <fieldset disabled={disabled} className="flex flex-col gap-2.5 disabled:opacity-50">
+        <legend className="mb-2.5 text-sm font-semibold">{legend}</legend>
+        <div className="flex flex-wrap gap-2">
+          {options.map((option) => (
+            <ChoiceOption
+              key={option.value}
+              choice={option}
               name={name}
-              value={option.value}
-              checked={option.value === selectedValue}
-              onChange={() => onChange(option.value)}
-              className="sr-only"
+              isSelected={option.value === selectedValue}
+              disabled={disabled}
+              onSelect={onChange}
             />
-            <span className="text-sm font-semibold">{option.label}</span>
-            {option.hint ? (
-              <span className="text-xs text-muted-foreground">{option.hint}</span>
-            ) : null}
-          </label>
-        ))}
-      </div>
-    </fieldset>
+          ))}
+        </div>
+      </fieldset>
+    </TooltipProvider>
   );
 }
