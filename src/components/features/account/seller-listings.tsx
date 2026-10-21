@@ -68,7 +68,7 @@ export function SellerListings({ listings }: { listings: ListingSummary[] }) {
             </div>
           ) : null}
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
             {shown.map((listing) => (
               <ListingCard key={listing.id} item={toListingCardItem(listing)} />
             ))}

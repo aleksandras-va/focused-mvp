@@ -22,11 +22,11 @@
   "authErrors": {
     "unauthenticated": "Pirmiausia prisijunk.",
     "invalid_email": "Neteisingas el. pašto adresas.",
-    "email_taken": "Šis el. paštas jau užregistruotas — prisijunk.",
+    "email_taken": "Šis el. paštas jau užregistruotas - prisijunk.",
     "invalid_credentials": "Neteisingas el. paštas arba slaptažodis.",
     "password_too_short": "Slaptažodis turi būti bent {min} simbolių.",
     "password_only_numbers": "Slaptažodis negali būti vien iš skaičių.",
-    "password_repetitive": "Slaptažodis per daug pasikartojantis — naudok įvairesnių simbolių.",
+    "password_repetitive": "Slaptažodis per daug pasikartojantis - naudok įvairesnių simbolių.",
     "password_contains_email": "Slaptažodyje negali būti tavo el. pašto adreso."
   },
   "common": {
@@ -195,7 +195,7 @@
       "category": "Naudoti {category, select, camera {fotoaparatai} lens {objektyvai} other {foto priedai}}",
       "brand": "Naudoti {brand} {category, select, camera {fotoaparatai} lens {objektyvai} accessory {priedai} other {fotoaparatai ir objektyvai}}",
       "model": "{model} skelbimai",
-      "description": "{title} Lietuvoje – tik foto technika, be sodo įrankių ir striukų."
+      "description": "{title} Lietuvoje - tik foto technika, be sodo įrankių ir striukų."
     }
   },
   "listingCard": {
@@ -330,7 +330,7 @@
       "intro": "Tavo exposé paskyra paruošta. Dabar gali parduoti savo fotoaparatus, objektyvus ir priedus.",
       "sell": "Parduok savo techniką",
       "tipLabel": "Patarimas:",
-      "tip": "parduodamas pasirink tikslų modelį – taip tavo skelbimą ras jo ieškantys pirkėjai.",
+      "tip": "parduodamas pasirink tikslų modelį - taip tavo skelbimą ras jo ieškantys pirkėjai.",
       "browse": "Pažiūrėk, kas parduodama"
     },
     "newMessage": {
@@ -473,8 +473,8 @@
     },
     "photoUploader": {
       "drop": "Nutempk nuotraukas čia arba spustelk ir pasirink (iki {max})",
-      "unsupported": "Tinka tik JPEG, PNG, WebP ir HEIC nuotraukos – RAW failai netinka.",
-      "tooMany": "Gali pridėti iki {max} nuotraukų – išsirink geriausias.",
+      "unsupported": "Tinka tik JPEG, PNG, WebP ir HEIC nuotraukos - RAW failai netinka.",
+      "tooMany": "Gali pridėti iki {max} nuotraukų - išsirink geriausias.",
       "cover": "Viršelis",
       "failed": "Nepavyko",
       "remove": "Pašalinti nuotrauką"
@@ -489,8 +489,8 @@
     "missing_bundle_price": "Nurodyk viso rinkinio kainą.",
     "no_photos": "Įkelk bent vieną nuotrauką.",
     "too_many_photos": "Skelbime gali būti iki {max} nuotraukų.",
-    "invalid_item": "Kažkas nutiko su preke – perkrauk puslapį ir bandyk dar kartą.",
-    "photo_failed": "Nepavyko įkelti vienos nuotraukos – pašalink ją ir bandyk dar kartą.",
+    "invalid_item": "Kažkas nutiko su preke - perkrauk puslapį ir bandyk dar kartą.",
+    "photo_failed": "Nepavyko įkelti vienos nuotraukos - pašalink ją ir bandyk dar kartą.",
     "missing_model": "Kiekvienai prekei pasirink modelį iš katalogo.",
     "missing_custom_name": "Įrašyk kiekvienos ranka pridėtos prekės pavadinimą.",
     "missing_custom_category": "Kiekvienai ranka pridėtai prekei pasirink: fotoaparatas, objektyvas ar priedas.",
@@ -511,7 +511,6 @@
       "nameHint": "Rodomas skelbimuose ir parduotuvės puslapyje.",
       "open": "Atidaryti parduotuvę"
     },
-    "privateSeller": "Privatus pardavėjas",
     "messages": "Žinutės",
     "publicProfile": "Viešas profilis",
     "signOut": "Atsijungti",
@@ -522,12 +521,9 @@
       "store": "Tavo parduotuvė atidaryta."
     },
     "profile": {
-      "title": "Profilis",
       "description": "Įrašoma į kiekvieną naują skelbimą. Gali redaguoti individualiai.",
-      "name": "Vardas",
-      "phone": "Telefonas",
-      "city": "Miestas",
-      "save": "Išsaugoti profilį"
+      "save": "Išsaugoti profilį",
+      "cancel": "Atšaukti"
     },
     "prompt": {
       "title": "Užbaik savo profilį",
@@ -595,12 +591,12 @@
   },
   "modelPage": {
     "meta": {
-      "title": "{hasPrice, select, yes {Naudotas {name} – kaina nuo {price}} other {{name}}}",
+      "title": "{hasPrice, select, yes {Naudotas {name} - kaina nuo {price}} other {{name}}}",
       "description": "{name} Lietuvoje: {count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}{hasPrice, select, yes {, kainos nuo {price}} other {}}. Palygink būklę, kadrų skaičių ir komplektaciją.",
       "descriptionEmpty": "{name}: šiuo metu skelbimų nėra. Žiūrėk panašius skelbimus arba parduok savo."
     },
     "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
-    "priceRange": "{min} – {max}",
+    "priceRange": "{min} - {max}",
     "listingsTitle": "{name} skelbimai",
     "specsTitle": "Specifikacijos",
     "sellYours": "Turi {name}? Parduok",
@@ -611,7 +607,7 @@
       "megapixelsValue": "{value, number} MP",
       "mount": "Jungtis",
       "focalLength": "Židinio nuotolis",
-      "focalLengthValue": "{min, number}{isZoom, select, yes {–{max, number}} other {}} mm",
+      "focalLengthValue": "{min, number}{isZoom, select, yes {-{max, number}} other {}} mm",
       "maxAperture": "Didžiausia diafragma",
       "maxApertureValue": "f/{value}",
       "stabilization": "Stabilizavimas",

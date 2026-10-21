@@ -209,6 +209,9 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Lithuanian copy speaks informally, in the singular "tu": "Pasirink modelį", "Atrask",
   "Būk tarp pirmųjų", never "Pasirinkite" or "jūsų". An item for sale is "prekė", never
   "daiktas".
+- User-facing text uses the plain hyphen "-" for every dash: ranges, title separators and
+  asides alike ("640 € - 650 €", "Sony a6500 - 440 €"). Never "–" or "—", even where
+  typography would call for one.
 - Every user-facing string lives in `messages/lt.json`, keyed by area (`login.title`).
   `messages/en.json` is kept alongside with the same keys. `lt.json` types the keys, so
   a missing or misspelled key fails the type check.

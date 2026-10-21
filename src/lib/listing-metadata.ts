@@ -50,7 +50,7 @@ export function itemMetadata(
     condition: item.cosmeticCondition,
   });
 
-  const title = item.priceCents === null ? name : `${name} – ${formatPrice(item.priceCents)}`;
+  const title = item.priceCents === null ? name : `${name} - ${formatPrice(item.priceCents)}`;
 
   return listingMetadata(
     title,

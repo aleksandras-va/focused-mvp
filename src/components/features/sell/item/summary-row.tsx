@@ -38,7 +38,7 @@ export function ItemSummaryRow({ item, index, onEdit }: ItemSummaryRowProps) {
       </span>
       <span className="hidden shrink-0 flex-col items-end gap-0.5 sm:flex">
         <span className="font-semibold">
-          {item.price && Number.isFinite(priceCents) ? formatPrice(priceCents) : '—'}
+          {item.price && Number.isFinite(priceCents) ? formatPrice(priceCents) : '-'}
         </span>
         <span className="text-xs text-muted-foreground">
           {item.soldSeparately ? t('alsoOnItsOwn') : t('bundleOnly')}

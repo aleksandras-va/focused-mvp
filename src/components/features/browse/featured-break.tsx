@@ -32,10 +32,10 @@ export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
       />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/70 to-transparent" />
 
-      <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-x-6 gap-y-1 p-6 text-sm text-white/70 sm:p-8">
+      <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-x-6 gap-y-2.5 p-6 text-sm text-white/70 sm:gap-y-1 sm:p-8">
         <span className="flex flex-col gap-1">
           <span>
-            {t('shotOn')}{' '}
+            <span className="hidden sm:inline">{t('shotOn')} </span>
             {photo.gear.map((gear, index) => (
               <Fragment key={gear.name}>
                 {index > 0 ? ' + ' : null}
