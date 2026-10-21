@@ -251,6 +251,7 @@
       }
     },
     "metadata": {
+      "itemTitle": "{condition, select, new {New} other {Used}} {name}",
       "condition": "{condition} condition",
       "shutterCount": "{count, plural, one {# shutter actuation} other {# shutter actuations}}",
       "bundleOf": "Bundle of {count, plural, one {# item} other {# items}}"

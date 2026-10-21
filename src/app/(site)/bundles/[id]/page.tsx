@@ -58,7 +58,7 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
 
   return (
     <>
-      <JsonLd entries={bundleStructuredData(listing, title)} />
+      <JsonLd entries={bundleStructuredData(listing, title, await getTranslations())} />
       {listing.status === 'active' && listing.priceCents !== null ? (
         <RecordListingView
           listing={{

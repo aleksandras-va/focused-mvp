@@ -5,12 +5,20 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ACCEPTED_IMAGE_TYPES, compressToWebP, MAX_PHOTOS, PHOTO_SIZES } from '@/lib/photos';
+import { Spinner } from '@/components/ui/spinner';
+import {
+  ACCEPTED_IMAGE_TYPES,
+  compressToWebP,
+  isHeicFile,
+  MAX_PHOTOS,
+  PHOTO_SIZES,
+  toDecodableImage,
+} from '@/lib/photos';
 import type { PhotoUpload } from '@/services/photo/photo.types';
 
 type UploadingPhoto = {
   localId: number;
-  previewUrl: string;
+  previewUrl: string | null;
   storageKey: string | null;
   status: 'uploading' | 'done' | 'error';
 };
@@ -56,11 +64,15 @@ export function PhotoUploader({
     );
   }
 
-  async function uploadPhoto(file: File, localId: number) {
+  async function uploadPhoto(file: File, localId: number, hasPreview: boolean) {
     try {
+      const image = await toDecodableImage(file);
+
+      if (!hasPreview) patchPhoto(localId, { previewUrl: URL.createObjectURL(image) });
+
       const [large, card] = await Promise.all([
-        compressToWebP(file, PHOTO_SIZES.large),
-        compressToWebP(file, PHOTO_SIZES.card),
+        compressToWebP(image, PHOTO_SIZES.large),
+        compressToWebP(image, PHOTO_SIZES.card),
       ]);
 
       const upload = await uploadAction();
@@ -84,9 +96,7 @@ export function PhotoUploader({
 
     const accepted: File[] = [];
     for (const file of Array.from(files)) {
-      const extension = file.name.toLowerCase().split('.').pop() ?? '';
-      const looksHeic = ['heic', 'heif'].includes(extension);
-      if (ACCEPTED_IMAGE_TYPES.includes(file.type) || looksHeic) accepted.push(file);
+      if (ACCEPTED_IMAGE_TYPES.includes(file.type) || isHeicFile(file)) accepted.push(file);
     }
 
     if (accepted.length < files.length) {
@@ -99,23 +109,24 @@ export function PhotoUploader({
 
     for (const file of accepted) {
       const localId = nextLocalId.current++;
+      const previewUrl = isHeicFile(file) ? null : URL.createObjectURL(file);
       setPhotos((current) => [
         ...current,
         {
           localId,
-          previewUrl: URL.createObjectURL(file),
+          previewUrl,
           storageKey: null,
           status: 'uploading',
         },
       ]);
-      uploadPhoto(file, localId);
+      uploadPhoto(file, localId, previewUrl !== null);
     }
   }
 
   function removePhoto(localId: number) {
     const removed = photos.find((photo) => photo.localId === localId);
 
-    if (removed?.previewUrl.startsWith('blob:')) URL.revokeObjectURL(removed.previewUrl);
+    if (removed?.previewUrl?.startsWith('blob:')) URL.revokeObjectURL(removed.previewUrl);
 
     setPhotos((current) => current.filter((photo) => photo.localId !== localId));
   }
@@ -155,12 +166,21 @@ export function PhotoUploader({
         <div className="grid grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] gap-3">
           {photos.map((photo, index) => (
             <div key={photo.localId} className="group relative aspect-4/3">
-              {/* biome-ignore lint/performance/noImgElement: previews are local object URLs */}
-              <img
-                src={photo.previewUrl}
-                alt=""
-                className={`size-full rounded-xl border object-cover ${photo.status === 'uploading' ? 'opacity-50' : ''} ${photo.status === 'error' ? 'opacity-30' : ''}`}
-              />
+              {photo.previewUrl ? (
+                // biome-ignore lint/performance/noImgElement: previews are local object URLs
+                <img
+                  src={photo.previewUrl}
+                  alt=""
+                  className={`size-full rounded-xl border object-cover ${photo.status === 'uploading' ? 'opacity-50' : ''} ${photo.status === 'error' ? 'opacity-30' : ''}`}
+                />
+              ) : (
+                <div className="size-full rounded-xl border bg-muted" />
+              )}
+              {photo.status === 'uploading' ? (
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <Spinner aria-hidden className="size-6 text-foreground/70" />
+                </span>
+              ) : null}
               {index === 0 && photo.status === 'done' ? (
                 <Badge className="absolute top-2 left-2 bg-white/90 text-foreground">
                   {t('cover')}

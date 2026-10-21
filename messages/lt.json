@@ -247,6 +247,7 @@
       }
     },
     "metadata": {
+      "itemTitle": "{condition, select, new {Naujas} other {Naudotas}} {name}",
       "condition": "Būklė: {condition}",
       "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}",
       "bundleOf": "Rinkinys iš {count, plural, one {# prekės} other {# prekių}}"
