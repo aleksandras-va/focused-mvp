@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { modelHref } from '@/lib/model-href';
 import type { ListingItemDetail } from '@/services/listing/listing.types';
 
 interface ListingBreadcrumbsProps {
@@ -42,7 +43,7 @@ export function ListingBreadcrumbs({ item }: ListingBreadcrumbsProps) {
               <>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink render={<Link href={`/?model=${item.modelSlug}`} />}>
+                  <BreadcrumbLink render={<Link href={modelHref(item.modelSlug)} />}>
                     {item.modelName}
                   </BreadcrumbLink>
                 </BreadcrumbItem>

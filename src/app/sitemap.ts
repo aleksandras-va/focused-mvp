@@ -1,13 +1,18 @@
 import type { MetadataRoute } from 'next';
+import { modelHref } from '@/lib/model-href';
 import { SITE_URL } from '@/lib/site';
 import { listingService } from '@/services/listing/listing.service';
+import { modelCatalogService } from '@/services/model-catalog/model-catalog.service';
 
 export const revalidate = 3600;
 
 const categories = ['camera', 'lens', 'accessory'] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const listings = await listingService.getSitemapListings();
+  const [listings, models] = await Promise.all([
+    listingService.getSitemapListings(),
+    modelCatalogService.getModelsWithActiveAds(),
+  ]);
   const newest = listings.reduce<Date | undefined>(
     (latest, listing) => (latest && latest > listing.updatedAt ? latest : listing.updatedAt),
     undefined,
@@ -34,6 +39,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     })),
     { url: `${SITE_URL}/about`, changeFrequency: 'yearly', priority: 0.3 },
+    ...models.map((model) => ({
+      url: `${SITE_URL}${modelHref(model.slug)}`,
+      lastModified: model.updatedAt,
+    })),
     ...listingPages,
     ...sellerIds.map((sellerId) => ({ url: `${SITE_URL}/sellers/${sellerId}` })),
   ];

@@ -2,6 +2,7 @@ import type { getTranslations } from 'next-intl/server';
 import type { CosmeticCondition } from '@/db/types';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 import { bundleDescription, itemDescription } from './listing-metadata';
+import { modelHref } from './model-href';
 import { SITE_URL } from './site';
 
 type Translate = Awaited<ReturnType<typeof getTranslations<never>>>;
@@ -36,9 +37,13 @@ function breadcrumbs(item: ListingItemDetail, t: Translate) {
   const trail = [
     { name: t(`enums.categoryPlural.${item.category}`), path: `/?category=${item.category}` },
     item.brand && item.brandSlug ? { name: item.brand, path: `/?brand=${item.brandSlug}` } : null,
-    item.modelSlug ? { name: item.modelName, path: `/?model=${item.modelSlug}` } : null,
+    item.modelSlug ? { name: item.modelName, path: modelHref(item.modelSlug) } : null,
   ].filter((crumb) => crumb !== null);
 
+  return breadcrumbList(trail);
+}
+
+export function breadcrumbList(trail: { name: string; path: string }[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

@@ -10,12 +10,16 @@ import {
   mapToCatalogModel,
   mapToCatalogModelDetail,
   mapToCatalogModelWithAds,
+  mapToModelOffers,
+  mapToModelWithActiveAds,
 } from './model-catalog.mappers';
 import type {
   BrandAndModelSearchResults,
   CatalogModel,
   CatalogModelDetail,
   CatalogModelWithAds,
+  CatalogModelWithOffers,
+  ModelWithActiveAds,
 } from './model-catalog.types';
 
 export const modelCatalogService = {
@@ -23,6 +27,22 @@ export const modelCatalogService = {
     const row = await modelRepository.findBySlug(slug);
 
     return row ? mapToCatalogModelDetail(row) : null;
+  },
+
+  async getModelWithOffers(slug: string): Promise<CatalogModelWithOffers | null> {
+    const row = await modelRepository.findBySlug(slug);
+
+    if (!row) return null;
+
+    const offers = await modelRepository.findOfferStats(row.id);
+
+    return { ...mapToCatalogModelDetail(row), offers: mapToModelOffers(offers) };
+  },
+
+  async getModelsWithActiveAds(): Promise<ModelWithActiveAds[]> {
+    const rows = await modelRepository.listWithActiveAds();
+
+    return rows.map(mapToModelWithActiveAds);
   },
 
   async getByIds(ids: string[]): Promise<CatalogModel[]> {

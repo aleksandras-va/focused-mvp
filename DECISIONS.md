@@ -104,6 +104,18 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   lenses of the same mount and a similar focal length, then the same mount and category,
   then the same brand and category, then the newest ads. The section title names the
   step. The ladder is one query in `listingRepository.listSimilarToModel`.
+- Every catalog model has a page at `/models/[slug]`: name, specs, the price range and
+  count of its active ads, the ads themselves, and the similar-ads ladder when there are
+  none. It is the page search engines rank for a model, because it outlives any single
+  ad. Search results, the item breadcrumb and the featured photo link to it, and
+  `/?model=` names it as canonical.
+- Only a model with at least one active ad is indexed and listed in the sitemap. A model
+  without ads still renders for visitors but is `noindex`, so thousands of empty catalog
+  pages never count as thin content; it drops out of the index when its last ad goes.
+  Revisit this if the empty page gains content of its own, such as third-party offers
+  when no ads are available.
+- The model page's price range uses per-item prices of active ads, the same as search
+  statistics, and is published as an `AggregateOffer`.
 - Slang with no source to import ("nifty fifty") is still out of scope.
 - Semantic search (pgvector) is deferred. Poor at model codes; cannot separate X-T3
   from X-T30.

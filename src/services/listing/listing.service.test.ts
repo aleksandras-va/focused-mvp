@@ -132,3 +132,40 @@ describe('modelCatalogService.searchBrandAndModel with ads', () => {
     expect(models.slice(1).every((model) => model.adCount === 0)).toBe(true);
   });
 });
+
+describe('modelCatalogService.getModelWithOffers', () => {
+  it('counts active ads and their price range', async () => {
+    const model = await modelCatalogService.getModelWithOffers('sony-a7-iii');
+
+    expect(model?.offers).toEqual({ adCount: 1, minPriceCents: 120000, maxPriceCents: 120000 });
+  });
+
+  it('gives a model without ads no offers', async () => {
+    const model = await modelCatalogService.getModelWithOffers('sony-a7r-iii');
+
+    expect(model?.offers).toEqual({ adCount: 0, minPriceCents: null, maxPriceCents: null });
+  });
+
+  it('is null for an unknown slug', async () => {
+    expect(await modelCatalogService.getModelWithOffers('no-such-model')).toBeNull();
+  });
+});
+
+describe('modelCatalogService.getModelsWithActiveAds', () => {
+  it('lists only models with an active ad and drops one once its ad is hidden', async () => {
+    const slugs = async () =>
+      (await modelCatalogService.getModelsWithActiveAds()).map((model) => model.slug).sort();
+    const [hidden] = await listingService.getSellerListings(sellerId);
+    const hiddenSlug = (await listingService.getForEdit(hidden.id, sellerId)).items[0].model?.slug;
+
+    expect(await slugs()).toEqual(ADS.map(([slug]) => slug).sort());
+
+    await listingService.hide(hidden.id, sellerId);
+
+    try {
+      expect(await slugs()).not.toContain(hiddenSlug);
+    } finally {
+      await listingService.restore(hidden.id, sellerId);
+    }
+  });
+});

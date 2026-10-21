@@ -49,3 +49,16 @@ export type CatalogModelWithAds = CatalogModel & {
   adCount: number;
   minPriceCents: number | null;
 };
+
+export interface ModelOffers {
+  adCount: number;
+  minPriceCents: number | null;
+  maxPriceCents: number | null;
+}
+
+export type CatalogModelWithOffers = CatalogModelDetail & { offers: ModelOffers };
+
+export interface ModelWithActiveAds {
+  slug: string;
+  updatedAt: Date;
+}

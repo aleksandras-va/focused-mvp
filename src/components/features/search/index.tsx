@@ -14,6 +14,7 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { formatPrice } from '@/lib/format';
+import { modelHref } from '@/lib/model-href';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
 import type { SearchOutcome } from '@/services/analytics/analytics.types';
 import type {
@@ -109,7 +110,7 @@ export function SearchDialog({
   }
 
   function goToModel(model: CatalogModelWithAds) {
-    go(`/?model=${model.slug}`, { kind: 'model', slug: model.slug });
+    go(modelHref(model.slug), { kind: 'model', slug: model.slug });
   }
 
   function changeOpen(next: boolean) {

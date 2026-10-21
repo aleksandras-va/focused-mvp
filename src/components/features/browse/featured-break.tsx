@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 import { formatMonth } from '@/lib/format';
+import { modelHref } from '@/lib/model-href';
 
 export type FeaturedPhoto = {
   imageUrl: string;
@@ -40,7 +41,7 @@ export function FeaturedBreak({ photo }: { photo: FeaturedPhoto }) {
                 {index > 0 ? ' + ' : null}
                 {gear.modelSlug ? (
                   <Link
-                    href={`/?model=${gear.modelSlug}`}
+                    href={modelHref(gear.modelSlug)}
                     className="text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
                   >
                     {gear.name}
