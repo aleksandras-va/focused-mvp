@@ -14,6 +14,12 @@ export type ModelWithAdsRow = Awaited<
 
 export type ModelDetailRow = NonNullable<Awaited<ReturnType<typeof modelRepository.findBySlug>>>;
 
+export type ModelOfferStatsRow = Awaited<ReturnType<typeof modelRepository.findOfferStats>>;
+
+export type ModelWithActiveAdsRow = Awaited<
+  ReturnType<typeof modelRepository.listWithActiveAds>
+>[number];
+
 export const modelRepository = {
   search(
     term: string,
@@ -83,6 +89,26 @@ export const modelRepository = {
       ])
       .where('model.slug', '=', slug)
       .executeTakeFirst();
+  },
+
+  findOfferStats(modelId: string) {
+    return activeItems()
+      .where('listing_item.model_id', '=', modelId)
+      .select(sql<number>`count(distinct listing.id)::int`.as('ad_count'))
+      .select((eb) => [
+        eb.fn.min('listing_item.price_cents').as('min_price_cents'),
+        eb.fn.max('listing_item.price_cents').as('max_price_cents'),
+      ])
+      .executeTakeFirstOrThrow();
+  },
+
+  listWithActiveAds() {
+    return activeItems()
+      .innerJoin('model', 'model.id', 'listing_item.model_id')
+      .select('model.slug')
+      .select((eb) => eb.fn.max('listing.updated_at').as('updated_at'))
+      .groupBy('model.slug')
+      .execute();
   },
 
   listSuggested(limit = 6) {
@@ -175,6 +201,13 @@ function wordMatch(word: SearchWord, isLastWord: boolean) {
   };
 }
 
+function activeItems() {
+  return db
+    .selectFrom('listing_item')
+    .innerJoin('listing', 'listing.id', 'listing_item.listing_id')
+    .where('listing.status', '=', 'active');
+}
+
 function modelQuery() {
   return db
     .selectFrom('model')
@@ -199,11 +232,8 @@ function modelQuery() {
 function modelWithAdsQuery() {
   return modelQuery()
     .leftJoin(
-      (eb) =>
-        eb
-          .selectFrom('listing_item')
-          .innerJoin('listing', 'listing.id', 'listing_item.listing_id')
-          .where('listing.status', '=', 'active')
+      () =>
+        activeItems()
           .select('listing_item.model_id')
           .select(sql<number>`count(distinct listing.id)::int`.as('ad_count'))
           .select((item) => item.fn.min('listing_item.price_cents').as('min_price_cents'))

@@ -1,7 +1,19 @@
 import 'server-only';
 
-import type { ModelDetailRow, ModelRow, ModelWithAdsRow } from '@/repositories/model.repository';
-import type { CatalogModel, CatalogModelDetail, CatalogModelWithAds } from './model-catalog.types';
+import type {
+  ModelDetailRow,
+  ModelOfferStatsRow,
+  ModelRow,
+  ModelWithActiveAdsRow,
+  ModelWithAdsRow,
+} from '@/repositories/model.repository';
+import type {
+  CatalogModel,
+  CatalogModelDetail,
+  CatalogModelWithAds,
+  ModelOffers,
+  ModelWithActiveAds,
+} from './model-catalog.types';
 
 export function mapToCatalogModel(row: ModelRow): CatalogModel {
   return {
@@ -48,4 +60,16 @@ export function mapToCatalogModelDetail(row: ModelDetailRow): CatalogModelDetail
           }
         : null,
   };
+}
+
+export function mapToModelOffers(row: ModelOfferStatsRow): ModelOffers {
+  return {
+    adCount: row.ad_count,
+    minPriceCents: row.min_price_cents,
+    maxPriceCents: row.max_price_cents,
+  };
+}
+
+export function mapToModelWithActiveAds(row: ModelWithActiveAdsRow): ModelWithActiveAds {
+  return { slug: row.slug, updatedAt: row.updated_at };
 }

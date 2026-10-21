@@ -81,6 +81,20 @@
       "case": "Case or bag",
       "manual": "Manual",
       "receipt": "Receipt"
+    },
+    "bodyType": {
+      "compact": "Compact",
+      "dslr": "DSLR",
+      "mirrorless": "Mirrorless",
+      "rangefinder": "Rangefinder",
+      "slr": "Film SLR"
+    },
+    "sensorFormat": {
+      "full_frame": "Full frame",
+      "aps_c": "APS-C",
+      "micro_four_thirds": "Micro Four Thirds",
+      "medium_format": "Medium format",
+      "one_inch": "1-inch"
     }
   },
   "header": {
@@ -596,6 +610,34 @@
       "description": "You create an ad in a few minutes — no title to come up with.",
       "sell": "Sell gear",
       "browse": "Browse ads"
+    }
+  },
+  "modelPage": {
+    "meta": {
+      "title": "{hasPrice, select, yes {Used {name} – from {price}} other {{name}}}",
+      "description": "{name} in Lithuania: {count, plural, one {# ad} other {# ads}}{hasPrice, select, yes {, prices from {price}} other {}}. Compare condition, shutter count and what is included.",
+      "descriptionEmpty": "{name}: no ads right now. See similar ads or sell yours."
+    },
+    "adCount": "{count, plural, one {# ad} other {# ads}}",
+    "priceRange": "{min} – {max}",
+    "listingsTitle": "{name} ads",
+    "specsTitle": "Specifications",
+    "sellYours": "Have a {name}? Sell it",
+    "specs": {
+      "bodyType": "Type",
+      "sensorFormat": "Sensor",
+      "megapixels": "Resolution",
+      "megapixelsValue": "{value, number} MP",
+      "mount": "Mount",
+      "focalLength": "Focal length",
+      "focalLengthValue": "{min, number}{isZoom, select, yes {–{max, number}} other {}} mm",
+      "maxAperture": "Maximum aperture",
+      "maxApertureValue": "f/{value}",
+      "stabilization": "Stabilization",
+      "stabilizationValue": "Yes",
+      "filterThread": "Filter thread",
+      "filterThreadValue": "{value} mm",
+      "releaseYear": "Released"
     }
   }
 }

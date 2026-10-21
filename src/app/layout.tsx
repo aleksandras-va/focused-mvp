@@ -40,6 +40,13 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t('description'),
     openGraph: OPEN_GRAPH_BASE,
     twitter: { card: 'summary_large_image' },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: '16x16 32x32' },
+        { url: '/icon.png', type: 'image/png', sizes: '180x180' },
+      ],
+      apple: { url: '/apple-icon.png', sizes: '180x180' },
+    },
   };
 }
 

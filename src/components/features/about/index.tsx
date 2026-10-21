@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const PROBLEMS = ['names', 'details'] as const;
-const DIFFERENCES = ['catalog', 'questions', 'gearOnly'] as const;
 
 function TextBlock({ title, text }: { title: string; text: string }) {
   return (

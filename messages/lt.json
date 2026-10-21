@@ -79,6 +79,20 @@
       "case": "Dėklas arba krepšys",
       "manual": "Instrukcija",
       "receipt": "Pirkimo čekis"
+    },
+    "bodyType": {
+      "compact": "Kompaktinis",
+      "dslr": "Veidrodinis (DSLR)",
+      "mirrorless": "Bevidrodis",
+      "rangefinder": "Tolimatinis",
+      "slr": "Juostinis veidrodinis"
+    },
+    "sensorFormat": {
+      "full_frame": "Pilno kadro",
+      "aps_c": "APS-C",
+      "micro_four_thirds": "Micro Four Thirds",
+      "medium_format": "Vidutinio formato",
+      "one_inch": "1 colio"
     }
   },
   "header": {
@@ -577,6 +591,34 @@
       "description": "Skelbimą sukursi per kelias minutes.",
       "sell": "Parduoti techniką",
       "browse": "Naršyti skelbimus"
+    }
+  },
+  "modelPage": {
+    "meta": {
+      "title": "{hasPrice, select, yes {Naudotas {name} – kaina nuo {price}} other {{name}}}",
+      "description": "{name} Lietuvoje: {count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}{hasPrice, select, yes {, kainos nuo {price}} other {}}. Palygink būklę, kadrų skaičių ir komplektaciją.",
+      "descriptionEmpty": "{name}: šiuo metu skelbimų nėra. Žiūrėk panašius skelbimus arba parduok savo."
+    },
+    "adCount": "{count, plural, one {# skelbimas} few {# skelbimai} other {# skelbimų}}",
+    "priceRange": "{min} – {max}",
+    "listingsTitle": "{name} skelbimai",
+    "specsTitle": "Specifikacijos",
+    "sellYours": "Turi {name}? Parduok",
+    "specs": {
+      "bodyType": "Tipas",
+      "sensorFormat": "Matrica",
+      "megapixels": "Raiška",
+      "megapixelsValue": "{value, number} MP",
+      "mount": "Jungtis",
+      "focalLength": "Židinio nuotolis",
+      "focalLengthValue": "{min, number}{isZoom, select, yes {–{max, number}} other {}} mm",
+      "maxAperture": "Didžiausia diafragma",
+      "maxApertureValue": "f/{value}",
+      "stabilization": "Stabilizavimas",
+      "stabilizationValue": "Yra",
+      "filterThread": "Filtro sriegis",
+      "filterThreadValue": "{value} mm",
+      "releaseYear": "Išleista"
     }
   }
 }

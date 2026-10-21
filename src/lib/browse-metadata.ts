@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { getTranslations } from 'next-intl/server';
 import type { BrowseFilters } from './browse-filters';
+import { modelHref } from './model-href';
 import { OPEN_GRAPH_BASE } from './site';
 
 type TranslateBrowse = Awaited<ReturnType<typeof getTranslations<'browse'>>>;
@@ -8,11 +9,12 @@ type TranslateBrowse = Awaited<ReturnType<typeof getTranslations<'browse'>>>;
 type BrowseNames = { brand: string | null; model: string | null };
 
 function canonicalPath(filters: BrowseFilters, names: BrowseNames) {
+  if (names.model && filters.model) return modelHref(filters.model);
+
   const params = new URLSearchParams();
 
   if (filters.category) params.set('category', filters.category);
   if (names.brand && filters.brand) params.set('brand', filters.brand);
-  if (names.model && filters.model) params.set('model', filters.model);
 
   const query = params.toString();
 
