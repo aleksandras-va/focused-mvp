@@ -12,6 +12,7 @@ import { SearchDialog } from '@/components/features/search';
 import { SearchTrigger } from '@/components/features/search/search-trigger';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Logo } from '@/components/ui/logo';
+import { holdKeyboardOpen } from '@/lib/hold-keyboard-open';
 import { cn } from '@/lib/utils';
 import type { SearchOutcome } from '@/services/analytics/analytics.types';
 import type {
@@ -45,7 +46,10 @@ export function SiteHeader({
   const scrolled = useScrolled(24);
   const [searchOpen, setSearchOpen] = useState(false);
   const expanded = pathname === '/' && !scrolled;
-  const openSearch = () => setSearchOpen(true);
+  const openSearch = () => {
+    holdKeyboardOpen();
+    setSearchOpen(true);
+  };
   const scrollToTopOnHomepage = () => {
     if (pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -15,6 +15,7 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { holdKeyboardOpen } from '@/lib/hold-keyboard-open';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { cn } from '@/lib/utils';
 import type { CustomItem } from '@/services/listing/listing.types';
@@ -185,7 +186,10 @@ export function ModelPicker({
           type="button"
           variant="outline"
           className={triggerClassName}
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            holdKeyboardOpen();
+            setOpen(true);
+          }}
         >
           {triggerContent}
         </Button>

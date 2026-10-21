@@ -73,6 +73,18 @@ export function OwnerBar({
           {status === 'draft' ? t('continueEditing') : t('edit')}
         </Link>
 
+        {status === 'active' || status === 'sold' ? (
+          <Button
+            variant="outline"
+            className={cn('border-input', status === 'active' && 'lg:order-last')}
+            disabled={isPending}
+            onClick={() => run(hideAction)}
+          >
+            <EyeOffIcon />
+            {t('hide')}
+          </Button>
+        ) : null}
+
         {status === 'active' ? (
           <Button
             variant="outline"
@@ -82,18 +94,6 @@ export function OwnerBar({
           >
             <TagIcon />
             {t('markSold')}
-          </Button>
-        ) : null}
-
-        {status === 'active' || status === 'sold' ? (
-          <Button
-            variant="outline"
-            className="border-input"
-            disabled={isPending}
-            onClick={() => run(hideAction)}
-          >
-            <EyeOffIcon />
-            {t('hide')}
           </Button>
         ) : null}
 
