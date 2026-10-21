@@ -47,8 +47,8 @@ export function ModelField({
     );
   }
 
-  const addByName = (name: string) =>
-    onCustomChange({ name, category: parkedCustom?.category ?? 'camera' });
+  const addByName = ({ name, category }: CustomItem) =>
+    onCustomChange({ name, category: category ?? parkedCustom?.category ?? 'camera' });
   const reopenCustom = () => onCustomChange(parkedCustom ?? { name: '', category: 'camera' });
 
   return (

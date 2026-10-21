@@ -35,7 +35,8 @@
     "logIn": "Prisijungti",
     "messages": "Žinutės",
     "about": "Apie",
-    "back": "Atgal"
+    "back": "Atgal",
+    "clear": "Išvalyti"
   },
   "enums": {
     "category": {
@@ -108,6 +109,7 @@
     "title": "Paieška",
     "description": "Ieškok fotoaparatų, objektyvų ir gamintojų",
     "placeholder": "Pabandyk „fuji xt3“, „helios“ arba „sony“",
+    "placeholderShort": "Ieškoti fotoaparatų, objektyvų…",
     "trigger": "Ieškoti fotoaparatų, objektyvų ir gamintojų",
     "recentlyViewed": "Neseniai žiūrėti",
     "suggested": "Siūlomi",
@@ -432,7 +434,10 @@
       "label": "Ką parduodi?",
       "back": "Grįžti prie modelių sąrašo",
       "placeholder": "Gamintojas ir modelis, pvz., DJI RS 3 Mini",
-      "hint": "Netrukus įtrauksime šį modelį į katalogą. Tavo skelbimas bus paskelbtas jau dabar."
+      "hint": "Netrukus įtrauksime šį modelį į katalogą. Tavo skelbimas bus paskelbtas jau dabar.",
+      "category": "Kategorija",
+      "name": "Pavadinimas",
+      "continue": "Tęsti"
     },
     "condition": {
       "cosmetic": "Išvaizda",

@@ -16,6 +16,7 @@ import {
 import { formatPrice } from '@/lib/format';
 import { modelHref } from '@/lib/model-href';
 import { type RecentlyViewedListing, readRecentlyViewed } from '@/lib/recently-viewed';
+import { useMediaQuery } from '@/lib/use-media-query';
 import type { SearchOutcome } from '@/services/analytics/analytics.types';
 import type {
   BrandAndModelSearchResults,
@@ -41,8 +42,10 @@ export function SearchDialog({
 }: SearchDialogProps) {
   const t = useTranslations('search');
   const tCommon = useTranslations('common');
+  const isMobile = useMediaQuery('(max-width: 639px)');
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<BrandAndModelSearchResults>({ brands: [], models: [] });
+  const [searchedTerm, setSearchedTerm] = useState('');
   const [suggested, setSuggested] = useState<CatalogModelWithAds[]>([]);
   const [recent, setRecent] = useState<RecentlyViewedListing[]>([]);
   const [isSearching, startSearching] = useTransition();
@@ -50,6 +53,7 @@ export function SearchDialog({
   const openedWith = useRef<SearchOutcome['openedWith']>('click');
 
   const browsing = term.trim().length < 1;
+  const isSettled = searchedTerm === term.trim() && !isSearching;
 
   const toggleWithShortcut = useEffectEvent((event: KeyboardEvent) => {
     if (event.key !== 'k' || !(event.metaKey || event.ctrlKey)) return;
@@ -79,12 +83,16 @@ export function SearchDialog({
   useEffect(() => {
     if (browsing) {
       setResults({ brands: [], models: [] });
+      setSearchedTerm('');
       return;
     }
 
     const timer = setTimeout(() => {
       startSearching(async () => {
-        setResults(await searchAction(term));
+        const found = await searchAction(term);
+
+        setResults(found);
+        setSearchedTerm(term.trim());
       });
     }, 200);
 
@@ -131,13 +139,15 @@ export function SearchDialog({
     >
       <Command shouldFilter={false} className="p-2 max-sm:rounded-none! max-sm:p-0">
         <CommandInput
-          placeholder={t('placeholder')}
+          placeholder={isMobile ? t('placeholderShort') : t('placeholder')}
           value={term}
           onValueChange={setTerm}
+          fullScreenOnMobile
           onBack={() => changeOpen(false)}
           backLabel={tCommon('back')}
+          clearLabel={tCommon('clear')}
         />
-        <CommandList className="mt-2 max-h-[min(28rem,60vh)] max-sm:max-h-none max-sm:flex-1">
+        <CommandList className="mt-2 max-sm:mt-0 max-h-[min(28rem,60vh)] max-sm:max-h-none max-sm:flex-1">
           {browsing ? (
             <>
               {recent.length > 0 ? (
@@ -199,7 +209,7 @@ export function SearchDialog({
                 </CommandGroup>
               ) : null}
               {results.brands.length === 0 && results.models.length === 0 ? (
-                <CommandEmpty>{isSearching ? t('searching') : t('nothingFound')}</CommandEmpty>
+                <CommandEmpty>{isSettled ? t('nothingFound') : t('searching')}</CommandEmpty>
               ) : null}
             </>
           )}
