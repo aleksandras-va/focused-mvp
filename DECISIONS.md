@@ -263,9 +263,9 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 ## Design
 
 - The visible brand is "exposé" (expose.lt); code, package and docs keep "focused".
-- Geist bold for the site's own voice (headings, section titles); Inter for everything
-  else, model names included. The logo is an inline SVG component filled with
-  `currentColor`.
+- Bricolage Grotesque for the site's own voice (headings, section titles); Inter for
+  everything else, model names included. The logo is an inline SVG component filled
+  with `currentColor`.
 - White background, cool greys, a muted sea blue as primary, apricot "sun" for the sell
   call to action. Light mode only for now; tokens live in `globals.css`.
 - Rounded everywhere: pill buttons and filter pills, 12px inputs, 16px cards. Inputs and

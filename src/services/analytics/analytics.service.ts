@@ -26,7 +26,7 @@ export const analyticsService = {
     event: Name,
     properties: AnalyticsEvents[Name],
   ) {
-    const token = process.env.MIXPANEL_TOKEN;
+    const token = mixpanelToken();
 
     if (!token) return;
 
@@ -51,7 +51,7 @@ export const analyticsService = {
   },
 
   async rememberVisitSource(landing: VisitLanding) {
-    if (!process.env.MIXPANEL_TOKEN) return;
+    if (!mixpanelToken()) return;
 
     const source = parseVisitSource(landing);
 
@@ -72,7 +72,7 @@ export const analyticsService = {
   },
 
   identify(profile: AnalyticsProfile) {
-    const token = process.env.MIXPANEL_TOKEN;
+    const token = mixpanelToken();
 
     if (!token) return;
 
@@ -90,6 +90,10 @@ export const analyticsService = {
     );
   },
 } as const;
+
+function mixpanelToken() {
+  return process.env.NODE_ENV === 'production' ? process.env.MIXPANEL_TOKEN : undefined;
+}
 
 async function readVisitSource() {
   const cookieStore = await cookies();

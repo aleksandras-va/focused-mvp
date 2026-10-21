@@ -45,10 +45,21 @@ export function itemMetadata(
   item: ListingItemDetail,
   t: Translate,
 ): Metadata {
-  const title = joinParts([
-    item.modelName,
-    item.priceCents === null ? null : formatPrice(item.priceCents),
-  ]);
+  const name = t('listing.metadata.itemTitle', {
+    name: item.modelName,
+    condition: item.cosmeticCondition,
+  });
+  const title = item.priceCents === null ? name : `${name} – ${formatPrice(item.priceCents)}`;
+
+  return listingMetadata(
+    title,
+    itemDescription(listing, item, t),
+    `/items/${item.id}`,
+    listing.photos[0]?.cardUrl,
+  );
+}
+
+export function itemDescription(listing: ListingDetail, item: ListingItemDetail, t: Translate) {
   const facts = joinParts([
     joinParts([t(`enums.category.${item.category}`), item.mount]),
     t('listing.metadata.condition', {
@@ -59,9 +70,8 @@ export function itemMetadata(
       : t('listing.metadata.shutterCount', { count: item.shutterCount }),
     listing.city,
   ]);
-  const description = withSellerText(facts, listing.description);
 
-  return listingMetadata(title, description, `/items/${item.id}`, listing.photos[0]?.cardUrl);
+  return withSellerText(facts, listing.description);
 }
 
 export function bundleMetadata(
@@ -73,10 +83,14 @@ export function bundleMetadata(
     formatListingTitle(listing.title, tTitle),
     listing.priceCents === null ? null : formatPrice(listing.priceCents),
   ]);
-  const description = withSellerText(
+  const description = bundleDescription(listing, t);
+
+  return listingMetadata(title, description, `/bundles/${listing.id}`, listing.photos[0]?.cardUrl);
+}
+
+export function bundleDescription(listing: ListingDetail, t: Translate) {
+  return withSellerText(
     joinParts([t('listing.metadata.bundleOf', { count: listing.items.length }), listing.city]),
     listing.description,
   );
-
-  return listingMetadata(title, description, `/bundles/${listing.id}`, listing.photos[0]?.cardUrl);
 }

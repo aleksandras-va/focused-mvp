@@ -19,7 +19,10 @@ const featuredPhoto = {
   takenOn: '2026-05',
   gear: [
     { name: 'Sony a6400' },
-    { name: 'Tamron 18-300mm F/3.5-6.3', modelSlug: 'tamron-18-300mm-f-3-5-6-3-sony-e' },
+    {
+      name: 'Tamron 18-300mm F/3.5-6.3',
+      modelSlug: 'tamron-18-300mm-f-3-5-6-3-di-iii-a-vc-vxd-sony-e',
+    },
   ],
 };
 

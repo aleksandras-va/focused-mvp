@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
 import { FormError } from '@/components/features/login/form-error';
-import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { SubmitButton } from '@/components/ui/submit-button';
 import { cn } from '@/lib/utils';
 
 interface SignUpFormProps {
@@ -52,9 +52,7 @@ export function SignUpForm({ action, error, minPasswordLength, className }: Sign
         </FieldDescription>
       </Field>
       <div className="mt-auto flex flex-col gap-3">
-        <Button type="submit" size="lg">
-          {t('signUp.submit')}
-        </Button>
+        <SubmitButton size="lg">{t('signUp.submit')}</SubmitButton>
       </div>
     </form>
   );

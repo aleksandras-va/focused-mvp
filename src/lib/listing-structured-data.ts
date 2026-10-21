@@ -1,6 +1,7 @@
 import type { getTranslations } from 'next-intl/server';
 import type { CosmeticCondition } from '@/db/types';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
+import { bundleDescription, itemDescription } from './listing-metadata';
 import { SITE_URL } from './site';
 
 type Translate = Awaited<ReturnType<typeof getTranslations<never>>>;
@@ -66,7 +67,7 @@ export function itemStructuredData(
           name: item.modelName,
           image:
             listing.photos.length > 0 ? listing.photos.map((photo) => photo.largeUrl) : undefined,
-          description: listing.description ?? undefined,
+          description: listing.description ?? itemDescription(listing, item, t),
           category: t(`enums.category.${item.category}`),
           brand: item.brand ? { '@type': 'Brand', name: item.brand } : undefined,
           offers: offer(listing, item.priceCents, path, ITEM_CONDITION[item.cosmeticCondition]),
@@ -76,7 +77,11 @@ export function itemStructuredData(
   return [product, breadcrumbs(item, t)].filter((entry) => entry !== null);
 }
 
-export function bundleStructuredData(listing: ListingDetail, title: string): object[] {
+export function bundleStructuredData(
+  listing: ListingDetail,
+  title: string,
+  t: Translate,
+): object[] {
   if (listing.status !== 'active' || listing.priceCents === null) return [];
 
   const conditions = listing.items.map((item) => ITEM_CONDITION[item.cosmeticCondition]);
@@ -90,7 +95,7 @@ export function bundleStructuredData(listing: ListingDetail, title: string): obj
       '@type': 'Product',
       name: title,
       image: listing.photos.length > 0 ? listing.photos.map((photo) => photo.largeUrl) : undefined,
-      description: listing.description ?? undefined,
+      description: listing.description ?? bundleDescription(listing, t),
       offers: offer(listing, listing.priceCents, `/bundles/${listing.id}`, condition),
     },
   ];
