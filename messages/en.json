@@ -37,7 +37,8 @@
     "logIn": "Log in",
     "messages": "Messages",
     "about": "About",
-    "back": "Back"
+    "back": "Back",
+    "clear": "Clear"
   },
   "enums": {
     "category": {
@@ -110,6 +111,7 @@
     "title": "Search",
     "description": "Search cameras, lenses and brands",
     "placeholder": "Try “fuji xt3”, “helios” or “sony”",
+    "placeholderShort": "Search cameras, lenses…",
     "trigger": "Search cameras, lenses and brands",
     "recentlyViewed": "Recently viewed",
     "suggested": "Suggested",
@@ -437,7 +439,10 @@
       "label": "What are you selling?",
       "back": "Back to the list",
       "placeholder": "Brand and model, e.g. DJI RS 3 Mini",
-      "hint": "We'll add this model to the catalog soon. Your ad goes live now."
+      "hint": "We'll add this model to the catalog soon. Your ad goes live now.",
+      "category": "Category",
+      "name": "Name",
+      "continue": "Continue"
     },
     "condition": {
       "cosmetic": "Cosmetic condition",

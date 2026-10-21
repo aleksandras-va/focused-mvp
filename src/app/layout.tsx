@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Bricolage_Grotesque, Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
@@ -28,6 +28,8 @@ const bricolage = Bricolage_Grotesque({
   variable: '--font-bricolage',
   subsets: ['latin', 'latin-ext'],
 });
+
+export const viewport: Viewport = { interactiveWidget: 'resizes-content' };
 
 const titlePrefix = process.env.NODE_ENV === 'development' ? 'dev - ' : '';
 

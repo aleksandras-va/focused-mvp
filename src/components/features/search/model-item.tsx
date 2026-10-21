@@ -13,7 +13,7 @@ export function ModelItem({ model, onSelect }: ModelItemProps) {
 
   return (
     <CommandItem
-      className="px-3 py-2.5"
+      className="px-3 py-2.5 max-sm:min-h-14"
       value={`model:${model.slug}`}
       onSelect={() => onSelect(model)}
     >
