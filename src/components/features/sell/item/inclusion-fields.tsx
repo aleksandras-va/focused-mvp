@@ -18,7 +18,7 @@ export function InclusionFields({ options, selected, onToggle }: InclusionFields
   return (
     <fieldset>
       <legend className="mb-2.5 text-sm font-semibold">{t('inclusions')}</legend>
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
         {options.map((inclusion) => {
           const checked = selected.includes(inclusion);
 
@@ -26,10 +26,11 @@ export function InclusionFields({ options, selected, onToggle }: InclusionFields
             <label
               key={inclusion}
               className={cn(
-                'inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-full border px-3.5 text-sm font-medium transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50',
+                'flex min-h-12 cursor-pointer items-center gap-2 rounded-[0.875rem] border px-3 py-1.5 text-sm leading-[1.125rem] font-medium transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50',
+                'sm:inline-flex sm:h-10 sm:min-h-0 sm:gap-1.5 sm:rounded-full sm:px-3.5 sm:py-0',
                 checked
                   ? 'border-primary bg-primary-soft text-primary-ink'
-                  : 'border-input text-foreground/80 hover:border-foreground/40',
+                  : 'border-input bg-background text-foreground/75 hover:border-foreground/40',
               )}
             >
               <input
@@ -39,9 +40,9 @@ export function InclusionFields({ options, selected, onToggle }: InclusionFields
                 className="sr-only"
               />
               {checked ? (
-                <CheckIcon className="size-3.5" strokeWidth={3} />
+                <CheckIcon className="size-3.5 shrink-0" strokeWidth={3} />
               ) : (
-                <PlusIcon className="size-3.5" />
+                <PlusIcon className="size-3.5 shrink-0" />
               )}
               {tEnums(`inclusion.${inclusion}`)}
             </label>

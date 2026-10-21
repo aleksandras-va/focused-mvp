@@ -175,12 +175,7 @@ export function SellListing({
         />
       </div>
 
-      <div className="sticky bottom-0 z-10 -mx-4 flex flex-col gap-2 bg-background/95 px-4 py-3 shadow-[0_-1px_0_var(--color-border),0_-8px_24px_-12px_rgb(0_0_0/0.2)] backdrop-blur-sm sm:-mx-6 sm:px-6 lg:hidden">
-        {sell.isEditingPublished ? (
-          <p className="text-sm text-muted-foreground">{t('changesGoLive')}</p>
-        ) : (
-          <DraftBar state={sell.draftState} />
-        )}
+      <div className="sticky bottom-0 z-10 -mx-4 -mb-16 flex flex-col gap-3.5 bg-background/95 px-4 pt-3 pb-4 shadow-[0_-1px_0_var(--color-border),0_-8px_24px_-12px_rgb(0_0_0/0.2)] backdrop-blur-sm sm:-mx-6 sm:px-6 lg:hidden">
         <SubmitBar
           isPending={sell.isPending}
           isPublished={sell.isEditingPublished}
@@ -189,10 +184,15 @@ export function SellListing({
           onPreview={sell.openPreview}
           onSubmit={sell.submit}
         />
-        {sell.isEditingPublished ? null : (
-          <p className="text-center text-xs text-muted-foreground">
-            <CompletionHint steps={sell.steps} />
-          </p>
+        {sell.isEditingPublished ? (
+          <p className="text-center text-sm text-muted-foreground">{t('changesGoLive')}</p>
+        ) : (
+          <div className="flex flex-col items-center gap-1 text-center">
+            <DraftBar state={sell.draftState} className="justify-center" />
+            <p className="text-xs text-muted-foreground">
+              <CompletionHint steps={sell.steps} />
+            </p>
+          </div>
         )}
       </div>
     </div>

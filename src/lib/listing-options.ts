@@ -14,17 +14,6 @@ export const FUNCTIONAL_CONDITIONS: FunctionalCondition[] = [
   'faulty',
 ];
 
-export const CONDITION_TONES: Record<CosmeticCondition | FunctionalCondition, string> = {
-  new: 'var(--success)',
-  excellent: 'color-mix(in oklch, var(--success), var(--warning))',
-  good: 'var(--warning)',
-  well_used: 'color-mix(in oklch, var(--warning), var(--destructive))',
-  damaged: 'var(--destructive)',
-  fully_working: 'var(--success)',
-  minor_issues: 'var(--warning)',
-  faulty: 'var(--destructive)',
-};
-
 const INCLUSIONS: Inclusion[] = [
   'original_box',
   'charger',

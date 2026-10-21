@@ -49,6 +49,8 @@ function CommandDialog({
   fullScreenOnMobile?: boolean
   children: React.ReactNode
 }) {
+  const contentRef = React.useRef<HTMLDivElement>(null)
+
   return (
     <Dialog {...props}>
       <DialogHeader className="sr-only">
@@ -56,6 +58,10 @@ function CommandDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent
+        ref={contentRef}
+        initialFocus={() =>
+          contentRef.current?.querySelector<HTMLElement>("[data-slot=command-input]") ?? true
+        }
         className={cn(
           "top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0",
           fullScreenOnMobile &&

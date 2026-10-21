@@ -7,9 +7,10 @@ import type { DraftState } from './use-sell-listing';
 
 interface DraftBarProps {
   state: DraftState;
+  className?: string;
 }
 
-export function DraftBar({ state }: DraftBarProps) {
+export function DraftBar({ state, className }: DraftBarProps) {
   const t = useTranslations('sell.draft');
 
   return (
@@ -17,6 +18,7 @@ export function DraftBar({ state }: DraftBarProps) {
       className={cn(
         'flex items-center gap-2 text-sm',
         state === 'error' ? 'text-destructive' : 'text-muted-foreground',
+        className,
       )}
     >
       {state === 'saving' ? <LoaderIcon className="size-4 animate-spin" /> : null}

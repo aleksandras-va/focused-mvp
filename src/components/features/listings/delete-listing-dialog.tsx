@@ -28,9 +28,13 @@ export function DeleteListingDialog({ disabled, onConfirm }: DeleteListingDialog
       <AlertDialogTrigger
         disabled={disabled}
         render={
-          <Button variant="ghost" className="text-destructive hover:text-destructive">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={t('button')}
+            className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+          >
             <Trash2Icon />
-            {t('button')}
           </Button>
         }
       />
