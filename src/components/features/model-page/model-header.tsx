@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { buttonVariants } from '@/components/ui/button';
+import { ModelSellLink } from '@/components/features/model-page/model-sell-link';
 import { formatPrice } from '@/lib/format';
 import type { CatalogModelWithOffers } from '@/services/model-catalog/model-catalog.types';
 
@@ -23,15 +22,18 @@ export function ModelHeader({ model }: { model: CatalogModelWithOffers }) {
         </p>
         <h1 className="font-heading text-3xl font-semibold sm:text-4xl">{model.displayName}</h1>
         {adCount > 0 ? (
-          <p className="text-lg">
-            {priceRange ? <span className="font-semibold">{priceRange} · </span> : null}
+          <p className="flex flex-wrap items-baseline gap-x-2 text-lg">
+            {priceRange ? (
+              <>
+                <span className="font-semibold">{priceRange}</span>
+                <span className="hidden text-muted-foreground sm:inline">·</span>
+              </>
+            ) : null}
             <span className="text-muted-foreground">{t('adCount', { count: adCount })}</span>
           </p>
         ) : null}
       </div>
-      <Link href="/sell" className={buttonVariants({ variant: 'outline' })}>
-        {t('sellYours', { name: model.displayName })}
-      </Link>
+      <ModelSellLink modelName={model.displayName} className="hidden sm:inline-flex" />
     </div>
   );
 }

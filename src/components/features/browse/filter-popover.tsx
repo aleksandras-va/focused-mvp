@@ -160,7 +160,7 @@ export function FilterPopover({ filters, options }: FilterPopoverProps) {
                 aria-label={t('minPrice')}
                 defaultValue={euros(filters.minPriceCents)}
               />
-              <span className="text-muted-foreground">–</span>
+              <span className="text-muted-foreground">-</span>
               <Input
                 name="max"
                 type="number"

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { buttonVariants } from '@/components/ui/button';
 import { formatListingTitle } from '@/lib/listing-title';
+import { cn } from '@/lib/utils';
 import type { ConversationListing } from '@/services/conversation/conversation.types';
 
 interface ListingBannerProps {
@@ -42,7 +43,7 @@ export function ListingBanner({ listing }: ListingBannerProps) {
       {listing?.isPublic ? (
         <Link
           href={`/bundles/${listing.id}`}
-          className={buttonVariants({ variant: 'outline', size: 'sm', className: 'border-input' })}
+          className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'border-input')}
         >
           {t('viewAd')}
         </Link>

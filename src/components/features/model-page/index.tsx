@@ -1,6 +1,7 @@
 import { ModelUnavailable } from '@/components/features/browse/model-unavailable';
 import { ModelHeader } from '@/components/features/model-page/model-header';
 import { ModelListings } from '@/components/features/model-page/model-listings';
+import { ModelSellLink } from '@/components/features/model-page/model-sell-link';
 import { ModelSpecs } from '@/components/features/model-page/model-specs';
 import type { ListingSummary, SimilarListings } from '@/services/listing/listing.types';
 import type { CatalogModelWithOffers } from '@/services/model-catalog/model-catalog.types';
@@ -21,7 +22,10 @@ export function ModelPage({ model, listings, hasMore, page, similar }: ModelPage
       {similar ? (
         <ModelUnavailable modelName={model.displayName} similar={similar} />
       ) : (
-        <ModelListings model={model} listings={listings} hasMore={hasMore} page={page} />
+        <>
+          <ModelListings model={model} listings={listings} hasMore={hasMore} page={page} />
+          <ModelSellLink modelName={model.displayName} className="sm:hidden" />
+        </>
       )}
     </div>
   );

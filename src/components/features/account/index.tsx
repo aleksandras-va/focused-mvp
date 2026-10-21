@@ -3,13 +3,13 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { UnreadBadge } from '@/components/features/header/unread-badge';
 import { Alert, AlertTitle } from '@/components/ui/alert';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import type { AuthUser } from '@/services/auth/auth.types';
 import type { City } from '@/services/city/city.types';
 import type { ListingSummary } from '@/services/listing/listing.types';
-import { ProfileForm } from './profile-form';
 import { SellerListings } from './seller-listings';
-import { StoreSection } from './store-section';
+import { SettingsDialog } from './settings-dialog';
 
 interface AccountProps {
   user: AuthUser;
@@ -18,7 +18,6 @@ interface AccountProps {
   unreadMessages: number;
   notice: { kind: 'error' | 'saved'; message: string } | null;
   updateProfileAction: (formData: FormData) => Promise<void>;
-  openStoreAction: (formData: FormData) => Promise<void>;
   signOutAction: () => Promise<void>;
 }
 
@@ -29,20 +28,17 @@ export function Account({
   unreadMessages,
   notice,
   updateProfileAction,
-  openStoreAction,
   signOutAction,
 }: AccountProps) {
   const t = useTranslations('account');
   const name = user.store?.name ?? user.displayName;
   const cityName = cities.find((city) => city.id === user.cityId)?.name ?? null;
-  const meta = [user.store ? t('store.store') : t('privateSeller'), cityName, user.email].filter(
-    Boolean,
-  );
+  const meta = [cityName, user.email].filter(Boolean);
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-accent/50 p-4 border border-accent sm:p-6">
-        <div className="flex min-w-0 items-center gap-4">
+      <div className="relative flex flex-col gap-5 rounded-2xl border border-accent bg-accent/50 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <div className="flex min-w-0 items-center gap-4 pr-12 sm:pr-0">
           <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary-soft font-heading text-2xl font-semibold text-primary-ink">
             {name.charAt(0).toUpperCase()}
           </span>
@@ -53,10 +49,10 @@ export function Account({
             <p className="truncate text-sm text-muted-foreground">{meta.join(' · ')}</p>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
           <Link
             href="/messages"
-            className={buttonVariants({ variant: 'outline', className: 'border-input' })}
+            className={cn(buttonVariants({ variant: 'outline' }), 'border-input')}
           >
             <MessageCircleIcon />
             {t('messages')}
@@ -64,20 +60,19 @@ export function Account({
           </Link>
           <Link
             href={`/sellers/${user.id}`}
-            className={buttonVariants({ variant: 'outline', className: 'border-input' })}
+            className={cn(buttonVariants({ variant: 'outline' }), 'border-input')}
           >
             <EyeIcon />
             {t('publicProfile')}
           </Link>
-          <form action={signOutAction}>
-            <Button
-              type="submit"
-              variant="ghost"
-              className="text-destructive hover:bg-destructive/10 hover:text-destructive"
-            >
-              {t('signOut')}
-            </Button>
-          </form>
+          <div className="absolute top-4 right-4 sm:static">
+            <SettingsDialog
+              user={user}
+              cities={cities}
+              action={updateProfileAction}
+              signOutAction={signOutAction}
+            />
+          </div>
         </div>
       </div>
 
@@ -89,14 +84,6 @@ export function Account({
       ) : null}
 
       <SellerListings listings={listings} />
-
-      <section className="flex flex-col gap-5">
-        <h2 className="font-heading text-2xl font-semibold">{t('settings')}</h2>
-        <div className="flex flex-wrap items-start gap-5">
-          <ProfileForm user={user} cities={cities} action={updateProfileAction} />
-          <StoreSection store={user.store} action={openStoreAction} />
-        </div>
-      </section>
     </div>
   );
 }

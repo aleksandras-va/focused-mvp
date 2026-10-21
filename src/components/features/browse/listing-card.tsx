@@ -77,7 +77,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
 
       <Link
         href={href}
-        className="relative block aspect-4/3 overflow-hidden bg-muted"
+        className="relative block aspect-video overflow-hidden bg-muted sm:aspect-4/3"
         tabIndex={-1}
         aria-hidden
       >
@@ -111,7 +111,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
         ) : null}
       </Link>
 
-      <div className="flex flex-1 flex-col gap-1 p-4">
+      <div className="flex flex-1 flex-col gap-1 px-4 py-3 sm:py-4">
         <p className="truncate text-xs text-muted-foreground">{subtitle || ' '}</p>
         <h3 className="line-clamp-2 font-medium leading-snug">
           <Link href={href} className="after:absolute after:inset-0">
@@ -121,7 +121,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
         {detail ? <p className="text-xs text-muted-foreground">{detail}</p> : null}
       </div>
 
-      <div className="flex items-center justify-between gap-2 border-t bg-muted/60 px-4 py-3">
+      <div className="flex items-center justify-between gap-2 border-t bg-muted/60 px-4 py-2.5 sm:py-3">
         <p className="flex min-w-0 items-baseline gap-2">
           <span className="font-heading text-lg font-semibold">
             {item.priceCents === null ? t('noPrice') : formatPrice(item.priceCents)}

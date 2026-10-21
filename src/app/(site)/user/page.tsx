@@ -7,7 +7,7 @@ import { authService } from '@/services/auth/auth.service';
 import { cityService } from '@/services/city/city.service';
 import { conversationService } from '@/services/conversation/conversation.service';
 import { listingService } from '@/services/listing/listing.service';
-import { openStoreAction, signOutAction, updateProfileAction } from './actions';
+import { signOutAction, updateProfileAction } from './actions';
 
 const SAVED_NOTICES = ['profile', 'store'] as const;
 
@@ -45,7 +45,6 @@ export default async function UserPage({ searchParams }: PageProps<'/user'>) {
       unreadMessages={unreadMessages}
       notice={pageMessage}
       updateProfileAction={updateProfileAction}
-      openStoreAction={openStoreAction}
       signOutAction={signOutAction}
     />
   );

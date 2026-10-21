@@ -43,7 +43,7 @@ export function SellerProfile({ seller, listings }: SellerProfileProps) {
         {listings.length === 0 ? (
           <EmptyState icon={<PackageOpenIcon />} title={t('empty')} description={t('emptyHint')} />
         ) : (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
             {listings.map((listing) => (
               <ListingCard key={listing.id} item={toListingCardItem(listing)} />
             ))}

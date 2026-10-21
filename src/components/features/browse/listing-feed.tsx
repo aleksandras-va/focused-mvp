@@ -24,7 +24,7 @@ export function ListingFeed({ listings, breaks }: ListingFeedProps) {
     <div className="flex flex-col gap-8 sm:gap-10">
       {inGroups(listings).map((group, index) => (
         <Fragment key={group[0].id}>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
             {group.map((listing) => (
               <ListingCard key={listing.id} item={toListingCardItem(listing)} />
             ))}
