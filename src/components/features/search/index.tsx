@@ -40,6 +40,7 @@ export function SearchDialog({
   trackSearchAction,
 }: SearchDialogProps) {
   const t = useTranslations('search');
+  const tCommon = useTranslations('common');
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<BrandAndModelSearchResults>({ brands: [], models: [] });
   const [suggested, setSuggested] = useState<CatalogModelWithAds[]>([]);
@@ -126,17 +127,24 @@ export function SearchDialog({
       title={t('title')}
       description={t('description')}
       className="top-24 sm:max-w-2xl"
+      fullScreenOnMobile
     >
-      <Command shouldFilter={false} className="p-2">
-        <CommandInput placeholder={t('placeholder')} value={term} onValueChange={setTerm} />
-        <CommandList className="mt-2 max-h-[min(28rem,60vh)]">
+      <Command shouldFilter={false} className="p-2 max-sm:rounded-none! max-sm:p-0">
+        <CommandInput
+          placeholder={t('placeholder')}
+          value={term}
+          onValueChange={setTerm}
+          onBack={() => changeOpen(false)}
+          backLabel={tCommon('back')}
+        />
+        <CommandList className="mt-2 max-h-[min(28rem,60vh)] max-sm:max-h-none max-sm:flex-1">
           {browsing ? (
             <>
               {recent.length > 0 ? (
                 <CommandGroup className="p-2" heading={t('recentlyViewed')}>
                   {recent.map((listing) => (
                     <CommandItem
-                      className="px-3 py-2.5"
+                      className="px-3 py-2.5 max-sm:min-h-14"
                       key={listing.href}
                       value={`recent:${listing.href}`}
                       onSelect={() => go(listing.href)}
@@ -168,7 +176,7 @@ export function SearchDialog({
                 <CommandGroup className="p-2" heading={t('brands')}>
                   {results.brands.map((brand) => (
                     <CommandItem
-                      className="px-3 py-2.5"
+                      className="px-3 py-2.5 max-sm:min-h-14"
                       key={brand.slug}
                       value={`brand:${brand.slug}`}
                       onSelect={() =>
