@@ -52,12 +52,19 @@ export const listingRepository = {
         .set({ ...values, updated_at: sql<Date>`now()` })
         .where('id', '=', id)
         .execute();
-      await trx.deleteFrom('listing_photo').where('listing_id', '=', id).execute();
+      const previousPhotos = await trx
+        .deleteFrom('listing_photo')
+        .where('listing_id', '=', id)
+        .returning('storage_key')
+        .execute();
       await insertPhotos(trx, id, photoKeys);
 
       const itemIds = await saveItems(trx, id, items);
+      const removedPhotoKeys = previousPhotos
+        .map((photo) => photo.storage_key)
+        .filter((key) => !photoKeys.includes(key));
 
-      return { id, itemIds };
+      return { id, itemIds, removedPhotoKeys };
     });
   },
 
@@ -70,7 +77,16 @@ export const listingRepository = {
   },
 
   deleteById(id: string) {
-    return db.deleteFrom('listing').where('id', '=', id).execute();
+    return db.transaction().execute(async (trx) => {
+      const photos = await trx
+        .deleteFrom('listing_photo')
+        .where('listing_id', '=', id)
+        .returning('storage_key')
+        .execute();
+      await trx.deleteFrom('listing').where('id', '=', id).execute();
+
+      return photos.map((photo) => photo.storage_key);
+    });
   },
 
   findSeller(id: string) {
