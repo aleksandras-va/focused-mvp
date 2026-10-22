@@ -1,7 +1,12 @@
 import 'server-only';
 
-import { SOURCE_VALUE_MAX_LENGTH, UTM_KEYS, VISIT_SOURCE_KEYS } from './analytics.constants';
-import type { VisitLanding, VisitSource } from './analytics.types';
+import {
+  LOCATION_HEADERS,
+  SOURCE_VALUE_MAX_LENGTH,
+  UTM_KEYS,
+  VISIT_SOURCE_KEYS,
+} from './analytics.constants';
+import type { VisitLanding, VisitorLocation, VisitSource } from './analytics.types';
 
 export function toMixpanelProperties(properties: object) {
   return Object.fromEntries(
@@ -58,6 +63,24 @@ export function readStoredVisitSource(stored: string | undefined): VisitSource {
     );
   } catch {
     return {};
+  }
+}
+
+export function readVisitorLocation(requestHeaders: Pick<Headers, 'get'>): VisitorLocation {
+  return {
+    countryCode: requestHeaders.get(LOCATION_HEADERS.countryCode) ?? undefined,
+    region: requestHeaders.get(LOCATION_HEADERS.region) ?? undefined,
+    city: decodeHeaderValue(requestHeaders.get(LOCATION_HEADERS.city)),
+  };
+}
+
+function decodeHeaderValue(value: string | null) {
+  if (!value) return undefined;
+
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return undefined;
   }
 }
 

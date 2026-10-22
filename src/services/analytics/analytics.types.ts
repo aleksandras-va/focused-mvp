@@ -29,6 +29,12 @@ export interface VisitLanding {
 
 export type VisitSource = Partial<Record<(typeof VISIT_SOURCE_KEYS)[number], string>>;
 
+export interface VisitorLocation {
+  countryCode: string | undefined;
+  region: string | undefined;
+  city: string | undefined;
+}
+
 export interface AnalyticsProfile {
   id: string;
   displayName: string;

@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { randomUUID } from 'node:crypto';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { after } from 'next/server';
 import {
   MIXPANEL_PROFILE_URL,
@@ -18,7 +18,12 @@ import type {
   AnalyticsProfile,
   VisitLanding,
 } from './analytics.types';
-import { parseVisitSource, readStoredVisitSource, toMixpanelProperties } from './analytics.utils';
+import {
+  parseVisitSource,
+  readStoredVisitSource,
+  readVisitorLocation,
+  toMixpanelProperties,
+} from './analytics.utils';
 
 export const analyticsService = {
   async track<Name extends AnalyticsEventName>(
@@ -35,6 +40,7 @@ export const analyticsService = {
       properties: {
         ...toMixpanelProperties(properties),
         ...(await readVisitSource()),
+        ...(await readEventLocation()),
         token,
         time: Date.now(),
         $insert_id: randomUUID(),
@@ -71,16 +77,24 @@ export const analyticsService = {
     });
   },
 
-  identify(profile: AnalyticsProfile) {
+  async identify(profile: AnalyticsProfile) {
     const token = mixpanelToken();
 
     if (!token) return;
+
+    const { countryCode, region, city } = readVisitorLocation(await headers());
 
     const payload = {
       $token: token,
       $distinct_id: profile.id,
       // TODO: stop sending the email to Mixpanel once the pilot is over.
-      $set: { $name: profile.displayName, $email: profile.email },
+      $set: {
+        $name: profile.displayName,
+        $email: profile.email,
+        $country_code: countryCode,
+        $region: region,
+        $city: city,
+      },
     };
 
     after(() =>
@@ -99,6 +113,12 @@ async function readVisitSource() {
   const cookieStore = await cookies();
 
   return readStoredVisitSource(cookieStore.get(SOURCE_COOKIE)?.value);
+}
+
+async function readEventLocation() {
+  const { countryCode, region, city } = readVisitorLocation(await headers());
+
+  return { mp_country_code: countryCode, $region: region, $city: city };
 }
 
 async function readOrCreateVisitorId() {
