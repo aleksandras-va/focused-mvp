@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseVisitSource, readStoredVisitSource } from './analytics.utils';
+import { parseVisitSource, readStoredVisitSource, readVisitorLocation } from './analytics.utils';
 
 const LANDING = 'https://expose.lt/items/abc';
 
@@ -45,5 +45,27 @@ describe('readStoredVisitSource', () => {
   it('survives a missing or broken cookie', () => {
     expect(readStoredVisitSource(undefined)).toEqual({});
     expect(readStoredVisitSource('{not json')).toEqual({});
+  });
+});
+
+describe('readVisitorLocation', () => {
+  it('reads the location headers and decodes the city', () => {
+    expect(
+      readVisitorLocation(
+        new Headers({
+          'x-vercel-ip-country': 'LT',
+          'x-vercel-ip-country-region': '57',
+          'x-vercel-ip-city': '%C5%A0iauliai',
+        }),
+      ),
+    ).toEqual({ countryCode: 'LT', region: '57', city: 'Šiauliai' });
+  });
+
+  it('leaves out what the request does not carry', () => {
+    expect(readVisitorLocation(new Headers({ 'x-vercel-ip-city': '%E0%A4%A' }))).toEqual({
+      countryCode: undefined,
+      region: undefined,
+      city: undefined,
+    });
   });
 });

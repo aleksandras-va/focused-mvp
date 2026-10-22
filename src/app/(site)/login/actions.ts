@@ -12,7 +12,7 @@ export async function signInAction(formData: FormData) {
       password: String(formData.get('password') ?? ''),
     });
 
-    analyticsService.identify(user);
+    await analyticsService.identify(user);
   } catch (error) {
     if (error instanceof AuthError) {
       redirect(`/login?form=signin&error=${error.code}`);
@@ -31,7 +31,7 @@ export async function signUpAction(formData: FormData) {
       password: String(formData.get('password') ?? ''),
     });
 
-    analyticsService.identify(user);
+    await analyticsService.identify(user);
     await analyticsService.track(user.id, 'Signed Up', {});
   } catch (error) {
     if (error instanceof AuthError) {

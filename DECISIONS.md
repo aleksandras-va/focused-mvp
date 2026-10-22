@@ -256,6 +256,10 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   visit came from another site or carries tags. Not a session cookie: browsers that
   restore tabs keep those for weeks and would credit later direct visits to an old
   campaign. Last touch; no first-touch profile properties yet.
+- Location comes from Vercel's `x-vercel-ip-*` headers, sent as Mixpanel's
+  `mp_country_code`, `$region` and `$city` on every event and on the profile. Requests
+  keep `ip=0`, so Mixpanel never sees the visitor's IP and never geolocates the server.
+  The region is Vercel's ISO 3166-2 code ("57"), not a name.
 - A user profile (name and email) is sent on sign-up and on every sign-in, which is what
   fills Mixpanel's Users page. Anonymous visitors have no profile.
 - Events: Signed Up, Draft Started, Listing Published, Listing Viewed, Message Clicked,
