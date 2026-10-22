@@ -1,8 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
-import { AdFields } from '@/components/features/sell/ad-fields';
 import { AddItemPrompt } from '@/components/features/sell/add-item-prompt';
 import { BundlePriceField } from '@/components/features/sell/bundle-price-field';
 import { CompletionHint } from '@/components/features/sell/completion-hint';
@@ -11,7 +9,6 @@ import { DraftBar } from '@/components/features/sell/draft-bar';
 import { FormSection } from '@/components/features/sell/form-section';
 import { ItemFields } from '@/components/features/sell/item';
 import { ItemSummaryRow } from '@/components/features/sell/item/summary-row';
-import { PhotoUploader } from '@/components/features/sell/photo-uploader';
 import { SellPreview } from '@/components/features/sell/sell-preview';
 import { SubmitBar } from '@/components/features/sell/submit-bar';
 import { useOpenItem } from '@/components/features/sell/use-open-item';
@@ -49,7 +46,6 @@ export function SellListing({
   const tListing = useTranslations('listing');
   const sell = useSellListing({ submitAction, saveDraftAction, defaults, listing });
   const openItem = useOpenItem(sell.items);
-  const [coverUrl, setCoverUrl] = useState<string | null>(null);
   const previewHref = sell.draftId
     ? sell.draftItemIds.length === 1
       ? `/items/${sell.draftItemIds[0]}`
@@ -110,6 +106,7 @@ export function SellListing({
                       sibling.id !== item.id && sibling.model ? [sibling.model] : [],
                     )}
                     searchAction={searchAction}
+                    uploadAction={uploadAction}
                     onChange={(patch) => sell.updateItem(item.id, patch)}
                     onRemove={sell.isBundle ? () => sell.removeItem(item.id) : null}
                   />
@@ -132,23 +129,8 @@ export function SellListing({
             ) : null}
           </FormSection>
 
-          <FormSection step={2} title={t('photos.title')} description={t('photos.description')}>
-            <PhotoUploader
-              uploadAction={uploadAction}
-              onChange={sell.setPhotoKeys}
-              onCoverChange={setCoverUrl}
-              initialPhotos={listing?.photos ?? []}
-            />
-          </FormSection>
-
-          <AdFields
-            step={3}
-            description={sell.description}
-            onDescriptionChange={sell.setDescription}
-          />
-
           <ContactFields
-            step={4}
+            step={2}
             email={sell.contactEmail}
             onEmailChange={sell.setContactEmail}
             phone={sell.contactPhone}
@@ -163,7 +145,6 @@ export function SellListing({
           items={sell.items}
           isBundle={sell.isBundle}
           bundlePrice={sell.bundlePrice}
-          coverUrl={coverUrl}
           steps={sell.steps}
           missingSteps={sell.missingSteps}
           draftState={sell.draftState}

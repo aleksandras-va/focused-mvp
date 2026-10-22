@@ -13,6 +13,7 @@ import type { CatalogModel } from '../model-catalog/model-catalog.types';
 export type ListingErrorCode =
   | 'not_found'
   | 'not_owner'
+  | 'not_active'
   | 'no_items'
   | 'no_city'
   | 'missing_price'
@@ -27,8 +28,11 @@ export type ListingErrorCode =
   | 'invalid_price'
   | 'invalid_shutter_count';
 
+export type BundleRole = 'none' | 'alsoInBundle' | 'bundleOnly';
+
 export interface ListingSummary {
   id: string;
+  itemId: string | null;
   title: ListingTitle;
   priceCents: number | null;
   fullPriceCents: number | null;
@@ -36,7 +40,8 @@ export interface ListingSummary {
   status: ListingStatus;
   isBundle: boolean;
   itemCount: number;
-  firstItemId: string | null;
+  bundleRole: BundleRole;
+  bundledWith: { category: ModelCategory; count: number }[];
   brand: string | null;
   mount: string | null;
   cosmeticCondition: CosmeticCondition | null;
@@ -67,6 +72,11 @@ export interface SimilarListings {
   listings: ListingSummary[];
 }
 
+export interface ListingPhotoUrl {
+  largeUrl: string;
+  cardUrl: string;
+}
+
 export interface ListingItemDetail {
   id: string;
   modelName: string;
@@ -80,12 +90,10 @@ export interface ListingItemDetail {
   functionalCondition: FunctionalCondition;
   shutterCount: number | null;
   soldSeparately: boolean;
+  isSold: boolean;
+  description: string | null;
+  photos: ListingPhotoUrl[];
   inclusions: Inclusion[];
-}
-
-export interface ListingPhotoUrl {
-  largeUrl: string;
-  cardUrl: string;
 }
 
 export interface ListingDetail {
@@ -96,7 +104,6 @@ export interface ListingDetail {
   city: string | null;
   status: ListingStatus;
   isBundle: boolean;
-  description: string | null;
   contact: { email: string | null; phone: string | null };
   seller: {
     id: string;
@@ -106,13 +113,17 @@ export interface ListingDetail {
     storeSlug: string | null;
   };
   items: ListingItemDetail[];
-  photos: ListingPhotoUrl[];
   isOwner: boolean;
 }
 
 export interface CustomItem {
   name: string;
   category: ModelCategory | null;
+}
+
+export interface EditablePhoto {
+  storageKey: string;
+  url: string;
 }
 
 export interface EditableListingItem {
@@ -124,6 +135,8 @@ export interface EditableListingItem {
   functionalCondition: FunctionalCondition;
   shutterCount: string;
   soldSeparately: boolean;
+  description: string;
+  photos: EditablePhoto[];
   inclusions: Inclusion[];
 }
 
@@ -132,10 +145,8 @@ export interface EditableListing {
   status: ListingStatus;
   bundlePrice: string;
   cityId: string;
-  description: string;
   contactEmail: string;
   contactPhone: string;
-  photos: { storageKey: string; url: string }[];
   items: EditableListingItem[];
 }
 
@@ -148,6 +159,8 @@ export interface CreateListingItemInput {
   functionalCondition: FunctionalCondition;
   shutterCount: string | null;
   soldSeparately: boolean;
+  description: string | null;
+  photoKeys: string[];
   inclusions: Inclusion[];
 }
 
@@ -155,9 +168,7 @@ export interface CreateListingInput {
   sellerId: string;
   items: CreateListingItemInput[];
   bundlePrice: string | null;
-  photoKeys: string[];
   cityId: string;
-  description: string | null;
   contactEmail: string | null;
   contactPhone: string | null;
   publish: boolean;

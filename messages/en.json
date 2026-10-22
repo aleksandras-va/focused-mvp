@@ -206,6 +206,16 @@
   "listingCard": {
     "edit": "Edit this ad",
     "bundle": "Bundle",
+    "bundleBadge": "Bundle · {count, plural, one {# item} other {# items}}",
+    "bundleOnly": "Only sold as part of a bundle",
+    "bundleOnlyWith": "Sold as a bundle with {with}",
+    "and": "and",
+    "bundledWith": {
+      "camera": "{count, plural, one {# camera} other {# cameras}}",
+      "lens": "{count, plural, one {# lens} other {# lenses}}",
+      "accessory": "{count, plural, one {# accessory} other {# accessories}}"
+    },
+    "forBundle": "for the whole bundle",
     "noPrice": "No price yet",
     "itemCount": "{count, plural, one {# item} other {# items}}",
     "shutterCount": "{count, plural, one {# shutter actuation} other {# shutter actuations}}"
@@ -221,6 +231,7 @@
       "shutterCount": "Shutter count"
     },
     "inThisBundle": "In this bundle",
+    "alreadySold": "Already sold: {names}",
     "itemCount": "{count, plural, one {# item} other {# items}}",
     "fromSeller": "From the seller",
     "inTheBox": "What is in the box",
@@ -250,11 +261,15 @@
       "notices": {
         "draft": "Not published yet - only you can see this page.",
         "sold": "Marked as sold, so buyers no longer see this page.",
-        "removed": "Hidden, so buyers no longer see this page. Publish it to bring it back."
+        "removed": "Hidden, so buyers no longer see this page. Publish it to bring it back.",
+        "itemSold": "This item is sold, so buyers no longer see its page. The rest of the bundle stays on sale."
       },
       "edit": "Edit",
       "continueEditing": "Continue editing",
       "markSold": "Mark as sold",
+      "markItemSold": "This item is sold",
+      "unmarkItemSold": "Put item back on sale",
+      "markAllSold": "All items sold",
       "hide": "Hide",
       "publish": "Publish",
       "relist": "Relist",
@@ -357,14 +372,13 @@
     "whatSelling": "What are you selling?",
     "photos": {
       "title": "Photos",
-      "description": "The first photo is the cover."
+      "description": "The first photo is the cover. Up to {max} photos per item."
     },
     "changesGoLive": "Changes go live when you save.",
     "preview": "Preview",
     "description": {
       "title": "Description",
-      "hint": "Optional. History, marks, why you are selling.",
-      "placeholder": "Anything a buyer should know: history, marks, why you are selling."
+      "placeholder": "Anything a buyer should know about this item: history, marks, why you are selling."
     },
     "addItem": {
       "bundle": "Anything else going with it?",
@@ -416,6 +430,7 @@
       "bundlePrice": "bundle price",
       "city": "city",
       "photos": "photos",
+      "photosEach": "photos of every item",
       "description": "description"
     },
     "item": {
@@ -447,7 +462,7 @@
     "condition": {
       "cosmetic": "Cosmetic condition",
       "functional": "Does everything work?",
-      "bundleHint": "You can say more about this item's condition in the ad description below.",
+      "bundleHint": "You can say more about this item's condition in its description below.",
       "shutterCount": "Shutter count",
       "shutterHint": "Leave empty if your camera does not report it.",
       "hints": {
@@ -477,6 +492,7 @@
       "unnamed": "Unnamed item",
       "shutterCount": "{count, plural, one {# shot} other {# shots}}",
       "included": "{count} included",
+      "photos": "{count, plural, =0 {no photos} one {# photo} other {# photos}}",
       "alsoOnItsOwn": "Also on its own",
       "bundleOnly": "Bundle only",
       "edit": "Edit"
@@ -493,12 +509,13 @@
   "listingErrors": {
     "not_found": "That ad no longer exists.",
     "not_owner": "That ad is not yours.",
+    "not_active": "The ad is not published, so an item cannot be marked as sold.",
     "no_items": "Add at least one item.",
     "no_city": "Pick a city.",
     "missing_price": "Give every item a price.",
     "missing_bundle_price": "Enter a price for the whole bundle.",
-    "no_photos": "Add at least one photo.",
-    "too_many_photos": "A listing can have up to {max} photos.",
+    "no_photos": "Add at least one photo of every item.",
+    "too_many_photos": "An item can have up to {max} photos.",
     "invalid_item": "Something went wrong with an item - reload the page and try again.",
     "photo_failed": "One of the photos failed to upload - remove it and try again.",
     "missing_model": "Pick a model from the catalog for every item.",

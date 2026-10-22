@@ -203,6 +203,16 @@
   "listingCard": {
     "edit": "Redaguoti skelbimą",
     "bundle": "Rinkinys",
+    "bundleBadge": "Rinkinys · {count, plural, one {# prekė} few {# prekės} other {# prekių}}",
+    "bundleOnly": "Parduodama tik rinkinyje",
+    "bundleOnlyWith": "Parduodama kaip rinkinys su {with}",
+    "and": "ir",
+    "bundledWith": {
+      "camera": "{count, plural, one {# fotoaparatu} few {# fotoaparatais} other {# fotoaparatų}}",
+      "lens": "{count, plural, one {# objektyvu} few {# objektyvais} other {# objektyvų}}",
+      "accessory": "{count, plural, one {# priedu} few {# priedais} other {# priedų}}"
+    },
+    "forBundle": "už visą rinkinį",
     "noPrice": "Trūksta kainos",
     "itemCount": "{count, plural, one {# prekė} few {# prekės} other {# prekių}}",
     "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}"
@@ -218,6 +228,7 @@
       "shutterCount": "Kadrų skaičius"
     },
     "inThisBundle": "Šiame rinkinyje",
+    "alreadySold": "Jau parduota: {names}",
     "itemCount": "{count, plural, one {# prekė} few {# prekės} other {# prekių}}",
     "fromSeller": "Aprašymas",
     "inTheBox": "Komplekte",
@@ -246,11 +257,15 @@
       "notices": {
         "draft": "Dar nepaskelbtas - šį puslapį matai tik tu.",
         "sold": "Pažymėtas kaip parduotas, todėl pirkėjai šio puslapio nebemato.",
-        "removed": "Paslėptas, todėl pirkėjai šio puslapio nebemato. Paskelbk, kad jis vėl būtų matomas."
+        "removed": "Paslėptas, todėl pirkėjai šio puslapio nebemato. Paskelbk, kad jis vėl būtų matomas.",
+        "itemSold": "Ši prekė parduota, todėl pirkėjai jos puslapio nebemato. Likusios rinkinio prekės toliau parduodamos."
       },
       "edit": "Redaguoti",
       "continueEditing": "Tęsti redagavimą",
       "markSold": "Pažymėti kaip parduotą",
+      "markItemSold": "Ši prekė parduota",
+      "unmarkItemSold": "Grąžinti prekę į pardavimą",
+      "markAllSold": "Parduotos visos prekės",
       "hide": "Paslėpti",
       "publish": "Paskelbti",
       "relist": "Paskelbti iš naujo",
@@ -353,13 +368,13 @@
     "whatSelling": "Ką parduodi?",
     "photos": {
       "title": "Nuotraukos",
-      "description": "Pirmoji nuotrauka bus viršelis."
+      "description": "Pirmoji nuotrauka bus viršelis. Iki {max} nuotraukų vienai prekei."
     },
     "changesGoLive": "Pakeitimai bus matomi, kai juos išsaugosi.",
     "preview": "Peržiūra",
     "description": {
       "title": "Aprašymas",
-      "placeholder": "Viskas, ką pirkėjui verta žinoti: istorija, žymės, kodėl parduodi."
+      "placeholder": "Viskas, ką pirkėjui verta žinoti apie šią prekę: istorija, žymės, kodėl parduodi."
     },
     "addItem": {
       "bundle": "Dar ką nors parduodi kartu?",
@@ -411,6 +426,7 @@
       "bundlePrice": "rinkinio kaina",
       "city": "miestas",
       "photos": "nuotraukos",
+      "photosEach": "kiekvienos prekės nuotraukos",
       "description": "aprašymas"
     },
     "item": {
@@ -442,7 +458,7 @@
     "condition": {
       "cosmetic": "Išvaizda",
       "functional": "Ar viskas veikia?",
-      "bundleHint": "Daugiau apie šios prekės būklę gali parašyti skelbimo aprašyme žemiau.",
+      "bundleHint": "Daugiau apie šios prekės būklę gali parašyti jos aprašyme žemiau.",
       "shutterCount": "Kadrų skaičius",
       "shutterHint": "Palik tuščią, jei tavo fotoaparatas jo nerodo.",
       "hints": {
@@ -472,6 +488,7 @@
       "unnamed": "Prekė be pavadinimo",
       "shutterCount": "{count, plural, one {# kadras} few {# kadrai} other {# kadrų}}",
       "included": "{count} komplekte",
+      "photos": "{count, plural, =0 {be nuotraukų} one {# nuotrauka} few {# nuotraukos} other {# nuotraukų}}",
       "alsoOnItsOwn": "Ir atskirai",
       "bundleOnly": "Tik rinkinyje",
       "edit": "Redaguoti"
@@ -488,12 +505,13 @@
   "listingErrors": {
     "not_found": "Šio skelbimo nebėra.",
     "not_owner": "Tai ne tavo skelbimas.",
+    "not_active": "Skelbimas nepaskelbtas, todėl prekės pažymėti parduota negalima.",
     "no_items": "Pridėk bent vieną prekę.",
     "no_city": "Pasirink miestą.",
     "missing_price": "Nurodyk kiekvienos prekės kainą.",
     "missing_bundle_price": "Nurodyk viso rinkinio kainą.",
-    "no_photos": "Įkelk bent vieną nuotrauką.",
-    "too_many_photos": "Skelbime gali būti iki {max} nuotraukų.",
+    "no_photos": "Įkelk bent vieną kiekvienos prekės nuotrauką.",
+    "too_many_photos": "Vienai prekei gali būti iki {max} nuotraukų.",
     "invalid_item": "Kažkas nutiko su preke - perkrauk puslapį ir bandyk dar kartą.",
     "photo_failed": "Nepavyko įkelti vienos nuotraukos - pašalink ją ir bandyk dar kartą.",
     "missing_model": "Kiekvienai prekei pasirink modelį iš katalogo.",

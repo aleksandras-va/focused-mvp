@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDownIcon } from 'lucide-react';
+import { ChevronDownIcon, ImageIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { SellItem } from '@/components/features/sell/use-sell-listing';
 import { Button } from '@/components/ui/button';
@@ -18,17 +18,27 @@ export function ItemSummaryRow({ item, index, onEdit }: ItemSummaryRowProps) {
   const name = item.model?.displayName ?? (item.custom?.name || t('unnamed'));
   const isItemChosen = item.model !== null || item.custom !== null;
   const priceCents = Math.round(Number(item.price) * 100);
+  const cover = item.photos[0] ?? null;
   const details = [
     isItemChosen ? tEnums(`cosmeticCondition.${item.cosmeticCondition}`) : null,
     isItemChosen ? tEnums(`functionalCondition.${item.functionalCondition}`) : null,
     item.shutterCount ? t('shutterCount', { count: Number(item.shutterCount) }) : null,
     item.inclusions.length > 0 ? t('included', { count: item.inclusions.length }) : null,
+    t('photos', { count: item.photos.length }),
   ].filter(Boolean);
 
   return (
     <div className="flex items-center gap-3.5 rounded-2xl border bg-muted/30 py-3.5 pr-3.5 pl-4">
       <span className="w-7 shrink-0 text-[0.8125rem] font-bold text-muted-foreground">
         #{index + 1}
+      </span>
+      <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted">
+        {cover ? (
+          // biome-ignore lint/performance/noImgElement: previews are local object URLs or R2 thumbnails
+          <img src={cover.url} alt="" className="size-full object-cover" />
+        ) : (
+          <ImageIcon className="size-4 text-muted-foreground/60" />
+        )}
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="truncate font-semibold">{name}</span>

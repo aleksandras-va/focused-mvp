@@ -8,6 +8,7 @@ import type {
   CreateListingPayload,
   CustomItem,
   EditableListing,
+  EditablePhoto,
 } from '@/services/listing/listing.types';
 import type { CatalogModel } from '@/services/model-catalog/model-catalog.types';
 
@@ -20,6 +21,8 @@ export interface SellItem {
   functionalCondition: FunctionalCondition;
   shutterCount: string;
   soldSeparately: boolean;
+  description: string;
+  photos: EditablePhoto[];
   inclusions: Inclusion[];
 }
 
@@ -32,6 +35,7 @@ export type SellStepKey =
   | 'bundlePrice'
   | 'city'
   | 'photos'
+  | 'photosEach'
   | 'description';
 
 export interface SellStep {
@@ -66,6 +70,8 @@ function emptyItem(): SellItem {
     functionalCondition: 'fully_working',
     shutterCount: '',
     soldSeparately: false,
+    description: '',
+    photos: [],
     inclusions: [],
   };
 }
@@ -94,11 +100,7 @@ export function useSellListing({
 }: UseSellListingOptions) {
   const [items, setItems] = useState<SellItem[]>(() => initialItems(listing));
   const [bundlePrice, setBundlePrice] = useState(listing?.bundlePrice ?? '');
-  const [photoKeys, setPhotoKeys] = useState<string[]>(
-    () => listing?.photos.map((photo) => photo.storageKey) ?? [],
-  );
   const [cityId, setCityId] = useState(listing?.cityId || defaults.cityId);
-  const [description, setDescription] = useState(listing?.description ?? '');
   const [contactEmail, setContactEmail] = useState(listing ? listing.contactEmail : defaults.email);
   const [contactPhone, setContactPhone] = useState(listing ? listing.contactPhone : defaults.phone);
   const [error, setError] = useState<string | null>(null);
@@ -123,12 +125,12 @@ export function useSellListing({
       functionalCondition: item.functionalCondition,
       shutterCount: item.shutterCount || null,
       soldSeparately: item.soldSeparately,
+      description: item.description || null,
+      photoKeys: item.photos.map((photo) => photo.storageKey),
       inclusions: item.inclusions,
     })),
     bundlePrice: isBundle ? bundlePrice : null,
-    photoKeys,
     cityId,
-    description: description || null,
     contactEmail: contactEmail || null,
     contactPhone: contactPhone || null,
     publish: false,
@@ -141,15 +143,20 @@ export function useSellListing({
     { key: isBundle ? 'priceEach' : 'price', done: items.every((item) => isPrice(item.price)) },
     ...(isBundle ? [{ key: 'bundlePrice' as const, done: isPrice(bundlePrice) }] : []),
     { key: 'city', done: cityId !== '' },
-    { key: 'photos', done: photoKeys.length > 0 },
-    { key: 'description', done: description.trim() !== '', optional: true },
+    {
+      key: isBundle ? 'photosEach' : 'photos',
+      done: items.every((item) => item.photos.length > 0),
+    },
+    {
+      key: 'description',
+      done: items.every((item) => item.description.trim() !== ''),
+      optional: true,
+    },
   ];
   const missingSteps = steps.filter((step) => !step.optional && !step.done);
 
   const isEditingPublished = listing !== null && listing.status !== 'draft';
-  const hasContent =
-    photoKeys.length > 0 ||
-    items.some((item) => item.model !== null || Boolean(item.custom?.name.trim()));
+  const hasContent = items.some(isDescribed);
   const serialized = JSON.stringify(payload);
   const savedPayload = useRef(listing ? serialized : null);
   const draftIdRef = useRef(draftId);
@@ -234,11 +241,8 @@ export function useSellListing({
     updateItem,
     bundlePrice,
     setBundlePrice,
-    setPhotoKeys,
     cityId,
     setCityId,
-    description,
-    setDescription,
     contactEmail,
     setContactEmail,
     contactPhone,

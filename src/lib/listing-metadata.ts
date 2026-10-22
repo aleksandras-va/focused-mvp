@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { getTranslations } from 'next-intl/server';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 import { formatPrice } from './format';
+import { galleryPhotos, itemsForSale } from './listing-photos';
 import { formatListingTitle } from './listing-title';
 import { DEFAULT_SHARE_IMAGE, OPEN_GRAPH_BASE } from './site';
 
@@ -56,7 +57,7 @@ export function itemMetadata(
     title,
     itemDescription(listing, item, t),
     `/items/${item.id}`,
-    listing.photos[0]?.cardUrl,
+    item.photos[0]?.cardUrl,
   );
 }
 
@@ -72,7 +73,7 @@ export function itemDescription(listing: ListingDetail, item: ListingItemDetail,
     listing.city,
   ]);
 
-  return withSellerText(facts, listing.description);
+  return withSellerText(facts, item.description);
 }
 
 export function bundleMetadata(
@@ -86,12 +87,19 @@ export function bundleMetadata(
   ]);
   const description = bundleDescription(listing, t);
 
-  return listingMetadata(title, description, `/bundles/${listing.id}`, listing.photos[0]?.cardUrl);
+  return listingMetadata(
+    title,
+    description,
+    `/bundles/${listing.id}`,
+    galleryPhotos(listing, null)[0]?.cardUrl,
+  );
 }
 
 export function bundleDescription(listing: ListingDetail, t: Translate) {
+  const items = itemsForSale(listing);
+
   return withSellerText(
-    joinParts([t('listing.metadata.bundleOf', { count: listing.items.length }), listing.city]),
-    listing.description,
+    joinParts([t('listing.metadata.bundleOf', { count: items.length }), listing.city]),
+    items.map((item) => item.modelName).join(', '),
   );
 }

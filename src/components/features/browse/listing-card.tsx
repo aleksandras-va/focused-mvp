@@ -1,13 +1,13 @@
-import { ImageIcon, PencilIcon } from 'lucide-react';
+import { ImageIcon, PackageIcon, PencilIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { buttonVariants } from '@/components/ui/button';
 import { DiscountBadge } from '@/components/ui/discount-badge';
-import type { CosmeticCondition, ListingStatus } from '@/db/tables';
+import type { CosmeticCondition, ListingStatus, ModelCategory } from '@/db/tables';
 import { formatPrice } from '@/lib/format';
 import { formatListingTitle, type ListingTitle } from '@/lib/listing-title';
 import { cn } from '@/lib/utils';
-import type { ListingSummary } from '@/services/listing/listing.types';
+import type { BundleRole, ListingSummary } from '@/services/listing/listing.types';
 
 export type ListingCardItem = {
   href: string;
@@ -21,6 +21,8 @@ export type ListingCardItem = {
   condition: CosmeticCondition | null;
   imageUrl: string | null;
   isBundle: boolean;
+  bundleRole: BundleRole;
+  bundledWith: { category: ModelCategory; count: number }[];
   status: ListingStatus;
   editHref: string | null;
 };
@@ -28,9 +30,7 @@ export type ListingCardItem = {
 export function toListingCardItem(listing: ListingSummary): ListingCardItem {
   return {
     href:
-      listing.isBundle || !listing.firstItemId
-        ? `/bundles/${listing.id}`
-        : `/items/${listing.firstItemId}`,
+      listing.isBundle || !listing.itemId ? `/bundles/${listing.id}` : `/items/${listing.itemId}`,
     title: listing.title,
     brand: listing.brand,
     itemCount: listing.itemCount,
@@ -41,6 +41,8 @@ export function toListingCardItem(listing: ListingSummary): ListingCardItem {
     condition: listing.cosmeticCondition,
     imageUrl: listing.coverUrl,
     isBundle: listing.isBundle,
+    bundleRole: listing.bundleRole,
+    bundledWith: listing.bundledWith,
     status: listing.status,
     editHref: listing.isOwner ? `/sell/${listing.id}` : null,
   };
@@ -54,10 +56,14 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
   const tEnums = useTranslations('enums');
   const tTitle = useTranslations('listingTitle');
   const { href } = item;
-  const subtitle = item.isBundle ? t('itemCount', { count: item.itemCount }) : item.brand;
+  const isBundleOnly = item.bundleRole === 'bundleOnly';
   const detail =
     item.shutterCount !== null ? t('shutterCount', { count: item.shutterCount }) : item.place;
   const statusLabel = item.status === 'active' ? null : tEnums(`listingStatus.${item.status}`);
+  const bundleBadge = item.isBundle ? t('bundleBadge', { count: item.itemCount }) : null;
+  const bundledWith = item.bundledWith
+    .map(({ category, count }) => t(`bundledWith.${category}`, { count }))
+    .join(` ${t('and')} `);
   const title = formatListingTitle(item.title, tTitle);
 
   return (
@@ -69,6 +75,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
           className={cn(
             buttonVariants({ variant: 'outline', size: 'icon-sm' }),
             'absolute top-2 right-2 z-10 shadow-sm',
+            isBundleOnly && 'top-12',
           )}
         >
           <PencilIcon className="size-4" />
@@ -95,11 +102,18 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
           </div>
         )}
 
-        {item.isBundle || statusLabel ? (
-          <div className="absolute top-2 left-2 flex gap-1.5">
-            {item.isBundle ? (
+        {isBundleOnly ? (
+          <span className="absolute inset-x-0 top-0 flex items-start gap-2 bg-primary-soft/95 px-4 py-2 text-xs leading-[1.125rem] font-semibold text-primary-ink">
+            <PackageIcon className="mt-0.5 size-3.5 shrink-0" />
+            {bundledWith ? t('bundleOnlyWith', { with: bundledWith }) : t('bundleOnly')}
+          </span>
+        ) : null}
+
+        {bundleBadge || statusLabel ? (
+          <div className={cn('absolute top-2 left-2 flex gap-1.5', isBundleOnly && 'top-12')}>
+            {bundleBadge ? (
               <span className={cn(overlayBadgeClass, 'bg-white/90 text-foreground')}>
-                {t('bundle')}
+                {bundleBadge}
               </span>
             ) : null}
             {statusLabel ? (
@@ -112,7 +126,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
       </Link>
 
       <div className="flex flex-1 flex-col gap-1 px-4 py-3 sm:py-4">
-        <p className="truncate text-xs text-muted-foreground">{subtitle || ' '}</p>
+        <p className="truncate text-xs text-muted-foreground">{item.brand || ' '}</p>
         <h3 className="line-clamp-2 font-medium leading-snug">
           <Link href={href} className="after:absolute after:inset-0">
             {title}
@@ -130,6 +144,9 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
             <s className="truncate text-sm text-muted-foreground">
               {formatPrice(item.fullPriceCents)}
             </s>
+          ) : null}
+          {isBundleOnly && item.priceCents !== null ? (
+            <span className="truncate text-xs text-muted-foreground">{t('forBundle')}</span>
           ) : null}
         </p>
         {item.isBundle ? (

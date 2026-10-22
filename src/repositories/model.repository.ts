@@ -205,7 +205,8 @@ function activeItems() {
   return db
     .selectFrom('listing_item')
     .innerJoin('listing', 'listing.id', 'listing_item.listing_id')
-    .where('listing.status', '=', 'active');
+    .where('listing.status', '=', 'active')
+    .where('listing_item.sold_at', 'is', null);
 }
 
 function modelQuery() {

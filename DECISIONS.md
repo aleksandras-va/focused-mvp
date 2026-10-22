@@ -174,6 +174,28 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
 - Hide sets `removed` — off the public site, still in Your ads, reversible. Delete is a
   real `DELETE`, behind a confirmation; items, inclusions and photo rows cascade. Its
   R2 objects are deleted after the commit.
+- Photos and the description belong to the item, not the ad. A bundle page shows every
+  item's photos and each item's text on its card; there is no bundle-level description or
+  group shot. `listing.description` stays as an unused column in case a bundle note comes
+  back. Publishing requires at least one photo per item.
+- A browse card is an offer, not a listing. The open feed shows a bundle card plus one
+  card for each item that is also sold separately, with no badge. Once any
+  item filter is active (category, brand, mount, model, condition) only item cards show:
+  a bundle-only item carries a strip over its photo naming the rest of the bundle
+  ("Parduodama kaip rinkinys su 2 objektyvais") and shows the bundle price,
+  because its own price is a statistic, not something a buyer can pay. Bundle-only items
+  never appear on the unfiltered feed. Seller lists and similar-ads stay one card per
+  listing. The union of item and bundle rows is one query, `cardQuery` in the listing
+  repository.
+- A bundle card shows "Rinkinys · N prekės" and no condition; the discount badge takes
+  that place.
+- An item can be sold on its own: `listing_item.sold_at`, not a second status enum. The
+  listing status stays the ad's. Selling one item reprices the bundle to the sum of the
+  remaining items' prices (the discount is gone until the seller re-prices), one item
+  left turns the ad into a single-item ad, and the last item sold marks the listing
+  `sold`. A sold item's page is a 404 for everyone but the seller, like a sold ad, and
+  it drops out of the sitemap, search counts and price statistics. The edit form hides
+  sold items and the repository keeps them, parked after the live items.
 - Item ids never change, because `/items/[id]` URLs get shared. The sell form gives each
   new item a uuid in the browser and sends it on every save; the repository upserts by id
   within the listing, deletes only removed items, and replaces inclusions per item.
@@ -184,8 +206,10 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   Deletes run in `after()`, so a storage failure never fails the save. Seller-supplied
   keys are safe to delete because `listing_photo.storage_key` is unique — a key that
   belongs to another ad cannot be saved. Uploads never saved to any ad still stay behind.
-- A draft saves itself. The sell form creates a draft as soon as the ad has a photo or a
-  picked model, then updates it a second after each change. `listing.price_cents`,
+- A draft saves itself. The sell form creates a draft as soon as an item has a picked
+  model or a name, then updates it a second after each change. Photos uploaded before
+  that stay in the browser until the item is described, because a photo row needs an
+  item row. `listing.price_cents`,
   `listing.city_id` and `listing_item.price_cents` are nullable for this, and
   `listing_active_complete_check` keeps `active` rows complete — the invariant sits in
   the database, not in a publish handler. Items with neither a model nor a named,

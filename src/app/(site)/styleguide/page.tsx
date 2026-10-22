@@ -49,6 +49,8 @@ const sampleCard: ListingCardItem = {
   condition: 'excellent',
   imageUrl: null,
   isBundle: false,
+  bundleRole: 'none',
+  bundledWith: [],
   status: 'active',
   editHref: null,
 };

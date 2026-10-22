@@ -84,6 +84,17 @@ export async function markListingSoldAction(listingId: string) {
   });
 }
 
+export async function markItemSoldAction(listingId: string, itemId: string) {
+  return runOwnerAction(listingId, async (userId) => {
+    await listingService.markItemSold(itemId, userId);
+    await analyticsService.track(userId, 'Marked Sold', { listingId, itemId });
+  });
+}
+
+export async function unmarkItemSoldAction(listingId: string, itemId: string) {
+  return runOwnerAction(listingId, (userId) => listingService.unmarkItemSold(itemId, userId));
+}
+
 export async function hideListingAction(listingId: string) {
   return runOwnerAction(listingId, (userId) => listingService.hide(listingId, userId));
 }
