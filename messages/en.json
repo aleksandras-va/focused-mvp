@@ -479,7 +479,8 @@
       "labelOnItsOwn": "Price on its own",
       "hint": "What this item alone would cost.",
       "separately": "Would sell this item separately",
-      "separatelyHint": "Buyers looking for just this item can find it too."
+      "separatelyHint": "Buyers looking for just this item can find it too.",
+      "separatelyImplied": "Every other item is sold separately, so once published this one will be too."
     },
     "remove": {
       "ariaLabel": "Remove item {number}",

@@ -187,6 +187,10 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   never appear on the unfiltered feed. Seller lists and similar-ads stay one card per
   listing. The union of item and bundle rows is one query, `cardQuery` in the listing
   repository.
+- When every item in a bundle but one is sold separately, the last one is too: buyers
+  could take the rest and leave it. The service sets `sold_separately` on save, so the
+  stored row says what the site shows; the form only hints at it, so a seller can still
+  untick several items in one edit.
 - A bundle card shows "Rinkinys · N prekės" and no condition; the discount badge takes
   that place.
 - An item can be sold on its own: `listing_item.sold_at`, not a second status enum. The

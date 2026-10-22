@@ -316,6 +316,8 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
   );
 
   const modelsById = new Map(models.map((model) => [model.id, model]));
+  const bundleOnly = described.filter((item) => !item.soldSeparately);
+  const onlyOneLeftInBundle = described.length > 1 && bundleOnly.length === 1;
 
   const items: ListingItemInput[] = described.map((item, position) => {
     const model = item.custom ? null : modelsById.get(item.modelId);
@@ -339,7 +341,7 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
         cosmetic_condition: item.cosmeticCondition,
         functional_condition: item.functionalCondition,
         shutter_count: asksShutterCount ? parseShutterCount(item.shutterCount) : null,
-        sold_separately: item.soldSeparately,
+        sold_separately: item.soldSeparately || onlyOneLeftInBundle,
         description: item.description?.trim() || null,
         position,
       },

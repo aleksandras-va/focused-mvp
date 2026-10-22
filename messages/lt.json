@@ -475,7 +475,8 @@
       "labelOnItsOwn": "Kaina atskirai",
       "hint": "Kiek kainuotų vien ši prekė.",
       "separately": "Parduočiau ir atskirai",
-      "separatelyHint": "Parodyk pirkėjam, kad gali šią prekę iškomplektuoti ir parduoti atskirai."
+      "separatelyHint": "Parodyk pirkėjam, kad gali šią prekę iškomplektuoti ir parduoti atskirai.",
+      "separatelyImplied": "Visos kitos prekės parduodamos atskirai, todėl paskelbus ir ši bus parduodama atskirai."
     },
     "remove": {
       "ariaLabel": "Pašalinti prekę {number}",

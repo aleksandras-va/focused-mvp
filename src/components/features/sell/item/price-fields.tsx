@@ -10,10 +10,11 @@ import { cn } from '@/lib/utils';
 interface PriceFieldsProps {
   item: SellItem;
   isBundle: boolean;
+  isLastBundleOnly: boolean;
   onChange: (patch: Partial<SellItem>) => void;
 }
 
-export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
+export function PriceFields({ item, isBundle, isLastBundleOnly, onChange }: PriceFieldsProps) {
   const t = useTranslations('sell.price');
   const priceId = useId();
 
@@ -40,7 +41,11 @@ export function PriceFields({ item, isBundle, onChange }: PriceFieldsProps) {
           />
           <span className="flex flex-col gap-0.5">
             <span className="text-sm font-semibold">{t('separately')}</span>
-            <span className="text-xs text-muted-foreground">{t('separatelyHint')}</span>
+            <span className="text-xs text-muted-foreground">
+              {isLastBundleOnly && !item.soldSeparately
+                ? t('separatelyImplied')
+                : t('separatelyHint')}
+            </span>
           </span>
         </label>
       ) : null}

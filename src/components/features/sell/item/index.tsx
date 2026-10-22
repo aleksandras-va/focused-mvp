@@ -24,6 +24,7 @@ interface ItemFieldsProps {
   index: number;
   isBundle: boolean;
   siblingModels: CatalogModel[];
+  isLastBundleOnly: boolean;
   searchAction: (term: string, preferredMountSlugs: string[]) => Promise<CatalogModel[]>;
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
   onChange: (patch: Partial<SellItem>) => void;
@@ -58,6 +59,7 @@ export function ItemFields({
   index,
   isBundle,
   siblingModels,
+  isLastBundleOnly,
   searchAction,
   uploadAction,
   onChange,
@@ -145,7 +147,12 @@ export function ItemFields({
         />
       </Field>
 
-      <PriceFields item={item} isBundle={isBundle} onChange={onChange} />
+      <PriceFields
+        item={item}
+        isBundle={isBundle}
+        isLastBundleOnly={isLastBundleOnly}
+        onChange={onChange}
+      />
     </div>
   );
 }

@@ -46,6 +46,7 @@ export function SellListing({
   const tListing = useTranslations('listing');
   const sell = useSellListing({ submitAction, saveDraftAction, defaults, listing });
   const openItem = useOpenItem(sell.items);
+  const bundleOnlyCount = sell.items.filter((item) => !item.soldSeparately).length;
   const previewHref = sell.draftId
     ? sell.draftItemIds.length === 1
       ? `/items/${sell.draftItemIds[0]}`
@@ -105,6 +106,7 @@ export function SellListing({
                     siblingModels={sell.items.flatMap((sibling) =>
                       sibling.id !== item.id && sibling.model ? [sibling.model] : [],
                     )}
+                    isLastBundleOnly={sell.isBundle && bundleOnlyCount === 1}
                     searchAction={searchAction}
                     uploadAction={uploadAction}
                     onChange={(patch) => sell.updateItem(item.id, patch)}

@@ -153,7 +153,7 @@ export function ListingCard({ item }: { item: ListingCardItem }) {
           item.priceCents !== null && item.fullPriceCents !== null ? (
             <DiscountBadge priceCents={item.priceCents} fullPriceCents={item.fullPriceCents} />
           ) : null
-        ) : item.condition ? (
+        ) : item.condition && !isBundleOnly ? (
           <span className="rounded-full border border-input bg-background px-2.5 py-0.5 text-xs font-medium">
             {tEnums(`cosmeticCondition.${item.condition}`)}
           </span>

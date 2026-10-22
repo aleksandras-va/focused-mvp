@@ -159,6 +159,23 @@ describe('listingService photo storage', () => {
     expect(deleteStored).toHaveBeenLastCalledWith([kept]);
   });
 
+  it('sells the last bundle-only item separately when every other item is', async () => {
+    const payload = await bundlePayload();
+    const items = payload.items.map((item, index) => ({
+      ...item,
+      soldSeparately: index !== 0,
+    }));
+    const { id } = await listingService.save(null, sellerId, { ...payload, items });
+
+    try {
+      const detail = await listingService.get(id, null);
+
+      expect(detail?.items.map((item) => item.soldSeparately)).toEqual([true, true, true]);
+    } finally {
+      await listingService.remove(id, sellerId);
+    }
+  });
+
   it('refuses to publish an item without a photo', async () => {
     const payload = await draftPayload('nikon-d850', '900');
     const [item] = payload.items;
