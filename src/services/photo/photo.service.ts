@@ -1,7 +1,9 @@
 import 'server-only';
 
-import { type PhotoSize, photoObjectPath } from '@/lib/photos';
+import { after } from 'next/server';
+import { PHOTO_SIZES, type PhotoSize, photoObjectPath } from '@/lib/photos';
 import { UPLOAD_URL_EXPIRES_SECONDS } from './photo.constants';
+import { PhotoStorageError } from './photo.error';
 import type { PhotoUpload } from './photo.types';
 import { storageConfig } from './photo.utils';
 
@@ -39,4 +41,29 @@ export const photoService = {
       uploadUrls: { large: await presign('large'), card: await presign('card') },
     };
   },
+
+  deleteStored(storageKeys: string[]) {
+    if (storageKeys.length === 0) return;
+
+    after(() =>
+      deleteObjects(storageKeys).catch((error) => {
+        console.error('Deleting photos from storage failed', storageKeys, error);
+      }),
+    );
+  },
 } as const;
+
+async function deleteObjects(storageKeys: string[]) {
+  const { bucket, host, client } = storageConfig();
+  const sizes = Object.keys(PHOTO_SIZES) as PhotoSize[];
+  const paths = storageKeys.flatMap((key) => sizes.map((size) => photoObjectPath(key, size)));
+
+  const responses = await Promise.all(
+    paths.map((path) => client.fetch(`https://${host}/${bucket}/${path}`, { method: 'DELETE' })),
+  );
+  const failed = responses.filter((response) => !response.ok && response.status !== 404);
+
+  if (failed.length > 0) {
+    throw new PhotoStorageError(`Storage rejected ${failed.length} of ${paths.length} deletes.`);
+  }
+}

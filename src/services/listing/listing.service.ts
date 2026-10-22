@@ -6,6 +6,7 @@ import { type ListingItemInput, listingRepository } from '@/repositories/listing
 import { modelRepository } from '@/repositories/model.repository';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
+import { photoService } from '../photo/photo.service';
 import {
   BROWSE_PAGE_SIZE,
   ITEM_ID_PATTERN,
@@ -135,7 +136,7 @@ export const listingService = {
       return { ...created, publishedNow };
     }
 
-    const updated = await listingRepository.update(
+    const { removedPhotoKeys, ...updated } = await listingRepository.update(
       existing.id,
       {
         ...content.values,
@@ -145,6 +146,8 @@ export const listingService = {
       content.items,
       content.photoKeys,
     );
+
+    photoService.deleteStored(removedPhotoKeys);
 
     return { ...updated, publishedNow };
   },
@@ -172,7 +175,8 @@ export const listingService = {
 
   async remove(listingId: string, sellerId: string): Promise<void> {
     await requireOwned(listingId, sellerId);
-    await listingRepository.deleteById(listingId);
+
+    photoService.deleteStored(await listingRepository.deleteById(listingId));
   },
 } as const;
 

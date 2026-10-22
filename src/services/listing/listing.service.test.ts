@@ -1,10 +1,18 @@
 import { randomUUID } from 'node:crypto';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { userRepository } from '@/repositories/user.repository';
 import { cityService } from '../city/city.service';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
 import { listingService } from './listing.service';
-import type { SimilarListingsBasis } from './listing.types';
+import type { CreateListingPayload, SimilarListingsBasis } from './listing.types';
+
+const { deleteStored } = vi.hoisted(() => ({ deleteStored: vi.fn() }));
+
+vi.mock('../photo/photo.service', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../photo/photo.service')>();
+
+  return { photoService: { ...actual.photoService, deleteStored } };
+});
 
 const SELLER_EMAIL = 'listing-service-test@example.com';
 
@@ -45,40 +53,67 @@ beforeAll(async () => {
       display_name: 'Listing test seller',
       password_hash: 'not-a-hash',
     }));
-  const [city] = await cityService.getAll();
 
   sellerId = seller.id;
   await removeSellerListings();
 
   for (const [slug, price] of ADS) {
-    const model = await requireModel(slug);
-
-    await listingService.save(null, sellerId, {
-      items: [
-        {
-          id: randomUUID(),
-          modelId: model.id,
-          custom: null,
-          price,
-          cosmeticCondition: 'good',
-          functionalCondition: 'fully_working',
-          shutterCount: null,
-          soldSeparately: true,
-          inclusions: [],
-        },
-      ],
-      bundlePrice: null,
-      photoKeys: [`photos/${randomUUID()}`],
-      cityId: city.id,
-      description: null,
-      contactEmail: null,
-      contactPhone: null,
-      publish: true,
-    });
+    await listingService.save(null, sellerId, await draftPayload(slug, price));
   }
 });
 
+async function draftPayload(slug: string, price: string): Promise<CreateListingPayload> {
+  const model = await requireModel(slug);
+  const [city] = await cityService.getAll();
+
+  return {
+    items: [
+      {
+        id: randomUUID(),
+        modelId: model.id,
+        custom: null,
+        price,
+        cosmeticCondition: 'good',
+        functionalCondition: 'fully_working',
+        shutterCount: null,
+        soldSeparately: true,
+        inclusions: [],
+      },
+    ],
+    bundlePrice: null,
+    photoKeys: [`photos/${randomUUID()}`],
+    cityId: city.id,
+    description: null,
+    contactEmail: null,
+    contactPhone: null,
+    publish: true,
+  };
+}
+
 afterAll(removeSellerListings);
+
+describe('listingService photo storage', () => {
+  beforeEach(() => deleteStored.mockClear());
+
+  it('deletes only the photos a save drops, then all of them with the ad', async () => {
+    const [kept, dropped] = [`photos/${randomUUID()}`, `photos/${randomUUID()}`];
+    const payload = { ...(await draftPayload('nikon-d850', '900')), publish: false };
+    const { id } = await listingService.save(null, sellerId, {
+      ...payload,
+      photoKeys: [kept, dropped],
+    });
+
+    expect(deleteStored).not.toHaveBeenCalled();
+
+    await listingService.save(id, sellerId, { ...payload, photoKeys: [kept] });
+
+    expect(deleteStored).toHaveBeenLastCalledWith([dropped]);
+
+    await listingService.remove(id, sellerId);
+
+    expect(deleteStored).toHaveBeenLastCalledWith([kept]);
+  });
+});
 
 describe('listingService.getSimilarToModel', () => {
   const cases: SimilarCase[] = [

@@ -172,13 +172,18 @@ Settled choices. Do not relitigate them; if one blocks you, say so.
   owns carries only a pen icon linking to `/sell/[id]`; the owner bar on the listing page
   holds edit, mark as sold, hide, publish and delete.
 - Hide sets `removed` — off the public site, still in Your ads, reversible. Delete is a
-  real `DELETE`, behind a confirmation; items, inclusions and photo rows cascade. The R2
-  objects are left behind, since nothing cleans up storage yet.
+  real `DELETE`, behind a confirmation; items, inclusions and photo rows cascade. Its
+  R2 objects are deleted after the commit.
 - Item ids never change, because `/items/[id]` URLs get shared. The sell form gives each
   new item a uuid in the browser and sends it on every save; the repository upserts by id
   within the listing, deletes only removed items, and replaces inclusions per item.
   `listing_item_listing_id_position_key` is deferrable so items can swap positions in one
   save. Photos are still replaced on each save; their rows are not addressed by id.
+- A photo's R2 objects are deleted when a committed save drops its key, not when the
+  seller clicks X: an unsaved edit to a published ad must not break its live photos.
+  Deletes run in `after()`, so a storage failure never fails the save. Seller-supplied
+  keys are safe to delete because `listing_photo.storage_key` is unique — a key that
+  belongs to another ad cannot be saved. Uploads never saved to any ad still stay behind.
 - A draft saves itself. The sell form creates a draft as soon as the ad has a photo or a
   picked model, then updates it a second after each change. `listing.price_cents`,
   `listing.city_id` and `listing_item.price_cents` are nullable for this, and
