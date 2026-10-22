@@ -1,6 +1,6 @@
 'use client';
 
-import { EyeOffIcon, PencilIcon, TagIcon } from 'lucide-react';
+import { EyeOffIcon, PencilIcon, TagIcon, UndoIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
@@ -11,12 +11,22 @@ import type { ListingStatus } from '@/db/tables';
 import { cn } from '@/lib/utils';
 
 type OwnerAction = (listingId: string) => Promise<{ error: string | null }>;
+type ItemAction = (itemId: string) => Promise<{ error: string | null }>;
+
+export interface OwnerBarItem {
+  id: string;
+  isSold: boolean;
+  inBundle: boolean;
+}
 
 interface OwnerBarProps {
   listingId: string;
   status: ListingStatus;
+  item: OwnerBarItem | null;
   editHref: string;
   markSoldAction: OwnerAction;
+  markItemSoldAction: ItemAction | null;
+  unmarkItemSoldAction: ItemAction | null;
   hideAction: OwnerAction;
   restoreAction: OwnerAction;
   deleteAction: OwnerAction;
@@ -25,8 +35,11 @@ interface OwnerBarProps {
 export function OwnerBar({
   listingId,
   status,
+  item,
   editHref,
   markSoldAction,
+  markItemSoldAction,
+  unmarkItemSoldAction,
   hideAction,
   restoreAction,
   deleteAction,
@@ -35,12 +48,15 @@ export function OwnerBar({
   const tEnums = useTranslations('enums');
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const isItemSold = item?.isSold ?? false;
+  const canSellItem = status === 'active' && item?.inBundle && !isItemSold && markItemSoldAction;
+  const canUnsellItem = item && isItemSold && unmarkItemSoldAction;
 
-  const run = (action: OwnerAction) => {
+  const run = (action: () => Promise<{ error: string | null }>) => {
     setError(null);
 
     startTransition(async () => {
-      const result = await action(listingId);
+      const result = await action();
 
       if (result?.error) setError(result.error);
     });
@@ -52,13 +68,17 @@ export function OwnerBar({
         <div className="flex items-center gap-2">
           <span className="font-medium">{t('yourAd')}</span>
           <Badge
-            variant={status === 'active' ? 'outline' : 'default'}
-            className={status === 'active' ? 'bg-background' : 'bg-foreground text-background'}
+            variant={status === 'active' && !isItemSold ? 'outline' : 'default'}
+            className={
+              status === 'active' && !isItemSold ? 'bg-background' : 'bg-foreground text-background'
+            }
           >
-            {tEnums(`listingStatus.${status}`)}
+            {isItemSold ? tEnums('listingStatus.sold') : tEnums(`listingStatus.${status}`)}
           </Badge>
         </div>
-        {status === 'active' ? null : (
+        {isItemSold ? (
+          <p className="text-sm text-muted-foreground">{t('notices.itemSold')}</p>
+        ) : status === 'active' ? null : (
           <p className="text-sm text-muted-foreground">{t(`notices.${status}`)}</p>
         )}
         {error ? <p className="text-sm text-destructive">{error}</p> : null}
@@ -78,10 +98,34 @@ export function OwnerBar({
             variant="outline"
             className={cn('border-input', status === 'active' && 'lg:order-last')}
             disabled={isPending}
-            onClick={() => run(hideAction)}
+            onClick={() => run(() => hideAction(listingId))}
           >
             <EyeOffIcon />
             {t('hide')}
+          </Button>
+        ) : null}
+
+        {canSellItem ? (
+          <Button
+            variant="outline"
+            className="border-input"
+            disabled={isPending}
+            onClick={() => run(() => markItemSoldAction(item.id))}
+          >
+            <TagIcon />
+            {t('markItemSold')}
+          </Button>
+        ) : null}
+
+        {canUnsellItem ? (
+          <Button
+            variant="outline"
+            className="border-input"
+            disabled={isPending}
+            onClick={() => run(() => unmarkItemSoldAction(item.id))}
+          >
+            <UndoIcon />
+            {t('unmarkItemSold')}
           </Button>
         ) : null}
 
@@ -90,22 +134,25 @@ export function OwnerBar({
             variant="outline"
             className="border-input"
             disabled={isPending}
-            onClick={() => run(markSoldAction)}
+            onClick={() => run(() => markSoldAction(listingId))}
           >
             <TagIcon />
-            {t('markSold')}
+            {item?.inBundle ? t('markAllSold') : t('markSold')}
           </Button>
         ) : null}
 
         {status !== 'active' ? (
-          <Button disabled={isPending} onClick={() => run(restoreAction)}>
+          <Button disabled={isPending} onClick={() => run(() => restoreAction(listingId))}>
             {status === 'sold' ? t('relist') : t('publish')}
           </Button>
         ) : null}
       </div>
 
       <div className="absolute top-3 right-3 lg:static lg:order-last">
-        <DeleteListingDialog disabled={isPending} onConfirm={() => run(deleteAction)} />
+        <DeleteListingDialog
+          disabled={isPending}
+          onConfirm={() => run(() => deleteAction(listingId))}
+        />
       </div>
     </div>
   );

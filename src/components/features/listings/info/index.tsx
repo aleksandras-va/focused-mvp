@@ -9,6 +9,7 @@ import { SafetyNote } from '@/components/features/listings/info/safety-note';
 import { SellerCard } from '@/components/features/listings/info/seller-card';
 import { Badge } from '@/components/ui/badge';
 import { formatOptionalPrice, formatPrice } from '@/lib/format';
+import { itemsForSale } from '@/lib/listing-photos';
 import { formatListingTitle } from '@/lib/listing-title';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 
@@ -24,11 +25,18 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
   const tEnums = useTranslations('enums');
   const tTitle = useTranslations('listingTitle');
   const bundleTitle = formatListingTitle(listing.title, tTitle);
+  const forSale = itemsForSale(listing);
   const isBundleOverview = listing.isBundle && !focusedItem;
-  const item = focusedItem ?? (isBundleOverview ? null : (listing.items[0] ?? null));
+  const item = focusedItem ?? (isBundleOverview ? null : (forSale[0] ?? null));
   const title = item?.modelName ?? bundleTitle;
-  const priceCents = item?.priceCents ?? listing.priceCents;
+  const isBundleOnly = focusedItem !== null && listing.isBundle && !focusedItem.soldSeparately;
+  const priceCents = item && !isBundleOnly ? item.priceCents : listing.priceCents;
   const fullPriceCents = isBundleOverview ? listing.fullPriceCents : null;
+  const statusLabel = focusedItem?.isSold
+    ? tEnums('listingStatus.sold')
+    : listing.status !== 'active'
+      ? tEnums(`listingStatus.${listing.status}`)
+      : null;
 
   return (
     <div className="flex flex-col gap-5">
@@ -36,7 +44,7 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
         {!isBundleOverview && <ListingBreadcrumbs item={item} />}
         {isBundleOverview ? (
           <span className="w-fit rounded-full bg-primary-soft px-2.5 py-1 text-xs font-semibold text-primary-ink">
-            {t('bundleBadge', { count: listing.items.length })}
+            {t('bundleBadge', { count: forSale.length })}
           </span>
         ) : null}
         <h1
@@ -64,19 +72,17 @@ export function ListingInfo({ listing, focusedItem, isSignedIn, messaging }: Lis
             <s className="text-lg text-muted-foreground">{formatPrice(fullPriceCents)}</s>
           ) : null}
         </div>
-        {isBundleOverview ? (
-          <p className="text-sm text-muted-foreground">
-            {t('forAll', { count: listing.items.length })}
-          </p>
+        {isBundleOverview || isBundleOnly ? (
+          <p className="text-sm text-muted-foreground">{t('forAll', { count: forSale.length })}</p>
         ) : null}
-        {listing.status !== 'active' ? (
+        {statusLabel ? (
           <Badge variant="outline" className="mt-2 w-fit">
-            {tEnums(`listingStatus.${listing.status}`)}
+            {statusLabel}
           </Badge>
         ) : null}
       </div>
 
-      {item ? <FactTiles item={item} /> : <BundlePriceList items={listing.items} />}
+      {item ? <FactTiles item={item} /> : <BundlePriceList items={forSale} />}
 
       {focusedItem && listing.isBundle ? (
         <BundleNotice

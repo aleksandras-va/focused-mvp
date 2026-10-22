@@ -101,6 +101,7 @@ export interface ListingItem {
   created_at: Generated<Timestamp>;
   custom_category: ModelCategory | null;
   custom_name: string | null;
+  description: string | null;
   functional_condition: FunctionalCondition;
   id: Generated<string>;
   listing_id: string;
@@ -108,6 +109,7 @@ export interface ListingItem {
   position: number;
   price_cents: number | null;
   shutter_count: number | null;
+  sold_at: Timestamp | null;
   sold_separately: Generated<boolean>;
   updated_at: Generated<Timestamp>;
 }
@@ -115,7 +117,7 @@ export interface ListingItem {
 export interface ListingPhoto {
   created_at: Generated<Timestamp>;
   id: Generated<string>;
-  listing_id: string;
+  listing_item_id: string;
   position: number;
   storage_key: string;
 }

@@ -18,7 +18,6 @@ interface SellPreviewProps {
   items: SellItem[];
   isBundle: boolean;
   bundlePrice: string;
-  coverUrl: string | null;
   steps: SellStep[];
   missingSteps: SellStepKey[];
   draftState: DraftState;
@@ -43,7 +42,6 @@ export function SellPreview({
   items,
   isBundle,
   bundlePrice,
-  coverUrl,
   steps,
   missingSteps,
   draftState,
@@ -77,8 +75,10 @@ export function SellPreview({
       items.map((item) => toCents(item.price)),
     ),
     condition: itemName(first) ? first.cosmeticCondition : null,
-    imageUrl: coverUrl,
+    imageUrl: items.find((item) => item.photos.length > 0)?.photos[0]?.url ?? null,
     isBundle,
+    bundleRole: 'none',
+    bundledWith: [],
     status: 'active',
     editHref: null,
   };

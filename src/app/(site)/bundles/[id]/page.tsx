@@ -73,8 +73,11 @@ export default async function BundlePage({ params }: PageProps<'/bundles/[id]'>)
         <OwnerBar
           listingId={listing.id}
           status={listing.status}
+          item={null}
           editHref={`/sell/${listing.id}`}
           markSoldAction={markListingSoldAction}
+          markItemSoldAction={null}
+          unmarkItemSoldAction={null}
           hideAction={hideListingAction}
           restoreAction={restoreListingAction}
           deleteAction={deleteListingAction}

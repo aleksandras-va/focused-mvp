@@ -181,18 +181,23 @@ the luck of tie order.
 
 ### Listings
 
-- `listing` — the ad: `seller_id`, asking price in cents, description, `city_id`,
-  contact email and phone, status, `published_at`. Knows nothing about the gear. Price
-  and city are nullable so a half-filled draft can be stored; a check constraint
-  requires them once the status is `active`.
+- `listing` — the ad: `seller_id`, asking price in cents, `city_id`, contact email and
+  phone, status, `published_at`. Knows nothing about the gear. Price and city are
+  nullable so a half-filled draft can be stored; a check constraint requires them once
+  the status is `active`. `description` is still a column but no longer read or written;
+  the text lives on the item.
 - `listing_item` — what is in the ad, one row per physical item: `model_id`, per-item
   price, cosmetic and functional condition, optional shutter count, `sold_separately`,
-  `position`. A single-item ad is one row; a bundle is several. An item the catalog
-  lacks has `model_id` null and `custom_name` plus `custom_category` instead.
+  `description`, `sold_at`, `position`. A single-item ad is one row; a bundle is several.
+  An item the catalog lacks has `model_id` null and `custom_name` plus `custom_category`
+  instead. `sold_at` set means the item was sold on its own while the rest of the ad
+  stayed on sale; it keeps its row and URL but leaves public view.
 - `listing_inclusion` — the included-extras checklist, keyed on
   `(listing_item_id, inclusion)` because the charger belongs to the camera, not the ad.
-- `listing_photo` — `storage_key` and `position` per photo; position 0 is the cover.
-  Two objects per key in R2 (`<key>/2560.webp`, `<key>/800.webp`).
+- `listing_photo` — `listing_item_id`, `storage_key` and `position` per photo; position 0
+  is the item's cover. A bundle's gallery is its items' photos in item order, and the
+  bundle cover is the first item's cover. Two objects per key in R2 (`<key>/2560.webp`,
+  `<key>/800.webp`).
 
 ### Accounts
 

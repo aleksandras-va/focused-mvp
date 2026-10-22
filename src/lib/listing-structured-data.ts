@@ -2,6 +2,7 @@ import type { getTranslations } from 'next-intl/server';
 import type { CosmeticCondition } from '@/db/types';
 import type { ListingDetail, ListingItemDetail } from '@/services/listing/listing.types';
 import { bundleDescription, itemDescription } from './listing-metadata';
+import { galleryPhotos, itemsForSale } from './listing-photos';
 import { modelHref } from './model-href';
 import { SITE_URL } from './site';
 
@@ -31,6 +32,10 @@ function offer(listing: ListingDetail, priceCents: number, path: string, conditi
       url: `${SITE_URL}/sellers/${listing.seller.id}`,
     },
   };
+}
+
+function images(photos: { largeUrl: string }[]) {
+  return photos.length > 0 ? photos.map((photo) => photo.largeUrl) : undefined;
 }
 
 function breadcrumbs(item: ListingItemDetail, t: Translate) {
@@ -64,15 +69,15 @@ export function itemStructuredData(
   const path = `/items/${item.id}`;
   const product =
     listing.status === 'active' &&
+    !item.isSold &&
     item.priceCents !== null &&
     (item.soldSeparately || !listing.isBundle)
       ? {
           '@context': 'https://schema.org',
           '@type': 'Product',
           name: item.modelName,
-          image:
-            listing.photos.length > 0 ? listing.photos.map((photo) => photo.largeUrl) : undefined,
-          description: listing.description ?? itemDescription(listing, item, t),
+          image: images(item.photos),
+          description: itemDescription(listing, item, t),
           category: t(`enums.category.${item.category}`),
           brand: item.brand ? { '@type': 'Brand', name: item.brand } : undefined,
           offers: offer(listing, item.priceCents, path, ITEM_CONDITION[item.cosmeticCondition]),
@@ -89,7 +94,7 @@ export function bundleStructuredData(
 ): object[] {
   if (listing.status !== 'active' || listing.priceCents === null) return [];
 
-  const conditions = listing.items.map((item) => ITEM_CONDITION[item.cosmeticCondition]);
+  const conditions = itemsForSale(listing).map((item) => ITEM_CONDITION[item.cosmeticCondition]);
   const condition = conditions.every((value) => value === conditions[0])
     ? conditions[0]
     : USED_CONDITION;
@@ -99,8 +104,8 @@ export function bundleStructuredData(
       '@context': 'https://schema.org',
       '@type': 'Product',
       name: title,
-      image: listing.photos.length > 0 ? listing.photos.map((photo) => photo.largeUrl) : undefined,
-      description: listing.description ?? bundleDescription(listing, t),
+      image: images(galleryPhotos(listing, null)),
+      description: bundleDescription(listing, t),
       offers: offer(listing, listing.priceCents, `/bundles/${listing.id}`, condition),
     },
   ];

@@ -14,6 +14,7 @@ import {
   PHOTO_SIZES,
   toDecodableImage,
 } from '@/lib/photos';
+import type { EditablePhoto } from '@/services/listing/listing.types';
 import type { PhotoUpload } from '@/services/photo/photo.types';
 
 type UploadingPhoto = {
@@ -25,20 +26,22 @@ type UploadingPhoto = {
 
 type PhotoUploaderProps = {
   uploadAction: () => Promise<PhotoUpload | { error: string }>;
-  onChange: (storageKeys: string[]) => void;
-  onCoverChange: (url: string | null) => void;
-  initialPhotos: { storageKey: string; url: string }[];
+  photos: EditablePhoto[];
+  onChange: (photos: EditablePhoto[]) => void;
 };
 
-export function PhotoUploader({
-  uploadAction,
-  onChange,
-  onCoverChange,
-  initialPhotos,
-}: PhotoUploaderProps) {
+function uploadedPhotos(photos: UploadingPhoto[]): EditablePhoto[] {
+  return photos.flatMap((photo) =>
+    photo.status === 'done' && photo.storageKey && photo.previewUrl
+      ? [{ storageKey: photo.storageKey, url: photo.previewUrl }]
+      : [],
+  );
+}
+
+export function PhotoUploader({ uploadAction, photos: savedPhotos, onChange }: PhotoUploaderProps) {
   const t = useTranslations('sell.photoUploader');
   const [photos, setPhotos] = useState<UploadingPhoto[]>(() =>
-    initialPhotos.map((photo, index) => ({
+    savedPhotos.map((photo, index) => ({
       localId: index,
       previewUrl: photo.url,
       storageKey: photo.storageKey,
@@ -46,17 +49,19 @@ export function PhotoUploader({
     })),
   );
   const nextLocalId = useRef(photos.length);
+  const reportedKeys = useRef(savedPhotos.map((photo) => photo.storageKey).join(','));
   const [message, setMessage] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    onChange(
-      photos
-        .filter((photo) => photo.status === 'done' && photo.storageKey)
-        .map((photo) => photo.storageKey as string),
-    );
-    onCoverChange(photos.find((photo) => photo.status !== 'error')?.previewUrl ?? null);
-  }, [photos, onChange, onCoverChange]);
+    const uploaded = uploadedPhotos(photos);
+    const keys = uploaded.map((photo) => photo.storageKey).join(',');
+
+    if (keys === reportedKeys.current) return;
+
+    reportedKeys.current = keys;
+    onChange(uploaded);
+  }, [photos, onChange]);
 
   function patchPhoto(localId: number, patch: Partial<UploadingPhoto>) {
     setPhotos((current) =>

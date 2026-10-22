@@ -2,7 +2,11 @@ import 'server-only';
 
 import type { BrowseFilters } from '@/lib/browse-filters';
 import { MAX_PHOTOS } from '@/lib/photos';
-import { type ListingItemInput, listingRepository } from '@/repositories/listing.repository';
+import {
+  type ListingDetailRow,
+  type ListingItemInput,
+  listingRepository,
+} from '@/repositories/listing.repository';
 import { modelRepository } from '@/repositories/model.repository';
 import { modelCatalogService } from '../model-catalog/model-catalog.service';
 import type { CatalogModel } from '../model-catalog/model-catalog.types';
@@ -47,6 +51,10 @@ export const listingService = {
     const row = await listingRepository.findByItemId(itemId);
 
     if (!row || !isVisibleTo(row.status, row.seller_id, viewerId)) return null;
+
+    const item = row.items.find((candidate) => candidate.id === itemId);
+
+    if (item?.sold_at !== null && row.seller_id !== viewerId) return null;
 
     return mapToDetail(row, viewerId);
   },
@@ -130,7 +138,6 @@ export const listingService = {
           published_at: publish ? new Date() : null,
         },
         content.items,
-        content.photoKeys,
       );
 
       return { ...created, publishedNow };
@@ -144,7 +151,6 @@ export const listingService = {
         published_at: publish ? (existing.published_at ?? new Date()) : existing.published_at,
       },
       content.items,
-      content.photoKeys,
     );
 
     photoService.deleteStored(removedPhotoKeys);
@@ -157,6 +163,41 @@ export const listingService = {
     await listingRepository.updateStatus(listingId, { status: 'sold' });
   },
 
+  async markItemSold(itemId: string, sellerId: string): Promise<void> {
+    const row = await requireOwnedByItem(itemId, sellerId);
+
+    if (row.status !== 'active') throw new ListingError('not_active');
+
+    const item = row.items.find((candidate) => candidate.id === itemId);
+
+    if (!item || item.sold_at !== null) return;
+
+    const remaining = row.items.filter(
+      (candidate) => candidate.sold_at === null && candidate.id !== itemId,
+    );
+
+    await listingRepository.setItemSold(itemId, true, {
+      ...(remaining.length === 0 ? { status: 'sold' } : {}),
+      price_cents: listingPriceFor(row, remaining),
+    });
+  },
+
+  async unmarkItemSold(itemId: string, sellerId: string): Promise<void> {
+    const row = await requireOwnedByItem(itemId, sellerId);
+    const item = row.items.find((candidate) => candidate.id === itemId);
+
+    if (!item || item.sold_at === null) return;
+
+    const forSale = row.items.filter(
+      (candidate) => candidate.sold_at === null || candidate.id === itemId,
+    );
+
+    await listingRepository.setItemSold(itemId, false, {
+      ...(row.status === 'sold' ? { status: 'active' } : {}),
+      price_cents: listingPriceFor(row, forSale),
+    });
+  },
+
   async hide(listingId: string, sellerId: string): Promise<void> {
     await requireOwned(listingId, sellerId);
     await listingRepository.updateStatus(listingId, { status: 'removed' });
@@ -165,7 +206,7 @@ export const listingService = {
   async restore(listingId: string, sellerId: string): Promise<void> {
     const listing = await requireOwned(listingId, sellerId);
 
-    if (listing.status === 'draft') await assertPublishable(listingId);
+    if (listing.status !== 'removed') await assertPublishable(listingId);
 
     await listingRepository.updateStatus(listingId, {
       status: 'active',
@@ -184,6 +225,23 @@ function isVisibleTo(status: string, sellerId: string, viewerId: string | null) 
   return status === 'active' || sellerId === viewerId;
 }
 
+function listingPriceFor(row: ListingDetailRow, items: ListingDetailRow['items']) {
+  const prices = items.map((item) => item.price_cents);
+
+  if (items.length === 0 || prices.some((price) => price === null)) return row.price_cents;
+
+  return prices.reduce<number>((sum, price) => sum + (price ?? 0), 0);
+}
+
+async function requireOwnedByItem(itemId: string, sellerId: string) {
+  const row = await listingRepository.findByItemId(itemId);
+
+  if (!row) throw new ListingError('not_found');
+  if (row.seller_id !== sellerId) throw new ListingError('not_owner');
+
+  return row;
+}
+
 async function requireOwned(listingId: string, sellerId: string) {
   const listing = await listingRepository.findSeller(listingId);
 
@@ -197,10 +255,14 @@ async function assertPublishable(listingId: string) {
   const row = await listingRepository.findById(listingId);
 
   if (!row) throw new ListingError('not_found');
-  if (row.items.length === 0) throw new ListingError('no_items');
-  if (!row.city_id) throw new ListingError('no_city');
 
-  if (row.price_cents === null || row.items.some((item) => item.price_cents === null)) {
+  const items = row.items.filter((item) => item.sold_at === null);
+
+  if (items.length === 0) throw new ListingError('no_items');
+  if (!row.city_id) throw new ListingError('no_city');
+  if (items.some((item) => item.photos.length === 0)) throw new ListingError('no_photos');
+
+  if (row.price_cents === null || items.some((item) => item.price_cents === null)) {
     throw new ListingError('missing_price');
   }
 }
@@ -220,23 +282,23 @@ function undescribedItemError(items: CreateListingItemInput[]): ListingErrorCode
   return 'missing_custom_category';
 }
 
-async function buildContent(input: CreateListingPayload, publish: boolean) {
-  if (input.photoKeys.length > MAX_PHOTOS) {
-    throw new ListingError('too_many_photos');
-  }
+function validPhotoKeys(item: CreateListingItemInput, publish: boolean) {
+  if (item.photoKeys.length > MAX_PHOTOS) throw new ListingError('too_many_photos');
 
-  const photoKeys = input.photoKeys.filter((key) => STORAGE_KEY_PATTERN.test(key));
+  const photoKeys = item.photoKeys.filter((key) => STORAGE_KEY_PATTERN.test(key));
 
-  if (input.items.some((item) => !ITEM_ID_PATTERN.test(item.id))) {
-    throw new ListingError('invalid_item');
-  }
-
-  if (publish && photoKeys.length !== input.photoKeys.length) {
+  if (publish && photoKeys.length !== item.photoKeys.length) {
     throw new ListingError('photo_failed');
   }
 
-  if (publish && photoKeys.length === 0) {
-    throw new ListingError('no_photos');
+  if (publish && photoKeys.length === 0) throw new ListingError('no_photos');
+
+  return photoKeys;
+}
+
+async function buildContent(input: CreateListingPayload, publish: boolean) {
+  if (input.items.some((item) => !ITEM_ID_PATTERN.test(item.id))) {
+    throw new ListingError('invalid_item');
   }
 
   const described = input.items.filter(isDescribed);
@@ -278,9 +340,11 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
         functional_condition: item.functionalCondition,
         shutter_count: asksShutterCount ? parseShutterCount(item.shutterCount) : null,
         sold_separately: item.soldSeparately,
+        description: item.description?.trim() || null,
         position,
       },
       inclusions: item.inclusions,
+      photoKeys: validPhotoKeys(item, publish),
     };
   });
 
@@ -291,9 +355,7 @@ async function buildContent(input: CreateListingPayload, publish: boolean) {
   }
 
   return {
-    photoKeys,
     values: {
-      description: input.description?.trim() || null,
       price_cents: isBundle
         ? optionalPriceCents(input.bundlePrice ?? '')
         : (items[0]?.item.price_cents ?? null),

@@ -161,8 +161,11 @@ function conversationQuery() {
 function listingCoverKey(eb: ExpressionBuilder<DB, 'conversation'>) {
   return eb
     .selectFrom('listing_photo')
+    .innerJoin('listing_item', 'listing_item.id', 'listing_photo.listing_item_id')
     .select('listing_photo.storage_key')
-    .whereRef('listing_photo.listing_id', '=', 'conversation.listing_id')
+    .whereRef('listing_item.listing_id', '=', 'conversation.listing_id')
+    .orderBy(sql`listing_item.sold_at is not null`)
+    .orderBy('listing_item.position')
     .orderBy('listing_photo.position')
     .limit(1);
 }

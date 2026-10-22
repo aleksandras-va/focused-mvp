@@ -53,7 +53,7 @@ export interface AnalyticsEvents {
     role: 'buyer' | 'seller';
     isFirst: boolean;
   };
-  'Marked Sold': { listingId: string };
+  'Marked Sold': { listingId: string; itemId?: string };
   Searched: SearchOutcome;
 }
 
