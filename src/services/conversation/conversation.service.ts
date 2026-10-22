@@ -14,7 +14,7 @@ export const conversationService = {
   async start(listingId: string, buyerId: string, body: string): Promise<SentMessage> {
     const listing = await listingRepository.findSeller(listingId);
 
-    if (!listing || listing.status !== 'active') {
+    if (listing?.status !== 'active') {
       throw new ConversationError('listing_unavailable');
     }
     if (listing.seller_id === buyerId) {

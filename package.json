@@ -2,6 +2,9 @@
   "name": "focused",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,39 +28,39 @@
     "db:seed:cities": "node scripts/seed-cities.mts"
   },
   "dependencies": {
-    "@base-ui/react": "^1.7.0",
-    "@neondatabase/serverless": "^1.1.0",
+    "@base-ui/react": "^1.9.0",
+    "@neondatabase/serverless": "^1.2.0",
     "aws4fetch": "^1.0.20",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "cn": "^0.3.2",
+    "cn": "^0.5.0",
     "heic-to": "^1.6.6",
-    "kysely": "^0.29.5",
-    "lucide-react": "^1.34.0",
-    "next": "16.3.2",
+    "kysely": "^0.29.7",
+    "lucide-react": "^1.61.0",
+    "next": "16.4.2",
     "next-intl": "^4.14.9",
-    "pg": "^8.23.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "pg": "^8.23.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "server-only": "^0.0.1",
-    "shadcn": "^4.19.0",
-    "tailwind-merge": "^3.6.0",
+    "shadcn": "^4.22.1",
+    "tailwind-merge": "^3.7.0",
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.2",
-    "@next/env": "^16.3.2",
+    "@biomejs/biome": "2.6.2",
+    "@next/env": "^16.4.2",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.19.2",
     "@types/pg": "^8.23.1",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "kysely-codegen": "^0.20.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "vitest": "^5.0.3"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
   },
   "packageManager": "pnpm@10.32.1"
 }
